@@ -1,7 +1,9 @@
 # Daily Modeling and Update of the COVID-19 Pandemic
 
 ## Overview:
-This is my analysis, not Stanford’s. My plots and regressions are intended to understand the trajectory of COVID. It is not confidential and can be freely shared. The R program code and PowerPoint files are available at https://github.com/StevenLShafer/COVID19/. Please contact me at steven.shafer@Stanford.edu if you would like to be added or removed from the recipient list. Suggestions are most welcome! You are welcome to use the R code on GitHub for any purpose.
+This is my analysis, not Stanford’s. My plots and regressions are intended to understand the trajectory of COVID. It is not confidential and can be freely shared. The R program code is available in this repository. The daily updates can be accessed at https://1drv.ms/u/s!AuOyHP_aTIy7rowrt2AjGpWm_frnEQ?e=KBcNbh. 
+
+Please contact me at steven.shafer@Stanford.edu if you would like to be added or removed from the recipient list. Suggestions are most welcome! You are welcome to use the R code on GitHub for any purpose.
 
 I am attempting to keep the analysis and commentary apolitical. I am now including partisan lean as a metric to help understand the epidemic. I occasionally point out misrepresentations by government officials. I occasionally point out where government recommendations have placed Americans at increasing risk.
 
@@ -28,6 +30,7 @@ The rate of change in daily cases and deaths is the slope of delta cases / day o
 ## Locations
 The locations for the modeling are where Pamela and I have family and friends, locations of interest to friends and colleagues, or countries in the news (e.g., China, South Korea, Sweden, Brazil) or with significant economic impact on the United States (e.g., Japan, Canada, Mexico). Locations are easy to add.
 
+---
 Stay safe, well, resilient, and kind.
 
 Steve Shafer
