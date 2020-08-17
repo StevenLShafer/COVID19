@@ -36,6 +36,8 @@ setwd(Directory)
 dirCode <- paste0(Directory,"Code/")
 dirSheets <- paste0(Directory,"Sheets/")
 dirUpdate <- paste0(Directory,"Updates/")
+dirLatest <- paste0(Directory,"Latest/")
+
 
 today <- Sys.Date()
 todayText <- as.character(today)
@@ -94,7 +96,20 @@ deathAxis <- 20       # Relative size of right axis (deaths / day) to left axis 
   source(paste0(dirCode,"Counties.R"))
   source(paste0(dirCode,"International.R"))
   
+  write.csv(Countries, paste0(dirTodayUpdateData, "Countries.csv"), row.names=FALSE)
+  write.csv(States, paste0(dirTodayUpdateData, "States.csv"), row.names=FALSE)
+  write.csv(Counties, paste0(dirTodayUpdateData, "Counties.csv"), row.names=FALSE)
   writeLines(emailText, paste0(dirTodayUpdate,"EmailText.",timestamp,".txt"))
+  
+  # Make copy of latest files for GitHub
+  FILES <- list.files(dirLatest, recursive = TRUE)
+  if (length(FILES) > 0) file.remove(paste0(dirLatest, FILES))
+  
+  FILES <- list.files(dirTodayUpdate, recursive = TRUE)
+  file.copy(
+    from = paste0(dirTodayUpdate,FILES),
+    to = dirLatest
+    )
 
   pbPost(
     #  devices = "Phone",

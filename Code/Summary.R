@@ -46,14 +46,23 @@ emailText <- textSummary(WE, "In Western Europe (population: 352MM)")
 # New cases per population
 Countries <- Population_Global
 CROWS <- match(Countries$Country, Cases_Global$Country)
-Countries$Cases <- Cases_Global[CROWS, ncol(Cases_Global)]
-Countries$dailyCases <- (Cases_Global[CROWS, ncol(Cases_Global)] - Cases_Global[CROWS, ncol(Cases_Global) - 8])/7
+N <- ncol(Cases_Global)
+Countries$Cases <- Cases_Global[CROWS, N]
+Countries$dailyCases <- (Cases_Global[CROWS, N] - Cases_Global[CROWS, N - 8])/7
+for (c in CROWS)
+{
+Countries$CVCases[c] <- sd(unlist(Cases_Global[c, (N-28):N])) / mean(unlist(Cases_Global[c, (N-28):N]))
+}
 
 CROWS <- match(Countries$Country, Deaths_Global$Country)
-Countries$Deaths <- Deaths_Global[CROWS, ncol(Deaths_Global)]
-Countries$dailyDeaths <- (Deaths_Global[CROWS, ncol(Deaths_Global)] - Deaths_Global[CROWS, ncol(Deaths_Global) - 8])/7
+N <- ncol(Deaths_Global)
+Countries$Deaths <- Deaths_Global[CROWS, N]
+Countries$dailyDeaths <- (Deaths_Global[CROWS, N] - Deaths_Global[CROWS, N - 8])/7
 Countries$mortality = Countries$Deaths / Countries$Cases * 100
-
+for (c in CROWS)
+{
+  Countries$CVDeaths[c] <- sd(unlist(Deaths_Global[c, (N-28):N])) / mean(unlist(Deaths_Global[c, (N-28):N]))
+}
 Countries <- Countries[Countries$Population > 5000000,]
 
 #Countries <- Countries[Countries$Country %in% c("Sweden","Denmark","Germany","Finland","Norway","USA"),]
@@ -159,8 +168,25 @@ ggObject <- ggplot(Testing_Global_last,aes(x = total_tests_per_thousand / 10, y 
     yend = max(Testing_Global_last$mortality, na.rm=TRUE), 
     color = "red"
   )
-
 nextSlide(ggObject, "Case Mortality vs. Testing")
+
+# CV for international data
+X <- Countries[!is.nan(Countries$CVCases) & !is.nan(Countries$CVDeaths),]
+X <- X[X$CVDeaths > 0, ]
+X <- X[order(X$CVDeaths, decreasing = FALSE),]
+ggObject <- ggplot(X,aes(x = CVCases, y = CVDeaths, label=Abbreviation)) +
+  geom_text(size = 3, hjust = 0.5, vjust = 0.5) +
+  labs(
+    title = paste("Coefficient of variation for cases and deaths as of", today),
+    x = "Cases CV",
+    y = "Deaths CV",
+    caption = "CV calculated over last 28 days"
+  ) +
+  annotation_logticks() +
+  scale_x_log10(breaks = c(0.01, 0.01, 0.1, 1)) +
+  scale_y_log10(breaks = c(0.001, 0.01, 0.1, 1)) +
+  coord_cartesian(xlim = c(0.01, 1), ylim = c(0.001,1))
+nextSlide(ggObject, "CV for Cases and Deaths")
 
 # US mortality over time 
 Cases <- as.numeric(
@@ -235,13 +261,18 @@ ggObject <- ggplot(
     axis.title.y.right = element_text(margin = margin(t = 0, r = 0, b = 0, l = 20))
   )
 nextSlide(ggObject, "Mortality Trends")
-##################################################################
-# State Summary                                                  #
-##################################################################
 
-States$Mortality <- States$deltaCases <- States$deltaDeaths <- 
-  States$dailyCases <- States$totalCases <- States$dailyDeaths <- States$totalDeaths <- 
-  States$PositiveTestSlope <- States$Hospitalizations <- States$HospitalizationSlope <- 0
+#################################################################################################################
+# State Summary                                                                                                 #
+#################################################################################################################
+
+States$Mortality <- 
+  States$slopeCases <- States$slopeDeaths <- 
+  States$dailyCases <- States$totalCases <- 
+  States$dailyDeaths <- States$totalDeaths <- 
+  States$slopeTests <- States$slopePositiveTests <- 
+  States$Hospitalizations <- States$slopeHospitalizations <- 
+  States$CVCases <- States$CVDeaths <- 0
 Cases_Long <- as.data.frame(matrix(ncol=4, nrow = 0))
 names(Cases_Long) <- c("State","Date","Cases", "Deaths")
 
@@ -250,8 +281,8 @@ for (i in 1:nrow(States))
   results <- calcStats(State = States$Abbreviation[i])
   if (!is.null(results))
   {
-    States$deltaCases[i] <- results$slopeCases
-    States$deltaDeaths[i] <- results$slopeDeaths
+    States$slopeCases[i] <- results$slopeCases
+    States$slopeDeaths[i] <- results$slopeDeaths
     States$Mortality[i] <- results$mortality
     States$Population[i] <- results$Population
     
@@ -269,13 +300,20 @@ for (i in 1:nrow(States))
     )
     Cases_Long <- rbind(Cases_Long,C)
     
+    # Testing Slope
+    D <- data.frame(
+      X = 1:14,
+      Y = Testing_USA_zeroOne$Testing[Testing_USA_zeroOne$Abbreviation == States$Abbreviation[i] & Testing_USA_zeroOne$Date >= today-14]
+    )
+    States$slopeTests[i] <- lm(Y~X, data = D)$coefficients[2] / mean(D$Y) * 100
+    
     # Positive Test Slope
     L <- ncol(Positive_USA)
     D <- data.frame(
       X = 1:14,
       Y = unlist(Positive_USA[Positive_USA$Abbreviation == States$Abbreviation[i], (L-13):L])
     )
-    States$PositiveTestSlope[i] <- lm(Y~X, data = D)$coefficients[2] / mean(D$Y) * 100
+    States$slopePositiveTests[i] <- lm(Y~X, data = D)$coefficients[2] / mean(D$Y) * 100
 
     # Hospitalizations
     L <- ncol(Hospitalization_USA_zeroOne)
@@ -292,10 +330,19 @@ for (i in 1:nrow(States))
         Hospitalization_USA_zeroOne$Date >= today - 14
       ]
     )
-    States$HospitalizationSlope[i] <- lm(Y~X, data = D)$coefficients[2] / mean(D$Y) * 100
+    States$slopeHospitalizations[i] <- lm(Y~X, data = D)$coefficients[2] / mean(D$Y) * 100
+    
+   # Coefficient of Variation
+    N <- nrow(C)
+    States$CVCases[i] <- sd(C$Cases[(N-28):N]) / mean(C$Cases[(N-28):N])
+    States$CVDeaths[i] <- sd(C$Deaths[(N-28):N]) / mean(C$Deaths[(N-28):N])
   }
 }
 States$state <- States$State   # Required for plot_usmap().... whatever
+
+# Impose limit of -5% on decrease to compensate for reporting problems
+States$slopeTests[States$slopeTests < -5] <- -5
+
 
 # Add testing
 CROWS <- match(States$Abbreviation,Testing_USA$Abbreviation)
@@ -310,10 +357,10 @@ States$Masks <- MASKS$Statewide.Requirement[CROWS]
 
 # New cases / day
 States$signCase <- "No Change (-1% to +1%)"
-States$signCase[States$deltaCases < -3] <- "Decreasing > -3%"
-States$signCase[States$deltaCases >= -3 & States$deltaCases < -1] <- "Decreasing between -1% and -3%"
-States$signCase[States$deltaCases <= 3 & States$deltaCases > 1] <- "Increasing between +1% and +3%"
-States$signCase[States$deltaCases > 3] <- "Increasing > +3%"
+States$signCase[States$slopeCases < -3] <- "Decreasing > -3%"
+States$signCase[States$slopeCases >= -3 & States$slopeCases < -1] <- "Decreasing between -1% and -3%"
+States$signCase[States$slopeCases <= 3 & States$slopeCases > 1] <- "Increasing between +1% and +3%"
+States$signCase[States$slopeCases > 3] <- "Increasing > +3%"
 States$signCase <- factor(
   States$signCase,
   levels = c(
@@ -356,13 +403,13 @@ ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 58 & Cases_Long$Date < 
 nextSlide(ggObject, "Cases as a Percent of Peak Cases")
 
 # New deaths / day
-States$deltaDeaths[States$deltaDeaths < -6] <- -6
-States$deltaDeaths[States$deltaDeaths > 6] <- 6
+States$slopeDeaths[States$slopeDeaths < -6] <- -6
+States$slopeDeaths[States$slopeDeaths > 6] <- 6
 States$signDeath <- "No Change (-0.1% to +0.1%)"
-States$signDeath[States$deltaDeaths < -0.5] <- "Decreasing > -0.5%"
-States$signDeath[States$deltaDeaths >= -0.5 & States$deltaDeaths < -0.1] <- "Decreasing between -0.1% and -0.5%"
-States$signDeath[States$deltaDeaths <= 0.5 & States$deltaDeaths > 0.1] <- "Increasing between +0.1% and +0.5%"
-States$signDeath[States$deltaDeaths > 0.5] <- "Increasing > +0.5%"
+States$signDeath[States$slopeDeaths < -0.5] <- "Decreasing > -0.5%"
+States$signDeath[States$slopeDeaths >= -0.5 & States$slopeDeaths < -0.1] <- "Decreasing between -0.1% and -0.5%"
+States$signDeath[States$slopeDeaths <= 0.5 & States$slopeDeaths > 0.1] <- "Increasing between +0.1% and +0.5%"
+States$signDeath[States$slopeDeaths > 0.5] <- "Increasing > +0.5%"
 States$signDeath <- factor(
   States$signDeath,
   levels = c(
@@ -406,14 +453,14 @@ ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 58 & Cases_Long$Date < 
 nextSlide(ggObject, "Deaths as a Percent of Peak Deaths")
 
 States$Quadrant <- 1
-States$Quadrant[States$deltaCases < 0 & States$deltaDeaths < 0] <- 2
-States$Quadrant[States$deltaCases > 0 & States$deltaDeaths < 0] <- 3
-States$Quadrant[States$deltaCases < 0 & States$deltaDeaths > 0] <- 4
+States$Quadrant[States$slopeCases < 0 & States$slopeDeaths < 0] <- 2
+States$Quadrant[States$slopeCases > 0 & States$slopeDeaths < 0] <- 3
+States$Quadrant[States$slopeCases < 0 & States$slopeDeaths > 0] <- 4
 
-ggObject <- ggplot(States,aes(x = deltaCases, y = deltaDeaths, label=Abbreviation)) +
+ggObject <- ggplot(States,aes(x = slopeCases, y = slopeDeaths, label=Abbreviation)) +
   geom_text(size = 3, aes(color = as.factor(Quadrant)), show.legend=FALSE) +
   labs(
-    title = paste("Change in cases vs change in deaths over last 14 days", today),
+    title = paste("Change in cases vs change in deaths over last 14 days as of", today),
     y = "Change in deaths (%/day)",
     x = "Change in cases (%/day)"
   ) +
@@ -423,16 +470,16 @@ ggObject <- ggplot(States,aes(x = deltaCases, y = deltaDeaths, label=Abbreviatio
     "segment",
     x = 0,
     xend = 0,
-    y = min(States$deltaDeaths),
-    yend = max(States$deltaDeaths),
+    y = min(States$slopeDeaths),
+    yend = max(States$slopeDeaths),
     color = "black"
   ) +
   annotate(
     "segment",
     y = 0,
     yend = 0,
-    x = min(States$deltaCases),
-    xend = max(States$deltaCases),
+    x = min(States$slopeCases),
+    xend = max(States$slopeCases),
     color = "black"
   )
 
@@ -502,6 +549,42 @@ stateFisherPlot(
   OneIn = TRUE
 )
 
+# Testing Trends
+ggObject <- ggplot(Testing_USA_zeroOne[Testing_USA_zeroOne$Date >= "2020-03-01",], aes(Date, Testing)) +
+  geom_line() +
+  scale_x_date(
+    date_breaks = "28 days",
+    date_labels = "%b %d"
+  ) +
+  scale_y_continuous(
+    breaks = c(0,1),
+    labels = c("min","max")
+  ) +
+  coord_cartesian(ylim = c(0,1)) +
+  facet_geo(~ Abbreviation, grid = "us_state_grid4") +
+  labs(
+    y = "Daily testing from min to max",
+    title = "Daily testing trends from min to max",
+    caption = "Line = Friedman's supersmoother"
+  ) +
+  theme(
+    axis.title.x = element_blank(),
+    axis.text.x=element_text(angle=70, hjust=1, size=7),
+    axis.text.y=element_text(size=6),
+    axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
+    axis.title.y.right = element_text(margin = margin(t = 0, r = 0, b = 0, l = 20))
+  )
+nextSlide(ggObject, "Daily testing trends")
+
+States$Y <- States$slopeTests
+stateFisherPlot(
+  States,
+  "Change in daily tests over past 14 days",
+  "Change in daily tests (%/day)",
+  "daily increase in tests",
+  6
+)
+
 States$Y <- States$TestingFraction
 stateFisherPlot(
   States,
@@ -545,7 +628,7 @@ ggObject <- ggplot(Positive_USA_zeroOne[Positive_USA_zeroOne$Date >= "2020-03-01
   )
 nextSlide(ggObject, "Positive fraction trends")
 
-States$Y <- States$PositiveTestSlope
+States$Y <- States$slopePositiveTests
 stateFisherPlot(
   States,
   "Change in positive tests over past 14 days",
@@ -553,6 +636,42 @@ stateFisherPlot(
   "daily change in positive tests",
   6
 )
+
+
+# Four quadrant graph for testing and positivity
+
+States$Quadrant <- 1
+States$Quadrant[States$slopeTests < 0 & States$slopePositiveTests < 0] <- 2
+States$Quadrant[States$slopeTests > 0 & States$slopePositiveTests < 0] <- 3
+States$Quadrant[States$slopeTests < 0 & States$slopePositiveTests > 0] <- 4
+
+ggObject <- ggplot(States,aes(x = slopeTests, y = slopePositiveTests, label=Abbreviation)) +
+  geom_text(size = 3, aes(color = as.factor(Quadrant)), show.legend=FALSE) +
+  labs(
+    title = paste("Change in tests vs change in positive tests last 14 days as of", today),
+    y = "Change in positive tests (%/day)",
+    x = "Change in tests (%/day)"
+  ) +
+  coord_cartesian() +
+  scale_color_manual(values = c("magenta","blue","forestgreen","red")) +
+  annotate(
+    "segment",
+    x = 0,
+    xend = 0,
+    y = min(States$slopePositiveTests),
+    yend = max(States$slopePositiveTests),
+    color = "black"
+  ) +
+  annotate(
+    "segment",
+    y = 0,
+    yend = 0,
+    x = min(States$slopeTests, -1),
+    xend = max(States$slopeTests),
+    color = "black"
+  )
+nextSlide(ggObject, "Change in tests vs change in positive tests")
+
 
 
 # Hospitalizatons
@@ -590,7 +709,7 @@ ggObject <- ggplot(Hospitalization_USA_zeroOne[Hospitalization_USA_zeroOne$Date 
 nextSlide(ggObject, "Hospitalizations trends")
 
 # Hospitalizatons
-States$Y <- States$HospitalizationSlope
+States$Y <- States$slopeHospitalizations
 stateFisherPlot(
   States,
   "Change in hospitalizations over past 14 days",
@@ -604,7 +723,6 @@ CROWS <- match(States$Abbreviation,Testing_USA$Abbreviation)
 States$Tests <- Testing_USA[CROWS, ncol(Testing_USA)]
 States$TestingFraction <- States$Tests / States$Population * 100
 
-# Testing
 ggObject <- ggplot(States,aes(x = TestingFraction, y = Mortality * 100, label=Abbreviation)) +
   geom_text(size = 3) +
   labs(
@@ -615,6 +733,25 @@ ggObject <- ggplot(States,aes(x = TestingFraction, y = Mortality * 100, label=Ab
   coord_cartesian()
 
 nextSlide(ggObject, "Case Mortality vs. Testing")
+
+# CV for state data
+X <- States[!is.nan(States$CVCases) & !is.nan(States$CVDeaths),]
+X <- X[X$CVDeaths > 0, ]
+X <- X[order(X$CVDeaths, decreasing = FALSE),]
+ggObject <- ggplot(X,aes(x = CVCases, y = CVDeaths, label=Abbreviation)) +
+  geom_text(size = 3, hjust = 0.5, vjust = 0.5) +
+  labs(
+    title = paste("Coefficient of variation for cases and deaths as of", today),
+    x = "Cases CV",
+    y = "Deaths CV",
+    caption = "CV calculated over last 28 days"
+  ) +
+  annotation_logticks() +
+  scale_x_log10(breaks = c(0.01, 0.01, 0.1, 1)) +
+  scale_y_log10(breaks = c(0.01, 0.01, 0.1, 1)) +
+  coord_cartesian(xlim = c(0.01, 1.317), ylim = c(0.01,1.317))
+nextSlide(ggObject, "CV for Cases and Deaths")
+
 print(pptx, target = pptxfileName)
 shell.exec(pptxfileName)
 

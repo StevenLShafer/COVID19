@@ -139,7 +139,9 @@ Testing_USA <- cbind(
   matrix(0,nrow=51, ncol=length(currentDates))
 )
 names(Testing_USA) <- c(names(States)[1:3], as.character(currentDates, format = "X%m.%d.%y"))
-Testing_USA_zeroOne <- Positive_USA <- Positive_USA_zeroOne <- Hospitalization_USA_zeroOne <- Testing_USA
+Testing_USA_zeroOne <- Testing_USA_Daily <- Positive_USA <- 
+  Positive_USA_zeroOne <- Hospitalization_USA_zeroOne <- 
+  Testing_USA
 
 # Testing_USA$hospitalizedCumulative and Testing_USA$hospitalized are identical
 Cols <- ncol(Testing_USA)
@@ -153,7 +155,10 @@ for (i in 1:nrow(Testing_USA))
     yleft = 0,
     rule = 2
   )$y
+  L <- length(Y)
   Testing_USA[i, 4:Cols] <- Y
+  Y <- c(0,Y[2:L]-Y[1:(L-1)])
+  Y <- supsmu(1:L, Y)$y
   Testing_USA_zeroOne[i, 4:Cols] <- zeroOne(Y)
 
   Y <- approx(
