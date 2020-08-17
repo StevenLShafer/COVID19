@@ -44,25 +44,25 @@ emailText <- textSummary(WE, "In Western Europe (population: 352MM)")
 ########################
 # Fisher Plots ########
 # New cases per population
-X <- Population_Global
-CROWS <- match(X$Country, Cases_Global$Country)
-X$Cases <- Cases_Global[CROWS, ncol(Cases_Global)]
-X$dailyCases <- (Cases_Global[CROWS, ncol(Cases_Global)] - Cases_Global[CROWS, ncol(Cases_Global) - 8])/7
+Countries <- Population_Global
+CROWS <- match(Countries$Country, Cases_Global$Country)
+Countries$Cases <- Cases_Global[CROWS, ncol(Cases_Global)]
+Countries$dailyCases <- (Cases_Global[CROWS, ncol(Cases_Global)] - Cases_Global[CROWS, ncol(Cases_Global) - 8])/7
 
-CROWS <- match(X$Country, Deaths_Global$Country)
-X$Deaths <- Deaths_Global[CROWS, ncol(Deaths_Global)]
-X$dailyDeaths <- (Deaths_Global[CROWS, ncol(Deaths_Global)] - Deaths_Global[CROWS, ncol(Deaths_Global) - 8])/7
-X$mortality = X$Deaths / X$Cases * 100
+CROWS <- match(Countries$Country, Deaths_Global$Country)
+Countries$Deaths <- Deaths_Global[CROWS, ncol(Deaths_Global)]
+Countries$dailyDeaths <- (Deaths_Global[CROWS, ncol(Deaths_Global)] - Deaths_Global[CROWS, ncol(Deaths_Global) - 8])/7
+Countries$mortality = Countries$Deaths / Countries$Cases * 100
 
-X <- X[X$Population > 5000000,]
+Countries <- Countries[Countries$Population > 5000000,]
 
-#X <- X[X$Country %in% c("Sweden","Denmark","Germany","Finland","Norway","USA"),]
+#Countries <- Countries[Countries$Country %in% c("Sweden","Denmark","Germany","Finland","Norway","USA"),]
 
 ### CASES ###
 # Total cases
-X$Y <- X$Cases
+Countries$Y <- Countries$Cases
 internationalFisherPlot(
-  X,
+  Countries,
   "Worldwide cases",
   "Total cases to date",
   "total cases",
@@ -70,9 +70,9 @@ internationalFisherPlot(
 )
 
 # Total cases per capita 
-X$Y <- X$Cases  / X$Population * 1000000
+Countries$Y <- Countries$Cases  / Countries$Population * 1000000
 internationalFisherPlot(
-  X,
+  Countries,
   "Worldwide cases",
   "Total cases to date",
   "total cases per capita",
@@ -81,9 +81,9 @@ internationalFisherPlot(
 )
 
 # Average cases over past 7 days
-X$Y <- X$dailyCases  / X$Population * 1000000
+Countries$Y <- Countries$dailyCases  / Countries$Population * 1000000
 internationalFisherPlot(
-  X,
+  Countries,
   "Average new cases over past 7 days",
   "Average cases / day",
   "new cases per capita over past 7 days",
@@ -93,9 +93,9 @@ internationalFisherPlot(
 
 ### DEATHS
 # Total Deaths
-X$Y <- X$Deaths
+Countries$Y <- Countries$Deaths
 internationalFisherPlot(
-  X,
+  Countries,
   "Worldwide deaths",
   "Total deaths to date",
   "total deaths",
@@ -103,9 +103,9 @@ internationalFisherPlot(
 )
 
 # Total Deaths per million 
-X$Y <- X$Deaths  / X$Population * 1000000
+Countries$Y <- Countries$Deaths  / Countries$Population * 1000000
 internationalFisherPlot(
-  X,
+  Countries,
   "Worldwide deaths",
   "Total deaths to date",
   "total deaths per capita",
@@ -114,9 +114,9 @@ internationalFisherPlot(
 )
 
 # Average Deaths per million over past 7 days
-X$Y <- X$dailyDeaths  / X$Population * 1000000
+Countries$Y <- Countries$dailyDeaths  / Countries$Population * 1000000
 internationalFisherPlot(
-  X,
+  Countries,
   "Average daily deaths over past 7 days",
   "Average deaths / day",
   "new deaths per capita over past 7 days",
