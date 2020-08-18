@@ -7,6 +7,53 @@ emailText <- textSummary(WORLD, "Worldwide")
 USA <- plotPred(Country = "United States of America", Title = "USA")
 emailText <- textSummary(USA, "In the US")
 
+# X <- USA$CASES[USA$CASES$Date > as.Date("2020-03-02") & USA$CASES$Date < today ,]
+# breaks = as.Date(as.Date("2020-03-02") + 0:24*7)
+# labels = format(breaks, format = "%a, %b-%d")
+# ggplot(X,aes(x = Date, y = Delta)) +
+#   geom_col(width=1.0) +
+#   scale_x_date(
+#     breaks = breaks,
+#     labels = labels,
+#     minor_breaks = NULL,
+#     expand = c(0,0)
+# #    limits = c(as.Date("2020-03-09"), as.Date("2020-08-16"))
+#   ) +
+#   labs(
+#     title = "Daily US cases since March 2020",
+#     y = "Daily COVID-19 Cases"
+#   ) +
+#   scale_y_continuous(label = comma) +
+#   theme(
+#     axis.text.x=element_text(angle=60, hjust=1)
+#   ) +
+#   coord_cartesian(xlim = c(as.Date("2020-03-02"), as.Date("2020-08-17")))
+# 
+# 
+# X <- USA$DEATHS[USA$DEATHS$Date > as.Date("2020-03-02") & USA$DEATHS$Date < today ,]
+# ggplot(X,aes(x = Date, y = Delta)) +
+#   geom_col(width=1.0) +
+#   scale_x_date(
+#     breaks = breaks,
+#     labels = labels,
+#     minor_breaks = NULL,
+#     expand = c(0,0)
+#     #    limits = c(as.Date("2020-03-09"), as.Date("2020-08-16"))
+#   ) +
+#   labs(
+#     title = "Daily US cases since March 2020",
+#     y = "Daily COVID-19 Deaths"
+#   ) +
+#   scale_y_continuous(label = comma) +
+#   theme(
+#     axis.text.x=element_text(angle=60, hjust=1)
+#   ) +
+#   coord_cartesian(xlim = c(as.Date("2020-03-02"), as.Date("2020-08-17")))
+
+
+
+
+
 ASIA <- plotPred(Country = c("Japan","South Korea","Vietnam","Thailand"), Title = "Japan, South Korea, Thailand, Vietnam")
 emailText <- textSummary(ASIA, "In the non-authoritarian Asian ensemble (population: 328MM)")
 
