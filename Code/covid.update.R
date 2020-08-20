@@ -110,6 +110,8 @@ deathAxis <- 20       # Relative size of right axis (deaths / day) to left axis 
     from = paste0(dirTodayUpdate,FILES),
     to = dirLatest
     )
+  
+  shell ("git add .")
 
   pbPost(
     #  devices = "Phone",
