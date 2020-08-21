@@ -112,6 +112,8 @@ deathAxis <- 20       # Relative size of right axis (deaths / day) to left axis 
     )
   
   shell ("git add .")
+  shell (paste('git commit -m "Update for', todayText, '"'))
+  shell ("git push")
 
   pbPost(
     #  devices = "Phone",
