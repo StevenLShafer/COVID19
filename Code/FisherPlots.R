@@ -64,7 +64,7 @@ stateFisherPlot <- function (X, title, ylabel, emailTitle, N, OneIn = FALSE)
       x = "Rank",
       caption = paste0
       (
-        "p masks: ", 
+        "p masks as of July 20, 2020: ", 
         signif(pMasks,2), 
         ", p governor: ",
         signif(pGov,2),

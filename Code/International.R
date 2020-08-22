@@ -37,24 +37,6 @@ plotPred(Country = "Qatar")
 plotPred(Country = "Bahrain", Title = "Bahrain")
 
 # South America
-predPlot(
-  Country == c(
-    "Argentina", 
-    "Bolivia", 
-    "Brazil",
-    "Chile",
-    "Colombia", 
-    "Ecuador", 
-    "Guyana", 
-    "Paraguay", 
-    "Peru", 
-    "Suriname", 
-    "Uruguay", 
-    "Venezuela", 
-    "French Guiana"),
-  Title = "South America"
-)
-     
 plotPred(
   Country = c(
     "Argentina", 
