@@ -35,11 +35,79 @@ plotPred(Country = "United Arab Emirates")
 plotPred(Country = "Oman")
 plotPred(Country = "Qatar")
 plotPred(Country = "Bahrain", Title = "Bahrain")
+
+# South America
+predPlot(
+  Country == c(
+    "Argentina", 
+    "Bolivia", 
+    "Brazil",
+    "Chile",
+    "Colombia", 
+    "Ecuador", 
+    "Guyana", 
+    "Paraguay", 
+    "Peru", 
+    "Suriname", 
+    "Uruguay", 
+    "Venezuela", 
+    "French Guiana"),
+  Title = "South America"
+)
+     
+plotPred(
+  Country = c(
+    "Argentina", 
+    "Bolivia", 
+    "Brazil",
+    "Chile",
+    "Colombia", 
+    "Ecuador", 
+    "Guyana", 
+    "Paraguay", 
+    "Peru", 
+    "Suriname", 
+    "Uruguay", 
+    "Venezuela"
+    ),
+  Title = "South America",
+  Subtitle = "Argentina, Bolivia, Brazil, Chile, Colombia, Ecuador, Guyana, Paraguay, Peru, Suriname, Uruguay, and Venezuela"
+)
+
+plotPred(Country = "Argentina")
+plotPred(Country = "Bolivia")
 plotPred(Country = "Brazil", Title = "Brazil")
 plotPred(Country = "Chile")
 plotPred(Country = "Colombia")
+plotPred(Country = "Ecuador")
+plotPred(Country = "Guyana")
+plotPred(Country = "Paraguay")
 plotPred(Country = "Peru")
+plotPred(Country = "Uruguay")
+plotPred(Country = "Venezuela")
 
+# Central America
+plotPred(
+  Country = c(
+    "El Salvador", 
+    "Costa Rica", 
+    "Belize", 
+    "Guatemala", 
+    "Honduras", 
+    "Nicaragua",
+    "Panama"
+  ),
+  Title = "Central America",
+  Subtitle = "El Salvador, Costa Rica, Belize, Guatemala, Honduras, Nicaragua, and Panama"
+)
+plotPred(Country = "El Salvador")
+plotPred(Country = "Costa Rica")
+plotPred(Country = "Belize")
+plotPred(Country =  "Guatemala")
+plotPred(Country = "Honduras")
+plotPred(Country =  "Nicaragua")
+plotPred(Country = "Panama")
+  
 plotPred(Country = "Mexico", Title = "Mexico")
 plotPred(Country = "Ukraine")
 plotPred(Country = "Russia", Title = "Russia")

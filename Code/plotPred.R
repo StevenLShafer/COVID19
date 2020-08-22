@@ -4,6 +4,7 @@ plotPred <- function(
   State = NULL,
   Country = NULL,
   Title = NULL,
+  Subtitle = NULL,
   modelStart = NULL,
   weight = NULL
 )
@@ -137,7 +138,8 @@ plotPred <- function(
     ) +
     labs(
       title = paste(Title,"projection as of", Sys.Date()),
-      y = "Actual (points) / Predicted (line)"
+      subtitle = Subtitle,
+      y = "Cumulative"
     ) +
     scale_color_manual(
       values = c("blue","red", "black", "brown")
@@ -156,7 +158,8 @@ plotPred <- function(
       labels = c("1", "10","100","1,000","10,000","100,000","1,000,000", "10,000,000","100,000,000")
     ) +
     theme(
-      axis.text.x=element_text(angle=60, hjust=1)
+      axis.text.x=element_text(angle=60, hjust=1),
+      plot.subtitle = element_text(size = 8)
     )+
     annotation_logticks() +
     annotate(

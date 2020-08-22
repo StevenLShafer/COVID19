@@ -54,14 +54,20 @@ emailText <- textSummary(USA, "In the US")
 
 
 
-ASIA <- plotPred(Country = c("Japan","South Korea","Vietnam","Thailand"), Title = "Japan, South Korea, Thailand, Vietnam")
+ASIA <- plotPred(
+  Country = c("Japan","South Korea","Vietnam","Thailand"), 
+  Title = "Non-authoritarian Asian ensemble", 
+  Subtitle = "Japan, South Korea, Thailand, and Vietnam (Population = 328 MM)"
+) 
+
 emailText <- textSummary(ASIA, "In the non-authoritarian Asian ensemble (population: 328MM)")
 
 WE <- plotPred(
   Country = c("England", "France", "Germany", "Greece",
               "Italy", "Portugal", "Spain","Netherlands",
               "Flemish Region", "Luxembourg"),
-  Title = "Western Europe"
+  Title = "Western Europe",
+  Subtitle = "Belgium, England, France, Germany, Greece, Italy, Portugal, Spain, Netherlands, and Luxembourg (Population = 352MM)"
 ) # Population 352372272
 emailText <- textSummary(WE, "In Western Europe (population: 352MM)")
 
