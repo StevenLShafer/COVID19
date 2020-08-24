@@ -50,10 +50,6 @@ emailText <- textSummary(USA, "In the US")
 #   ) +
 #   coord_cartesian(xlim = c(as.Date("2020-03-02"), as.Date("2020-08-17")))
 
-
-
-
-
 ASIA <- plotPred(
   Country = c("Japan","South Korea","Vietnam","Thailand"), 
   Title = "Non-authoritarian Asian ensemble", 
@@ -63,12 +59,12 @@ ASIA <- plotPred(
 emailText <- textSummary(ASIA, "In the non-authoritarian Asian ensemble (population: 328MM)")
 
 WE <- plotPred(
-  Country = c("England", "France", "Germany", "Greece",
+  Country = c("United Kingdom", "France", "Germany", "Greece",
               "Italy", "Portugal", "Spain","Netherlands",
               "Flemish Region", "Luxembourg"),
   Title = "Western Europe",
-  Subtitle = "Belgium, England, France, Germany, Greece, Italy, Portugal, Spain, Netherlands, and Luxembourg (Population = 352MM)"
-) # Population 352372272
+  Subtitle = "Belgium, France, Germany, Greece, Italy, Portugal, Spain, Netherlands, Luxembourg, and the UK (Population = 344MM)"
+) # Population 343970478
 emailText <- textSummary(WE, "In Western Europe (population: 352MM)")
 
 # World Map of Cases
@@ -194,52 +190,57 @@ Testing_Global_last$mortality <- Testing_Global_last$total_deaths / Testing_Glob
 Testing_Global_last <- Testing_Global_last[!is.na(Testing_Global_last$total_tests_per_thousand),]
 Testing_Global_last <- Testing_Global_last[order(Testing_Global_last$total_tests_per_thousand, decreasing = TRUE),]
 
-X <- which(Testing_Global_last$iso_code == "USA")
-
-ggObject <- ggplot(Testing_Global_last,aes(x = total_tests_per_thousand / 10, y = mortality, label=iso_code)) +
-  geom_text(size = 3, hjust = 0.5, vjust = 0.5) +
-  labs(
-    title = paste("Case Mortality vs. Testing as of", today),
-    y = "% Case Mortality",
-    x = "% Tested",
-    caption = "ARE: United Arab Emirates, BHR:Bahrain, MLT: Malta, ISR: Israel, LTU: Lithuania, ISL: Iceland"
-  ) +
-  geom_text(data = Testing_Global_last[X,], size = 3, color = "red") +
-  annotate(
-    "segment", 
-    x = 0, 
-    xend = max(Testing_Global_last$total_tests_per_thousand) / 10,
-    y = Testing_Global_last$mortality[X], 
-    yend = Testing_Global_last$mortality[X],
-    color = "red"
-  ) +
-  annotate(
-    "segment", 
-    x = Testing_Global_last$total_tests_per_thousand[X] / 10,
-    xend = Testing_Global_last$total_tests_per_thousand[X] / 10,
-    y = 0,
-    yend = max(Testing_Global_last$mortality, na.rm=TRUE), 
-    color = "red"
-  )
-nextSlide(ggObject, "Case Mortality vs. Testing")
+if (weekDay == 1) # Monday only
+{
+  X <- which(Testing_Global_last$iso_code == "USA")
+  ggObject <- ggplot(Testing_Global_last,aes(x = total_tests_per_thousand / 10, y = mortality, label=iso_code)) +
+    geom_text(size = 3, hjust = 0.5, vjust = 0.5) +
+    labs(
+      title = paste("Case Mortality vs. Testing as of", today),
+      y = "% Case Mortality",
+      x = "% Tested",
+      caption = "ARE: United Arab Emirates, BHR:Bahrain, MLT: Malta, ISR: Israel, LTU: Lithuania, ISL: Iceland"
+    ) +
+    geom_text(data = Testing_Global_last[X,], size = 3, color = "red") +
+    annotate(
+      "segment", 
+      x = 0, 
+      xend = max(Testing_Global_last$total_tests_per_thousand) / 10,
+      y = Testing_Global_last$mortality[X], 
+      yend = Testing_Global_last$mortality[X],
+      color = "red"
+    ) +
+    annotate(
+      "segment", 
+      x = Testing_Global_last$total_tests_per_thousand[X] / 10,
+      xend = Testing_Global_last$total_tests_per_thousand[X] / 10,
+      y = 0,
+      yend = max(Testing_Global_last$mortality, na.rm=TRUE), 
+      color = "red"
+    )
+  nextSlide(ggObject, "Case Mortality vs. Testing")
+}
 
 # CV for international data
-X <- Countries[!is.nan(Countries$CVCases) & !is.nan(Countries$CVDeaths),]
-X <- X[X$CVDeaths > 0, ]
-X <- X[order(X$CVDeaths, decreasing = FALSE),]
-ggObject <- ggplot(X,aes(x = CVCases, y = CVDeaths, label=Abbreviation)) +
-  geom_text(size = 3, hjust = 0.5, vjust = 0.5) +
-  labs(
-    title = paste("Coefficient of variation for cases and deaths as of", today),
-    x = "Cases CV",
-    y = "Deaths CV",
-    caption = "CV calculated over last 28 days"
-  ) +
-  annotation_logticks() +
-  scale_x_log10(breaks = c(0.01, 0.01, 0.1, 1)) +
-  scale_y_log10(breaks = c(0.001, 0.01, 0.1, 1)) +
-  coord_cartesian(xlim = c(0.01, 1), ylim = c(0.001,1))
-nextSlide(ggObject, "CV for Cases and Deaths")
+if (weekDay == 0) # Sunday only
+{
+  X <- Countries[!is.nan(Countries$CVCases) & !is.nan(Countries$CVDeaths),]
+  X <- X[X$CVDeaths > 0, ]
+  X <- X[order(X$CVDeaths, decreasing = FALSE),]
+  ggObject <- ggplot(X,aes(x = CVCases, y = CVDeaths, label=Abbreviation)) +
+    geom_text(size = 3, hjust = 0.5, vjust = 0.5) +
+    labs(
+      title = paste("Coefficient of variation for cases and deaths as of", today),
+      x = "Cases CV",
+      y = "Deaths CV",
+      caption = "CV calculated over last 28 days"
+    ) +
+    annotation_logticks() +
+    scale_x_log10(breaks = c(0.01, 0.01, 0.1, 1)) +
+    scale_y_log10(breaks = c(0.001, 0.01, 0.1, 1)) +
+    coord_cartesian(xlim = c(0.01, 1), ylim = c(0.001,1))
+  nextSlide(ggObject, "CV for Cases and Deaths")
+}
 
 # US mortality over time 
 Cases <- as.numeric(
@@ -771,40 +772,43 @@ stateFisherPlot(
   6
 )
 
-# Testing vs. Mortality
-CROWS <- match(States$Abbreviation,Testing_USA$Abbreviation)
-States$Tests <- Testing_USA[CROWS, ncol(Testing_USA)]
-States$TestingFraction <- States$Tests / States$Population * 100
-
-ggObject <- ggplot(States,aes(x = TestingFraction, y = Mortality * 100, label=Abbreviation)) +
-  geom_text(size = 3) +
-  labs(
-    title = paste("Mortality vs. Testing as of", today),
-    y = "% Mortality",
-    x = "% Tested"
-  ) +
-  coord_cartesian()
-
-nextSlide(ggObject, "Case Mortality vs. Testing")
-
+if (weekDay == 1) # Monday only
+{
+  # Testing vs. Mortality
+  CROWS <- match(States$Abbreviation,Testing_USA$Abbreviation)
+  States$Tests <- Testing_USA[CROWS, ncol(Testing_USA)]
+  States$TestingFraction <- States$Tests / States$Population * 100
+  
+  ggObject <- ggplot(States,aes(x = TestingFraction, y = Mortality * 100, label=Abbreviation)) +
+    geom_text(size = 3) +
+    labs(
+      title = paste("Mortality vs. Testing as of", today),
+      y = "% Mortality",
+      x = "% Tested"
+    ) +
+    coord_cartesian()
+  nextSlide(ggObject, "Case Mortality vs. Testing")
+}
 # CV for state data
-X <- States[!is.nan(States$CVCases) & !is.nan(States$CVDeaths),]
-X <- X[X$CVDeaths > 0, ]
-X <- X[order(X$CVDeaths, decreasing = FALSE),]
-ggObject <- ggplot(X,aes(x = CVCases, y = CVDeaths, label=Abbreviation)) +
-  geom_text(size = 3, hjust = 0.5, vjust = 0.5) +
-  labs(
-    title = paste("Coefficient of variation for cases and deaths as of", today),
-    x = "Cases CV",
-    y = "Deaths CV",
-    caption = "CV calculated over last 28 days"
-  ) +
-  annotation_logticks() +
-  scale_x_log10(breaks = c(0.01, 0.01, 0.1, 1)) +
-  scale_y_log10(breaks = c(0.01, 0.01, 0.1, 1)) +
-  coord_cartesian(xlim = c(0.01, 1.317), ylim = c(0.01,1.317))
-nextSlide(ggObject, "CV for Cases and Deaths")
-
+if (weekDay == 0) # Sunday Only
+{
+  X <- States[!is.nan(States$CVCases) & !is.nan(States$CVDeaths),]
+  X <- X[X$CVDeaths > 0, ]
+  X <- X[order(X$CVDeaths, decreasing = FALSE),]
+  ggObject <- ggplot(X,aes(x = CVCases, y = CVDeaths, label=Abbreviation)) +
+    geom_text(size = 3, hjust = 0.5, vjust = 0.5) +
+    labs(
+      title = paste("Coefficient of variation for cases and deaths as of", today),
+      x = "Cases CV",
+      y = "Deaths CV",
+      caption = "CV calculated over last 28 days"
+    ) +
+    annotation_logticks() +
+    scale_x_log10(breaks = c(0.01, 0.01, 0.1, 1)) +
+    scale_y_log10(breaks = c(0.01, 0.01, 0.1, 1)) +
+    coord_cartesian(xlim = c(0.01, 1.317), ylim = c(0.01,1.317))
+  nextSlide(ggObject, "CV for Cases and Deaths")
+}
 print(pptx, target = pptxfileName)
 shell.exec(pptxfileName)
 

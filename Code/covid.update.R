@@ -25,6 +25,7 @@ library(cdccovidview)
 library(MMWRweek)
 library(rvest)
 library(geofacet)
+#library(lubridate)
 # rayshader is the package to put spikes on maps
 
 remove(list=ls())
@@ -40,6 +41,7 @@ dirLatest <- paste0(Directory,"Latest/")
 
 
 today <- Sys.Date()
+weekDay <- as.POSIXlt(today)$wday
 todayText <- as.character(today)
 yesterday <- today - 1
 yesterdayText <- format(yesterday, "X%m.%e.%y")

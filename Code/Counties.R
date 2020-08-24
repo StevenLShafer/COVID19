@@ -112,50 +112,50 @@ ggObject <- ggplot(subset,aes(x = Population, y = deltaCases, color = Lean)) +
   )
 nextSlide(ggObject, "Percent Change by Population")
 
-# Epstein map
-subset <- Counties[
-  abs(Counties$deltaCases) < 12 &
-    abs(Counties$deltaCases) > 0.01 &
-    Counties$Population >= 1000,
-]
-smooth <- supsmu(subset$Lean, subset$Population)
-smooth <- data.frame(
-  x = smooth$x,
-  y = smooth$y
-)
-
-ggObject <- ggplot(subset,aes(x = Lean, y = Population, color = signCase)) +
-  geom_point(size = 0.85) +
-  geom_line(data = smooth, aes(x = x, y = y), color = "darkgreen", linetype = "solid", size = 1.5, alpha = 0.5) +
-  scale_color_manual(values = c("red", "pink", "white","lightgreen", "green"), name = "Direction") +
-  #scale_color_gradient2(low = "#02A602",mid = "white", high="#CD0101", midpoint = 0) +
-  labs(
-    x = "Percent Republican",
-    y = "Population",
-    title = "Partisan Lean vs Population and Direction",
-    color = "Increase/Decrease",
-    caption = "Dark green line is a Friedman's 'super smoother'"
-  ) +
-  coord_cartesian(expand=FALSE, xlim = c(0, 100), ylim=c(1000, 12000000) ) +
-  scale_x_continuous(
-    # breaks = c(1000, 10000, 100000, 1000000,10000000),
-    # labels = c("1,000","10,000","100,000","1,000,000", "10,000,000")
-  ) +
-  scale_y_log10(
-    breaks = c(1000, 10000, 100000, 1000000,10000000),
-    labels = c("1,000","10,000","100,000","1,000,000", "10,000,000")
-  ) +
-  theme(
-    panel.background = element_rect(
-      fill = NA,
-      colour = NA,
-    ),
-    panel.grid.major = element_line(colour = "grey"),
-    legend.key = element_rect(fill = NA, colour = "white"),
-    axis.line = element_line(color = "black")
-  ) +
-  annotation_logticks(sides = "l")
-nextSlide(ggObject, "Partisan Lean vs Population and Direction")
+# # Epstein map
+# subset <- Counties[
+#   abs(Counties$deltaCases) < 12 &
+#     abs(Counties$deltaCases) > 0.01 &
+#     Counties$Population >= 1000,
+# ]
+# smooth <- supsmu(subset$Lean, subset$Population)
+# smooth <- data.frame(
+#   x = smooth$x,
+#   y = smooth$y
+# )
+# 
+# ggObject <- ggplot(subset,aes(x = Lean, y = Population, color = signCase)) +
+#   geom_point(size = 0.85) +
+#   geom_line(data = smooth, aes(x = x, y = y), color = "darkgreen", linetype = "solid", size = 1.5, alpha = 0.5) +
+#   scale_color_manual(values = c("red", "pink", "white","lightgreen", "green"), name = "Direction") +
+#   #scale_color_gradient2(low = "#02A602",mid = "white", high="#CD0101", midpoint = 0) +
+#   labs(
+#     x = "Percent Republican",
+#     y = "Population",
+#     title = "Partisan Lean vs Population and Direction",
+#     color = "Increase/Decrease",
+#     caption = "Dark green line is a Friedman's 'super smoother'"
+#   ) +
+#   coord_cartesian(expand=FALSE, xlim = c(0, 100), ylim=c(1000, 12000000) ) +
+#   scale_x_continuous(
+#     # breaks = c(1000, 10000, 100000, 1000000,10000000),
+#     # labels = c("1,000","10,000","100,000","1,000,000", "10,000,000")
+#   ) +
+#   scale_y_log10(
+#     breaks = c(1000, 10000, 100000, 1000000,10000000),
+#     labels = c("1,000","10,000","100,000","1,000,000", "10,000,000")
+#   ) +
+#   theme(
+#     panel.background = element_rect(
+#       fill = NA,
+#       colour = NA,
+#     ),
+#     panel.grid.major = element_line(colour = "grey"),
+#     legend.key = element_rect(fill = NA, colour = "white"),
+#     axis.line = element_line(color = "black")
+#   ) +
+#   annotation_logticks(sides = "l")
+# nextSlide(ggObject, "Partisan Lean vs Population and Direction")
 
 # Percent Cases Population *************************************************************
 subset <- Counties[

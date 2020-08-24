@@ -9,7 +9,7 @@ plotPred(Country = "Switzerland", Title = "Switzerland")
 plotPred(Country = "Austria", Title = "Austria")
 plotPred(Country = "Sweden", Title = "Sweden")
 plotPred(Country = "Netherlands", Title = "Netherlands")
-plotPred(Country = "England", Title = "United Kingdom")
+plotPred(Country = "United Kingdom", Title = "United Kingdom")
 plotPred(Country = "Iceland", Title = "Iceland")
 # plotPred(Country = "Paraguay", Title = "Paraguay")
 # plotPred(Country = "Rwanda", Title = "Rwanda"
@@ -45,6 +45,7 @@ plotPred(
     "Chile",
     "Colombia", 
     "Ecuador", 
+    "French Guiana",
     "Guyana", 
     "Paraguay", 
     "Peru", 
@@ -53,7 +54,7 @@ plotPred(
     "Venezuela"
     ),
   Title = "South America",
-  Subtitle = "Argentina, Bolivia, Brazil, Chile, Colombia, Ecuador, Guyana, Paraguay, Peru, Suriname, Uruguay, and Venezuela"
+  Subtitle = "Argentina, Bolivia, Brazil, Chile, Colombia, Ecuador, French Guiana, Guyana, Paraguay, Peru, Suriname, Uruguay, and Venezuela"
 )
 
 plotPred(Country = "Argentina")
@@ -62,6 +63,7 @@ plotPred(Country = "Brazil", Title = "Brazil")
 plotPred(Country = "Chile")
 plotPred(Country = "Colombia")
 plotPred(Country = "Ecuador")
+plotPred(Country = "French Guiana")
 plotPred(Country = "Guyana")
 plotPred(Country = "Paraguay")
 plotPred(Country = "Peru")

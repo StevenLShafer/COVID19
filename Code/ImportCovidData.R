@@ -229,9 +229,15 @@ Hospitalization_USA_zeroOne$Date <- rep(currentDates,51)
 
 Population_Global <- read.csv(paste0(dirSheets,"Population_Global.csv"))
 
+# Pull French Guiana out of France
+Cases_Global.raw$Country.Region[grep("French Guiana", Cases_Global.raw$Province.State)] <- "French Guiana"
+Deaths_Global.raw$Country.Region[grep("French Guiana", Deaths_Global.raw$Province.State)] <- "French Guiana"
+
 # Need to align country names with world map names
 load(paste0(dirSheets,"mapWorld.rData"))
+
 # Fix country names
+
 Current_Names <- c(
   "Bahamas",
   "Cabo Verde",
@@ -274,14 +280,14 @@ Revised_Names <- c(
   "Taiwan",
   "United States of America",
   "East Timor",
-  "West Bank",
+  "West Bank and Gaza",
   "Guinea Bissau",
   "Myanmar",
   "ship",
-  "England",
+  "United Kingdom",
   "Serbia",
-  "Flemish Region",
-  "Antigua"
+  "Belgium",
+  "Antigua and Barbuda"
 )
 
 for (i in 1:length(Current_Names))
@@ -298,7 +304,7 @@ Deaths_Global.raw <-   Deaths_Global.raw[USE,]
 if (sum(!Cases_Global.raw$Country.Region %in% mapWorld$geounit) > 0)
 {
   cat("One of the countries in Cases_Global.raw cannot be found in mapWorld$geounit\n")
-  Cases_Global.raw$Country.Region[!Cases_Global.raw$Country.Region %in% mapWorld$geounit]
+  print(Cases_Global.raw$Country.Region[!Cases_Global.raw$Country.Region %in% mapWorld$geounit])
 }
 
 # Condense cases
