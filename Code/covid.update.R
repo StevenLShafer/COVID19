@@ -39,7 +39,6 @@ dirSheets <- paste0(Directory,"Sheets/")
 dirUpdate <- paste0(Directory,"Updates/")
 dirLatest <- paste0(Directory,"Latest/")
 
-
 today <- Sys.Date()
 weekDay <- as.POSIXlt(today)$wday
 todayText <- as.character(today)
