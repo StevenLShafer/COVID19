@@ -63,6 +63,8 @@ asymptomatic <- 10    # Number of asymptomatic patients per symptomatic patient,
                       # limits Gompertz peak to population / asymptomatic * 0.6
 deathAxis <- 20       # Relative size of right axis (deaths / day) to left axis (cases / day)
 
+plotGrowthFlag <- FALSE
+
 #while (TRUE)
 #{
   
@@ -100,7 +102,9 @@ deathAxis <- 20       # Relative size of right axis (deaths / day) to left axis 
   write.csv(Countries, paste0(dirTodayUpdateData, "Countries.csv"), row.names=FALSE)
   write.csv(States, paste0(dirTodayUpdateData, "States.csv"), row.names=FALSE)
   write.csv(Counties, paste0(dirTodayUpdateData, "Counties.csv"), row.names=FALSE)
-  writeLines(emailText, paste0(dirTodayUpdate,"EmailText.",timestamp,".txt"))
+  todaysText <- paste0(dirTodayUpdate,"EmailText.",timestamp,".txt")
+  writeLines(emailText, todaysText)
+  shell.exec(todaysText)
   
   # Make copy of latest files for GitHub
   FILES <- list.files(dirLatest, recursive = TRUE)

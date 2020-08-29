@@ -398,5 +398,7 @@ plotPred <- function(
   
   nextSlide(ggObject3, Title)
   
+  if (plotGrowthFlag) plotGrowth(results, Title)
+  
   return(results)
 }

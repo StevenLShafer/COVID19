@@ -180,14 +180,26 @@ newSection <- function (Title)
     slideNumber <<- 2
   }
   
-  pptxfileName <<- paste0(
-    dirTodayUpdate, 
-    "Steve's COVID Update.", 
-    Title, 
-    ".", 
-    timestamp, 
-    ".pptx"
-  )
+  if (plotGrowthFlag) 
+  {
+    pptxfileName <<- paste0(
+      dirTodayUpdate, 
+      "Steve's COVID Update.plotGrowth.", 
+      Title, 
+      ".", 
+      timestamp, 
+      ".pptx"
+    )
+  } else {
+    pptxfileName <<- paste0(
+      dirTodayUpdate, 
+      "Steve's COVID Update.", 
+      Title, 
+      ".", 
+      timestamp, 
+      ".pptx"
+    )
+  }
   
   if (file.exists(pptxfileName))
     file.remove(pptxfileName)

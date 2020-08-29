@@ -701,8 +701,8 @@ States$Quadrant[States$slopeTests < 0 & States$slopePositiveTests < 0] <- 2
 States$Quadrant[States$slopeTests > 0 & States$slopePositiveTests < 0] <- 3
 States$Quadrant[States$slopeTests < 0 & States$slopePositiveTests > 0] <- 4
 
-ggObject <- ggplot(States,aes(x = slopeTests, y = slopePositiveTests, label=Abbreviation)) +
-  geom_text(size = 3, aes(color = as.factor(Quadrant)), show.legend=FALSE) +
+ggObject <- ggplot(States,aes(x = slopeTests, y = slopePositiveTests, label=Abbreviation, size = dailyDeaths)) +
+  geom_text(aes(color = as.factor(Quadrant)), show.legend=FALSE) +
   labs(
     title = paste("Change in tests vs change in positive tests last 14 days as of", today),
     y = "Change in positive tests (%/day)",
