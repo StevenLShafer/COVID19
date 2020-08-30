@@ -41,9 +41,12 @@ plotGrowth <- function(
   DATA <- data.frame(
     Date = c(CASES$Date[8:N],DEATHS$Date[8:N]),
     Rate = c(CASES$Rate[8:N],DEATHS$Rate[8:N]),
+    Actual = c(CASES$Actual[8:N],DEATHS$Actual[8:N]),
+    Location = Title,
     Cases.v.Deaths = rep(c("Cases","Deaths"),each = N-7)
   )
   DATA$Rate[is.nan(DATA$Rate)] <- NA
+  DATA$Days <- difftime(DATA$Date, day25, units = "days")
     
   ggObject <-
     ggplot(
@@ -65,22 +68,24 @@ plotGrowth <- function(
       minor_breaks = NULL
     ) +
     annotate(
-      "segment", 
-      x = day25, 
-      xend = day25, 
-      y = min(DATA$Rate, na.rm=TRUE),
-      yend = min(DATA$Rate, na.rm=TRUE),
+      "rect", 
+      xmin = day25, 
+      xmax = day25+30, 
+      ymin = min(DATA$Rate, na.rm=TRUE),
+      ymax = max(DATA$Rate, na.rm=TRUE),
       color = "blue",
-      size = 1.5
+      fill = "blue",
+      alpha = 0.1,
+      size = 0.5
     ) +
     annotate(
       "segment", 
       x = day25 + 30, 
       xend = day25 + 30, 
       y = min(DATA$Rate, na.rm=TRUE),
-      yend = min(DATA$Rate, na.rm=TRUE),
+      yend = max(DATA$Rate, na.rm=TRUE),
       color = "blue",
-      size = 1.5
+      size = 0.5
     ) +
     theme(
       axis.title.x = element_blank(),
@@ -90,4 +95,5 @@ plotGrowth <- function(
     )
   
   nextSlide(ggObject, Title)
+  return(DATA)
 }
