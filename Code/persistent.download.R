@@ -125,7 +125,7 @@ fileDownload(
   persist = TRUE
 )
 
-cat("All files downloaded!\n")
+cat("All files downloaded.\n")
 pbPost(
 #  devices = "Phone",
   channel = "",
