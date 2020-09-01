@@ -706,7 +706,8 @@ ggObject <- ggplot(States,aes(x = slopeTests, y = slopePositiveTests, label=Abbr
   labs(
     title = paste("Change in tests vs change in positive tests last 14 days as of", today),
     y = "Change in positive tests (%/day)",
-    x = "Change in tests (%/day)"
+    x = "Change in tests (%/day)",
+    caption = "Size of the state font reflects the number of deaths over the past 7 days."
   ) +
   coord_cartesian() +
   scale_color_manual(values = c("magenta","blue","forestgreen","red")) +

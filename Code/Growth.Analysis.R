@@ -56,29 +56,13 @@ allCurrentDays <- as.numeric(today-startDate)
 dirTodayUpdate <- paste0(dirUpdate,todayText,"/")
 dirTodayUpdateData <- paste0(dirTodayUpdate,"DATA/")
 
-daysLinearFitCases  <- 14    # Number of days for the linear regression (increasing/decreasing cases per day)
-daysLinearFitDeaths <- 14    # Number of days for the linear regression (increasing/decreasing cases per day)
-daysGompertzFit <- 21 # Number of days for the Gompertz model
-asymptomatic <- 10    # Number of asymptomatic patients per symptomatic patient,
-                      # limits Gompertz peak to population / asymptomatic * 0.6
-deathAxis <- 20       # Relative size of right axis (deaths / day) to left axis (cases / day)
 
-plotGrowthFlag <- FALSE
-
-#while (TRUE)
-#{
-  
-  EVENTS <- read.xlsx(paste0(dirSheets, "Events.xlsx"))
-  EVENTS$Date <- as.Date(EVENTS$Date)
-  EVENTS <- EVENTS[EVENTS$Date < today,]
-  
   source(paste0(dirCode,"Helper Functions.R"))
   source(paste0(dirCode,"calcStats.R"))
-  source(paste0(dirCode,"plotPred.R"))
-  source(paste0(dirCode,"FisherPlots.R"))
-  
+
   source(paste0(dirCode,"persistent.download.R")) # Won't return until there are data for today
   source(paste0(dirCode,"ImportCovidData.R"))     # Reads files created from persistent.Download
+  source(paste0(dirCode,"plotGrowth.R"))
 
   # Start main routine. Bracket required  for the stop command below to work.
 
@@ -92,29 +76,120 @@ plotGrowthFlag <- FALSE
   Cases_Global  <- Cases_Global[,1:lastColumn_Global]
   Deaths_Global <- Deaths_Global[,1:lastColumn_Global]
   
+  # Needed for calcStates. Not actually needed for the growth analysis
+  daysGompertzFit <- 21 # Number of days for the Gompertz model
+  asymptomatic <- 10    # Number of asymptomatic patients per symptomatic patient,
+  # limits Gompertz peak to population / asymptomatic * 0.6
+  daysLinearFitCases  <- 14    # Number of days for the linear regression (increasing/decreasing cases per day)
+  daysLinearFitDeaths <- 14    # Number of days for the linear regression (increasing/decreasing cases per day)
+  
+  
+  plotGrowthFlag <- TRUE
+  smoothingInterval <- 21
+  deathThreshold <- 25
+  shadedDays <- 30
+  dayCutoff <- 150
+  eachPlot <- TRUE
+  
 #############################################################################################
+  newSection("International Growth Rates")
+  
+  DATA <- NULL
+  for (i in 1:nrow(Population_Global))
+  {
+    Deaths <- Deaths_Global[Deaths_Global$Country == Population_Global$Country[i], lastColumn_Global]
+    if (Deaths >= 25)
+    X <- plotGrowth(
+      calcStats(Country = Population_Global$Country[i]),
+      Location = Population_Global$Country[i],
+      Title = paste0(
+        Population_Global$Country[i], 
+        " (Population: ",
+        Population_Global$Population[i],
+        ", Deaths: ",
+        Deaths,
+        " as of ",
+        todayText,
+        ")"
+      )
+    )
+    if (!is.null(DATA))
+    {
+      DATA <- rbind(DATA, X)
+    } else {
+      DATA <- X
+    }
+  }
+  
+ggObject1 <- plotGrowthSummary(
+    DATA,
+    "Cases",
+    "Country",
+    "#F8766D"
+  )
+    
+ggObject2 <- plotGrowthSummary(
+  DATA,
+  "Deaths",
+  "Country",
+  "#00BFC4"
+)
 
-  
-  Countries <- Population_Global
-  CROWS <- match(Countries$Country, Cases_Global$Country)
-  N <- ncol(Cases_Global)
-  Countries$Cases <- Cases_Global[CROWS, N]
-  Countries$dailyCases <- (Cases_Global[CROWS, N] - Cases_Global[CROWS, N - 8])/7
-  for (c in CROWS)
+growthPlotArrange(
+  ggObject1,
+  ggObject2,
+  "International"
+)
+
+newSection("US Growth Rates")
+DATA <- NULL
+
+for (i in 1:nrow(States))
+{
+  results <- calcStats(State = States$Abbreviation[i])
+  Deaths <- results$DEATHS$Actual[results$DEATHS$Date == yesterday]
+  if (Deaths >= 25)
   {
-    Countries$CVCases[c] <- sd(unlist(Cases_Global[c, (N-28):N])) / mean(unlist(Cases_Global[c, (N-28):N]))
+    X <- plotGrowth(
+      results,
+      Location = States$State[i],
+      Title = paste0(
+        States$State[i], 
+        " (Population: ",
+        results$Population,
+        ", Deaths: ",
+        Deaths,
+        " as of ",
+        todayText,
+        ")"
+      )
+    )
+    if (!is.null(DATA))
+    {
+      DATA <- rbind(DATA, X)
+    } else {
+      DATA <- X
+    }
   }
   
-  CROWS <- match(Countries$Country, Deaths_Global$Country)
-  N <- ncol(Deaths_Global)
-  Countries$Deaths <- Deaths_Global[CROWS, N]
-  Countries$dailyDeaths <- (Deaths_Global[CROWS, N] - Deaths_Global[CROWS, N - 8])/7
-  Countries$mortality = Countries$Deaths / Countries$Cases * 100
-  Countries$percentCases <- Countries$Cases / Countries$Population * 100
-  
-  for (c in CROWS)
-  {
-    Countries$CVDeaths[c] <- sd(unlist(Deaths_Global[c, (N-28):N])) / mean(unlist(Deaths_Global[c, (N-28):N]))
   }
-  Countries <- Countries[Countries$Population > 5000000,]
   
+ggObject1 <- plotGrowthSummary(
+  DATA,
+  "Cases",
+  "US State",
+  "#F8766D"
+)
+
+ggObject2 <- plotGrowthSummary(
+  DATA,
+  "Deaths",
+  "US State",
+  "#00BFC4"
+)
+
+growthPlotArrange(
+  ggObject1,
+  ggObject2,
+  "US States"
+)
