@@ -813,16 +813,22 @@ if (weekDay == 0) # Sunday Only
   nextSlide(ggObject, "CV for Cases and Deaths")
 }
 
-# Counties
+################################################################################
+# Counties                                                                     #
+################################################################################
+
 Counties$deltaCases <- 0
 Counties$deltaDeaths <- 0
 Counties$Population <- 0
 Counties$Cases <- 0
 Counties$Deaths <- 0
 Counties$Mortality <- 0
+Counties$growthCases <- 0
+Counties$State <- ""
 for (i in 1:nrow(Counties))
 {
   x <- which(Cases_USA$CountyFIPS == Counties$FIPS[i])
+  Counties$State[i] <- Cases_USA$State[x]
   results <- calcStats(County = Cases_USA$County.Name[x], State = Cases_USA$State[x])
   if (!is.null(results))
   {
@@ -832,6 +838,8 @@ for (i in 1:nrow(Counties))
     Counties$Deaths[i]  <- results$yesterdayDeaths
     Counties$Population[i] <- results$Population
     Counties$Mortality[i]  <- results$mortality
+    Counties$growthCases[i] <- 
+      ((results$CASES$Actual[results$CASES$Date == today - 1] - results$CASES$Actual[results$CASES$Date == today - 22]) / 21) / results$Population * 100
   }
 }
 Counties$fips <- Counties$FIPS
@@ -852,9 +860,11 @@ Counties$signCase <- factor(
     "Decreasing between -0.5% and -2%",
     "Decreasing > -2%")
 )
+
 # Add Partisan Lean
 CROWS <- match(Counties$FIPS, Lean$FIPS)
 Counties$Lean <- Lean$Lean[CROWS] * 100
+################################################################################
 
 # New cases / day
 ggObject <- plot_usmap(data = Counties, values = "signCase", color = "black") +
@@ -867,245 +877,218 @@ ggObject <- plot_usmap(data = Counties, values = "signCase", color = "black") +
 nextSlide(ggObject, "Change in New Cases per Day")
 
 
-# Percent Change by Partisan Lean
-subset <- Counties[
-  abs(Counties$deltaCases) < 12 &
-    abs(Counties$deltaCases) > 0.01 &
-    !is.na(Counties$Lean),
-]
-smooth <- supsmu(subset$Lean, subset$deltaCases)
-smooth <- data.frame(
-  x = smooth$x,
-  y = smooth$y
-)
-ggObject <- ggplot(subset,aes(x = Lean, y = deltaCases, color = Lean)) +
-  geom_point(size = 0.85) +
-  annotate("segment", x = 0, xend = 100, y = 0, yend = 0, color = "black") +
-  geom_line(data = smooth, aes(x = x, y = y), color = "darkgreen", linetype = "solid", size = 1.5, alpha = 0.5) +
-  scale_color_gradient2(low = "blue",mid = "purple", high="red", midpoint = 50) +
-  scale_fill_gradient(low = "blue",high="red") +
-  labs(
-    x = "Percent Republican",
-    y = "Percent change in new cases per day",
-    title = "Counties by 2016 presidential election results",
-    color = "Republican",
-    caption = "Dark green line is a Friedman's supersmoother"
-  ) +
-  coord_cartesian(expand=FALSE, xlim = c(0,100), ylim = c(-13, 13))
-nextSlide(ggObject, "Percent Change by Partisan Lean")
-
-# Percent Change by Population
-subset <- Counties[
-  abs(Counties$deltaCases) < 12 &
-    abs(Counties$deltaCases) > 0.01 &
-    Counties$Population >= 1000,
-]
-smooth <- supsmu(subset$Population, subset$deltaCases)
-smooth <- data.frame(
-  x = smooth$x,
-  y = smooth$y
-)
-
-ggObject <- ggplot(subset,aes(x = Population, y = deltaCases, color = Lean)) +
-  geom_point(size = 0.85) +
-  annotate("segment", x = 0, xend = 10000000, y = 0, yend = 0, color = "black") +
-  geom_line(data = smooth, aes(x = x, y = y), color = "darkgreen", linetype = "solid", size = 1.5, alpha = 0.5) +
-  scale_color_gradient2(low = "blue",mid = "purple", high="red", midpoint = 50) +
-  labs(
-    x = "Population",
-    y = "Percent change in new cases per day",
-    title = "Counties by Population",
-    color = "Republican",
-    caption = "Dark green line is a Friedman's 'super smoother'"
-  ) +
-  coord_cartesian(expand=FALSE, xlim = c(1000, 12000000), ylim = c(-13, 13)) +
-  scale_x_log10(
-    breaks = c(1000, 10000, 100000, 1000000,10000000),
-    labels = c("1,000","10,000","100,000","1,000,000", "10,000,000")
+if (weekDay == 1) # Monday only
+{
+  
+  # Percent Change by Partisan Lean
+  subset <- Counties[
+    abs(Counties$deltaCases) < 12 &
+      abs(Counties$deltaCases) > 0.01 &
+      !is.na(Counties$Lean),
+  ]
+  smooth <- supsmu(subset$Lean, subset$deltaCases)
+  smooth <- data.frame(
+    x = smooth$x,
+    y = smooth$y
   )
-nextSlide(ggObject, "Percent Change by Population")
+  ggObject <- ggplot(subset,aes(x = Lean, y = deltaCases, color = Lean)) +
+    geom_point(size = 0.85) +
+    annotate("segment", x = 0, xend = 100, y = 0, yend = 0, color = "black") +
+    geom_line(data = smooth, aes(x = x, y = y), color = "darkgreen", linetype = "solid", size = 1.5, alpha = 0.5) +
+    scale_color_gradient2(low = "blue",mid = "purple", high="red", midpoint = 50) +
+    scale_fill_gradient(low = "blue",high="red") +
+    labs(
+      x = "Percent Republican",
+      y = "Percent change in new cases per day",
+      title = "Counties by 2016 presidential election results",
+      color = "Republican",
+      caption = "Dark green line is a Friedman's supersmoother"
+    ) +
+    coord_cartesian(expand=FALSE, xlim = c(0,100), ylim = c(-13, 13))
+  nextSlide(ggObject, "Percent Change by Partisan Lean")
+  
+  # Percent Change by Population
+  subset <- Counties[
+    abs(Counties$deltaCases) < 12 &
+      abs(Counties$deltaCases) > 0.01 &
+      Counties$Population >= 1000,
+  ]
+  smooth <- supsmu(subset$Population, subset$deltaCases)
+  smooth <- data.frame(
+    x = smooth$x,
+    y = smooth$y
+  )
+  
+  ggObject <- ggplot(subset,aes(x = Population, y = deltaCases, color = Lean)) +
+    geom_point(size = 0.85) +
+    annotate("segment", x = 0, xend = 10000000, y = 0, yend = 0, color = "black") +
+    geom_line(data = smooth, aes(x = x, y = y), color = "darkgreen", linetype = "solid", size = 1.5, alpha = 0.5) +
+    scale_color_gradient2(low = "blue",mid = "purple", high="red", midpoint = 50) +
+    labs(
+      x = "Population",
+      y = "Percent change in new cases per day",
+      title = "Counties by Population",
+      color = "Republican",
+      caption = "Dark green line is a Friedman's 'super smoother'"
+    ) +
+    coord_cartesian(expand=FALSE, xlim = c(1000, 12000000), ylim = c(-13, 13)) +
+    scale_x_log10(
+      breaks = c(1000, 10000, 100000, 1000000,10000000),
+      labels = c("1,000","10,000","100,000","1,000,000", "10,000,000")
+    )
+  nextSlide(ggObject, "Percent Change by Population")
+  
+  # Percent Cases Population *************************************************************
+  subset <- Counties[
+    Counties$Population >= 1000,
+  ]
+  
+  
+  # Percent Cases
+  smooth <- supsmu(subset$Population, subset$percentCases)
+  smooth <- data.frame(
+    x = smooth$x,
+    y = smooth$y
+  )
+  ggObject <- ggplot(subset,aes(x = Population, y = percentCases)) +
+    geom_point(size = 0.85) +
+    geom_line(data = smooth, aes(x = x, y = y), color = "darkgreen", linetype = "solid", size = 1.5, alpha = 0.5) +
+    labs(
+      x = "County Population",
+      y = "Total cases",
+      title = "Total Cases as a Percent of County Population",
+      caption = "Slanted lines are counties with small integer numbers of cases, green line: Friedman's 'super smoother'"
+    ) +
+    coord_cartesian(expand=FALSE, xlim = c(1000, 12000000), ylim = c(0.001, 20)) +
+    scale_x_log10(
+      breaks = c(1000, 10000, 100000, 1000000,10000000),
+      labels = c("1,000","10,000","100,000","1,000,000", "10,000,000")
+    ) +
+    scale_y_log10(
+      breaks = c(0.001, 0.01, 0.1, 1, 10, 20),
+      labels = c("0.001%", "0.01%", "0.1%", "1%", "10%", "20%")
+    ) +
+    annotation_logticks()
+  nextSlide(ggObject, "Cases as a Percent of Population")
+  
+  # Percent Deaths
+  smooth <- supsmu(subset$Population, subset$percentDeaths)
+  smooth <- data.frame(
+    x = smooth$x,
+    y = smooth$y
+  )
+  ggObject <- ggplot(subset,aes(x = Population, y = percentDeaths)) +
+    geom_point(size = 0.85) +
+    geom_line(data = smooth, aes(x = x, y = y), color = "darkgreen", linetype = "solid", size = 1.5, alpha = 0.5) +
+    labs(
+      x = "County Population",
+      y = "Total deaths",
+      title = "Total Deaths as a Percent of County Population",
+      caption = "Slanted lines are counties with small integer numbers of cases, green line: Friedman's 'super smoother'"
+    ) +
+    coord_cartesian(expand=FALSE, xlim = c(1000, 12000000), ylim = c(0.0001, 1)) +
+    scale_x_log10(
+      breaks = c(1000, 10000, 100000, 1000000,10000000),
+      labels = c("1,000","10,000","100,000","1,000,000", "10,000,000")
+    ) +
+    scale_y_log10(
+      breaks = c(0.0001, 0.001, 0.01, 0.1, 1),
+      labels = c("0.0001%", "0.001%", "0.01%", "0.1%", "1%")
+    ) +
+    annotation_logticks()
+  nextSlide(ggObject, "Deaths as a Percent of Population")
+  
+  # Population vs. Mortality
+  smooth <- supsmu(subset$Population, subset$Mortality)
+  smooth <- data.frame(
+    x = smooth$x,
+    y = smooth$y
+  )
+  ggObject <- ggplot(subset,aes(x = Population, y = Mortality * 100)) +
+    geom_point(size = 0.85) +
+    geom_line(data = smooth, aes(x = x, y = y * 100), color = "darkgreen", linetype = "solid", size = 1.5, alpha = 0.5) +
+    labs(
+      x = "County Population",
+      y = "Case mortality",
+      title = "Case Mortality vs. County Population"
+    ) +
+    coord_cartesian(expand=FALSE, xlim = c(1000, 12000000), ylim = c(0.1, 100)) +
+    scale_x_log10(
+      breaks = c(1000, 10000, 100000, 1000000,10000000),
+      labels = c("1,000","10,000","100,000","1,000,000", "10,000,000")
+    ) +
+    scale_y_log10(
+      breaks = c(0.1, 1, 10, 100),
+      labels = c("0.1%", "1%", "10%", "100%")
+    ) +
+    annotation_logticks()
+  nextSlide(ggObject, "Case Mortality vs. Population")
+  
+  maxPercentCases <- which(subset$percentCases == max(subset$percentCases))
+  x <- which(Cases_USA$CountyFIPS == subset$FIPS[maxPercentCases])
+  results <- calcStats(County = Cases_USA$County.Name[x], State = Cases_USA.2020-09-01)
+  dailyRate <- round(
+    (results$CASES$Actual[results$CASES$Date == today - 1] - 
+    results$CASES$Actual[results$CASES$Date == today - 15]) / 14,
+    0
+  )
+  caseRate <- 
+    dailyRate /
+    results$CASES$Actual[results$CASES$Date == today - 1] * 100
+  emailText <- paste0(
+    emailText,
+    " The county with the most cases per capita is ",
+    subset$Name[maxPercentCases],
+    ", which has reported ",
+    prettyNum(
+      subset$Cases[maxPercentCases],
+      big.mark = ",", scientific = FALSE),
+    " cases in a population of ",
+    prettyNum(
+      subset$Population[maxPercentCases],
+      big.mark = ",", scientific = FALSE),
+    " (",
+    round(subset$percentCases[maxPercentCases],1),
+    "%, about 1 in every ",
+    round(1/subset$percentCases[maxPercentCases] * 100,0),
+    " individuals). Cases in ",
+    subset$Name[maxPercentCases],
+    " are rising at just ",
+    dailyRate, 
+    " cases per day (",
+    round(caseRate,2),
+    "%). "
+  )
+  
+  fractionUSA <- 
+  subset$percentCases[maxPercentCases] / 
+  (USA$CASES$Actual[USA$CASES$Date == yesterday] / USA$Population * 100)
+  deathsUSA <- USA$DEATHS$Actual[USA$DEATHS$Date == yesterday] * fractionUSA
+  emailText <- paste0(
+    emailText,
+    "If this is the natural limit of documented transmission, ",
+    "then the US is currently at just ",
+    round(1/fractionUSA * 100, 0),
+    "% of this limit. Extrapolating to 100%, the USA will eventually see ",
+    prettyNum(
+      round(deathsUSA, 0),
+      big.mark = ",", scientific = FALSE),
+    " deaths in the absence of a vaccine."
+  )
+}
 
-# # Epstein map
-# subset <- Counties[
-#   abs(Counties$deltaCases) < 12 &
-#     abs(Counties$deltaCases) > 0.01 &
-#     Counties$Population >= 1000,
-# ]
-# smooth <- supsmu(subset$Lean, subset$Population)
-# smooth <- data.frame(
-#   x = smooth$x,
-#   y = smooth$y
-# )
-# 
-# ggObject <- ggplot(subset,aes(x = Lean, y = Population, color = signCase)) +
-#   geom_point(size = 0.85) +
-#   geom_line(data = smooth, aes(x = x, y = y), color = "darkgreen", linetype = "solid", size = 1.5, alpha = 0.5) +
-#   scale_color_manual(values = c("red", "pink", "white","lightgreen", "green"), name = "Direction") +
-#   #scale_color_gradient2(low = "#02A602",mid = "white", high="#CD0101", midpoint = 0) +
-#   labs(
-#     x = "Percent Republican",
-#     y = "Population",
-#     title = "Partisan Lean vs Population and Direction",
-#     color = "Increase/Decrease",
-#     caption = "Dark green line is a Friedman's 'super smoother'"
-#   ) +
-#   coord_cartesian(expand=FALSE, xlim = c(0, 100), ylim=c(1000, 12000000) ) +
-#   scale_x_continuous(
-#     # breaks = c(1000, 10000, 100000, 1000000,10000000),
-#     # labels = c("1,000","10,000","100,000","1,000,000", "10,000,000")
-#   ) +
-#   scale_y_log10(
-#     breaks = c(1000, 10000, 100000, 1000000,10000000),
-#     labels = c("1,000","10,000","100,000","1,000,000", "10,000,000")
-#   ) +
-#   theme(
-#     panel.background = element_rect(
-#       fill = NA,
-#       colour = NA,
-#     ),
-#     panel.grid.major = element_line(colour = "grey"),
-#     legend.key = element_rect(fill = NA, colour = "white"),
-#     axis.line = element_line(color = "black")
-#   ) +
-#   annotation_logticks(sides = "l")
-# nextSlide(ggObject, "Partisan Lean vs Population and Direction")
-
-# Percent Cases Population *************************************************************
 subset <- Counties[
-  Counties$Population >= 1000,
+  Counties$Population >= 10000  & !is.na(Counties$growthCases),
 ]
 
-# Percent Cases
-smooth <- supsmu(subset$Population, subset$percentCases)
-smooth <- data.frame(
-  x = smooth$x,
-  y = smooth$y
-)
-ggObject <- ggplot(subset,aes(x = Population, y = percentCases)) +
-  geom_point(size = 0.85) +
-  geom_line(data = smooth, aes(x = x, y = y), color = "darkgreen", linetype = "solid", size = 1.5, alpha = 0.5) +
+ggplot(subset, aes(x = percentCases, y = growthCases)) +
+  geom_point() +
   labs(
-    x = "County Population",
-    y = "Total cases",
-    title = "Total Cases as a Percent of County Population",
-    caption = "Slanted lines are counties with small integer numbers of cases, green line: Friedman's 'super smoother'"
-  ) +
-  coord_cartesian(expand=FALSE, xlim = c(1000, 12000000), ylim = c(0.001, 20)) +
-  scale_x_log10(
-    breaks = c(1000, 10000, 100000, 1000000,10000000),
-    labels = c("1,000","10,000","100,000","1,000,000", "10,000,000")
-  ) +
-  scale_y_log10(
-    breaks = c(0.001, 0.01, 0.1, 1, 10, 20),
-    labels = c("0.001%", "0.01%", "0.1%", "1%", "10%", "20%")
-  ) +
-  annotation_logticks()
-nextSlide(ggObject, "Cases as a Percent of Population")
+    title = "Percent Cases vs. Daily Growth (as % of population)",
+    x = "Cases as a percent of population",
+    y = "Daily growth as a percent of the population "
+  )
 
-# Percent Deaths
-smooth <- supsmu(subset$Population, subset$percentDeaths)
-smooth <- data.frame(
-  x = smooth$x,
-  y = smooth$y
-)
-ggObject <- ggplot(subset,aes(x = Population, y = percentDeaths)) +
-  geom_point(size = 0.85) +
-  geom_line(data = smooth, aes(x = x, y = y), color = "darkgreen", linetype = "solid", size = 1.5, alpha = 0.5) +
-  labs(
-    x = "County Population",
-    y = "Total deaths",
-    title = "Total Deaths as a Percent of County Population",
-    caption = "Slanted lines are counties with small integer numbers of cases, green line: Friedman's 'super smoother'"
-  ) +
-  coord_cartesian(expand=FALSE, xlim = c(1000, 12000000), ylim = c(0.0001, 1)) +
-  scale_x_log10(
-    breaks = c(1000, 10000, 100000, 1000000,10000000),
-    labels = c("1,000","10,000","100,000","1,000,000", "10,000,000")
-  ) +
-  scale_y_log10(
-    breaks = c(0.0001, 0.001, 0.01, 0.1, 1),
-    labels = c("0.0001%", "0.001%", "0.01%", "0.1%", "1%")
-  ) +
-  annotation_logticks()
-nextSlide(ggObject, "Deaths as a Percent of Population")
-
-# Population vs. Mortality
-smooth <- supsmu(subset$Population, subset$Mortality)
-smooth <- data.frame(
-  x = smooth$x,
-  y = smooth$y
-)
-ggObject <- ggplot(subset,aes(x = Population, y = Mortality * 100)) +
-  geom_point(size = 0.85) +
-  geom_line(data = smooth, aes(x = x, y = y * 100), color = "darkgreen", linetype = "solid", size = 1.5, alpha = 0.5) +
-  labs(
-    x = "County Population",
-    y = "Case mortality",
-    title = "Case Mortality vs. County Population"
-  ) +
-  coord_cartesian(expand=FALSE, xlim = c(1000, 12000000), ylim = c(0.1, 100)) +
-  scale_x_log10(
-    breaks = c(1000, 10000, 100000, 1000000,10000000),
-    labels = c("1,000","10,000","100,000","1,000,000", "10,000,000")
-  ) +
-  scale_y_log10(
-    breaks = c(0.1, 1, 10, 100),
-    labels = c("0.1%", "1%", "10%", "100%")
-  ) +
-  annotation_logticks()
-nextSlide(ggObject, "Case Mortality vs. Population")
-
-maxPercentCases <- which(subset$percentCases == max(subset$percentCases))
-x <- which(Cases_USA$CountyFIPS == subset$FIPS[maxPercentCases])
-results <- calcStats(County = Cases_USA$County.Name[x], State = Cases_USA$State[x])
-dailyRate <- round(
-  (results$CASES$Actual[results$CASES$Date == today - 1] - 
-  results$CASES$Actual[results$CASES$Date == today - 15]) / 14,
-  0
-)
-caseRate <- 
-  dailyRate /
-  results$CASES$Actual[results$CASES$Date == today - 1] * 100
-emailText <- paste0(
-  emailText,
-  " The county with the most cases per capita is ",
-  subset$Name[maxPercentCases],
-  ", which has reported ",
-  prettyNum(
-    subset$Cases[maxPercentCases],
-    big.mark = ",", scientific = FALSE),
-  " cases in a population of ",
-  prettyNum(
-    subset$Population[maxPercentCases],
-    big.mark = ",", scientific = FALSE),
-  " (",
-  round(subset$percentCases[maxPercentCases],1),
-  "%, about 1 in every ",
-  round(1/subset$percentCases[maxPercentCases] * 100,0),
-  " individuals). Cases in ",
-  subset$Name[maxPercentCases],
-  " are rising at just ",
-  dailyRate, 
-  " cases per day (",
-  round(caseRate,2),
-  "%). "
-)
-
-fractionUSA <- 
-subset$percentCases[maxPercentCases] / 
-(USA$CASES$Actual[USA$CASES$Date == yesterday] / USA$Population * 100)
-deathsUSA <- USA$DEATHS$Actual[USA$DEATHS$Date == yesterday] * fractionUSA
-emailText <- paste0(
-  emailText,
-  "If this is the natural limit of documented transmission, ",
-  "then the US is currently at just ",
-  round(1/fractionUSA * 100, 0),
-  "% of this limit. Extrapolating to 100%, the USA will eventually see ",
-  prettyNum(
-    round(deathsUSA, 0),
-    big.mark = ",", scientific = FALSE),
-  " deaths in the absence of a vaccine."
-)
 
 print(pptx, target = pptxfileName)
 shell.exec(pptxfileName)
