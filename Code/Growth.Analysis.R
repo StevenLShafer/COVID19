@@ -141,6 +141,9 @@ growthPlotArrange(
   "International"
 )
 
+print(pptx, target = pptxfileName)
+shell.exec(pptxfileName)
+
 newSection("US Growth Rates")
 DATA <- NULL
 
@@ -193,3 +196,6 @@ growthPlotArrange(
   ggObject2,
   "US States"
 )
+
+print(pptx, target = pptxfileName)
+shell.exec(pptxfileName)

@@ -125,6 +125,7 @@ plotGrowthSummary <- function(
   
   Y <- log(GOM$Total)
   fitGom <- Gompertz_fit(Y, 10000, 1)
+  print(fitGom)
   GOM$Pred <- exp(Gompertz_fn(fitGom, nrow(GOM)))
   
   ggObject <- ggplot(GOM, aes(x=Day, y=Total)) + 
@@ -133,13 +134,15 @@ plotGrowthSummary <- function(
     scale_y_log10()
   print(ggObject)
   
-  ggObject <- ggplot(
-    DATA,
-    aes(
-      x=Day,
-      y = Rate
-    )
-  ) +  
+  ggObject <- 
+    ggplot(
+      DATA,
+      aes(
+        x=Day,
+        y = Rate
+      )
+    ) +  
+    coord_cartesian(ylim = c(-10, 10))
     labs(
       y = "Acceleration (% per day)",
       title = paste("Summary of", SUBSET, "by", LOCATION, "as of", todayText)
@@ -166,8 +169,8 @@ plotGrowthSummary <- function(
     ggObject <- ggObject +
       geom_line(
         data = DATA[DATA$Location == Location,], 
-        size = 0.1, 
-        alpha = 0.3,
+        size = 0.2, 
+        alpha = 0.5,
         color = COLOR,
         show.legend = FALSE
       )
@@ -180,8 +183,8 @@ plotGrowthSummary <- function(
       aes(ymin = Lower, ymax = Upper, x = Day),
       inherit.aes=FALSE,
       color = NA,
-      fill = COLOR,
-      alpha = 0.4
+      fill = "grey",
+      alpha = 0.5
       ) +
     geom_smooth(color = "black",se = FALSE, show.legend = FALSE)
   
