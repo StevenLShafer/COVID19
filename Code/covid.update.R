@@ -102,20 +102,32 @@ plotGrowthFlag <- FALSE
   write.csv(Countries, paste0(dirTodayUpdateData, "Countries.csv"), row.names=FALSE)
   write.csv(States, paste0(dirTodayUpdateData, "States.csv"), row.names=FALSE)
   write.csv(Counties, paste0(dirTodayUpdateData, "Counties.csv"), row.names=FALSE)
-  todaysText <- paste0(dirTodayUpdate,"EmailText.",timestamp,".txt")
+  x <- emailText
+  emailText <- paste(
+    emailText,
+    paste(
+      readLines(paste0(dirCode,"email.body.end.txt")),
+      collapse = "\n"
+    )
+  )
+  todaysText <- paste0(dirTodayUpdate,"EmailText.",timestamp,".html")
   writeLines(emailText, todaysText)
   shell.exec(todaysText)
   
   # Make copy of latest files for GitHub
-  FILES <- list.files(dirLatest, recursive = TRUE)
+  FILES <- list.files(dirLatest, include.dirs = TRUE)
   if (length(FILES) > 0) file.remove(paste0(dirLatest, FILES))
   
-  FILES <- list.files(dirTodayUpdate, recursive = TRUE)
-  file.copy(
-    from = paste0(dirTodayUpdate,FILES),
-    to = dirLatest
-    )
+  FILES <- list.files(dirTodayUpdate, full.names = TRUE, recursive = TRUE)
+  NEW <- gsub(dirTodayUpdate, dirLatest, FILES)
+  dir.create(paste0(dirLatest, "DATA"))
   
+  file.copy(
+    from = FILES,
+    to = NEW,
+    
+    )
+
   shell ("git add .")
   shell (paste('git commit -m "Update for', todayText, '"'))
   shell ("git push")

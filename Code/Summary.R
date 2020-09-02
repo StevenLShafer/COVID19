@@ -1,6 +1,5 @@
 # Summary Slides
 newSection("Summary")
-emailText <- ""
 WORLD <- plotPred(Country = "Worldwide", Title = "Worldwide")
 emailText <- textSummary(WORLD, "Worldwide")
 
@@ -1036,6 +1035,7 @@ if (weekDay == 1) # Monday only
     dailyRate /
     results$CASES$Actual[results$CASES$Date == today - 1] * 100
   emailText <- paste0(
+    email.list.start,
     emailText,
     " The county with the most cases per capita is ",
     subset$Name[maxPercentCases],
@@ -1057,7 +1057,8 @@ if (weekDay == 1) # Monday only
     dailyRate, 
     " cases per day (",
     round(caseRate,2),
-    "%). "
+    "%). ",
+    email.list.end
   )
   
   fractionUSA <- 
@@ -1065,6 +1066,7 @@ if (weekDay == 1) # Monday only
   (USA$CASES$Actual[USA$CASES$Date == yesterday] / USA$Population * 100)
   deathsUSA <- USA$DEATHS$Actual[USA$DEATHS$Date == yesterday] * fractionUSA
   emailText <- paste0(
+    email.list.start,
     emailText,
     "If this is the natural limit of documented transmission, ",
     "then the US is currently at just ",
@@ -1073,7 +1075,8 @@ if (weekDay == 1) # Monday only
     prettyNum(
       round(deathsUSA, 0),
       big.mark = ",", scientific = FALSE),
-    " deaths in the absence of a vaccine."
+    " deaths in the absence of a vaccine.",
+    email.list.end
   )
 }
 
@@ -1093,4 +1096,4 @@ ggplot(subset, aes(x = percentCases, y = growthCases)) +
 print(pptx, target = pptxfileName)
 shell.exec(pptxfileName)
 
-writeLines(emailText,paste0(dirTodayUpdate,"EmailText.",timestamp,".txt"))
+writeLines(emailText,paste0(dirTodayUpdate,"EmailText.",timestamp,".html"))

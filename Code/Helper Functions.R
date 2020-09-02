@@ -8,7 +8,13 @@ pptx <- NULL # Define it so I can update it below
 pptxfileName <- NULL
 subSet <- ""
 datetime <- as.character(today)
-emailText <- ""
+emailText <- paste(
+  readLines(paste0(dirCode,"email.body.start.txt")),
+  collapse = "\n"
+)
+
+email.list.start <- "\n<li class=MsoListParagraph>\n"
+email.list.end <- "\n</li>\n"
 
 textSummary <- function(X, title)
 {
@@ -61,9 +67,11 @@ textSummary <- function(X, title)
   return(
     paste(
       emailText,
+      email.list.start,
       text,
       slopeCasesText,
-      slopeDeathsText
+      slopeDeathsText,
+      email.list.end
     )
   )
 }
@@ -102,7 +110,9 @@ textRanksInternational <- function(X, title, N)
   return(
     paste(
       emailText,
-      text
+      email.list.start,
+      text,
+      email.list.end
     )
   )
 }
@@ -141,7 +151,9 @@ textRanksStates <- function(X, title, N)
   return(
     paste(
       emailText,
-      text
+      email.list.start,
+      text,
+      email.list.end
     )
   )
 }

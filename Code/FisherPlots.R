@@ -1,18 +1,19 @@
 # Fisher Plots
 internationalFisherPlot <- function (X, title, ylabel, emailTitle, N, OneIn = FALSE)
 { 
+  X$Country[X$Country == "United States of America"] <- "USA"
   X <- X[order(X$Y, decreasing = TRUE),]
   X <- X[1:65,]
   X$Rank <- 1:nrow(X)
   ggObject <- ggplot(X, aes(x = Rank, y = Y)) +
     geom_point() +
-    geom_point(data=X[X$Abbreviation == "USA",], color = "red") +
-    geom_text(aes(y = Y, label = Abbreviation), angle = 90, size = 2.6, hjust = -0.3) +
+    geom_point(data=X[X$Country == "USA",], color = "red") +
+    geom_text(aes(y = Y, label = paste0(" ",Country)), angle = 90, size = 2.6, hjust = 0) +
     geom_text(
-      data=X[X$Abbreviation == "USA",], 
-      aes(y = Y, label = Abbreviation), 
+      data=X[X$Country == "USA",], 
+      aes(y = Y, label = paste0(" ",Country)), 
       color = "red", 
-      angle = 90, size = 2.6, hjust = -0.3) +
+      angle = 90, size = 2.6, hjust = 0) +
     labs(
       title = title,
       y = ylabel,
@@ -55,7 +56,7 @@ stateFisherPlot <- function (X, title, ylabel, emailTitle, N, OneIn = FALSE)
   pGov <- signif(wilcox.test(X$Rank[X$Governor == "Republican"], X$Rank[X$Governor == "Democratic"])$p.value, 2)
   ggObject <- ggplot(X, aes(x = Rank, y = Y, color = Governor, shape = Masks)) +
     geom_point() +
-    geom_text(aes(y = Y, label = Abbreviation), angle = 90, size = 2.6, hjust = -0.3) +
+    geom_text(aes(y = Y, label = paste0("  ",State)), angle = 90, size = 2.6, hjust = 0) +
     scale_color_manual(values = c("blue","red")) +
     scale_shape_manual(values = c(0, 15)) +
     labs(
