@@ -1,5 +1,11 @@
 # Summary Slides
 newSection("Summary")
+
+emailText <- paste(
+  readLines(paste0(dirCode,"email.body.start.txt")),
+  collapse = "\n"
+)
+
 WORLD <- plotPred(Country = "Worldwide", Title = "Worldwide")
 emailText <- textSummary(WORLD, "Worldwide")
 
@@ -432,14 +438,15 @@ ggObject <- plot_usmap(data = States, values = "signCase", color = "black") +
   labs(
     title = paste("New cases by state as of", Sys.Date())
   )
+
 emailText <- paste(
     emailText,
     email.list.start,
     "The red/green map for states shows:",
     add_ggplot(
       plot_object = ggObject,
-      width = 5,
-      height = 3,
+      width = 9,
+      height = 4.5,
       alt = NULL,
       align = "left",
       float = "none"
@@ -502,13 +509,13 @@ emailText <- paste(
   emailText,
   add_ggplot(
     plot_object = ggObject,
-    width = 5,
-    height = 3,
+    width = 9,
+    height = 4.5,
     alt = NULL,
     align = "left",
     float = "none"
   ),
-  email.list.end,
+  email.list.end
 )
 
 ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 58 & Cases_Long$Date < today,], aes(Date, Deaths)) +
@@ -573,8 +580,8 @@ emailText <- paste(
   "The four quadrant map for changes in cases vs changes in deaths:",
   add_ggplot(
     plot_object = ggObject,
-    width = 5,
-    height = 3,
+    width = 9,
+    height = 4.5,
     alt = NULL,
     align = "left",
     float = "none"
@@ -776,8 +783,8 @@ emailText <- paste(
   "The four quadrant graph for change in testing vs change in positivity shows  xxxsx:",
   add_ggplot(
     plot_object = ggObject,
-    width = 5,
-    height = 3,
+    width = 9,
+    height = 4.5,
     alt = NULL,
     align = "left",
     float = "none"
@@ -936,8 +943,8 @@ emailText <- paste(
   "The county level graph identifies more precisely where cases are rising:",
   add_ggplot(
     plot_object = ggObject,
-    width = 5,
-    height = 3,
+    width = 9,
+    height = 4.95,
     alt = NULL,
     align = "left",
     float = "none"
@@ -1127,7 +1134,6 @@ if (weekDay == 1) # Monday only
     " cases per day (",
     round(caseRate,2),
     "%). ",
-    email.list.end
   )
   
   fractionUSA <- 
@@ -1135,7 +1141,6 @@ if (weekDay == 1) # Monday only
   (USA$CASES$Actual[USA$CASES$Date == yesterday] / USA$Population * 100)
   deathsUSA <- USA$DEATHS$Actual[USA$DEATHS$Date == yesterday] * fractionUSA
   emailText <- paste0(
-    email.list.start,
     emailText,
     "If this is the natural limit of documented transmission, ",
     "then the US is currently at just ",
@@ -1165,4 +1170,29 @@ ggplot(subset, aes(x = percentCases, y = growthCases)) +
 print(pptx, target = pptxfileName)
 shell.exec(pptxfileName)
 
-writeLines(emailText,paste0(dirTodayUpdate,"EmailText.",timestamp,".html"))
+emailText <- paste(
+  emailText,
+  paste(
+    readLines(paste0(dirCode,"email.body.end.txt")),
+    collapse = "\n"
+  )
+)
+#  todaysText <- paste0(dirTodayUpdate,"EmailText.",timestamp,".html")
+#  writeLines(emailText, todaysText)
+#  shell.exec(todaysText)
+
+send.mail(
+  from = "stanpumpR@gmail.com",
+  to = "steveshafer@gmail.com",
+  subject = paste("Daily COVID Update for", format(today, "%A, %B %d, %Y")),
+  body = emailText,
+  html = TRUE,
+  smtp = list(
+    host.name = "smtp.gmail.com",
+    port = 465,
+    user.name = config::get("email_username"),
+    passwd = config::get("email_password"),
+    ssl = TRUE),
+  authenticate = TRUE
+)
+

@@ -8,10 +8,6 @@ pptx <- NULL # Define it so I can update it below
 pptxfileName <- NULL
 subSet <- ""
 datetime <- as.character(today)
-emailText <- paste(
-  readLines(paste0(dirCode,"email.body.start.txt")),
-  collapse = "\n"
-)
 
 email.list.start <- "\n<li class=MsoListParagraph>\n"
 email.list.end <- "\n</li>\n"

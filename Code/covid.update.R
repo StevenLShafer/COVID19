@@ -105,31 +105,6 @@ plotGrowthFlag <- FALSE
   write.csv(States, paste0(dirTodayUpdateData, "States.csv"), row.names=FALSE)
   write.csv(Counties, paste0(dirTodayUpdateData, "Counties.csv"), row.names=FALSE)
   x <- emailText
-  emailText <- paste(
-    emailText,
-    paste(
-      readLines(paste0(dirCode,"email.body.end.txt")),
-      collapse = "\n"
-    )
-  )
-#  todaysText <- paste0(dirTodayUpdate,"EmailText.",timestamp,".html")
-#  writeLines(emailText, todaysText)
-#  shell.exec(todaysText)
-  
-  send.mail(
-    from = "stanpumpR@gmail.com",
-    to = "steveshafer@gmail.com",
-    subject = paste("Daily COVID Update for", format(today, "%A, %B %d, %Y")),
-    body = emailText,
-    html = TRUE,
-    smtp = list(
-      host.name = "smtp.gmail.com",
-      port = 465,
-      user.name = config::get("email_username"),
-      passwd = config::get("email_password"),
-      ssl = TRUE),
-    authenticate = TRUE
-  )
   
   
   # Make copy of latest files for GitHub
