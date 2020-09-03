@@ -432,6 +432,20 @@ ggObject <- plot_usmap(data = States, values = "signCase", color = "black") +
   labs(
     title = paste("New cases by state as of", Sys.Date())
   )
+emailText <- paste(
+    emailText,
+    email.list.start,
+    "The red/green map for states shows:",
+    add_ggplot(
+      plot_object = ggObject,
+      width = 5,
+      height = 3,
+      alt = NULL,
+      align = "left",
+      float = "none"
+    )
+  )
+
 nextSlide(ggObject, "Change in New Cases per Day")
 
 ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 58 & Cases_Long$Date < today,], aes(Date, Cases)) +
@@ -483,6 +497,19 @@ ggObject <- plot_usmap(data = States, values = "signDeath", color = "black") +
     title = paste("New deaths by state as of", Sys.Date())
   )
 nextSlide(ggObject, "Change in New Deaths per Day")
+
+emailText <- paste(
+  emailText,
+  add_ggplot(
+    plot_object = ggObject,
+    width = 5,
+    height = 3,
+    alt = NULL,
+    align = "left",
+    float = "none"
+  ),
+  email.list.end,
+)
 
 ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 58 & Cases_Long$Date < today,], aes(Date, Deaths)) +
   geom_line() +
@@ -539,6 +566,21 @@ ggObject <- ggplot(States,aes(x = slopeCases, y = slopeDeaths, label=Abbreviatio
   )
 
 nextSlide(ggObject, "Change in cases vs change in deaths")
+
+emailText <- paste(
+  emailText,
+  email.list.start,
+  "The four quadrant map for changes in cases vs changes in deaths:",
+  add_ggplot(
+    plot_object = ggObject,
+    width = 5,
+    height = 3,
+    alt = NULL,
+    align = "left",
+    float = "none"
+  ),
+  email.list.end
+)
 
 
 ########################
@@ -728,7 +770,20 @@ ggObject <- ggplot(States,aes(x = slopeTests, y = slopePositiveTests, label=Abbr
   )
 nextSlide(ggObject, "Change in tests vs change in positive tests")
 
-
+emailText <- paste(
+  emailText,
+  email.list.start,
+  "The four quadrant graph for change in testing vs change in positivity shows  xxxsx:",
+  add_ggplot(
+    plot_object = ggObject,
+    width = 5,
+    height = 3,
+    alt = NULL,
+    align = "left",
+    float = "none"
+  ),
+  email.list.end
+)
 
 # Hospitalizatons
 States$Y <- States$Hospitalizations * 100
@@ -875,6 +930,20 @@ ggObject <- plot_usmap(data = Counties, values = "signCase", color = "black") +
   )
 nextSlide(ggObject, "Change in New Cases per Day")
 
+emailText <- paste(
+  emailText,
+  email.list.start,
+  "The county level graph identifies more precisely where cases are rising:",
+  add_ggplot(
+    plot_object = ggObject,
+    width = 5,
+    height = 3,
+    alt = NULL,
+    align = "left",
+    float = "none"
+  ),
+  email.list.end
+)
 
 if (weekDay == 1) # Monday only
 {
