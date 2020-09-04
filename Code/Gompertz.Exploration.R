@@ -7,7 +7,6 @@
 N0 <- 1000
 Ninf <- 100000
 
-
 a <- Ninf # Asymptote
 b <- log(Ninf/N0)     # Displacement in time
 c <- .2    # Growth rate
@@ -38,3 +37,12 @@ ggplot(DATA, aes(x = Time, y = Accel)) +
   geom_line() +
   scale_x_continuous(breaks = 0:5*30)
 
+DATA$Super <- 0
+for (i in 1:150)
+{
+  DATA$Super[i] <- sum(DATA$Accel[1:i])  
+}
+
+ggplot(DATA, aes(x = Time, y = Super)) + 
+  geom_line() +
+  scale_x_continuous(breaks = 0:5*30)
