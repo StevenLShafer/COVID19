@@ -1,0 +1,157 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns:m="http://schemas.microsoft.com/office/2004/12/omml" xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=us-ascii"><meta name=Generator content="Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Arial",sans-serif;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Arial",sans-serif;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:6.0pt;
+	font-size:14.0pt;
+	font-family:"Arial",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	font-size:14.0pt;
+	font-family:"Arial",sans-serif;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:687800891;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1558508558 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l1
+	{mso-list-id:968365969;
+	mso-list-template-ids:-1564939334;}
+@list l1:level1
+	{mso-level-start-at:8;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2
+	{mso-list-id:1137995060;
+	mso-list-template-ids:1338277410;}
+@list l3
+	{mso-list-id:1304965878;
+	mso-list-template-ids:-1391797948;}
+@list l3:level1
+	{mso-level-start-at:18;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l4
+	{mso-list-id:1429425122;
+	mso-list-template-ids:-503271210;}
+@list l4:level1
+	{mso-level-start-at:4;
+	mso-level-tab-stop:.3in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5
+	{mso-list-id:1790003047;
+	mso-list-template-ids:-275086034;}
+@list l5:level1
+	{mso-level-start-at:11;
+	mso-level-tab-stop:.3in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style>
+<!--[if gte mso 9]>
+<![endif]-->
+<!--[if gte mso 9]>
+<![endif]-->
+</head>
+<body lang=EN-US link="#0563C1" vlink="#954F72">
+<div class=WordSection1>
+<p class=MsoNormal>
+Dear Family, Friends, and Colleagues:&nbsp;<br>
+</p>
+<p class=MsoNormal>
+My daily update for COVID trends is attached. These are not confidential and may be freely shared. If you would like to be added to the blind CC recipient list, please let me know. If you want less COVID spam, I&#8217;m happy to remove you from the list. 
+</p>
+<p class=MsoNormal>
+Today's PowerPoint files and data files can be accessed 
+<a href="https://1drv.ms/u/s!AuOyHP_aTIy7rpJVj-1rZZMarvgrag?e=AVbVJI" target="_blank">here</a>.
+Prior PowerPoint files and data files can be accessed 
+<a href="https://1drv.ms/u/s!AuOyHP_aTIy7rowrt2AjGpWm_frnEQ" target="_blank">here</a>.
+The R program code can be found on 
+<a href="https://github.com/StevenLShafer/COVID19">GitHub</a> 
+and may be freely used without restriction. Questions, suggestions, and recommendations are welcome.<o:p></o:p>
+</p>
+<p class=MsoNormal>
+If this is the first time you have received this, please read the comments on the first slide in the PowerPoint summary. The second slide will help orient you to the figures. 
+</p>
+<p class=MsoNormal>
+Ian Mackey is kindly posting updates on Twitter (<a href="https://twitter.com/stevenlshafer">https://twitter.com/stevenlshafer</a>
+, @stevenlshafer).&nbsp;
+</p>
+<p class=MsoNormal>
+Comments:
+</p>
+<ol style='margin-top:0in' start=1 type=1>

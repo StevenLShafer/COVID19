@@ -9,7 +9,7 @@ pptxfileName <- NULL
 subSet <- ""
 datetime <- as.character(today)
 
-email.list.start <- "\n<li class=MsoListParagraph>\n"
+email.list.start <- "\n<li class=\"SLSListParagraph\">\n"
 email.list.end <- "\n</li>\n"
 
 textSummary <- function(X, title)
