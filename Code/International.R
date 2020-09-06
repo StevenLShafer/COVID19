@@ -10,6 +10,7 @@ plotPred(Country = "Austria", Title = "Austria")
 plotPred(Country = "Sweden", Title = "Sweden")
 plotPred(Country = "Netherlands", Title = "Netherlands")
 plotPred(Country = "United Kingdom", Title = "United Kingdom")
+plotPred(Country = "Ireland", Title = "Ireland")
 plotPred(Country = "Iceland", Title = "Iceland")
 # plotPred(Country = "Paraguay", Title = "Paraguay")
 # plotPred(Country = "Rwanda", Title = "Rwanda"
