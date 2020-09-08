@@ -1101,7 +1101,7 @@ if (weekDay == 1) # Monday only
   
   maxPercentCases <- which(subset$percentCases == max(subset$percentCases))
   x <- which(Cases_USA$CountyFIPS == subset$FIPS[maxPercentCases])
-  results <- calcStats(County = Cases_USA$County.Name[x], State = Cases_USA.2020-09-01)
+  results <- calcStats(County = Cases_USA$County.Name[x], State = Cases_USA$State[x])
   dailyRate <- round(
     (results$CASES$Actual[results$CASES$Date == today - 1] - 
     results$CASES$Actual[results$CASES$Date == today - 15]) / 14,
