@@ -1,0 +1,1850 @@
+Characteristics of COVID-19-associated Hospitalizations from the COVID-NET Network (data downloaded on 6/10/2020)Centers for Disease Control and Prevention
+Primary Strata,Primary Strata Name,Secondary Strata Name,Secondary Strata,Count,Percent
+Age,Male,18-49 yr,Sex,3521,52.4
+Age,Female,18-49 yr,Sex,3196,47.6
+Age,White,18-49 yr,Race/Ethnicity,887,17.5
+Age,Black,18-49 yr,Race/Ethnicity,1594,31.4
+Age,Hispanic/Latino,18-49 yr,Race/Ethnicity,1831,36.1
+Age,Asian/Pacific Islander,18-49 yr,Race/Ethnicity,269,5.3
+Age,American Indian/Alaska Native,18-49 yr,Race/Ethnicity,118,2.3
+Age,Other,18-49 yr,Race/Ethnicity,373,7.4
+Age,Yes       ,18-49 yr,YesNo,100,6.7
+Age,No        ,18-49 yr,YesNo,1393,93.3
+Age,Yes       ,18-49 yr,YesNo,33,2.2
+Age,No        ,18-49 yr,YesNo,1463,97.8
+Age,Yes       ,18-49 yr,YesNo,219,14.7
+Age,No        ,18-49 yr,YesNo,1275,85.3
+Age,Yes       ,18-49 yr,YesNo,363,24.3
+Age,No        ,18-49 yr,YesNo,1131,75.7
+Age,Yes       ,18-49 yr,YesNo,176,11.8
+Age,No        ,18-49 yr,YesNo,1317,88.2
+Age,Yes       ,18-49 yr,YesNo,52,3.5
+Age,No        ,18-49 yr,YesNo,1441,96.5
+Age,Yes       ,18-49 yr,YesNo,142,9.5
+Age,No        ,18-49 yr,YesNo,1350,90.5
+Age,Yes       ,18-49 yr,YesNo,28,1.7
+Age,No        ,18-49 yr,YesNo,1582,98.3
+Age,Yes       ,18-49 yr,YesNo,134,8.3
+Age,No        ,18-49 yr,YesNo,1478,91.7
+Age,Yes       ,18-49 yr,YesNo,222,13.8
+Age,No        ,18-49 yr,YesNo,1390,86.2
+Age,Yes       ,18-49 yr,YesNo,13,0.8
+Age,No        ,18-49 yr,YesNo,1599,99.2
+Age,Yes       ,18-49 yr,YesNo,106,6.6
+Age,No        ,18-49 yr,YesNo,1506,93.4
+Age,Yes       ,18-49 yr,YesNo,435,26.9
+Age,No        ,18-49 yr,YesNo,1180,73.1
+Age,Yes       ,18-49 yr,YesNo,368,22.8
+Age,No        ,18-49 yr,YesNo,1247,77.2
+Age,Yes       ,18-49 yr,YesNo,79,4.9
+Age,No        ,18-49 yr,YesNo,1536,95.1
+Age,Yes       ,18-49 yr,YesNo,132,8.2
+Age,No        ,18-49 yr,YesNo,1481,91.8
+Age,Yes       ,18-49 yr,YesNo,11,0.7
+Age,No        ,18-49 yr,YesNo,1602,99.3
+Age,Yes       ,18-49 yr,YesNo,23,1.4
+Age,No        ,18-49 yr,YesNo,1590,98.6
+Age,Yes       ,18-49 yr,YesNo,40,2.5
+Age,No        ,18-49 yr,YesNo,1573,97.5
+Age,Yes       ,18-49 yr,YesNo,26,1.6
+Age,No        ,18-49 yr,YesNo,1587,98.4
+Age,Yes       ,18-49 yr,YesNo,404,25.0
+Age,No        ,18-49 yr,YesNo,1212,75.0
+Age,Yes       ,18-49 yr,YesNo,101,6.3
+Age,No        ,18-49 yr,YesNo,1511,93.7
+Age,Yes       ,18-49 yr,YesNo,11,0.7
+Age,No        ,18-49 yr,YesNo,1601,99.3
+Age,Yes       ,18-49 yr,YesNo,61,3.8
+Age,No        ,18-49 yr,YesNo,1550,96.2
+Age,Yes       ,18-49 yr,YesNo,127,7.9
+Age,No        ,18-49 yr,YesNo,1486,92.1
+Age,Yes       ,18-49 yr,YesNo,2,0.1
+Age,No        ,18-49 yr,YesNo,1611,99.9
+Age,Yes       ,18-49 yr,YesNo,886,63.3
+Age,No        ,18-49 yr,YesNo,514,36.7
+Age,Yes       ,18-49 yr,YesNo,92,5.7
+Age,No        ,18-49 yr,YesNo,1521,94.3
+Age,Yes       ,18-49 yr,YesNo,90,5.6
+Age,No        ,18-49 yr,YesNo,1523,94.4
+Age,Yes       ,18-49 yr,YesNo,21,1.3
+Age,No        ,18-49 yr,YesNo,1587,98.7
+Age,current,18-49 yr,Smoker,143,8.8
+Age,former,18-49 yr,Smoker,200,12.3
+Age,never,18-49 yr,Smoker,1279,78.9
+Age,Yes       ,18-49 yr,YesNo,204,12.3
+Age,No        ,18-49 yr,YesNo,1456,87.7
+Age,Yes       ,18-49 yr,YesNo,45,2.7
+Age,No        ,18-49 yr,YesNo,1615,97.3
+Age,Yes       ,18-49 yr,YesNo,107,6.4
+Age,No        ,18-49 yr,YesNo,1553,93.6
+Age,Yes       ,18-49 yr,YesNo,319,19.2
+Age,No        ,18-49 yr,YesNo,1341,80.8
+Age,Yes       ,18-49 yr,YesNo,237,14.3
+Age,No        ,18-49 yr,YesNo,1423,85.7
+Age,Yes       ,18-49 yr,YesNo,6,0.4
+Age,No        ,18-49 yr,YesNo,1654,99.6
+Age,Yes       ,18-49 yr,YesNo,1218,73.4
+Age,No        ,18-49 yr,YesNo,442,26.6
+Age,Yes       ,18-49 yr,YesNo,424,25.5
+Age,No        ,18-49 yr,YesNo,1236,74.5
+Age,Yes       ,18-49 yr,YesNo,100,6.0
+Age,No        ,18-49 yr,YesNo,1560,94.0
+Age,Yes       ,18-49 yr,YesNo,1236,74.5
+Age,No        ,18-49 yr,YesNo,424,25.5
+Age,Yes       ,18-49 yr,YesNo,382,23.0
+Age,No        ,18-49 yr,YesNo,1278,77.0
+Age,Yes       ,18-49 yr,YesNo,41,2.5
+Age,No        ,18-49 yr,YesNo,1619,97.5
+Age,Yes       ,18-49 yr,YesNo,582,35.1
+Age,No        ,18-49 yr,YesNo,1078,64.9
+Age,Yes       ,18-49 yr,YesNo,498,30.0
+Age,No        ,18-49 yr,YesNo,1162,70.0
+Age,Yes       ,18-49 yr,YesNo,5,0.3
+Age,No        ,18-49 yr,YesNo,1655,99.7
+Age,Yes       ,18-49 yr,YesNo,9,0.5
+Age,No        ,18-49 yr,YesNo,1651,99.5
+Age,Yes       ,18-49 yr,YesNo,1134,68.3
+Age,No        ,18-49 yr,YesNo,526,31.7
+Age,Yes       ,18-49 yr,YesNo,245,14.8
+Age,No        ,18-49 yr,YesNo,1415,85.2
+Age,Yes       ,18-49 yr,YesNo,73,4.4
+Age,No        ,18-49 yr,YesNo,1587,95.6
+Age,Yes       ,18-49 yr,YesNo,40,2.7
+Age,No        ,18-49 yr,YesNo,1443,97.3
+Age,Yes       ,18-49 yr,YesNo,8,0.5
+Age,No        ,18-49 yr,YesNo,1476,99.5
+Age,Yes       ,18-49 yr,YesNo,,
+Age,No        ,18-49 yr,YesNo,1484,100.0
+Age,Yes       ,18-49 yr,YesNo,119,8.0
+Age,No        ,18-49 yr,YesNo,1365,92.0
+Age,Yes       ,18-49 yr,YesNo,99,6.7
+Age,No        ,18-49 yr,YesNo,1384,93.3
+Age,Yes       ,18-49 yr,YesNo,518,34.9
+Age,No        ,18-49 yr,YesNo,966,65.1
+Age,Yes       ,18-49 yr,YesNo,35,2.4
+Age,No        ,18-49 yr,YesNo,1448,97.6
+Age,Yes       ,18-49 yr,YesNo,22,1.5
+Age,No        ,18-49 yr,YesNo,1462,98.5
+Age,Yes       ,18-49 yr,YesNo,1,0.1
+Age,No        ,18-49 yr,YesNo,1483,99.9
+Age,Yes       ,18-49 yr,YesNo,14,0.9
+Age,No        ,18-49 yr,YesNo,1470,99.1
+Age,Yes       ,18-49 yr,YesNo,12,0.8
+Age,No        ,18-49 yr,YesNo,1472,99.2
+Age,Yes       ,18-49 yr,YesNo,2,0.1
+Age,No        ,18-49 yr,YesNo,1483,99.9
+Age,Yes       ,18-49 yr,YesNo,25,1.7
+Age,No        ,18-49 yr,YesNo,1460,98.3
+Age,Yes       ,18-49 yr,YesNo,,
+Age,No        ,18-49 yr,YesNo,1485,100.0
+Age,Yes       ,18-49 yr,YesNo,,
+Age,No        ,18-49 yr,YesNo,1484,100.0
+Age,Yes       ,18-49 yr,YesNo,,
+Age,No        ,18-49 yr,YesNo,1483,100.0
+Age,Yes       ,18-49 yr,YesNo,,
+Age,No        ,18-49 yr,YesNo,1485,100.0
+Age,Yes       ,18-49 yr,YesNo,,
+Age,No        ,18-49 yr,YesNo,1484,100.0
+Age,Yes       ,18-49 yr,YesNo,11,0.7
+Age,No        ,18-49 yr,YesNo,1474,99.3
+Age,Yes       ,18-49 yr,YesNo,777,52.4
+Age,No        ,18-49 yr,YesNo,707,47.6
+Age,Yes       ,18-49 yr,YesNo,10,0.7
+Age,No        ,18-49 yr,YesNo,1474,99.3
+Age,Yes       ,18-49 yr,YesNo,243,16.4
+Age,No        ,18-49 yr,YesNo,1237,83.6
+Age,Yes       ,18-49 yr,YesNo,3,0.2
+Age,No        ,18-49 yr,YesNo,1482,99.8
+Age,Male,50-64 yr,Sex,4450,56.9
+Age,Female,50-64 yr,Sex,3366,43.1
+Age,White,50-64 yr,Race/Ethnicity,1784,29.0
+Age,Black,50-64 yr,Race/Ethnicity,2357,38.3
+Age,Hispanic/Latino,50-64 yr,Race/Ethnicity,1159,18.8
+Age,Asian/Pacific Islander,50-64 yr,Race/Ethnicity,301,4.9
+Age,American Indian/Alaska Native,50-64 yr,Race/Ethnicity,115,1.9
+Age,Other,50-64 yr,Race/Ethnicity,437,7.1
+Age,Yes       ,50-64 yr,YesNo,161,10.1
+Age,No        ,50-64 yr,YesNo,1436,89.9
+Age,Yes       ,50-64 yr,YesNo,152,9.5
+Age,No        ,50-64 yr,YesNo,1452,90.5
+Age,Yes       ,50-64 yr,YesNo,281,17.6
+Age,No        ,50-64 yr,YesNo,1316,82.4
+Age,Yes       ,50-64 yr,YesNo,545,34.1
+Age,No        ,50-64 yr,YesNo,1053,65.9
+Age,Yes       ,50-64 yr,YesNo,309,19.3
+Age,No        ,50-64 yr,YesNo,1288,80.7
+Age,Yes       ,50-64 yr,YesNo,91,5.7
+Age,No        ,50-64 yr,YesNo,1506,94.3
+Age,Yes       ,50-64 yr,YesNo,258,16.2
+Age,No        ,50-64 yr,YesNo,1337,83.8
+Age,Yes       ,50-64 yr,YesNo,54,3.1
+Age,No        ,50-64 yr,YesNo,1690,96.9
+Age,Yes       ,50-64 yr,YesNo,383,22.0
+Age,No        ,50-64 yr,YesNo,1360,78.0
+Age,Yes       ,50-64 yr,YesNo,241,13.8
+Age,No        ,50-64 yr,YesNo,1502,86.2
+Age,Yes       ,50-64 yr,YesNo,152,8.7
+Age,No        ,50-64 yr,YesNo,1591,91.3
+Age,Yes       ,50-64 yr,YesNo,247,14.2
+Age,No        ,50-64 yr,YesNo,1496,85.8
+Age,Yes       ,50-64 yr,YesNo,749,42.8
+Age,No        ,50-64 yr,YesNo,999,57.2
+Age,Yes       ,50-64 yr,YesNo,644,36.8
+Age,No        ,50-64 yr,YesNo,1104,63.2
+Age,Yes       ,50-64 yr,YesNo,156,8.9
+Age,No        ,50-64 yr,YesNo,1592,91.1
+Age,Yes       ,50-64 yr,YesNo,443,25.4
+Age,No        ,50-64 yr,YesNo,1304,74.6
+Age,Yes       ,50-64 yr,YesNo,69,3.9
+Age,No        ,50-64 yr,YesNo,1678,96.1
+Age,Yes       ,50-64 yr,YesNo,160,9.2
+Age,No        ,50-64 yr,YesNo,1587,90.8
+Age,Yes       ,50-64 yr,YesNo,143,8.2
+Age,No        ,50-64 yr,YesNo,1604,91.8
+Age,Yes       ,50-64 yr,YesNo,102,5.8
+Age,No        ,50-64 yr,YesNo,1645,94.2
+Age,Yes       ,50-64 yr,YesNo,1015,57.9
+Age,No        ,50-64 yr,YesNo,738,42.1
+Age,Yes       ,50-64 yr,YesNo,183,10.5
+Age,No        ,50-64 yr,YesNo,1562,89.5
+Age,Yes       ,50-64 yr,YesNo,23,1.3
+Age,No        ,50-64 yr,YesNo,1722,98.7
+Age,Yes       ,50-64 yr,YesNo,104,6.0
+Age,No        ,50-64 yr,YesNo,1639,94.0
+Age,Yes       ,50-64 yr,YesNo,288,16.5
+Age,No        ,50-64 yr,YesNo,1457,83.5
+Age,Yes       ,50-64 yr,YesNo,46,2.6
+Age,No        ,50-64 yr,YesNo,1699,97.4
+Age,Yes       ,50-64 yr,YesNo,947,56.6
+Age,No        ,50-64 yr,YesNo,727,43.4
+Age,Yes       ,50-64 yr,YesNo,196,11.2
+Age,No        ,50-64 yr,YesNo,1550,88.8
+Age,Yes       ,50-64 yr,YesNo,191,10.9
+Age,No        ,50-64 yr,YesNo,1555,89.1
+Age,Yes       ,50-64 yr,YesNo,41,2.4
+Age,No        ,50-64 yr,YesNo,1702,97.6
+Age,current,50-64 yr,Smoker,164,9.4
+Age,former,50-64 yr,Smoker,384,22.0
+Age,never,50-64 yr,Smoker,1201,68.7
+Age,Yes       ,50-64 yr,YesNo,188,10.5
+Age,No        ,50-64 yr,YesNo,1603,89.5
+Age,Yes       ,50-64 yr,YesNo,127,7.1
+Age,No        ,50-64 yr,YesNo,1664,92.9
+Age,Yes       ,50-64 yr,YesNo,81,4.5
+Age,No        ,50-64 yr,YesNo,1710,95.5
+Age,Yes       ,50-64 yr,YesNo,310,17.3
+Age,No        ,50-64 yr,YesNo,1481,82.7
+Age,Yes       ,50-64 yr,YesNo,234,13.1
+Age,No        ,50-64 yr,YesNo,1557,86.9
+Age,Yes       ,50-64 yr,YesNo,3,0.2
+Age,No        ,50-64 yr,YesNo,1788,99.8
+Age,Yes       ,50-64 yr,YesNo,1361,76.0
+Age,No        ,50-64 yr,YesNo,430,24.0
+Age,Yes       ,50-64 yr,YesNo,495,27.6
+Age,No        ,50-64 yr,YesNo,1296,72.4
+Age,Yes       ,50-64 yr,YesNo,96,5.4
+Age,No        ,50-64 yr,YesNo,1695,94.6
+Age,Yes       ,50-64 yr,YesNo,1336,74.6
+Age,No        ,50-64 yr,YesNo,455,25.4
+Age,Yes       ,50-64 yr,YesNo,322,18.0
+Age,No        ,50-64 yr,YesNo,1469,82.0
+Age,Yes       ,50-64 yr,YesNo,31,1.7
+Age,No        ,50-64 yr,YesNo,1760,98.3
+Age,Yes       ,50-64 yr,YesNo,572,31.9
+Age,No        ,50-64 yr,YesNo,1219,68.1
+Age,Yes       ,50-64 yr,YesNo,456,25.5
+Age,No        ,50-64 yr,YesNo,1335,74.5
+Age,Yes       ,50-64 yr,YesNo,10,0.6
+Age,No        ,50-64 yr,YesNo,1781,99.4
+Age,Yes       ,50-64 yr,YesNo,3,0.2
+Age,No        ,50-64 yr,YesNo,1788,99.8
+Age,Yes       ,50-64 yr,YesNo,1316,73.5
+Age,No        ,50-64 yr,YesNo,475,26.5
+Age,Yes       ,50-64 yr,YesNo,212,11.8
+Age,No        ,50-64 yr,YesNo,1579,88.2
+Age,Yes       ,50-64 yr,YesNo,91,5.1
+Age,No        ,50-64 yr,YesNo,1700,94.9
+Age,Yes       ,50-64 yr,YesNo,85,5.3
+Age,No        ,50-64 yr,YesNo,1508,94.7
+Age,Yes       ,50-64 yr,YesNo,15,0.9
+Age,No        ,50-64 yr,YesNo,1578,99.1
+Age,Yes       ,50-64 yr,YesNo,3,0.2
+Age,No        ,50-64 yr,YesNo,1591,99.8
+Age,Yes       ,50-64 yr,YesNo,278,17.4
+Age,No        ,50-64 yr,YesNo,1317,82.6
+Age,Yes       ,50-64 yr,YesNo,170,10.7
+Age,No        ,50-64 yr,YesNo,1424,89.3
+Age,Yes       ,50-64 yr,YesNo,711,44.6
+Age,No        ,50-64 yr,YesNo,884,55.4
+Age,Yes       ,50-64 yr,YesNo,25,1.6
+Age,No        ,50-64 yr,YesNo,1570,98.4
+Age,Yes       ,50-64 yr,YesNo,26,1.6
+Age,No        ,50-64 yr,YesNo,1569,98.4
+Age,Yes       ,50-64 yr,YesNo,1,0.1
+Age,No        ,50-64 yr,YesNo,1593,99.9
+Age,Yes       ,50-64 yr,YesNo,15,0.9
+Age,No        ,50-64 yr,YesNo,1580,99.1
+Age,Yes       ,50-64 yr,YesNo,26,1.6
+Age,No        ,50-64 yr,YesNo,1569,98.4
+Age,Yes       ,50-64 yr,YesNo,25,1.6
+Age,No        ,50-64 yr,YesNo,1569,98.4
+Age,Yes       ,50-64 yr,YesNo,11,0.7
+Age,No        ,50-64 yr,YesNo,1584,99.3
+Age,Yes       ,50-64 yr,YesNo,5,0.3
+Age,No        ,50-64 yr,YesNo,1590,99.7
+Age,Yes       ,50-64 yr,YesNo,,
+Age,No        ,50-64 yr,YesNo,1595,100.0
+Age,Yes       ,50-64 yr,YesNo,,
+Age,No        ,50-64 yr,YesNo,1595,100.0
+Age,Yes       ,50-64 yr,YesNo,,
+Age,No        ,50-64 yr,YesNo,1591,100.0
+Age,Yes       ,50-64 yr,YesNo,,
+Age,No        ,50-64 yr,YesNo,1594,100.0
+Age,Yes       ,50-64 yr,YesNo,12,0.8
+Age,No        ,50-64 yr,YesNo,1582,99.2
+Age,Yes       ,50-64 yr,YesNo,934,58.6
+Age,No        ,50-64 yr,YesNo,660,41.4
+Age,Yes       ,50-64 yr,YesNo,9,0.6
+Age,No        ,50-64 yr,YesNo,1585,99.4
+Age,Yes       ,50-64 yr,YesNo,297,18.6
+Age,No        ,50-64 yr,YesNo,1296,81.4
+Age,Yes       ,50-64 yr,YesNo,6,0.4
+Age,No        ,50-64 yr,YesNo,1587,99.6
+Age,Male,65+ yr,Sex,5815,49.1
+Age,Female,65+ yr,Sex,6038,50.9
+Age,White,65+ yr,Race/Ethnicity,4859,49.1
+Age,Black,65+ yr,Race/Ethnicity,3141,31.8
+Age,Hispanic/Latino,65+ yr,Race/Ethnicity,807,8.2
+Age,Asian/Pacific Islander,65+ yr,Race/Ethnicity,415,4.2
+Age,American Indian/Alaska Native,65+ yr,Race/Ethnicity,87,0.9
+Age,Other,65+ yr,Race/Ethnicity,578,5.8
+Age,Yes       ,65+ yr,YesNo,243,10.1
+Age,No        ,65+ yr,YesNo,2168,89.9
+Age,Yes       ,65+ yr,YesNo,663,27.5
+Age,No        ,65+ yr,YesNo,1750,72.5
+Age,Yes       ,65+ yr,YesNo,486,20.2
+Age,No        ,65+ yr,YesNo,1925,79.8
+Age,Yes       ,65+ yr,YesNo,799,33.1
+Age,No        ,65+ yr,YesNo,1614,66.9
+Age,Yes       ,65+ yr,YesNo,483,20.0
+Age,No        ,65+ yr,YesNo,1929,80.0
+Age,Yes       ,65+ yr,YesNo,133,5.5
+Age,No        ,65+ yr,YesNo,2277,94.5
+Age,Yes       ,65+ yr,YesNo,438,18.2
+Age,No        ,65+ yr,YesNo,1970,81.8
+Age,Yes       ,65+ yr,YesNo,73,2.8
+Age,No        ,65+ yr,YesNo,2502,97.2
+Age,Yes       ,65+ yr,YesNo,746,28.9
+Age,No        ,65+ yr,YesNo,1837,71.1
+Age,Yes       ,65+ yr,YesNo,275,10.6
+Age,No        ,65+ yr,YesNo,2308,89.4
+Age,Yes       ,65+ yr,YesNo,470,18.2
+Age,No        ,65+ yr,YesNo,2113,81.8
+Age,Yes       ,65+ yr,YesNo,311,12.0
+Age,No        ,65+ yr,YesNo,2272,88.0
+Age,Yes       ,65+ yr,YesNo,1327,51.3
+Age,No        ,65+ yr,YesNo,1261,48.7
+Age,Yes       ,65+ yr,YesNo,1039,40.1
+Age,No        ,65+ yr,YesNo,1549,59.9
+Age,Yes       ,65+ yr,YesNo,460,17.8
+Age,No        ,65+ yr,YesNo,2128,82.2
+Age,Yes       ,65+ yr,YesNo,1450,56.1
+Age,No        ,65+ yr,YesNo,1134,43.9
+Age,Yes       ,65+ yr,YesNo,471,18.2
+Age,No        ,65+ yr,YesNo,2113,81.8
+Age,Yes       ,65+ yr,YesNo,628,24.3
+Age,No        ,65+ yr,YesNo,1956,75.7
+Age,Yes       ,65+ yr,YesNo,469,18.2
+Age,No        ,65+ yr,YesNo,2115,81.8
+Age,Yes       ,65+ yr,YesNo,352,13.6
+Age,No        ,65+ yr,YesNo,2232,86.4
+Age,Yes       ,65+ yr,YesNo,1969,75.8
+Age,No        ,65+ yr,YesNo,627,24.2
+Age,Yes       ,65+ yr,YesNo,298,11.6
+Age,No        ,65+ yr,YesNo,2277,88.4
+Age,Yes       ,65+ yr,YesNo,9,0.3
+Age,No        ,65+ yr,YesNo,2566,99.7
+Age,Yes       ,65+ yr,YesNo,144,5.6
+Age,No        ,65+ yr,YesNo,2432,94.4
+Age,Yes       ,65+ yr,YesNo,990,38.4
+Age,No        ,65+ yr,YesNo,1591,61.6
+Age,Yes       ,65+ yr,YesNo,646,25.0
+Age,No        ,65+ yr,YesNo,1935,75.0
+Age,Yes       ,65+ yr,YesNo,903,37.0
+Age,No        ,65+ yr,YesNo,1536,63.0
+Age,Yes       ,65+ yr,YesNo,677,26.2
+Age,No        ,65+ yr,YesNo,1903,73.8
+Age,Yes       ,65+ yr,YesNo,673,26.1
+Age,No        ,65+ yr,YesNo,1907,73.9
+Age,Yes       ,65+ yr,YesNo,117,4.5
+Age,No        ,65+ yr,YesNo,2459,95.5
+Age,current,65+ yr,Smoker,112,4.3
+Age,former,65+ yr,Smoker,929,35.9
+Age,never,65+ yr,Smoker,1547,59.8
+Age,Yes       ,65+ yr,YesNo,183,6.9
+Age,No        ,65+ yr,YesNo,2473,93.1
+Age,Yes       ,65+ yr,YesNo,588,22.1
+Age,No        ,65+ yr,YesNo,2068,77.9
+Age,Yes       ,65+ yr,YesNo,45,1.7
+Age,No        ,65+ yr,YesNo,2611,98.3
+Age,Yes       ,65+ yr,YesNo,189,7.1
+Age,No        ,65+ yr,YesNo,2467,92.9
+Age,Yes       ,65+ yr,YesNo,220,8.3
+Age,No        ,65+ yr,YesNo,2436,91.7
+Age,Yes       ,65+ yr,YesNo,4,0.2
+Age,No        ,65+ yr,YesNo,2652,99.8
+Age,Yes       ,65+ yr,YesNo,1653,62.2
+Age,No        ,65+ yr,YesNo,1003,37.8
+Age,Yes       ,65+ yr,YesNo,545,20.5
+Age,No        ,65+ yr,YesNo,2111,79.5
+Age,Yes       ,65+ yr,YesNo,62,2.3
+Age,No        ,65+ yr,YesNo,2594,97.7
+Age,Yes       ,65+ yr,YesNo,1659,62.5
+Age,No        ,65+ yr,YesNo,997,37.5
+Age,Yes       ,65+ yr,YesNo,225,8.5
+Age,No        ,65+ yr,YesNo,2431,91.5
+Age,Yes       ,65+ yr,YesNo,19,0.7
+Age,No        ,65+ yr,YesNo,2637,99.3
+Age,Yes       ,65+ yr,YesNo,429,16.2
+Age,No        ,65+ yr,YesNo,2227,83.8
+Age,Yes       ,65+ yr,YesNo,464,17.5
+Age,No        ,65+ yr,YesNo,2192,82.5
+Age,Yes       ,65+ yr,YesNo,14,0.5
+Age,No        ,65+ yr,YesNo,2642,99.5
+Age,Yes       ,65+ yr,YesNo,11,0.4
+Age,No        ,65+ yr,YesNo,2645,99.6
+Age,Yes       ,65+ yr,YesNo,1606,60.5
+Age,No        ,65+ yr,YesNo,1050,39.5
+Age,Yes       ,65+ yr,YesNo,170,6.4
+Age,No        ,65+ yr,YesNo,2486,93.6
+Age,Yes       ,65+ yr,YesNo,111,4.2
+Age,No        ,65+ yr,YesNo,2545,95.8
+Age,Yes       ,65+ yr,YesNo,287,11.9
+Age,No        ,65+ yr,YesNo,2117,88.1
+Age,Yes       ,65+ yr,YesNo,53,2.2
+Age,No        ,65+ yr,YesNo,2351,97.8
+Age,Yes       ,65+ yr,YesNo,3,0.1
+Age,No        ,65+ yr,YesNo,2402,99.9
+Age,Yes       ,65+ yr,YesNo,652,27.1
+Age,No        ,65+ yr,YesNo,1755,72.9
+Age,Yes       ,65+ yr,YesNo,230,9.6
+Age,No        ,65+ yr,YesNo,2176,90.4
+Age,Yes       ,65+ yr,YesNo,1105,45.9
+Age,No        ,65+ yr,YesNo,1300,54.1
+Age,Yes       ,65+ yr,YesNo,22,0.9
+Age,No        ,65+ yr,YesNo,2384,99.1
+Age,Yes       ,65+ yr,YesNo,42,1.7
+Age,No        ,65+ yr,YesNo,2363,98.3
+Age,Yes       ,65+ yr,YesNo,1,0.0
+Age,No        ,65+ yr,YesNo,2405,100.0
+Age,Yes       ,65+ yr,YesNo,18,0.7
+Age,No        ,65+ yr,YesNo,2388,99.3
+Age,Yes       ,65+ yr,YesNo,69,2.9
+Age,No        ,65+ yr,YesNo,2337,97.1
+Age,Yes       ,65+ yr,YesNo,69,2.9
+Age,No        ,65+ yr,YesNo,2337,97.1
+Age,Yes       ,65+ yr,YesNo,10,0.4
+Age,No        ,65+ yr,YesNo,2396,99.6
+Age,Yes       ,65+ yr,YesNo,5,0.2
+Age,No        ,65+ yr,YesNo,2401,99.8
+Age,Yes       ,65+ yr,YesNo,,
+Age,No        ,65+ yr,YesNo,2404,100.0
+Age,Yes       ,65+ yr,YesNo,,
+Age,No        ,65+ yr,YesNo,2406,100.0
+Age,Yes       ,65+ yr,YesNo,1,0.0
+Age,No        ,65+ yr,YesNo,2402,100.0
+Age,Yes       ,65+ yr,YesNo,,
+Age,No        ,65+ yr,YesNo,2406,100.0
+Age,Yes       ,65+ yr,YesNo,23,1.0
+Age,No        ,65+ yr,YesNo,2383,99.0
+Age,Yes       ,65+ yr,YesNo,1313,54.6
+Age,No        ,65+ yr,YesNo,1093,45.4
+Age,Yes       ,65+ yr,YesNo,19,0.8
+Age,No        ,65+ yr,YesNo,2386,99.2
+Age,Yes       ,65+ yr,YesNo,445,18.5
+Age,No        ,65+ yr,YesNo,1958,81.5
+Age,Yes       ,65+ yr,YesNo,26,1.1
+Age,No        ,65+ yr,YesNo,2379,98.9
+Age,Male,Overall,Sex,13786,52.2
+Age,Female,Overall,Sex,12600,47.8
+Age,White,Overall,Race/Ethnicity,7530,35.7
+Age,Black,Overall,Race/Ethnicity,7092,33.6
+Age,Hispanic/Latino,Overall,Race/Ethnicity,3797,18.0
+Age,Asian/Pacific Islander,Overall,Race/Ethnicity,985,4.7
+Age,American Indian/Alaska Native,Overall,Race/Ethnicity,320,1.5
+Age,Other,Overall,Race/Ethnicity,1388,6.6
+Age,Yes       ,Overall,YesNo,504,9.2
+Age,No        ,Overall,YesNo,4997,90.8
+Age,Yes       ,Overall,YesNo,848,15.4
+Age,No        ,Overall,YesNo,4665,84.6
+Age,Yes       ,Overall,YesNo,986,17.9
+Age,No        ,Overall,YesNo,4516,82.1
+Age,Yes       ,Overall,YesNo,1707,31.0
+Age,No        ,Overall,YesNo,3798,69.0
+Age,Yes       ,Overall,YesNo,968,17.6
+Age,No        ,Overall,YesNo,4534,82.4
+Age,Yes       ,Overall,YesNo,276,5.0
+Age,No        ,Overall,YesNo,5224,95.0
+Age,Yes       ,Overall,YesNo,838,15.3
+Age,No        ,Overall,YesNo,4657,84.7
+Age,Yes       ,Overall,YesNo,155,2.6
+Age,No        ,Overall,YesNo,5774,97.4
+Age,Yes       ,Overall,YesNo,1263,21.3
+Age,No        ,Overall,YesNo,4675,78.7
+Age,Yes       ,Overall,YesNo,738,12.4
+Age,No        ,Overall,YesNo,5200,87.6
+Age,Yes       ,Overall,YesNo,635,10.7
+Age,No        ,Overall,YesNo,5303,89.3
+Age,Yes       ,Overall,YesNo,664,11.2
+Age,No        ,Overall,YesNo,5274,88.8
+Age,Yes       ,Overall,YesNo,2511,42.2
+Age,No        ,Overall,YesNo,3440,57.8
+Age,Yes       ,Overall,YesNo,2051,34.5
+Age,No        ,Overall,YesNo,3900,65.5
+Age,Yes       ,Overall,YesNo,695,11.7
+Age,No        ,Overall,YesNo,5256,88.3
+Age,Yes       ,Overall,YesNo,2025,34.1
+Age,No        ,Overall,YesNo,3919,65.9
+Age,Yes       ,Overall,YesNo,551,9.3
+Age,No        ,Overall,YesNo,5393,90.7
+Age,Yes       ,Overall,YesNo,811,13.6
+Age,No        ,Overall,YesNo,5133,86.4
+Age,Yes       ,Overall,YesNo,652,11.0
+Age,No        ,Overall,YesNo,5292,89.0
+Age,Yes       ,Overall,YesNo,480,8.1
+Age,No        ,Overall,YesNo,5464,91.9
+Age,Yes       ,Overall,YesNo,3388,56.8
+Age,No        ,Overall,YesNo,2577,43.2
+Age,Yes       ,Overall,YesNo,582,9.8
+Age,No        ,Overall,YesNo,5350,90.2
+Age,Yes       ,Overall,YesNo,43,0.7
+Age,No        ,Overall,YesNo,5889,99.3
+Age,Yes       ,Overall,YesNo,309,5.2
+Age,No        ,Overall,YesNo,5621,94.8
+Age,Yes       ,Overall,YesNo,1405,23.7
+Age,No        ,Overall,YesNo,4534,76.3
+Age,Yes       ,Overall,YesNo,694,11.7
+Age,No        ,Overall,YesNo,5245,88.3
+Age,Yes       ,Overall,YesNo,2736,49.6
+Age,No        ,Overall,YesNo,2777,50.4
+Age,Yes       ,Overall,YesNo,965,16.2
+Age,No        ,Overall,YesNo,4974,83.8
+Age,Yes       ,Overall,YesNo,954,16.1
+Age,No        ,Overall,YesNo,4985,83.9
+Age,Yes       ,Overall,YesNo,179,3.0
+Age,No        ,Overall,YesNo,5748,97.0
+Age,current,Overall,Smoker,419,7.0
+Age,former,Overall,Smoker,1513,25.4
+Age,never,Overall,Smoker,4027,67.6
+Age,Yes       ,Overall,YesNo,575,9.4
+Age,No        ,Overall,YesNo,5532,90.6
+Age,Yes       ,Overall,YesNo,760,12.4
+Age,No        ,Overall,YesNo,5347,87.6
+Age,Yes       ,Overall,YesNo,233,3.8
+Age,No        ,Overall,YesNo,5874,96.2
+Age,Yes       ,Overall,YesNo,818,13.4
+Age,No        ,Overall,YesNo,5289,86.6
+Age,Yes       ,Overall,YesNo,691,11.3
+Age,No        ,Overall,YesNo,5416,88.7
+Age,Yes       ,Overall,YesNo,13,0.2
+Age,No        ,Overall,YesNo,6094,99.8
+Age,Yes       ,Overall,YesNo,4232,69.3
+Age,No        ,Overall,YesNo,1875,30.7
+Age,Yes       ,Overall,YesNo,1464,24.0
+Age,No        ,Overall,YesNo,4643,76.0
+Age,Yes       ,Overall,YesNo,258,4.2
+Age,No        ,Overall,YesNo,5849,95.8
+Age,Yes       ,Overall,YesNo,4231,69.3
+Age,No        ,Overall,YesNo,1876,30.7
+Age,Yes       ,Overall,YesNo,929,15.2
+Age,No        ,Overall,YesNo,5178,84.8
+Age,Yes       ,Overall,YesNo,91,1.5
+Age,No        ,Overall,YesNo,6016,98.5
+Age,Yes       ,Overall,YesNo,1583,25.9
+Age,No        ,Overall,YesNo,4524,74.1
+Age,Yes       ,Overall,YesNo,1418,23.2
+Age,No        ,Overall,YesNo,4689,76.8
+Age,Yes       ,Overall,YesNo,29,0.5
+Age,No        ,Overall,YesNo,6078,99.5
+Age,Yes       ,Overall,YesNo,23,0.4
+Age,No        ,Overall,YesNo,6084,99.6
+Age,Yes       ,Overall,YesNo,4056,66.4
+Age,No        ,Overall,YesNo,2051,33.6
+Age,Yes       ,Overall,YesNo,627,10.3
+Age,No        ,Overall,YesNo,5480,89.7
+Age,Yes       ,Overall,YesNo,275,4.5
+Age,No        ,Overall,YesNo,5832,95.5
+Age,Yes       ,Overall,YesNo,412,7.5
+Age,No        ,Overall,YesNo,5068,92.5
+Age,Yes       ,Overall,YesNo,76,1.4
+Age,No        ,Overall,YesNo,5405,98.6
+Age,Yes       ,Overall,YesNo,6,0.1
+Age,No        ,Overall,YesNo,5477,99.9
+Age,Yes       ,Overall,YesNo,1049,19.1
+Age,No        ,Overall,YesNo,4437,80.9
+Age,Yes       ,Overall,YesNo,499,9.1
+Age,No        ,Overall,YesNo,4984,90.9
+Age,Yes       ,Overall,YesNo,2334,42.6
+Age,No        ,Overall,YesNo,3150,57.4
+Age,Yes       ,Overall,YesNo,82,1.5
+Age,No        ,Overall,YesNo,5402,98.5
+Age,Yes       ,Overall,YesNo,90,1.6
+Age,No        ,Overall,YesNo,5394,98.4
+Age,Yes       ,Overall,YesNo,3,0.1
+Age,No        ,Overall,YesNo,5481,99.9
+Age,Yes       ,Overall,YesNo,47,0.9
+Age,No        ,Overall,YesNo,5438,99.1
+Age,Yes       ,Overall,YesNo,107,2.0
+Age,No        ,Overall,YesNo,5378,98.0
+Age,Yes       ,Overall,YesNo,96,1.8
+Age,No        ,Overall,YesNo,5389,98.2
+Age,Yes       ,Overall,YesNo,46,0.8
+Age,No        ,Overall,YesNo,5440,99.2
+Age,Yes       ,Overall,YesNo,10,0.2
+Age,No        ,Overall,YesNo,5476,99.8
+Age,Yes       ,Overall,YesNo,,
+Age,No        ,Overall,YesNo,5483,100.0
+Age,Yes       ,Overall,YesNo,,
+Age,No        ,Overall,YesNo,5484,100.0
+Age,Yes       ,Overall,YesNo,1,0.0
+Age,No        ,Overall,YesNo,5478,100.0
+Age,Yes       ,Overall,YesNo,,
+Age,No        ,Overall,YesNo,5484,100.0
+Age,Yes       ,Overall,YesNo,46,0.8
+Age,No        ,Overall,YesNo,5439,99.2
+Age,Yes       ,Overall,YesNo,3024,55.1
+Age,No        ,Overall,YesNo,2460,44.9
+Age,Yes       ,Overall,YesNo,38,0.7
+Age,No        ,Overall,YesNo,5445,99.3
+Age,Yes       ,Overall,YesNo,985,18.0
+Age,No        ,Overall,YesNo,4491,82.0
+Age,Yes       ,Overall,YesNo,35,0.6
+Age,No        ,Overall,YesNo,5448,99.4
+Sex,18-49 yr,Male,Age,3521,25.5
+Sex,50-64 yr,Male,Age,4450,32.3
+Sex,65+ yr,Male,Age,5815,42.2
+Sex,White,Male,Race/Ethnicity,3869,35.4
+Sex,Black,Male,Race/Ethnicity,3511,32.2
+Sex,Hispanic/Latino,Male,Race/Ethnicity,2094,19.2
+Sex,Asian/Pacific Islander,Male,Race/Ethnicity,516,4.7
+Sex,American Indian/Alaska Native,Male,Race/Ethnicity,131,1.2
+Sex,Other,Male,Race/Ethnicity,798,7.3
+Sex,Yes       ,Male,YesNo,310,10.9
+Sex,No        ,Male,YesNo,2526,89.1
+Sex,Yes       ,Male,YesNo,477,16.8
+Sex,No        ,Male,YesNo,2369,83.2
+Sex,Yes       ,Male,YesNo,575,20.3
+Sex,No        ,Male,YesNo,2262,79.7
+Sex,Yes       ,Male,YesNo,995,35.0
+Sex,No        ,Male,YesNo,1844,65.0
+Sex,Yes       ,Male,YesNo,579,20.4
+Sex,No        ,Male,YesNo,2258,79.6
+Sex,Yes       ,Male,YesNo,170,6.0
+Sex,No        ,Male,YesNo,2668,94.0
+Sex,Yes       ,Male,YesNo,484,17.1
+Sex,No        ,Male,YesNo,2349,82.9
+Sex,Yes       ,Male,YesNo,90,2.9
+Sex,No        ,Male,YesNo,3018,97.1
+Sex,Yes       ,Male,YesNo,673,21.6
+Sex,No        ,Male,YesNo,2437,78.4
+Sex,Yes       ,Male,YesNo,252,8.1
+Sex,No        ,Male,YesNo,2858,91.9
+Sex,Yes       ,Male,YesNo,317,10.2
+Sex,No        ,Male,YesNo,2793,89.8
+Sex,Yes       ,Male,YesNo,387,12.4
+Sex,No        ,Male,YesNo,2723,87.6
+Sex,Yes       ,Male,YesNo,1236,39.6
+Sex,No        ,Male,YesNo,1884,60.4
+Sex,Yes       ,Male,YesNo,1100,35.3
+Sex,No        ,Male,YesNo,2020,64.7
+Sex,Yes       ,Male,YesNo,209,6.7
+Sex,No        ,Male,YesNo,2911,93.3
+Sex,Yes       ,Male,YesNo,1086,34.9
+Sex,No        ,Male,YesNo,2030,65.1
+Sex,Yes       ,Male,YesNo,294,9.4
+Sex,No        ,Male,YesNo,2822,90.6
+Sex,Yes       ,Male,YesNo,503,16.1
+Sex,No        ,Male,YesNo,2613,83.9
+Sex,Yes       ,Male,YesNo,327,10.5
+Sex,No        ,Male,YesNo,2789,89.5
+Sex,Yes       ,Male,YesNo,260,8.3
+Sex,No        ,Male,YesNo,2856,91.7
+Sex,Yes       ,Male,YesNo,1798,57.5
+Sex,No        ,Male,YesNo,1330,42.5
+Sex,Yes       ,Male,YesNo,289,9.3
+Sex,No        ,Male,YesNo,2819,90.7
+Sex,Yes       ,Male,YesNo,33,1.1
+Sex,No        ,Male,YesNo,3075,98.9
+Sex,Yes       ,Male,YesNo,181,5.8
+Sex,No        ,Male,YesNo,2928,94.2
+Sex,Yes       ,Male,YesNo,678,21.8
+Sex,No        ,Male,YesNo,2434,78.2
+Sex,Yes       ,Male,YesNo,289,9.3
+Sex,No        ,Male,YesNo,2823,90.7
+Sex,Yes       ,Male,YesNo,1322,44.4
+Sex,No        ,Male,YesNo,1656,55.6
+Sex,Yes       ,Male,YesNo,548,17.6
+Sex,No        ,Male,YesNo,2565,82.4
+Sex,Yes       ,Male,YesNo,541,17.4
+Sex,No        ,Male,YesNo,2572,82.6
+Sex,Yes       ,Male,YesNo,52,1.7
+Sex,No        ,Male,YesNo,3055,98.3
+Sex,current,Male,Smoker,283,9.1
+Sex,former,Male,Smoker,875,28.0
+Sex,never,Male,Smoker,1966,62.9
+Sex,Yes       ,Male,YesNo,302,9.4
+Sex,No        ,Male,YesNo,2905,90.6
+Sex,Yes       ,Male,YesNo,390,12.2
+Sex,No        ,Male,YesNo,2817,87.8
+Sex,Yes       ,Male,YesNo,122,3.8
+Sex,No        ,Male,YesNo,3085,96.2
+Sex,Yes       ,Male,YesNo,430,13.4
+Sex,No        ,Male,YesNo,2777,86.6
+Sex,Yes       ,Male,YesNo,359,11.2
+Sex,No        ,Male,YesNo,2848,88.8
+Sex,Yes       ,Male,YesNo,8,0.2
+Sex,No        ,Male,YesNo,3199,99.8
+Sex,Yes       ,Male,YesNo,2292,71.5
+Sex,No        ,Male,YesNo,915,28.5
+Sex,Yes       ,Male,YesNo,781,24.4
+Sex,No        ,Male,YesNo,2426,75.6
+Sex,Yes       ,Male,YesNo,142,4.4
+Sex,No        ,Male,YesNo,3065,95.6
+Sex,Yes       ,Male,YesNo,2276,71.0
+Sex,No        ,Male,YesNo,931,29.0
+Sex,Yes       ,Male,YesNo,465,14.5
+Sex,No        ,Male,YesNo,2742,85.5
+Sex,Yes       ,Male,YesNo,51,1.6
+Sex,No        ,Male,YesNo,3156,98.4
+Sex,Yes       ,Male,YesNo,847,26.4
+Sex,No        ,Male,YesNo,2360,73.6
+Sex,Yes       ,Male,YesNo,672,21.0
+Sex,No        ,Male,YesNo,2535,79.0
+Sex,Yes       ,Male,YesNo,15,0.5
+Sex,No        ,Male,YesNo,3192,99.5
+Sex,Yes       ,Male,YesNo,15,0.5
+Sex,No        ,Male,YesNo,3192,99.5
+Sex,Yes       ,Male,YesNo,2175,67.8
+Sex,No        ,Male,YesNo,1032,32.2
+Sex,Yes       ,Male,YesNo,333,10.4
+Sex,No        ,Male,YesNo,2874,89.6
+Sex,Yes       ,Male,YesNo,136,4.2
+Sex,No        ,Male,YesNo,3071,95.8
+Sex,Yes       ,Male,YesNo,213,7.5
+Sex,No        ,Male,YesNo,2612,92.5
+Sex,Yes       ,Male,YesNo,46,1.6
+Sex,No        ,Male,YesNo,2780,98.4
+Sex,Yes       ,Male,YesNo,2,0.1
+Sex,No        ,Male,YesNo,2825,99.9
+Sex,Yes       ,Male,YesNo,621,22.0
+Sex,No        ,Male,YesNo,2208,78.0
+Sex,Yes       ,Male,YesNo,301,10.7
+Sex,No        ,Male,YesNo,2525,89.3
+Sex,Yes       ,Male,YesNo,1279,45.2
+Sex,No        ,Male,YesNo,1548,54.8
+Sex,Yes       ,Male,YesNo,21,0.7
+Sex,No        ,Male,YesNo,2806,99.3
+Sex,Yes       ,Male,YesNo,52,1.8
+Sex,No        ,Male,YesNo,2776,98.2
+Sex,Yes       ,Male,YesNo,1,0.0
+Sex,No        ,Male,YesNo,2827,100.0
+Sex,Yes       ,Male,YesNo,25,0.9
+Sex,No        ,Male,YesNo,2803,99.1
+Sex,Yes       ,Male,YesNo,48,1.7
+Sex,No        ,Male,YesNo,2780,98.3
+Sex,Yes       ,Male,YesNo,46,1.6
+Sex,No        ,Male,YesNo,2782,98.4
+Sex,Yes       ,Male,YesNo,28,1.0
+Sex,No        ,Male,YesNo,2801,99.0
+Sex,Yes       ,Male,YesNo,5,0.2
+Sex,No        ,Male,YesNo,2824,99.8
+Sex,Yes       ,Male,YesNo,,
+Sex,No        ,Male,YesNo,2827,100.0
+Sex,Yes       ,Male,YesNo,,
+Sex,No        ,Male,YesNo,2827,100.0
+Sex,Yes       ,Male,YesNo,,
+Sex,No        ,Male,YesNo,2825,100.0
+Sex,Yes       ,Male,YesNo,,
+Sex,No        ,Male,YesNo,2829,100.0
+Sex,Yes       ,Male,YesNo,31,1.1
+Sex,No        ,Male,YesNo,2797,98.9
+Sex,Yes       ,Male,YesNo,1579,55.9
+Sex,No        ,Male,YesNo,1248,44.1
+Sex,Yes       ,Male,YesNo,20,0.7
+Sex,No        ,Male,YesNo,2807,99.3
+Sex,Yes       ,Male,YesNo,557,19.7
+Sex,No        ,Male,YesNo,2267,80.3
+Sex,Yes       ,Male,YesNo,17,0.6
+Sex,No        ,Male,YesNo,2811,99.4
+Sex,18-49 yr,Female,Age,3196,25.4
+Sex,50-64 yr,Female,Age,3366,26.7
+Sex,65+ yr,Female,Age,6038,47.9
+Sex,White,Female,Race/Ethnicity,3659,35.9
+Sex,Black,Female,Race/Ethnicity,3581,35.1
+Sex,Hispanic/Latino,Female,Race/Ethnicity,1703,16.7
+Sex,Asian/Pacific Islander,Female,Race/Ethnicity,467,4.6
+Sex,American Indian/Alaska Native,Female,Race/Ethnicity,189,1.9
+Sex,Other,Female,Race/Ethnicity,589,5.8
+Sex,Yes       ,Female,YesNo,194,7.3
+Sex,No        ,Female,YesNo,2471,92.7
+Sex,Yes       ,Female,YesNo,371,13.9
+Sex,No        ,Female,YesNo,2296,86.1
+Sex,Yes       ,Female,YesNo,411,15.4
+Sex,No        ,Female,YesNo,2254,84.6
+Sex,Yes       ,Female,YesNo,712,26.7
+Sex,No        ,Female,YesNo,1954,73.3
+Sex,Yes       ,Female,YesNo,389,14.6
+Sex,No        ,Female,YesNo,2276,85.4
+Sex,Yes       ,Female,YesNo,106,4.0
+Sex,No        ,Female,YesNo,2556,96.0
+Sex,Yes       ,Female,YesNo,354,13.3
+Sex,No        ,Female,YesNo,2308,86.7
+Sex,Yes       ,Female,YesNo,65,2.3
+Sex,No        ,Female,YesNo,2756,97.7
+Sex,Yes       ,Female,YesNo,590,20.9
+Sex,No        ,Female,YesNo,2238,79.1
+Sex,Yes       ,Female,YesNo,486,17.2
+Sex,No        ,Female,YesNo,2342,82.8
+Sex,Yes       ,Female,YesNo,318,11.2
+Sex,No        ,Female,YesNo,2510,88.8
+Sex,Yes       ,Female,YesNo,277,9.8
+Sex,No        ,Female,YesNo,2551,90.2
+Sex,Yes       ,Female,YesNo,1275,45.0
+Sex,No        ,Female,YesNo,1556,55.0
+Sex,Yes       ,Female,YesNo,951,33.6
+Sex,No        ,Female,YesNo,1880,66.4
+Sex,Yes       ,Female,YesNo,486,17.2
+Sex,No        ,Female,YesNo,2345,82.8
+Sex,Yes       ,Female,YesNo,939,33.2
+Sex,No        ,Female,YesNo,1889,66.8
+Sex,Yes       ,Female,YesNo,257,9.1
+Sex,No        ,Female,YesNo,2571,90.9
+Sex,Yes       ,Female,YesNo,308,10.9
+Sex,No        ,Female,YesNo,2520,89.1
+Sex,Yes       ,Female,YesNo,325,11.5
+Sex,No        ,Female,YesNo,2503,88.5
+Sex,Yes       ,Female,YesNo,220,7.8
+Sex,No        ,Female,YesNo,2608,92.2
+Sex,Yes       ,Female,YesNo,1590,56.0
+Sex,No        ,Female,YesNo,1247,44.0
+Sex,Yes       ,Female,YesNo,293,10.4
+Sex,No        ,Female,YesNo,2531,89.6
+Sex,Yes       ,Female,YesNo,10,0.4
+Sex,No        ,Female,YesNo,2814,99.6
+Sex,Yes       ,Female,YesNo,128,4.5
+Sex,No        ,Female,YesNo,2693,95.5
+Sex,Yes       ,Female,YesNo,727,25.7
+Sex,No        ,Female,YesNo,2100,74.3
+Sex,Yes       ,Female,YesNo,405,14.3
+Sex,No        ,Female,YesNo,2422,85.7
+Sex,Yes       ,Female,YesNo,1414,55.8
+Sex,No        ,Female,YesNo,1121,44.2
+Sex,Yes       ,Female,YesNo,417,14.8
+Sex,No        ,Female,YesNo,2409,85.2
+Sex,Yes       ,Female,YesNo,413,14.6
+Sex,No        ,Female,YesNo,2413,85.4
+Sex,Yes       ,Female,YesNo,127,4.5
+Sex,No        ,Female,YesNo,2693,95.5
+Sex,current,Female,Smoker,136,4.8
+Sex,former,Female,Smoker,638,22.5
+Sex,never,Female,Smoker,2061,72.7
+Sex,Yes       ,Female,YesNo,273,9.4
+Sex,No        ,Female,YesNo,2626,90.6
+Sex,Yes       ,Female,YesNo,370,12.8
+Sex,No        ,Female,YesNo,2529,87.2
+Sex,Yes       ,Female,YesNo,111,3.8
+Sex,No        ,Female,YesNo,2788,96.2
+Sex,Yes       ,Female,YesNo,388,13.4
+Sex,No        ,Female,YesNo,2511,86.6
+Sex,Yes       ,Female,YesNo,332,11.5
+Sex,No        ,Female,YesNo,2567,88.5
+Sex,Yes       ,Female,YesNo,5,0.2
+Sex,No        ,Female,YesNo,2894,99.8
+Sex,Yes       ,Female,YesNo,1939,66.9
+Sex,No        ,Female,YesNo,960,33.1
+Sex,Yes       ,Female,YesNo,683,23.6
+Sex,No        ,Female,YesNo,2216,76.4
+Sex,Yes       ,Female,YesNo,116,4.0
+Sex,No        ,Female,YesNo,2783,96.0
+Sex,Yes       ,Female,YesNo,1955,67.4
+Sex,No        ,Female,YesNo,944,32.6
+Sex,Yes       ,Female,YesNo,464,16.0
+Sex,No        ,Female,YesNo,2435,84.0
+Sex,Yes       ,Female,YesNo,40,1.4
+Sex,No        ,Female,YesNo,2859,98.6
+Sex,Yes       ,Female,YesNo,736,25.4
+Sex,No        ,Female,YesNo,2163,74.6
+Sex,Yes       ,Female,YesNo,746,25.7
+Sex,No        ,Female,YesNo,2153,74.3
+Sex,Yes       ,Female,YesNo,14,0.5
+Sex,No        ,Female,YesNo,2885,99.5
+Sex,Yes       ,Female,YesNo,8,0.3
+Sex,No        ,Female,YesNo,2891,99.7
+Sex,Yes       ,Female,YesNo,1881,64.9
+Sex,No        ,Female,YesNo,1018,35.1
+Sex,Yes       ,Female,YesNo,294,10.1
+Sex,No        ,Female,YesNo,2605,89.9
+Sex,Yes       ,Female,YesNo,139,4.8
+Sex,No        ,Female,YesNo,2760,95.2
+Sex,Yes       ,Female,YesNo,199,7.5
+Sex,No        ,Female,YesNo,2456,92.5
+Sex,Yes       ,Female,YesNo,30,1.1
+Sex,No        ,Female,YesNo,2625,98.9
+Sex,Yes       ,Female,YesNo,4,0.2
+Sex,No        ,Female,YesNo,2652,99.8
+Sex,Yes       ,Female,YesNo,428,16.1
+Sex,No        ,Female,YesNo,2229,83.9
+Sex,Yes       ,Female,YesNo,198,7.5
+Sex,No        ,Female,YesNo,2459,92.5
+Sex,Yes       ,Female,YesNo,1055,39.7
+Sex,No        ,Female,YesNo,1602,60.3
+Sex,Yes       ,Female,YesNo,61,2.3
+Sex,No        ,Female,YesNo,2596,97.7
+Sex,Yes       ,Female,YesNo,38,1.4
+Sex,No        ,Female,YesNo,2618,98.6
+Sex,Yes       ,Female,YesNo,2,0.1
+Sex,No        ,Female,YesNo,2654,99.9
+Sex,Yes       ,Female,YesNo,22,0.8
+Sex,No        ,Female,YesNo,2635,99.2
+Sex,Yes       ,Female,YesNo,59,2.2
+Sex,No        ,Female,YesNo,2598,97.8
+Sex,Yes       ,Female,YesNo,50,1.9
+Sex,No        ,Female,YesNo,2607,98.1
+Sex,Yes       ,Female,YesNo,18,0.7
+Sex,No        ,Female,YesNo,2639,99.3
+Sex,Yes       ,Female,YesNo,5,0.2
+Sex,No        ,Female,YesNo,2652,99.8
+Sex,Yes       ,Female,YesNo,,
+Sex,No        ,Female,YesNo,2656,100.0
+Sex,Yes       ,Female,YesNo,,
+Sex,No        ,Female,YesNo,2657,100.0
+Sex,Yes       ,Female,YesNo,1,0.0
+Sex,No        ,Female,YesNo,2653,100.0
+Sex,Yes       ,Female,YesNo,,
+Sex,No        ,Female,YesNo,2655,100.0
+Sex,Yes       ,Female,YesNo,15,0.6
+Sex,No        ,Female,YesNo,2642,99.4
+Sex,Yes       ,Female,YesNo,1445,54.4
+Sex,No        ,Female,YesNo,1212,45.6
+Sex,Yes       ,Female,YesNo,18,0.7
+Sex,No        ,Female,YesNo,2638,99.3
+Sex,Yes       ,Female,YesNo,428,16.1
+Sex,No        ,Female,YesNo,2224,83.9
+Sex,Yes       ,Female,YesNo,18,0.7
+Sex,No        ,Female,YesNo,2637,99.3
+Race,18-49 yr,White,Age,887,11.8
+Race,50-64 yr,White,Age,1784,23.7
+Race,65+ yr,White,Age,4859,64.5
+Race,Male,White,Sex,3869,51.4
+Race,Female,White,Sex,3659,48.6
+Race,Yes       ,White,YesNo,240,9.9
+Race,No        ,White,YesNo,2191,90.1
+Race,Yes       ,White,YesNo,481,19.7
+Race,No        ,White,YesNo,1957,80.3
+Race,Yes       ,White,YesNo,463,19.0
+Race,No        ,White,YesNo,1969,81.0
+Race,Yes       ,White,YesNo,734,30.2
+Race,No        ,White,YesNo,1700,69.8
+Race,Yes       ,White,YesNo,400,16.4
+Race,No        ,White,YesNo,2032,83.6
+Race,Yes       ,White,YesNo,91,3.7
+Race,No        ,White,YesNo,2341,96.3
+Race,Yes       ,White,YesNo,355,14.6
+Race,No        ,White,YesNo,2077,85.4
+Race,Yes       ,White,YesNo,85,3.3
+Race,No        ,White,YesNo,2508,96.7
+Race,Yes       ,White,YesNo,744,28.7
+Race,No        ,White,YesNo,1851,71.3
+Race,Yes       ,White,YesNo,318,12.3
+Race,No        ,White,YesNo,2277,87.7
+Race,Yes       ,White,YesNo,415,16.0
+Race,No        ,White,YesNo,2180,84.0
+Race,Yes       ,White,YesNo,360,13.9
+Race,No        ,White,YesNo,2235,86.1
+Race,Yes       ,White,YesNo,1112,42.8
+Race,No        ,White,YesNo,1489,57.2
+Race,Yes       ,White,YesNo,821,31.6
+Race,No        ,White,YesNo,1780,68.4
+Race,Yes       ,White,YesNo,428,16.5
+Race,No        ,White,YesNo,2173,83.5
+Race,Yes       ,White,YesNo,1127,43.3
+Race,No        ,White,YesNo,1473,56.7
+Race,Yes       ,White,YesNo,384,14.8
+Race,No        ,White,YesNo,2216,85.2
+Race,Yes       ,White,YesNo,485,18.7
+Race,No        ,White,YesNo,2115,81.3
+Race,Yes       ,White,YesNo,342,13.2
+Race,No        ,White,YesNo,2258,86.8
+Race,Yes       ,White,YesNo,245,9.4
+Race,No        ,White,YesNo,2355,90.6
+Race,Yes       ,White,YesNo,1615,62.0
+Race,No        ,White,YesNo,990,38.0
+Race,Yes       ,White,YesNo,289,11.1
+Race,No        ,White,YesNo,2308,88.9
+Race,Yes       ,White,YesNo,10,0.4
+Race,No        ,White,YesNo,2587,99.6
+Race,Yes       ,White,YesNo,153,5.9
+Race,No        ,White,YesNo,2442,94.1
+Race,Yes       ,White,YesNo,877,33.8
+Race,No        ,White,YesNo,1719,66.2
+Race,Yes       ,White,YesNo,478,18.4
+Race,No        ,White,YesNo,2118,81.6
+Race,Yes       ,White,YesNo,1121,45.9
+Race,No        ,White,YesNo,1322,54.1
+Race,Yes       ,White,YesNo,454,17.5
+Race,No        ,White,YesNo,2144,82.5
+Race,Yes       ,White,YesNo,447,17.2
+Race,No        ,White,YesNo,2151,82.8
+Race,Yes       ,White,YesNo,104,4.0
+Race,No        ,White,YesNo,2491,96.0
+Race,current,White,Smoker,183,7.0
+Race,former,White,Smoker,850,32.5
+Race,never,White,Smoker,1579,60.5
+Race,Yes       ,White,YesNo,188,7.0
+Race,No        ,White,YesNo,2501,93.0
+Race,Yes       ,White,YesNo,455,16.9
+Race,No        ,White,YesNo,2234,83.1
+Race,Yes       ,White,YesNo,84,3.1
+Race,No        ,White,YesNo,2605,96.9
+Race,Yes       ,White,YesNo,272,10.1
+Race,No        ,White,YesNo,2417,89.9
+Race,Yes       ,White,YesNo,289,10.7
+Race,No        ,White,YesNo,2400,89.3
+Race,Yes       ,White,YesNo,5,0.2
+Race,No        ,White,YesNo,2684,99.8
+Race,Yes       ,White,YesNo,1788,66.5
+Race,No        ,White,YesNo,901,33.5
+Race,Yes       ,White,YesNo,622,23.1
+Race,No        ,White,YesNo,2067,76.9
+Race,Yes       ,White,YesNo,95,3.5
+Race,No        ,White,YesNo,2594,96.5
+Race,Yes       ,White,YesNo,1799,66.9
+Race,No        ,White,YesNo,890,33.1
+Race,Yes       ,White,YesNo,340,12.6
+Race,No        ,White,YesNo,2349,87.4
+Race,Yes       ,White,YesNo,33,1.2
+Race,No        ,White,YesNo,2656,98.8
+Race,Yes       ,White,YesNo,583,21.7
+Race,No        ,White,YesNo,2106,78.3
+Race,Yes       ,White,YesNo,572,21.3
+Race,No        ,White,YesNo,2117,78.7
+Race,Yes       ,White,YesNo,20,0.7
+Race,No        ,White,YesNo,2669,99.3
+Race,Yes       ,White,YesNo,11,0.4
+Race,No        ,White,YesNo,2678,99.6
+Race,Yes       ,White,YesNo,1744,64.9
+Race,No        ,White,YesNo,945,35.1
+Race,Yes       ,White,YesNo,234,8.7
+Race,No        ,White,YesNo,2455,91.3
+Race,Yes       ,White,YesNo,131,4.9
+Race,No        ,White,YesNo,2558,95.1
+Race,Yes       ,White,YesNo,221,9.1
+Race,No        ,White,YesNo,2201,90.9
+Race,Yes       ,White,YesNo,38,1.6
+Race,No        ,White,YesNo,2383,98.4
+Race,Yes       ,White,YesNo,2,0.1
+Race,No        ,White,YesNo,2420,99.9
+Race,Yes       ,White,YesNo,468,19.3
+Race,No        ,White,YesNo,1955,80.7
+Race,Yes       ,White,YesNo,211,8.7
+Race,No        ,White,YesNo,2210,91.3
+Race,Yes       ,White,YesNo,1074,44.4
+Race,No        ,White,YesNo,1347,55.6
+Race,Yes       ,White,YesNo,23,0.9
+Race,No        ,White,YesNo,2399,99.1
+Race,Yes       ,White,YesNo,37,1.5
+Race,No        ,White,YesNo,2385,98.5
+Race,Yes       ,White,YesNo,1,0.0
+Race,No        ,White,YesNo,2421,100.0
+Race,Yes       ,White,YesNo,27,1.1
+Race,No        ,White,YesNo,2395,98.9
+Race,Yes       ,White,YesNo,50,2.1
+Race,No        ,White,YesNo,2373,97.9
+Race,Yes       ,White,YesNo,65,2.7
+Race,No        ,White,YesNo,2357,97.3
+Race,Yes       ,White,YesNo,12,0.5
+Race,No        ,White,YesNo,2411,99.5
+Race,Yes       ,White,YesNo,4,0.2
+Race,No        ,White,YesNo,2419,99.8
+Race,Yes       ,White,YesNo,,
+Race,No        ,White,YesNo,2422,100.0
+Race,Yes       ,White,YesNo,,
+Race,No        ,White,YesNo,2423,100.0
+Race,Yes       ,White,YesNo,1,0.0
+Race,No        ,White,YesNo,2421,100.0
+Race,Yes       ,White,YesNo,,
+Race,No        ,White,YesNo,2422,100.0
+Race,Yes       ,White,YesNo,12,0.5
+Race,No        ,White,YesNo,2411,99.5
+Race,Yes       ,White,YesNo,1272,52.5
+Race,No        ,White,YesNo,1150,47.5
+Race,Yes       ,White,YesNo,20,0.8
+Race,No        ,White,YesNo,2403,99.2
+Race,Yes       ,White,YesNo,425,17.6
+Race,No        ,White,YesNo,1996,82.4
+Race,Yes       ,White,YesNo,18,0.7
+Race,No        ,White,YesNo,2404,99.3
+Race,18-49 yr,Black,Age,1594,22.5
+Race,50-64 yr,Black,Age,2357,33.2
+Race,65+ yr,Black,Age,3141,44.3
+Race,Male,Black,Sex,3511,49.5
+Race,Female,Black,Sex,3581,50.5
+Race,Yes       ,Black,YesNo,159,9.5
+Race,No        ,Black,YesNo,1506,90.5
+Race,Yes       ,Black,YesNo,220,13.2
+Race,No        ,Black,YesNo,1446,86.8
+Race,Yes       ,Black,YesNo,267,16.0
+Race,No        ,Black,YesNo,1397,84.0
+Race,Yes       ,Black,YesNo,534,32.1
+Race,No        ,Black,YesNo,1131,67.9
+Race,Yes       ,Black,YesNo,316,19.0
+Race,No        ,Black,YesNo,1348,81.0
+Race,Yes       ,Black,YesNo,134,8.0
+Race,No        ,Black,YesNo,1531,92.0
+Race,Yes       ,Black,YesNo,260,15.7
+Race,No        ,Black,YesNo,1400,84.3
+Race,Yes       ,Black,YesNo,40,2.2
+Race,No        ,Black,YesNo,1740,97.8
+Race,Yes       ,Black,YesNo,384,21.5
+Race,No        ,Black,YesNo,1399,78.5
+Race,Yes       ,Black,YesNo,266,14.9
+Race,No        ,Black,YesNo,1517,85.1
+Race,Yes       ,Black,YesNo,163,9.1
+Race,No        ,Black,YesNo,1620,90.9
+Race,Yes       ,Black,YesNo,231,13.0
+Race,No        ,Black,YesNo,1552,87.0
+Race,Yes       ,Black,YesNo,827,46.3
+Race,No        ,Black,YesNo,961,53.7
+Race,Yes       ,Black,YesNo,730,40.8
+Race,No        ,Black,YesNo,1058,59.2
+Race,Yes       ,Black,YesNo,160,8.9
+Race,No        ,Black,YesNo,1628,91.1
+Race,Yes       ,Black,YesNo,613,34.3
+Race,No        ,Black,YesNo,1172,65.7
+Race,Yes       ,Black,YesNo,104,5.8
+Race,No        ,Black,YesNo,1681,94.2
+Race,Yes       ,Black,YesNo,216,12.1
+Race,No        ,Black,YesNo,1569,87.9
+Race,Yes       ,Black,YesNo,232,13.0
+Race,No        ,Black,YesNo,1553,87.0
+Race,Yes       ,Black,YesNo,176,9.9
+Race,No        ,Black,YesNo,1609,90.1
+Race,Yes       ,Black,YesNo,1164,64.9
+Race,No        ,Black,YesNo,630,35.1
+Race,Yes       ,Black,YesNo,196,11.0
+Race,No        ,Black,YesNo,1581,89.0
+Race,Yes       ,Black,YesNo,25,1.4
+Race,No        ,Black,YesNo,1752,98.6
+Race,Yes       ,Black,YesNo,88,5.0
+Race,No        ,Black,YesNo,1689,95.0
+Race,Yes       ,Black,YesNo,354,19.8
+Race,No        ,Black,YesNo,1430,80.2
+Race,Yes       ,Black,YesNo,154,8.6
+Race,No        ,Black,YesNo,1630,91.4
+Race,Yes       ,Black,YesNo,951,56.4
+Race,No        ,Black,YesNo,736,43.6
+Race,Yes       ,Black,YesNo,372,20.9
+Race,No        ,Black,YesNo,1411,79.1
+Race,Yes       ,Black,YesNo,370,20.8
+Race,No        ,Black,YesNo,1413,79.2
+Race,Yes       ,Black,YesNo,56,3.2
+Race,No        ,Black,YesNo,1720,96.8
+Race,current,Black,Smoker,140,7.8
+Race,former,Black,Smoker,394,22.1
+Race,never,Black,Smoker,1250,70.1
+Race,Yes       ,Black,YesNo,185,10.3
+Race,No        ,Black,YesNo,1610,89.7
+Race,Yes       ,Black,YesNo,217,12.1
+Race,No        ,Black,YesNo,1578,87.9
+Race,Yes       ,Black,YesNo,60,3.3
+Race,No        ,Black,YesNo,1735,96.7
+Race,Yes       ,Black,YesNo,254,14.2
+Race,No        ,Black,YesNo,1541,85.8
+Race,Yes       ,Black,YesNo,198,11.0
+Race,No        ,Black,YesNo,1597,89.0
+Race,Yes       ,Black,YesNo,3,0.2
+Race,No        ,Black,YesNo,1792,99.8
+Race,Yes       ,Black,YesNo,1201,66.9
+Race,No        ,Black,YesNo,594,33.1
+Race,Yes       ,Black,YesNo,428,23.8
+Race,No        ,Black,YesNo,1367,76.2
+Race,Yes       ,Black,YesNo,71,4.0
+Race,No        ,Black,YesNo,1724,96.0
+Race,Yes       ,Black,YesNo,1202,67.0
+Race,No        ,Black,YesNo,593,33.0
+Race,Yes       ,Black,YesNo,223,12.4
+Race,No        ,Black,YesNo,1572,87.6
+Race,Yes       ,Black,YesNo,28,1.6
+Race,No        ,Black,YesNo,1767,98.4
+Race,Yes       ,Black,YesNo,442,24.6
+Race,No        ,Black,YesNo,1353,75.4
+Race,Yes       ,Black,YesNo,439,24.5
+Race,No        ,Black,YesNo,1356,75.5
+Race,Yes       ,Black,YesNo,6,0.3
+Race,No        ,Black,YesNo,1789,99.7
+Race,Yes       ,Black,YesNo,10,0.6
+Race,No        ,Black,YesNo,1785,99.4
+Race,Yes       ,Black,YesNo,1151,64.1
+Race,No        ,Black,YesNo,644,35.9
+Race,Yes       ,Black,YesNo,140,7.8
+Race,No        ,Black,YesNo,1655,92.2
+Race,Yes       ,Black,YesNo,87,4.8
+Race,No        ,Black,YesNo,1708,95.2
+Race,Yes       ,Black,YesNo,120,7.2
+Race,No        ,Black,YesNo,1537,92.8
+Race,Yes       ,Black,YesNo,23,1.4
+Race,No        ,Black,YesNo,1635,98.6
+Race,Yes       ,Black,YesNo,4,0.2
+Race,No        ,Black,YesNo,1654,99.8
+Race,Yes       ,Black,YesNo,413,24.9
+Race,No        ,Black,YesNo,1247,75.1
+Race,Yes       ,Black,YesNo,139,8.4
+Race,No        ,Black,YesNo,1520,91.6
+Race,Yes       ,Black,YesNo,654,39.4
+Race,No        ,Black,YesNo,1006,60.6
+Race,Yes       ,Black,YesNo,39,2.4
+Race,No        ,Black,YesNo,1620,97.6
+Race,Yes       ,Black,YesNo,27,1.6
+Race,No        ,Black,YesNo,1632,98.4
+Race,Yes       ,Black,YesNo,,
+Race,No        ,Black,YesNo,1659,100.0
+Race,Yes       ,Black,YesNo,8,0.5
+Race,No        ,Black,YesNo,1652,99.5
+Race,Yes       ,Black,YesNo,46,2.8
+Race,No        ,Black,YesNo,1614,97.2
+Race,Yes       ,Black,YesNo,27,1.6
+Race,No        ,Black,YesNo,1633,98.4
+Race,Yes       ,Black,YesNo,23,1.4
+Race,No        ,Black,YesNo,1637,98.6
+Race,Yes       ,Black,YesNo,4,0.2
+Race,No        ,Black,YesNo,1656,99.8
+Race,Yes       ,Black,YesNo,,
+Race,No        ,Black,YesNo,1659,100.0
+Race,Yes       ,Black,YesNo,,
+Race,No        ,Black,YesNo,1658,100.0
+Race,Yes       ,Black,YesNo,,
+Race,No        ,Black,YesNo,1658,100.0
+Race,Yes       ,Black,YesNo,,
+Race,No        ,Black,YesNo,1659,100.0
+Race,Yes       ,Black,YesNo,24,1.4
+Race,No        ,Black,YesNo,1636,98.6
+Race,Yes       ,Black,YesNo,918,55.3
+Race,No        ,Black,YesNo,742,44.7
+Race,Yes       ,Black,YesNo,8,0.5
+Race,No        ,Black,YesNo,1649,99.5
+Race,Yes       ,Black,YesNo,270,16.3
+Race,No        ,Black,YesNo,1386,83.7
+Race,Yes       ,Black,YesNo,12,0.7
+Race,No        ,Black,YesNo,1647,99.3
+Race,18-49 yr,Hispanic/Latino,Age,1831,48.2
+Race,50-64 yr,Hispanic/Latino,Age,1159,30.5
+Race,65+ yr,Hispanic/Latino,Age,807,21.3
+Race,Male,Hispanic/Latino,Sex,2094,55.1
+Race,Female,Hispanic/Latino,Sex,1703,44.9
+Race,Yes       ,Hispanic/Latino,YesNo,58,7.5
+Race,No        ,Hispanic/Latino,YesNo,714,92.5
+Race,Yes       ,Hispanic/Latino,YesNo,66,8.5
+Race,No        ,Hispanic/Latino,YesNo,709,91.5
+Race,Yes       ,Hispanic/Latino,YesNo,151,19.5
+Race,No        ,Hispanic/Latino,YesNo,622,80.5
+Race,Yes       ,Hispanic/Latino,YesNo,235,30.4
+Race,No        ,Hispanic/Latino,YesNo,538,69.6
+Race,Yes       ,Hispanic/Latino,YesNo,140,18.1
+Race,No        ,Hispanic/Latino,YesNo,633,81.9
+Race,Yes       ,Hispanic/Latino,YesNo,27,3.5
+Race,No        ,Hispanic/Latino,YesNo,745,96.5
+Race,Yes       ,Hispanic/Latino,YesNo,117,15.2
+Race,No        ,Hispanic/Latino,YesNo,655,84.8
+Race,Yes       ,Hispanic/Latino,YesNo,16,1.8
+Race,No        ,Hispanic/Latino,YesNo,852,98.2
+Race,Yes       ,Hispanic/Latino,YesNo,51,5.9
+Race,No        ,Hispanic/Latino,YesNo,817,94.1
+Race,Yes       ,Hispanic/Latino,YesNo,72,8.3
+Race,No        ,Hispanic/Latino,YesNo,796,91.7
+Race,Yes       ,Hispanic/Latino,YesNo,18,2.1
+Race,No        ,Hispanic/Latino,YesNo,850,97.9
+Race,Yes       ,Hispanic/Latino,YesNo,34,3.9
+Race,No        ,Hispanic/Latino,YesNo,834,96.1
+Race,Yes       ,Hispanic/Latino,YesNo,306,35.2
+Race,No        ,Hispanic/Latino,YesNo,564,64.8
+Race,Yes       ,Hispanic/Latino,YesNo,275,31.6
+Race,No        ,Hispanic/Latino,YesNo,595,68.4
+Race,Yes       ,Hispanic/Latino,YesNo,46,5.3
+Race,No        ,Hispanic/Latino,YesNo,824,94.7
+Race,Yes       ,Hispanic/Latino,YesNo,105,12.1
+Race,No        ,Hispanic/Latino,YesNo,764,87.9
+Race,Yes       ,Hispanic/Latino,YesNo,18,2.1
+Race,No        ,Hispanic/Latino,YesNo,851,97.9
+Race,Yes       ,Hispanic/Latino,YesNo,36,4.1
+Race,No        ,Hispanic/Latino,YesNo,833,95.9
+Race,Yes       ,Hispanic/Latino,YesNo,20,2.3
+Race,No        ,Hispanic/Latino,YesNo,849,97.7
+Race,Yes       ,Hispanic/Latino,YesNo,18,2.1
+Race,No        ,Hispanic/Latino,YesNo,851,97.9
+Race,Yes       ,Hispanic/Latino,YesNo,295,33.9
+Race,No        ,Hispanic/Latino,YesNo,576,66.1
+Race,Yes       ,Hispanic/Latino,YesNo,45,5.2
+Race,No        ,Hispanic/Latino,YesNo,824,94.8
+Race,Yes       ,Hispanic/Latino,YesNo,5,0.6
+Race,No        ,Hispanic/Latino,YesNo,864,99.4
+Race,Yes       ,Hispanic/Latino,YesNo,31,3.6
+Race,No        ,Hispanic/Latino,YesNo,839,96.4
+Race,Yes       ,Hispanic/Latino,YesNo,63,7.2
+Race,No        ,Hispanic/Latino,YesNo,807,92.8
+Race,Yes       ,Hispanic/Latino,YesNo,13,1.5
+Race,No        ,Hispanic/Latino,YesNo,857,98.5
+Race,Yes       ,Hispanic/Latino,YesNo,411,53.8
+Race,No        ,Hispanic/Latino,YesNo,353,46.2
+Race,Yes       ,Hispanic/Latino,YesNo,53,6.1
+Race,No        ,Hispanic/Latino,YesNo,817,93.9
+Race,Yes       ,Hispanic/Latino,YesNo,52,6.0
+Race,No        ,Hispanic/Latino,YesNo,818,94.0
+Race,Yes       ,Hispanic/Latino,YesNo,11,1.3
+Race,No        ,Hispanic/Latino,YesNo,857,98.7
+Race,current,Hispanic/Latino,Smoker,46,5.3
+Race,former,Hispanic/Latino,Smoker,140,16.0
+Race,never,Hispanic/Latino,Smoker,687,78.7
+Race,Yes       ,Hispanic/Latino,YesNo,126,13.9
+Race,No        ,Hispanic/Latino,YesNo,781,86.1
+Race,Yes       ,Hispanic/Latino,YesNo,34,3.7
+Race,No        ,Hispanic/Latino,YesNo,873,96.3
+Race,Yes       ,Hispanic/Latino,YesNo,53,5.8
+Race,No        ,Hispanic/Latino,YesNo,854,94.2
+Race,Yes       ,Hispanic/Latino,YesNo,184,20.3
+Race,No        ,Hispanic/Latino,YesNo,723,79.7
+Race,Yes       ,Hispanic/Latino,YesNo,136,15.0
+Race,No        ,Hispanic/Latino,YesNo,771,85.0
+Race,Yes       ,Hispanic/Latino,YesNo,4,0.4
+Race,No        ,Hispanic/Latino,YesNo,903,99.6
+Race,Yes       ,Hispanic/Latino,YesNo,723,79.7
+Race,No        ,Hispanic/Latino,YesNo,184,20.3
+Race,Yes       ,Hispanic/Latino,YesNo,240,26.5
+Race,No        ,Hispanic/Latino,YesNo,667,73.5
+Race,Yes       ,Hispanic/Latino,YesNo,55,6.1
+Race,No        ,Hispanic/Latino,YesNo,852,93.9
+Race,Yes       ,Hispanic/Latino,YesNo,705,77.7
+Race,No        ,Hispanic/Latino,YesNo,202,22.3
+Race,Yes       ,Hispanic/Latino,YesNo,230,25.4
+Race,No        ,Hispanic/Latino,YesNo,677,74.6
+Race,Yes       ,Hispanic/Latino,YesNo,18,2.0
+Race,No        ,Hispanic/Latino,YesNo,889,98.0
+Race,Yes       ,Hispanic/Latino,YesNo,349,38.5
+Race,No        ,Hispanic/Latino,YesNo,558,61.5
+Race,Yes       ,Hispanic/Latino,YesNo,262,28.9
+Race,No        ,Hispanic/Latino,YesNo,645,71.1
+Race,Yes       ,Hispanic/Latino,YesNo,2,0.2
+Race,No        ,Hispanic/Latino,YesNo,905,99.8
+Race,Yes       ,Hispanic/Latino,YesNo,1,0.1
+Race,No        ,Hispanic/Latino,YesNo,906,99.9
+Race,Yes       ,Hispanic/Latino,YesNo,670,73.9
+Race,No        ,Hispanic/Latino,YesNo,237,26.1
+Race,Yes       ,Hispanic/Latino,YesNo,164,18.1
+Race,No        ,Hispanic/Latino,YesNo,743,81.9
+Race,Yes       ,Hispanic/Latino,YesNo,33,3.6
+Race,No        ,Hispanic/Latino,YesNo,874,96.4
+Race,Yes       ,Hispanic/Latino,YesNo,33,4.3
+Race,No        ,Hispanic/Latino,YesNo,738,95.7
+Race,Yes       ,Hispanic/Latino,YesNo,9,1.2
+Race,No        ,Hispanic/Latino,YesNo,762,98.8
+Race,Yes       ,Hispanic/Latino,YesNo,,
+Race,No        ,Hispanic/Latino,YesNo,772,100.0
+Race,Yes       ,Hispanic/Latino,YesNo,78,10.1
+Race,No        ,Hispanic/Latino,YesNo,694,89.9
+Race,Yes       ,Hispanic/Latino,YesNo,80,10.4
+Race,No        ,Hispanic/Latino,YesNo,692,89.6
+Race,Yes       ,Hispanic/Latino,YesNo,334,43.3
+Race,No        ,Hispanic/Latino,YesNo,438,56.7
+Race,Yes       ,Hispanic/Latino,YesNo,9,1.2
+Race,No        ,Hispanic/Latino,YesNo,763,98.8
+Race,Yes       ,Hispanic/Latino,YesNo,16,2.1
+Race,No        ,Hispanic/Latino,YesNo,756,97.9
+Race,Yes       ,Hispanic/Latino,YesNo,1,0.1
+Race,No        ,Hispanic/Latino,YesNo,771,99.9
+Race,Yes       ,Hispanic/Latino,YesNo,6,0.8
+Race,No        ,Hispanic/Latino,YesNo,766,99.2
+Race,Yes       ,Hispanic/Latino,YesNo,3,0.4
+Race,No        ,Hispanic/Latino,YesNo,768,99.6
+Race,Yes       ,Hispanic/Latino,YesNo,1,0.1
+Race,No        ,Hispanic/Latino,YesNo,771,99.9
+Race,Yes       ,Hispanic/Latino,YesNo,8,1.0
+Race,No        ,Hispanic/Latino,YesNo,764,99.0
+Race,Yes       ,Hispanic/Latino,YesNo,,
+Race,No        ,Hispanic/Latino,YesNo,772,100.0
+Race,Yes       ,Hispanic/Latino,YesNo,,
+Race,No        ,Hispanic/Latino,YesNo,771,100.0
+Race,Yes       ,Hispanic/Latino,YesNo,,
+Race,No        ,Hispanic/Latino,YesNo,772,100.0
+Race,Yes       ,Hispanic/Latino,YesNo,,
+Race,No        ,Hispanic/Latino,YesNo,770,100.0
+Race,Yes       ,Hispanic/Latino,YesNo,,
+Race,No        ,Hispanic/Latino,YesNo,772,100.0
+Race,Yes       ,Hispanic/Latino,YesNo,6,0.8
+Race,No        ,Hispanic/Latino,YesNo,766,99.2
+Race,Yes       ,Hispanic/Latino,YesNo,472,61.1
+Race,No        ,Hispanic/Latino,YesNo,300,38.9
+Race,Yes       ,Hispanic/Latino,YesNo,5,0.6
+Race,No        ,Hispanic/Latino,YesNo,767,99.4
+Race,Yes       ,Hispanic/Latino,YesNo,170,22.1
+Race,No        ,Hispanic/Latino,YesNo,598,77.9
+Race,Yes       ,Hispanic/Latino,YesNo,1,0.1
+Race,No        ,Hispanic/Latino,YesNo,771,99.9
+Race,18-49 yr,Asian/Pacific Islander,Age,269,27.3
+Race,50-64 yr,Asian/Pacific Islander,Age,301,30.6
+Race,65+ yr,Asian/Pacific Islander,Age,415,42.1
+Race,Male,Asian/Pacific Islander,Sex,516,52.5
+Race,Female,Asian/Pacific Islander,Sex,467,47.5
+Race,Yes       ,Asian/Pacific Islander,YesNo,29,8.2
+Race,No        ,Asian/Pacific Islander,YesNo,325,91.8
+Race,Yes       ,Asian/Pacific Islander,YesNo,41,11.5
+Race,No        ,Asian/Pacific Islander,YesNo,314,88.5
+Race,Yes       ,Asian/Pacific Islander,YesNo,55,15.5
+Race,No        ,Asian/Pacific Islander,YesNo,299,84.5
+Race,Yes       ,Asian/Pacific Islander,YesNo,120,33.9
+Race,No        ,Asian/Pacific Islander,YesNo,234,66.1
+Race,Yes       ,Asian/Pacific Islander,YesNo,64,18.1
+Race,No        ,Asian/Pacific Islander,YesNo,290,81.9
+Race,Yes       ,Asian/Pacific Islander,YesNo,14,4.0
+Race,No        ,Asian/Pacific Islander,YesNo,339,96.0
+Race,Yes       ,Asian/Pacific Islander,YesNo,65,18.5
+Race,No        ,Asian/Pacific Islander,YesNo,287,81.5
+Race,Yes       ,Asian/Pacific Islander,YesNo,8,2.1
+Race,No        ,Asian/Pacific Islander,YesNo,367,97.9
+Race,Yes       ,Asian/Pacific Islander,YesNo,40,10.7
+Race,No        ,Asian/Pacific Islander,YesNo,335,89.3
+Race,Yes       ,Asian/Pacific Islander,YesNo,42,11.2
+Race,No        ,Asian/Pacific Islander,YesNo,333,88.8
+Race,Yes       ,Asian/Pacific Islander,YesNo,18,4.8
+Race,No        ,Asian/Pacific Islander,YesNo,357,95.2
+Race,Yes       ,Asian/Pacific Islander,YesNo,21,5.6
+Race,No        ,Asian/Pacific Islander,YesNo,354,94.4
+Race,Yes       ,Asian/Pacific Islander,YesNo,144,38.3
+Race,No        ,Asian/Pacific Islander,YesNo,232,61.7
+Race,Yes       ,Asian/Pacific Islander,YesNo,123,32.7
+Race,No        ,Asian/Pacific Islander,YesNo,253,67.3
+Race,Yes       ,Asian/Pacific Islander,YesNo,31,8.2
+Race,No        ,Asian/Pacific Islander,YesNo,345,91.8
+Race,Yes       ,Asian/Pacific Islander,YesNo,88,23.4
+Race,No        ,Asian/Pacific Islander,YesNo,288,76.6
+Race,Yes       ,Asian/Pacific Islander,YesNo,20,5.3
+Race,No        ,Asian/Pacific Islander,YesNo,356,94.7
+Race,Yes       ,Asian/Pacific Islander,YesNo,38,10.1
+Race,No        ,Asian/Pacific Islander,YesNo,338,89.9
+Race,Yes       ,Asian/Pacific Islander,YesNo,25,6.6
+Race,No        ,Asian/Pacific Islander,YesNo,351,93.4
+Race,Yes       ,Asian/Pacific Islander,YesNo,21,5.6
+Race,No        ,Asian/Pacific Islander,YesNo,355,94.4
+Race,Yes       ,Asian/Pacific Islander,YesNo,167,44.2
+Race,No        ,Asian/Pacific Islander,YesNo,211,55.8
+Race,Yes       ,Asian/Pacific Islander,YesNo,24,6.4
+Race,No        ,Asian/Pacific Islander,YesNo,351,93.6
+Race,Yes       ,Asian/Pacific Islander,YesNo,1,0.3
+Race,No        ,Asian/Pacific Islander,YesNo,374,99.7
+Race,Yes       ,Asian/Pacific Islander,YesNo,22,5.9
+Race,No        ,Asian/Pacific Islander,YesNo,353,94.1
+Race,Yes       ,Asian/Pacific Islander,YesNo,51,13.6
+Race,No        ,Asian/Pacific Islander,YesNo,325,86.4
+Race,Yes       ,Asian/Pacific Islander,YesNo,26,6.9
+Race,No        ,Asian/Pacific Islander,YesNo,350,93.1
+Race,Yes       ,Asian/Pacific Islander,YesNo,120,36.3
+Race,No        ,Asian/Pacific Islander,YesNo,211,63.7
+Race,Yes       ,Asian/Pacific Islander,YesNo,46,12.3
+Race,No        ,Asian/Pacific Islander,YesNo,329,87.7
+Race,Yes       ,Asian/Pacific Islander,YesNo,46,12.3
+Race,No        ,Asian/Pacific Islander,YesNo,329,87.7
+Race,Yes       ,Asian/Pacific Islander,YesNo,5,1.3
+Race,No        ,Asian/Pacific Islander,YesNo,370,98.7
+Race,current,Asian/Pacific Islander,Smoker,13,3.4
+Race,former,Asian/Pacific Islander,Smoker,66,17.5
+Race,never,Asian/Pacific Islander,Smoker,298,79.0
+Race,Yes       ,Asian/Pacific Islander,YesNo,48,12.3
+Race,No        ,Asian/Pacific Islander,YesNo,343,87.7
+Race,Yes       ,Asian/Pacific Islander,YesNo,26,6.6
+Race,No        ,Asian/Pacific Islander,YesNo,365,93.4
+Race,Yes       ,Asian/Pacific Islander,YesNo,24,6.1
+Race,No        ,Asian/Pacific Islander,YesNo,367,93.9
+Race,Yes       ,Asian/Pacific Islander,YesNo,57,14.6
+Race,No        ,Asian/Pacific Islander,YesNo,334,85.4
+Race,Yes       ,Asian/Pacific Islander,YesNo,33,8.4
+Race,No        ,Asian/Pacific Islander,YesNo,358,91.6
+Race,Yes       ,Asian/Pacific Islander,YesNo,1,0.3
+Race,No        ,Asian/Pacific Islander,YesNo,390,99.7
+Race,Yes       ,Asian/Pacific Islander,YesNo,293,74.9
+Race,No        ,Asian/Pacific Islander,YesNo,98,25.1
+Race,Yes       ,Asian/Pacific Islander,YesNo,94,24.0
+Race,No        ,Asian/Pacific Islander,YesNo,297,76.0
+Race,Yes       ,Asian/Pacific Islander,YesNo,24,6.1
+Race,No        ,Asian/Pacific Islander,YesNo,367,93.9
+Race,Yes       ,Asian/Pacific Islander,YesNo,298,76.2
+Race,No        ,Asian/Pacific Islander,YesNo,93,23.8
+Race,Yes       ,Asian/Pacific Islander,YesNo,79,20.2
+Race,No        ,Asian/Pacific Islander,YesNo,312,79.8
+Race,Yes       ,Asian/Pacific Islander,YesNo,5,1.3
+Race,No        ,Asian/Pacific Islander,YesNo,386,98.7
+Race,Yes       ,Asian/Pacific Islander,YesNo,115,29.4
+Race,No        ,Asian/Pacific Islander,YesNo,276,70.6
+Race,Yes       ,Asian/Pacific Islander,YesNo,79,20.2
+Race,No        ,Asian/Pacific Islander,YesNo,312,79.8
+Race,Yes       ,Asian/Pacific Islander,YesNo,,
+Race,No        ,Asian/Pacific Islander,YesNo,391,100.0
+Race,Yes       ,Asian/Pacific Islander,YesNo,,
+Race,No        ,Asian/Pacific Islander,YesNo,391,100.0
+Race,Yes       ,Asian/Pacific Islander,YesNo,273,69.8
+Race,No        ,Asian/Pacific Islander,YesNo,118,30.2
+Race,Yes       ,Asian/Pacific Islander,YesNo,45,11.5
+Race,No        ,Asian/Pacific Islander,YesNo,346,88.5
+Race,Yes       ,Asian/Pacific Islander,YesNo,14,3.6
+Race,No        ,Asian/Pacific Islander,YesNo,377,96.4
+Race,Yes       ,Asian/Pacific Islander,YesNo,20,5.7
+Race,No        ,Asian/Pacific Islander,YesNo,332,94.3
+Race,Yes       ,Asian/Pacific Islander,YesNo,2,0.6
+Race,No        ,Asian/Pacific Islander,YesNo,351,99.4
+Race,Yes       ,Asian/Pacific Islander,YesNo,,
+Race,No        ,Asian/Pacific Islander,YesNo,353,100.0
+Race,Yes       ,Asian/Pacific Islander,YesNo,51,14.4
+Race,No        ,Asian/Pacific Islander,YesNo,302,85.6
+Race,Yes       ,Asian/Pacific Islander,YesNo,40,11.3
+Race,No        ,Asian/Pacific Islander,YesNo,313,88.7
+Race,Yes       ,Asian/Pacific Islander,YesNo,146,41.4
+Race,No        ,Asian/Pacific Islander,YesNo,207,58.6
+Race,Yes       ,Asian/Pacific Islander,YesNo,5,1.4
+Race,No        ,Asian/Pacific Islander,YesNo,348,98.6
+Race,Yes       ,Asian/Pacific Islander,YesNo,2,0.6
+Race,No        ,Asian/Pacific Islander,YesNo,351,99.4
+Race,Yes       ,Asian/Pacific Islander,YesNo,,
+Race,No        ,Asian/Pacific Islander,YesNo,353,100.0
+Race,Yes       ,Asian/Pacific Islander,YesNo,3,0.8
+Race,No        ,Asian/Pacific Islander,YesNo,350,99.2
+Race,Yes       ,Asian/Pacific Islander,YesNo,3,0.8
+Race,No        ,Asian/Pacific Islander,YesNo,350,99.2
+Race,Yes       ,Asian/Pacific Islander,YesNo,1,0.3
+Race,No        ,Asian/Pacific Islander,YesNo,352,99.7
+Race,Yes       ,Asian/Pacific Islander,YesNo,1,0.3
+Race,No        ,Asian/Pacific Islander,YesNo,352,99.7
+Race,Yes       ,Asian/Pacific Islander,YesNo,2,0.6
+Race,No        ,Asian/Pacific Islander,YesNo,351,99.4
+Race,Yes       ,Asian/Pacific Islander,YesNo,,
+Race,No        ,Asian/Pacific Islander,YesNo,353,100.0
+Race,Yes       ,Asian/Pacific Islander,YesNo,,
+Race,No        ,Asian/Pacific Islander,YesNo,353,100.0
+Race,Yes       ,Asian/Pacific Islander,YesNo,,
+Race,No        ,Asian/Pacific Islander,YesNo,351,100.0
+Race,Yes       ,Asian/Pacific Islander,YesNo,,
+Race,No        ,Asian/Pacific Islander,YesNo,353,100.0
+Race,Yes       ,Asian/Pacific Islander,YesNo,1,0.3
+Race,No        ,Asian/Pacific Islander,YesNo,351,99.7
+Race,Yes       ,Asian/Pacific Islander,YesNo,194,55.1
+Race,No        ,Asian/Pacific Islander,YesNo,158,44.9
+Race,Yes       ,Asian/Pacific Islander,YesNo,2,0.6
+Race,No        ,Asian/Pacific Islander,YesNo,351,99.4
+Race,Yes       ,Asian/Pacific Islander,YesNo,57,16.1
+Race,No        ,Asian/Pacific Islander,YesNo,296,83.9
+Race,Yes       ,Asian/Pacific Islander,YesNo,2,0.6
+Race,No        ,Asian/Pacific Islander,YesNo,351,99.4
+Race,18-49 yr,American Indian/Alaska Native,Age,118,36.9
+Race,50-64 yr,American Indian/Alaska Native,Age,115,35.9
+Race,65+ yr,American Indian/Alaska Native,Age,87,27.2
+Race,Male,American Indian/Alaska Native,Sex,131,40.9
+Race,Female,American Indian/Alaska Native,Sex,189,59.1
+Race,Yes       ,American Indian/Alaska Native,YesNo,9,12.3
+Race,No        ,American Indian/Alaska Native,YesNo,64,87.7
+Race,Yes       ,American Indian/Alaska Native,YesNo,14,19.2
+Race,No        ,American Indian/Alaska Native,YesNo,59,80.8
+Race,Yes       ,American Indian/Alaska Native,YesNo,13,17.8
+Race,No        ,American Indian/Alaska Native,YesNo,60,82.2
+Race,Yes       ,American Indian/Alaska Native,YesNo,24,32.9
+Race,No        ,American Indian/Alaska Native,YesNo,49,67.1
+Race,Yes       ,American Indian/Alaska Native,YesNo,16,21.9
+Race,No        ,American Indian/Alaska Native,YesNo,57,78.1
+Race,Yes       ,American Indian/Alaska Native,YesNo,4,5.5
+Race,No        ,American Indian/Alaska Native,YesNo,69,94.5
+Race,Yes       ,American Indian/Alaska Native,YesNo,16,21.9
+Race,No        ,American Indian/Alaska Native,YesNo,57,78.1
+Race,Yes       ,American Indian/Alaska Native,YesNo,4,4.6
+Race,No        ,American Indian/Alaska Native,YesNo,83,95.4
+Race,Yes       ,American Indian/Alaska Native,YesNo,10,11.5
+Race,No        ,American Indian/Alaska Native,YesNo,77,88.5
+Race,Yes       ,American Indian/Alaska Native,YesNo,20,23.0
+Race,No        ,American Indian/Alaska Native,YesNo,67,77.0
+Race,Yes       ,American Indian/Alaska Native,YesNo,2,2.3
+Race,No        ,American Indian/Alaska Native,YesNo,85,97.7
+Race,Yes       ,American Indian/Alaska Native,YesNo,6,6.9
+Race,No        ,American Indian/Alaska Native,YesNo,81,93.1
+Race,Yes       ,American Indian/Alaska Native,YesNo,35,40.2
+Race,No        ,American Indian/Alaska Native,YesNo,52,59.8
+Race,Yes       ,American Indian/Alaska Native,YesNo,30,34.5
+Race,No        ,American Indian/Alaska Native,YesNo,57,65.5
+Race,Yes       ,American Indian/Alaska Native,YesNo,9,10.3
+Race,No        ,American Indian/Alaska Native,YesNo,78,89.7
+Race,Yes       ,American Indian/Alaska Native,YesNo,21,24.1
+Race,No        ,American Indian/Alaska Native,YesNo,66,75.9
+Race,Yes       ,American Indian/Alaska Native,YesNo,6,6.9
+Race,No        ,American Indian/Alaska Native,YesNo,81,93.1
+Race,Yes       ,American Indian/Alaska Native,YesNo,5,5.7
+Race,No        ,American Indian/Alaska Native,YesNo,82,94.3
+Race,Yes       ,American Indian/Alaska Native,YesNo,10,11.5
+Race,No        ,American Indian/Alaska Native,YesNo,77,88.5
+Race,Yes       ,American Indian/Alaska Native,YesNo,9,10.3
+Race,No        ,American Indian/Alaska Native,YesNo,78,89.7
+Race,Yes       ,American Indian/Alaska Native,YesNo,36,41.4
+Race,No        ,American Indian/Alaska Native,YesNo,51,58.6
+Race,Yes       ,American Indian/Alaska Native,YesNo,6,6.9
+Race,No        ,American Indian/Alaska Native,YesNo,81,93.1
+Race,Yes       ,American Indian/Alaska Native,YesNo,,
+Race,No        ,American Indian/Alaska Native,YesNo,87,100.0
+Race,Yes       ,American Indian/Alaska Native,YesNo,10,11.5
+Race,No        ,American Indian/Alaska Native,YesNo,77,88.5
+Race,Yes       ,American Indian/Alaska Native,YesNo,23,26.4
+Race,No        ,American Indian/Alaska Native,YesNo,64,73.6
+Race,Yes       ,American Indian/Alaska Native,YesNo,3,3.4
+Race,No        ,American Indian/Alaska Native,YesNo,84,96.6
+Race,Yes       ,American Indian/Alaska Native,YesNo,39,49.4
+Race,No        ,American Indian/Alaska Native,YesNo,40,50.6
+Race,Yes       ,American Indian/Alaska Native,YesNo,11,12.6
+Race,No        ,American Indian/Alaska Native,YesNo,76,87.4
+Race,Yes       ,American Indian/Alaska Native,YesNo,11,12.6
+Race,No        ,American Indian/Alaska Native,YesNo,76,87.4
+Race,Yes       ,American Indian/Alaska Native,YesNo,,
+Race,No        ,American Indian/Alaska Native,YesNo,87,100.0
+Race,current,American Indian/Alaska Native,Smoker,19,21.8
+Race,former,American Indian/Alaska Native,Smoker,22,25.3
+Race,never,American Indian/Alaska Native,Smoker,46,52.9
+Race,Yes       ,American Indian/Alaska Native,YesNo,10,11.4
+Race,No        ,American Indian/Alaska Native,YesNo,78,88.6
+Race,Yes       ,American Indian/Alaska Native,YesNo,4,4.5
+Race,No        ,American Indian/Alaska Native,YesNo,84,95.5
+Race,Yes       ,American Indian/Alaska Native,YesNo,5,5.7
+Race,No        ,American Indian/Alaska Native,YesNo,83,94.3
+Race,Yes       ,American Indian/Alaska Native,YesNo,13,14.8
+Race,No        ,American Indian/Alaska Native,YesNo,75,85.2
+Race,Yes       ,American Indian/Alaska Native,YesNo,8,9.1
+Race,No        ,American Indian/Alaska Native,YesNo,80,90.9
+Race,Yes       ,American Indian/Alaska Native,YesNo,,
+Race,No        ,American Indian/Alaska Native,YesNo,88,100.0
+Race,Yes       ,American Indian/Alaska Native,YesNo,56,63.6
+Race,No        ,American Indian/Alaska Native,YesNo,32,36.4
+Race,Yes       ,American Indian/Alaska Native,YesNo,26,29.5
+Race,No        ,American Indian/Alaska Native,YesNo,62,70.5
+Race,Yes       ,American Indian/Alaska Native,YesNo,2,2.3
+Race,No        ,American Indian/Alaska Native,YesNo,86,97.7
+Race,Yes       ,American Indian/Alaska Native,YesNo,52,59.1
+Race,No        ,American Indian/Alaska Native,YesNo,36,40.9
+Race,Yes       ,American Indian/Alaska Native,YesNo,15,17.0
+Race,No        ,American Indian/Alaska Native,YesNo,73,83.0
+Race,Yes       ,American Indian/Alaska Native,YesNo,2,2.3
+Race,No        ,American Indian/Alaska Native,YesNo,86,97.7
+Race,Yes       ,American Indian/Alaska Native,YesNo,25,28.4
+Race,No        ,American Indian/Alaska Native,YesNo,63,71.6
+Race,Yes       ,American Indian/Alaska Native,YesNo,20,22.7
+Race,No        ,American Indian/Alaska Native,YesNo,68,77.3
+Race,Yes       ,American Indian/Alaska Native,YesNo,,
+Race,No        ,American Indian/Alaska Native,YesNo,88,100.0
+Race,Yes       ,American Indian/Alaska Native,YesNo,,
+Race,No        ,American Indian/Alaska Native,YesNo,88,100.0
+Race,Yes       ,American Indian/Alaska Native,YesNo,51,58.0
+Race,No        ,American Indian/Alaska Native,YesNo,37,42.0
+Race,Yes       ,American Indian/Alaska Native,YesNo,12,13.6
+Race,No        ,American Indian/Alaska Native,YesNo,76,86.4
+Race,Yes       ,American Indian/Alaska Native,YesNo,1,1.1
+Race,No        ,American Indian/Alaska Native,YesNo,87,98.9
+Race,Yes       ,American Indian/Alaska Native,YesNo,5,6.8
+Race,No        ,American Indian/Alaska Native,YesNo,68,93.2
+Race,Yes       ,American Indian/Alaska Native,YesNo,1,1.4
+Race,No        ,American Indian/Alaska Native,YesNo,72,98.6
+Race,Yes       ,American Indian/Alaska Native,YesNo,,
+Race,No        ,American Indian/Alaska Native,YesNo,73,100.0
+Race,Yes       ,American Indian/Alaska Native,YesNo,8,11.0
+Race,No        ,American Indian/Alaska Native,YesNo,65,89.0
+Race,Yes       ,American Indian/Alaska Native,YesNo,8,11.0
+Race,No        ,American Indian/Alaska Native,YesNo,65,89.0
+Race,Yes       ,American Indian/Alaska Native,YesNo,34,46.6
+Race,No        ,American Indian/Alaska Native,YesNo,39,53.4
+Race,Yes       ,American Indian/Alaska Native,YesNo,3,4.1
+Race,No        ,American Indian/Alaska Native,YesNo,70,95.9
+Race,Yes       ,American Indian/Alaska Native,YesNo,4,5.5
+Race,No        ,American Indian/Alaska Native,YesNo,69,94.5
+Race,Yes       ,American Indian/Alaska Native,YesNo,,
+Race,No        ,American Indian/Alaska Native,YesNo,73,100.0
+Race,Yes       ,American Indian/Alaska Native,YesNo,1,1.4
+Race,No        ,American Indian/Alaska Native,YesNo,72,98.6
+Race,Yes       ,American Indian/Alaska Native,YesNo,2,2.7
+Race,No        ,American Indian/Alaska Native,YesNo,71,97.3
+Race,Yes       ,American Indian/Alaska Native,YesNo,,
+Race,No        ,American Indian/Alaska Native,YesNo,73,100.0
+Race,Yes       ,American Indian/Alaska Native,YesNo,,
+Race,No        ,American Indian/Alaska Native,YesNo,73,100.0
+Race,Yes       ,American Indian/Alaska Native,YesNo,,
+Race,No        ,American Indian/Alaska Native,YesNo,73,100.0
+Race,Yes       ,American Indian/Alaska Native,YesNo,,
+Race,No        ,American Indian/Alaska Native,YesNo,73,100.0
+Race,Yes       ,American Indian/Alaska Native,YesNo,,
+Race,No        ,American Indian/Alaska Native,YesNo,73,100.0
+Race,Yes       ,American Indian/Alaska Native,YesNo,,
+Race,No        ,American Indian/Alaska Native,YesNo,73,100.0
+Race,Yes       ,American Indian/Alaska Native,YesNo,,
+Race,No        ,American Indian/Alaska Native,YesNo,73,100.0
+Race,Yes       ,American Indian/Alaska Native,YesNo,1,1.4
+Race,No        ,American Indian/Alaska Native,YesNo,72,98.6
+Race,Yes       ,American Indian/Alaska Native,YesNo,42,57.5
+Race,No        ,American Indian/Alaska Native,YesNo,31,42.5
+Race,Yes       ,American Indian/Alaska Native,YesNo,1,1.4
+Race,No        ,American Indian/Alaska Native,YesNo,72,98.6
+Race,Yes       ,American Indian/Alaska Native,YesNo,15,20.5
+Race,No        ,American Indian/Alaska Native,YesNo,58,79.5
+Race,Yes       ,American Indian/Alaska Native,YesNo,,
+Race,No        ,American Indian/Alaska Native,YesNo,73,100.0
+Race,18-49 yr,Other,Age,373,26.9
+Race,50-64 yr,Other,Age,437,31.5
+Race,65+ yr,Other,Age,578,41.6
+Race,Male,Other,Sex,798,57.5
+Race,Female,Other,Sex,589,42.5
+Race,Yes       ,Other,YesNo,9,4.4
+Race,No        ,Other,YesNo,196,95.6
+Race,Yes       ,Other,YesNo,26,12.7
+Race,No        ,Other,YesNo,179,87.3
+Race,Yes       ,Other,YesNo,37,18.0
+Race,No        ,Other,YesNo,168,82.0
+Race,Yes       ,Other,YesNo,59,28.8
+Race,No        ,Other,YesNo,146,71.2
+Race,Yes       ,Other,YesNo,32,15.6
+Race,No        ,Other,YesNo,173,84.4
+Race,Yes       ,Other,YesNo,6,2.9
+Race,No        ,Other,YesNo,198,97.1
+Race,Yes       ,Other,YesNo,25,12.2
+Race,No        ,Other,YesNo,180,87.8
+Race,Yes       ,Other,YesNo,2,0.9
+Race,No        ,Other,YesNo,220,99.1
+Race,Yes       ,Other,YesNo,31,14.0
+Race,No        ,Other,YesNo,191,86.0
+Race,Yes       ,Other,YesNo,18,8.1
+Race,No        ,Other,YesNo,204,91.9
+Race,Yes       ,Other,YesNo,18,8.1
+Race,No        ,Other,YesNo,204,91.9
+Race,Yes       ,Other,YesNo,12,5.4
+Race,No        ,Other,YesNo,210,94.6
+Race,Yes       ,Other,YesNo,85,38.1
+Race,No        ,Other,YesNo,138,61.9
+Race,Yes       ,Other,YesNo,70,31.4
+Race,No        ,Other,YesNo,153,68.6
+Race,Yes       ,Other,YesNo,21,9.4
+Race,No        ,Other,YesNo,202,90.6
+Race,Yes       ,Other,YesNo,69,31.1
+Race,No        ,Other,YesNo,153,68.9
+Race,Yes       ,Other,YesNo,18,8.1
+Race,No        ,Other,YesNo,204,91.9
+Race,Yes       ,Other,YesNo,31,14.0
+Race,No        ,Other,YesNo,191,86.0
+Race,Yes       ,Other,YesNo,23,10.4
+Race,No        ,Other,YesNo,199,89.6
+Race,Yes       ,Other,YesNo,10,4.5
+Race,No        ,Other,YesNo,212,95.5
+Race,Yes       ,Other,YesNo,106,47.5
+Race,No        ,Other,YesNo,117,52.5
+Race,Yes       ,Other,YesNo,20,9.0
+Race,No        ,Other,YesNo,202,91.0
+Race,Yes       ,Other,YesNo,2,0.9
+Race,No        ,Other,YesNo,220,99.1
+Race,Yes       ,Other,YesNo,5,2.3
+Race,No        ,Other,YesNo,217,97.7
+Race,Yes       ,Other,YesNo,35,15.8
+Race,No        ,Other,YesNo,187,84.2
+Race,Yes       ,Other,YesNo,19,8.6
+Race,No        ,Other,YesNo,203,91.4
+Race,Yes       ,Other,YesNo,93,45.6
+Race,No        ,Other,YesNo,111,54.4
+Race,Yes       ,Other,YesNo,29,13.1
+Race,No        ,Other,YesNo,193,86.9
+Race,Yes       ,Other,YesNo,28,12.6
+Race,No        ,Other,YesNo,194,87.4
+Race,Yes       ,Other,YesNo,3,1.4
+Race,No        ,Other,YesNo,219,98.6
+Race,current,Other,Smoker,18,8.1
+Race,former,Other,Smoker,40,18.0
+Race,never,Other,Smoker,164,73.9
+Race,Yes       ,Other,YesNo,18,7.8
+Race,No        ,Other,YesNo,214,92.2
+Race,Yes       ,Other,YesNo,23,9.9
+Race,No        ,Other,YesNo,209,90.1
+Race,Yes       ,Other,YesNo,6,2.6
+Race,No        ,Other,YesNo,226,97.4
+Race,Yes       ,Other,YesNo,36,15.5
+Race,No        ,Other,YesNo,196,84.5
+Race,Yes       ,Other,YesNo,27,11.6
+Race,No        ,Other,YesNo,205,88.4
+Race,Yes       ,Other,YesNo,,
+Race,No        ,Other,YesNo,232,100.0
+Race,Yes       ,Other,YesNo,169,72.8
+Race,No        ,Other,YesNo,63,27.2
+Race,Yes       ,Other,YesNo,54,23.3
+Race,No        ,Other,YesNo,178,76.7
+Race,Yes       ,Other,YesNo,10,4.3
+Race,No        ,Other,YesNo,222,95.7
+Race,Yes       ,Other,YesNo,172,74.1
+Race,No        ,Other,YesNo,60,25.9
+Race,Yes       ,Other,YesNo,41,17.7
+Race,No        ,Other,YesNo,191,82.3
+Race,Yes       ,Other,YesNo,5,2.2
+Race,No        ,Other,YesNo,227,97.8
+Race,Yes       ,Other,YesNo,67,28.9
+Race,No        ,Other,YesNo,165,71.1
+Race,Yes       ,Other,YesNo,46,19.8
+Race,No        ,Other,YesNo,186,80.2
+Race,Yes       ,Other,YesNo,,
+Race,No        ,Other,YesNo,232,100.0
+Race,Yes       ,Other,YesNo,,
+Race,No        ,Other,YesNo,232,100.0
+Race,Yes       ,Other,YesNo,164,70.7
+Race,No        ,Other,YesNo,68,29.3
+Race,Yes       ,Other,YesNo,31,13.4
+Race,No        ,Other,YesNo,201,86.6
+Race,Yes       ,Other,YesNo,9,3.9
+Race,No        ,Other,YesNo,223,96.1
+Race,Yes       ,Other,YesNo,12,5.9
+Race,No        ,Other,YesNo,192,94.1
+Race,Yes       ,Other,YesNo,3,1.5
+Race,No        ,Other,YesNo,201,98.5
+Race,Yes       ,Other,YesNo,,
+Race,No        ,Other,YesNo,204,100.0
+Race,Yes       ,Other,YesNo,31,15.2
+Race,No        ,Other,YesNo,173,84.8
+Race,Yes       ,Other,YesNo,21,10.3
+Race,No        ,Other,YesNo,183,89.7
+Race,Yes       ,Other,YesNo,91,44.6
+Race,No        ,Other,YesNo,113,55.4
+Race,Yes       ,Other,YesNo,3,1.5
+Race,No        ,Other,YesNo,201,98.5
+Race,Yes       ,Other,YesNo,4,2.0
+Race,No        ,Other,YesNo,200,98.0
+Race,Yes       ,Other,YesNo,1,0.5
+Race,No        ,Other,YesNo,203,99.5
+Race,Yes       ,Other,YesNo,2,1.0
+Race,No        ,Other,YesNo,202,99.0
+Race,Yes       ,Other,YesNo,3,1.5
+Race,No        ,Other,YesNo,201,98.5
+Race,Yes       ,Other,YesNo,2,1.0
+Race,No        ,Other,YesNo,202,99.0
+Race,Yes       ,Other,YesNo,2,1.0
+Race,No        ,Other,YesNo,202,99.0
+Race,Yes       ,Other,YesNo,,
+Race,No        ,Other,YesNo,204,100.0
+Race,Yes       ,Other,YesNo,,
+Race,No        ,Other,YesNo,204,100.0
+Race,Yes       ,Other,YesNo,,
+Race,No        ,Other,YesNo,204,100.0
+Race,Yes       ,Other,YesNo,,
+Race,No        ,Other,YesNo,204,100.0
+Race,Yes       ,Other,YesNo,,
+Race,No        ,Other,YesNo,204,100.0
+Race,Yes       ,Other,YesNo,2,1.0
+Race,No        ,Other,YesNo,202,99.0
+Race,Yes       ,Other,YesNo,125,61.3
+Race,No        ,Other,YesNo,79,38.7
+Race,Yes       ,Other,YesNo,2,1.0
+Race,No        ,Other,YesNo,202,99.0
+Race,Yes       ,Other,YesNo,48,23.5
+Race,No        ,Other,YesNo,156,76.5
+Race,Yes       ,Other,YesNo,2,1.0
+Race,No        ,Other,YesNo,201,99.0
+
+"The Coronavirus Disease 2019 (COVID-19)-Associated Hospitalization Surveillance Network (COVID-NET) hospitalization data are preliminary and subject to change as more data become available. In particular, case counts for recent hospital admissions are subject to lag. As data are received each week, prior case counts are updated accordingly. Due to small case counts, data on pediatric cases (0-17 years old) will be suppressed until case counts are sufficient. The denominator for each underlying condition and characteristic data (except for intensive care unit, mechanical ventilation, in-hospital mortality, and discharge diagnoses) is the total number of patients with non-missing data for that condition or characteristic.  The denominator for intensive care unit, mechanical ventilation, in-hospital mortality, and discharge diagnoses is restricted to cases who are no longer hospitalized and who have complete medical chart reviews.  White, Black, Asian/Pacific Islander and American Indian/Alaska Native all represent non-Hispanic ethnicity groups; Other includes persons in multiple race categories and persons for whom race is unknown."
+"COVID-NET conducts population-based surveillance for laboratory-confirmed COVID-19-associated hospitalizations in children (less than 18 years of age) and adults. COVID-NET covers nearly 100 counties in the 10 Emerging Infections Program (EIP) states (CA, CO, CT, GA, MD, MN, NM, NY, OR, TN) and four Influenza Hospitalization Surveillance Project (IHSP) states (IA, MI, OH, and UT). "
+""

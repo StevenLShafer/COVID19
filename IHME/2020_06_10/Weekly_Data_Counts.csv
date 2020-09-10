@@ -1,0 +1,21 @@
+Counts of COVID-19-associated Hospitalizations by Age from the COVID-NET Network (data downloaded on 6/10/2020)Centers for Disease Control and Prevention
+YEAR,WEEK_NUMBER,0-4 YR,5-17 YR,18-49 YR,50-64 YR,65+ YR
+2020,2020-10,0,0,11,6,23
+2020,2020-11,0,0,54,75,88
+2020,2020-12,0,4,256,291,409
+2020,2020-13,7,5,624,783,1039
+2020,2020-14,11,10,626,984,1382
+2020,2020-15,9,7,608,891,1405
+2020,2020-16,12,7,719,914,1510
+2020,2020-17,8,14,742,788,1438
+2020,2020-18,8,15,721,796,1298
+2020,2020-19,10,17,682,725,1029
+2020,2020-20,8,14,641,627,935
+2020,2020-21,13,20,608,568,766
+2020,2020-22,10,14,432,369,537
+2020,2020-23,0,0,0,0,0
+2020,2020-24,0,0,0,0,0
+
+"The Coronavirus Disease 2019 (COVID-19)-Associated Hospitalization Surveillance Network (COVID-NET) hospitalization data are preliminary and subject to change as more data become available. In particular, case counts for recent hospital admissions are subject to lag. As data are received each week, prior case counts are updated accordingly."
+"COVID-NET conducts population-based surveillance for laboratory-confirmed COVID-19-associated hospitalizations in children (less than 18 years of age) and adults. COVID-NET covers nearly 100 counties in the 10 Emerging Infections Program (EIP) states (CA, CO, CT, GA, MD, MN, NM, NY, OR, TN) and four Influenza Hospitalization Surveillance Project (IHSP) states (IA, MI, OH, and UT). "
+""

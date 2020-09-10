@@ -1,0 +1,21 @@
+Percent of COVID-19-associated Hospitalizations by Age from the COVID-NET Network (data downloaded on 6/10/2020)Centers for Disease Control and Prevention
+YEAR,WEEK_NUMBER,0-4 YR,5-17 YR,18-49 YR,50-64 YR,65+ YR
+2020,2020-10,0.0,0.0,27.5,15.0,57.5
+2020,2020-11,0.0,0.0,24.9,34.6,40.6
+2020,2020-12,0.0,0.4,26.7,30.3,42.6
+2020,2020-13,0.3,0.2,25.4,31.9,42.3
+2020,2020-14,0.4,0.3,20.8,32.7,45.9
+2020,2020-15,0.3,0.2,20.8,30.5,48.1
+2020,2020-16,0.4,0.2,22.7,28.9,47.8
+2020,2020-17,0.3,0.5,24.8,26.4,48.1
+2020,2020-18,0.3,0.5,25.4,28.0,45.7
+2020,2020-19,0.4,0.7,27.7,29.4,41.8
+2020,2020-20,0.4,0.6,28.8,28.2,42.0
+2020,2020-21,0.7,1.0,30.8,28.8,38.8
+2020,2020-22,0.7,1.0,31.7,27.1,39.4
+2020,2020-23,0.0,0.0,0.0,0.0,0.0
+2020,2020-24,0.0,0.0,0.0,0.0,0.0
+
+"The Coronavirus Disease 2019 (COVID-19)-Associated Hospitalization Surveillance Network (COVID-NET) hospitalization data are preliminary and subject to change as more data become available. In particular, case counts for recent hospital admissions are subject to lag. As data are received each week, prior case counts are updated accordingly."
+"COVID-NET conducts population-based surveillance for laboratory-confirmed COVID-19-associated hospitalizations in children (less than 18 years of age) and adults. COVID-NET covers nearly 100 counties in the 10 Emerging Infections Program (EIP) states (CA, CO, CT, GA, MD, MN, NM, NY, OR, TN) and four Influenza Hospitalization Surveillance Project (IHSP) states (IA, MI, OH, and UT). "
+""

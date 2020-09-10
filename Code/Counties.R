@@ -20,16 +20,28 @@ plotPred(County = "Hudson County", Title = "Hudson County, NJ")
 plotPred(County = "King County", State = "WA", Title = "King County (Seattle)")
 plotPred(County = "Clark County", State = "WA", Title = "Clark County, Washington")
 plotPred(County = "Los Angeles County", State = "CA", Title = "Los Angeles")
-plotPred(County = c("Santa Clara County", "San Mateo County", "San Francisco County", "Marin County", "Napa County", "Solano County", "Sonoma County"),
-         Title = "Bay Area")
+plotPred(County = c(
+  "Santa Clara County", 
+  "San Mateo County", 
+  "San Francisco County", 
+  "Marin County", 
+  "Napa County", 
+  "Solano County", 
+  "Sonoma County"
+  ),
+  Title = "Bay Area",
+  Subtitle = "Marin, Napa, San Mateo, San Francisco, Santa Clara, Solano, and Sonoma Counties")
+plotPred(County = "Marin County", Title = "Marin County, California")
+plotPred(County = "Napa County", Title = "Napa County, California")
 plotPred(County = "San Francisco County", Title = "San Francisco")
-plotPred(County = c("Santa Clara County", "San Mateo County"), Title = "Santa Clara and San Mateo")
-plotPred(County = "Alameda County", Title = "Alameda County")
+plotPred(County = "San Mateo County", Title = "San Mateo County, California")
+plotPred(County = "Santa Clara County", Title = "Santa Clara County, California")
+plotPred(County = "Alameda County", Title = "Alameda County, California")
 plotPred(County = "San Luis Obispo County", Title = "San Luis Obispo, California")
 plotPred(County = "Fresno County", Title = "Fresno, California")
-plotPred(County = "Santa Barbara County", Title = "Santa Barbara County")
-plotPred(County = "Merced County", State = "CA", Title = "Merced County")
-plotPred(County = "Yolo County", State = "CA", Title = "Yolo County")
+plotPred(County = "Santa Barbara County", Title = "Santa Barbara County, California")
+plotPred(County = "Merced County", State = "CA", Title = "Merced Count, Californiay")
+plotPred(County = "Yolo County", State = "CA", Title = "Yolo County, California")
 plotPred(County = "San Diego County", State = "CA", Title = "San Diego County")
 plotPred(County = "Riverside County", State = "CA", Title = "Riverside County")
 plotPred(County = "Imperial County", State = "CA", Title = "Imperial County")
