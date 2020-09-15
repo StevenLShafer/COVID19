@@ -1133,7 +1133,7 @@ if (weekDay == 1) # Monday only
     dailyRate, 
     " cases per day (",
     round(caseRate,2),
-    "%). ",
+    "%). "
   )
   
   fractionUSA <- 
