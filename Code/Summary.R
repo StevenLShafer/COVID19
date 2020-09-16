@@ -61,6 +61,7 @@ ASIA <- plotPred(
   Subtitle = "Japan, South Korea, Thailand, and Vietnam (Population = 328 MM)"
 ) 
 
+
 emailText <- textSummary(ASIA, "In the non-authoritarian Asian ensemble (population: 328MM)")
 
 WE <- plotPred(
@@ -94,6 +95,91 @@ emailText <- textSummary(WE, "In Western Europe (population: 344MM)")
 # mapWorld$mortality_limited <- pmin(mapWorld$mortality, 15) # Limit to 15% to not distort map below
 # 
 # mapWorld <- mapWorld[!is.na(mapWorld$lcases),]
+
+
+# Plot for Rob Jackler
+USA$DEATHS$Location <- USA$CASES$Location <- "USA (318MM)"
+WE$DEATHS$Location <- WE$CASES$Location <- "Western Europe (344MM)"
+AllCases <- rbind(USA$CASES, WE$CASES)
+AllCases$Type <- "Cases"
+AllDeaths <- rbind(USA$DEATHS, WE$DEATHS)
+AllDeaths$Type <- "Deaths"
+JacklerData <- rbind(AllCases, AllDeaths)
+JacklerData <- JacklerData[JacklerData$Date > as.Date("2020-02-29") & JacklerData$Date <= today,]
+
+JacklerData <- JacklerData[JacklerData$Date > as.Date("2020-02-29") & JacklerData$Date <= today,]
+
+labels <- data.frame(
+  Last = round(
+    JacklerData$Delta_Smoothed_2[JacklerData$Date == yesterday],
+    0),
+  Date = today + 1,
+  Type = c("Cases","Cases","Deaths","Deaths"),
+  Location = c(
+    "USA (318MM)", 
+    "Western Europe (344MM)",
+    "USA (318MM)", 
+    "Western Europe (344MM)"
+  )
+)
+labels$Label <- prettyNum(labels$Last, big.mark = ",", scientific = FALSE)
+SignCases <- sign(labels$Last[1]-labels$Last[2])
+SignDeaths <- sign(labels$Last[3]-labels$Last[4])
+distance = 0.5
+labels$Y <- c(
+  labels$Last[1] * exp(SignCases * distance),
+  labels$Last[2] * exp(-SignCases * distance),
+  labels$Last[3] * exp(SignDeaths * distance),
+  labels$Last[4] * exp(-SignDeaths * distance)
+)
+
+ggObject <- ggplot(JacklerData, aes(x = Date, y = Delta_Smoothed_2, color = Location, linetype = Type)) +
+  geom_line(size = 1.2) +
+  scale_x_date(
+    date_breaks = "14 days",
+    date_labels = "%b %d",
+    minor_breaks = NULL
+  ) +
+  scale_y_log10(
+    breaks = c(3, 10, 30, 100, 300, 1000, 3000, 10000, 30000, 100000),
+    labels = c("3","10", "30","100","300","1,000","3,000", "10,000", "30,000","100,000")
+    ) +
+  scale_color_manual(values = c("dodgerblue","coral")) +
+  labs(
+    y = "Daily Cases",
+    title = "Comparison of COVID-19 Cases & Deaths between US & Europe",
+    subtitle = "Log plot of 7 day average"
+  ) +
+  annotation_logticks() +
+  theme(
+    axis.text.x=element_text(angle=60, hjust=1),
+    plot.subtitle = element_text(size = 8)
+  ) +
+  geom_text(
+    data = labels, 
+    aes(
+      y = Y,
+      label = Label
+    ),
+    show.legend = FALSE
+  )
+nextSlide(ggObject, "Daily Cases in the USA and Western Europe")
+
+emailText <- paste(
+  emailText,
+  email.list.start,
+  "The relative numbers of cases and deaths in the USA and Western Europe shows xxxx:",
+  add_ggplot(
+    plot_object = ggObject,
+    width = 9,
+    height = 4.95,
+    alt = NULL,
+    align = "left",
+    float = "none"
+  ),
+  email.list.end
+)
+
 
 ########################
 # Fisher Plots ########
@@ -442,7 +528,7 @@ ggObject <- plot_usmap(data = States, values = "signCase", color = "black") +
 emailText <- paste(
     emailText,
     email.list.start,
-    "The red/green map for states shows:",
+    "The red/green map for new cases shows:",
     add_ggplot(
       plot_object = ggObject,
       width = 9,
@@ -450,7 +536,8 @@ emailText <- paste(
       alt = NULL,
       align = "left",
       float = "none"
-    )
+    ),
+    email.list.end
   )
 
 nextSlide(ggObject, "Change in New Cases per Day")
@@ -507,6 +594,8 @@ nextSlide(ggObject, "Change in New Deaths per Day")
 
 emailText <- paste(
   emailText,
+  email.list.start,
+  "The red/green map for daily deaths shows:",
   add_ggplot(
     plot_object = ggObject,
     width = 9,

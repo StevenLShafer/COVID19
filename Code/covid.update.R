@@ -29,6 +29,7 @@ library(blastula)
 library(mailR)
 #library(lubridate)
 # rayshader is the package to put spikes on maps
+library(ggrepel)
 
 remove(list=ls())
 Directory <- "g:/projects/COVID/"
