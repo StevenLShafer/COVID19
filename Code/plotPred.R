@@ -16,6 +16,7 @@ plotPred <- function(
     State <- NULL
     Country <- "United States of America"
     Title <- NULL
+    Subtitle <- NULL
     modelStart <- NULL
     debug <- TRUE
     weight <- NULL
@@ -148,7 +149,7 @@ plotPred <- function(
       values = c(2,    2,       2,       1)
     ) +
     scale_x_date(
-      date_breaks = "7 days",
+      date_breaks = "14 days",
       date_labels = "%b %d",
       minor_breaks = NULL
       
@@ -324,26 +325,29 @@ plotPred <- function(
       size = 1.5
     ) +
     labs(
-      y = "Cases / Day",
+      y = "Cases and Deaths / Day",
       caption = caption
     ) +
     scale_x_date(
-      date_breaks = "7 days",
+      date_breaks = "14 days",
       date_labels = "%b %d",
       minor_breaks = NULL
     ) +
-    scale_y_continuous(
-      label = comma,
-      sec.axis = sec_axis(
-        trans=~./deathAxis, 
-        name="Deaths / Day",
-        label = comma,
-        ) 
+    scale_y_log10(
+      label = comma
+      # ,
+      # sec.axis = sec_axis(
+      #   trans=~./deathAxis, 
+      #   name="Deaths / Day",
+      #   label = comma,
+      #   ) 
     ) +
+    annotation_logticks() +
     coord_cartesian(
       expand = TRUE, 
       clip = "on",
-      xlim = c(startDate,endDate + 2) 
+      xlim = c(startDate,endDate + 2),
+      ylim = c(1,maxY)
     ) +
     theme(
       axis.title.x = element_blank(),
@@ -378,6 +382,14 @@ plotPred <- function(
       )
     }
   }
+  
+  ggp <- ggplot_build(ggObject2)
+  ggp$layout$panel_params[[1]]$y
+  
+  
+  [[1]]$y.labels
+  ggp$layout$panel_scales_y[[1]]$range$range  # data range!
+  ggp$layout$panel_scales_x[[1]]$range$range  # data range!
   
 
   if (debug) print(ggObject2)

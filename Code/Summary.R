@@ -61,7 +61,6 @@ ASIA <- plotPred(
   Subtitle = "Japan, South Korea, Thailand, and Vietnam (Population = 328 MM)"
 ) 
 
-
 emailText <- textSummary(ASIA, "In the non-authoritarian Asian ensemble (population: 328MM)")
 
 WE <- plotPred(

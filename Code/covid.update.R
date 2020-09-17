@@ -50,7 +50,7 @@ yesterdayText <- format(yesterday, "X%m.%e.%y")
 yesterdayText <- gsub("X0","X",yesterdayText)
 yesterdayText <- gsub(" ","",yesterdayText) 
 startDate <- as.Date("2020-01-22")
-endDate <- as.Date("2020-10-01")
+endDate <- as.Date("2020-11-01")
 projection <- endDate - today + 1
 currentDates <- seq(startDate, today-1, by="days")
 allDates     <- seq(startDate, endDate, by="days")
@@ -64,7 +64,7 @@ daysLinearFitDeaths <- 14    # Number of days for the linear regression (increas
 daysGompertzFit <- 21 # Number of days for the Gompertz model
 asymptomatic <- 10    # Number of asymptomatic patients per symptomatic patient,
                       # limits Gompertz peak to population / asymptomatic * 0.6
-deathAxis <- 20       # Relative size of right axis (deaths / day) to left axis (cases / day)
+deathAxis <- 1 #20       # Relative size of right axis (deaths / day) to left axis (cases / day)
 
 plotGrowthFlag <- FALSE
 
@@ -126,7 +126,7 @@ plotGrowthFlag <- FALSE
   shell (paste('git commit -m "Update for', todayText, '"'))
   shell ("git push")
 
-  pbPost(
+  topbPost(
     #  devices = "Phone",
     channel = "",
     type = "note",
