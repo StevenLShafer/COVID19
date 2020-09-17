@@ -12,9 +12,9 @@ plotPred <- function(
   debug <- FALSE
   if (!exists("modelStart"))
   {
-    County <- NULL
-    State <- NULL
-    Country <- "United States of America"
+    County <- "Androscoggin County"
+    State <- "ME"
+    Country <- NULL
     Title <- NULL
     Subtitle <- NULL
     modelStart <- NULL
@@ -242,12 +242,23 @@ plotPred <- function(
     DEATHS$Delta[DEATHS$Date < today & CASES$Phase == "Modeled"] * deathAxis
   ) * 1.05
   
+  CASES$DailySmoothed <- CASES$Delta_Smoothed_2
+  DEATHS$DailySmoothed <- DEATHS$Delta_Smoothed_2
+  CASES$DailySmoothed[CASES$DailySmoothed < 1] <- 0.8
+  DEATHS$DailySmoothed[DEATHS$DailySmoothed < 1] <- 0.8
+  
+  CASES$DailyRaw <- CASES$Delta
+  DEATHS$DailyRaw <- DEATHS$Delta
+  CASES$DailyRaw[CASES$DailyRaw < 1] <- 0.8
+  DEATHS$DailyRaw[DEATHS$DailyRaw < 1] <- 0.8
+  
+  
   ggObject2 <-
     ggplot(
       CASES, 
       aes(
         x=Date, 
-        y = Delta_Smoothed_2)
+        y = DailySmoothed)
     ) +  
     geom_point(
       data = CASES[CASES$Date < today & CASES$Phase == "Pre-Model",], 
@@ -274,7 +285,7 @@ plotPred <- function(
     # ) +
     geom_point(
       data = CASES[CASES$Date < today & CASES$Phase == "Modeled",],  
-      aes(y = Delta), 
+      aes(y = DailyRaw), 
       color = "red", 
       size = 0.2, 
       shape = 3, 
@@ -283,7 +294,7 @@ plotPred <- function(
     ) +
     geom_point(
       data = DEATHS[DEATHS$Date < today,], 
-      aes(y = Delta_Smoothed_2 * deathAxis), 
+      aes(y = DailySmoothed * deathAxis), 
       color = "black", 
       size = 1, 
       na.rm = TRUE, 
@@ -291,7 +302,7 @@ plotPred <- function(
     ) +
     geom_point(
       data = DEATHS[DEATHS$Date < today & CASES$Phase == "Modeled",],  
-      aes(y = Delta * deathAxis), 
+      aes(y = DailyRaw * deathAxis), 
       color = "black", 
       size = 0.2, 
       shape = 3, 
@@ -347,7 +358,7 @@ plotPred <- function(
       expand = TRUE, 
       clip = "on",
       xlim = c(startDate,endDate + 2),
-      ylim = c(1,maxY)
+      ylim = c(0.8,maxY)
     ) +
     theme(
       axis.title.x = element_blank(),

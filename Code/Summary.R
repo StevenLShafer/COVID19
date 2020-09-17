@@ -110,7 +110,7 @@ JacklerData <- JacklerData[JacklerData$Date > as.Date("2020-02-29") & JacklerDat
 
 labels <- data.frame(
   Last = round(
-    JacklerData$Delta_Smoothed_2[JacklerData$Date == yesterday],
+    JacklerData$Delta[JacklerData$Date == yesterday],
     0),
   Date = today + 1,
   Type = c("Cases","Cases","Deaths","Deaths"),
@@ -147,7 +147,8 @@ ggObject <- ggplot(JacklerData, aes(x = Date, y = Delta_Smoothed_2, color = Loca
   labs(
     y = "Daily Cases",
     title = "Comparison of COVID-19 Cases & Deaths between US & Europe",
-    subtitle = "Log plot of 7 day average"
+    subtitle = "Log plot of 7 day average",
+    caption = "The numbers on the right are yesterday's figures, and will differ a bit from the plotted rolling mean"
   ) +
   annotation_logticks() +
   theme(
