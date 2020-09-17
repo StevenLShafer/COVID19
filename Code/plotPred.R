@@ -383,15 +383,6 @@ plotPred <- function(
     }
   }
   
-  ggp <- ggplot_build(ggObject2)
-  ggp$layout$panel_params[[1]]$y
-  
-  
-  [[1]]$y.labels
-  ggp$layout$panel_scales_y[[1]]$range$range  # data range!
-  ggp$layout$panel_scales_x[[1]]$range$range  # data range!
-  
-
   if (debug) print(ggObject2)
 
   plots <- list(ggObject1, ggObject2)
