@@ -126,7 +126,7 @@ plotGrowthFlag <- FALSE
   shell (paste('git commit -m "Update for', todayText, '"'))
   shell ("git push")
 
-  topbPost(
+  pbPost(
     #  devices = "Phone",
     channel = "",
     type = "note",
