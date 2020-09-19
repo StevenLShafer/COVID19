@@ -394,6 +394,32 @@ plotPred <- function(
     }
   }
   
+  if  (Country == "Israel")
+  {
+      ggObject2 <- ggObject2 + 
+        annotate(
+          "segment", 
+          x = as.Date("2020-09-18"), 
+          xend = as.Date("2020-09-18"), 
+          y = 0, 
+          yend = maxY, 
+          color = "orange"
+        )  +
+        annotate(
+          "text", 
+          label ="Second Lockdown",
+          angle = 90,
+          x = as.Date("2020-09-18"), 
+          y = maxY, 
+          color = "orange",
+          size = 2,
+          hjust = 1,
+          vjust = -0.5
+        )
+  }
+  
+  
+  
   if (debug) print(ggObject2)
 
   plots <- list(ggObject1, ggObject2)

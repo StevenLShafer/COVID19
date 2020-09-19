@@ -30,6 +30,8 @@ library(mailR)
 #library(lubridate)
 # rayshader is the package to put spikes on maps
 library(ggrepel)
+require(jsonlite)
+
 
 remove(list=ls())
 Directory <- "g:/projects/COVID/"
@@ -123,9 +125,11 @@ plotGrowthFlag <- FALSE
     
     )
 
-  shell ("git add .")
-  shell (paste('git commit -m "Update for', todayText, '"'))
-  shell ("git push")
+  # shell ("git add .")
+  # shell (paste('git commit -m "Update for', todayText, '"'))
+  # shell ("git push")
+  
+  shell(paste("gogit", todayText), wait=FALSE)
 
   pbPost(
     #  devices = "Phone",

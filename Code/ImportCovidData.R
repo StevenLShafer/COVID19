@@ -486,6 +486,20 @@ Ensemble <- pivot_wider(
   values_from = value
 )
 
+
+# Read NYT School Data
+X <- readLines(  "https://www.nytimes.com/interactive/2020/us/covid-college-cases-tracker.html?action=click&module=Top%20Stories&pgtype=Homepage")
+X1 <- X[grep("NYTG_schools",X)]
+X2 <- substr(X1,22,10000000)
+X3 <- gsub("];","]", X2)
+Schools_USA <- fromJSON(X3)
+Schools_USA$logo <- NULL
+Schools_USA$label <- NULL
+Schools_USA$medicalnote <- NULL
+Schools_USA$location <- NULL
+Schools_USA$coord <- NULL
+
+
 ###########################################################
 ### Write formatted data                                ###
 ###########################################################
@@ -500,4 +514,6 @@ write.csv(Deaths_Global,  paste0(dirTodayUpdateData, "Deaths_Global." ,  todayTe
 write.csv(Testing_Global, paste0(dirTodayUpdateData, "Testing_Global.",  todayText, ".csv"), row.names = FALSE)
 #write.csv(Mobility_Global, paste0(paste0(dirTodayUpdateData,"Mobility_Global.", todayText, ".csv"), row.names = FALSE)
 write.csv(Ensemble,       paste0(dirTodayUpdateData, "Ensemble.",  todayText, ".csv"), row.names = FALSE)
+write.csv(Ensemble,       paste0(dirTodayUpdateData, "Ensemble.",  todayText, ".csv"), row.names = FALSE)
+write.csv(Schools_USA,       paste0(dirTodayUpdateData, "Schools_USA.",  todayText, ".csv"), row.names = FALSE)
 
