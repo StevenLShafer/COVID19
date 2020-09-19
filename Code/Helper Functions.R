@@ -270,3 +270,8 @@ us_state_grid4 <- data.frame(
   name = c("Maine", "Alaska", "New Hampshire", "Vermont", "Wisconsin", "Idaho", "Illinois", "Massachusetts", "Michigan", "Minnesota", "Montana", "New York", "North Dakota", "Washington", "Connecticut", "Indiana", "Iowa", "Nevada", "New Jersey", "Ohio", "Oregon", "Pennsylvania", "Rhode Island", "South Dakota", "Wyoming", "California", "Colorado", "Delaware", "Kentucky", "Maryland", "Missouri", "Nebraska", "Utah", "Virginia", "West Virginia", "Arizona", "Arkansas", "Kansas", "New Mexico", "North Carolina", "South Carolina", "Tennessee", "District of Columbia", "Alabama", "Georgia", "Louisiana", "Mississippi", "Oklahoma", "Florida", "Hawaii", "Texas"),
   stringsAsFactors = FALSE
 )
+
+plim <- function (x, min, max)
+  return(
+    pmin(pmax(x, min),max)
+  )

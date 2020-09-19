@@ -97,89 +97,22 @@ emailText <- textSummary(WE, "In Western Europe (population: 344MM)")
 
 
 # Plot for Rob Jackler
-USA$DEATHS$Location <- USA$CASES$Location <- "USA (318MM)"
-WE$DEATHS$Location <- WE$CASES$Location <- "Western Europe (344MM)"
-AllCases <- rbind(USA$CASES, WE$CASES)
-AllCases$Type <- "Cases"
-AllDeaths <- rbind(USA$DEATHS, WE$DEATHS)
-AllDeaths$Type <- "Deaths"
-JacklerData <- rbind(AllCases, AllDeaths)
-JacklerData <- JacklerData[JacklerData$Date > as.Date("2020-02-29") & JacklerData$Date <= today,]
-
-JacklerData <- JacklerData[JacklerData$Date > as.Date("2020-02-29") & JacklerData$Date <= today,]
-
-labels <- data.frame(
-  Last = round(
-    JacklerData$Delta[JacklerData$Date == yesterday],
-    0),
-  Date = today + 1,
-  Type = c("Cases","Cases","Deaths","Deaths"),
-  Location = c(
-    "USA (318MM)", 
-    "Western Europe (344MM)",
-    "USA (318MM)", 
-    "Western Europe (344MM)"
-  )
-)
-labels$Label <- prettyNum(labels$Last, big.mark = ",", scientific = FALSE)
-SignCases <- sign(labels$Last[1]-labels$Last[2])
-SignDeaths <- sign(labels$Last[3]-labels$Last[4])
-distance = 0.5
-labels$Y <- c(
-  labels$Last[1] * exp(SignCases * distance),
-  labels$Last[2] * exp(-SignCases * distance),
-  labels$Last[3] * exp(SignDeaths * distance),
-  labels$Last[4] * exp(-SignDeaths * distance)
+jacklerPlot(
+  DATA1 = USA,
+  DATA2 = WE,
+  Loc1 = "USA (318MM)",
+  Loc2 = "Western Europe (344MM)",
+  title = "Comparison of COVID-19 Cases & Deaths between US & Europe"
 )
 
-ggObject <- ggplot(JacklerData, aes(x = Date, y = Delta_Smoothed_2, color = Location, linetype = Type)) +
-  geom_line(size = 1.2) +
-  scale_x_date(
-    date_breaks = "14 days",
-    date_labels = "%b %d",
-    minor_breaks = NULL
-  ) +
-  scale_y_log10(
-    breaks = c(3, 10, 30, 100, 300, 1000, 3000, 10000, 30000, 100000),
-    labels = c("3","10", "30","100","300","1,000","3,000", "10,000", "30,000","100,000")
-    ) +
-  scale_color_manual(values = c("dodgerblue","coral")) +
-  labs(
-    y = "Daily Cases",
-    title = "Comparison of COVID-19 Cases & Deaths between US & Europe",
-    subtitle = "Log plot of 7 day average",
-    caption = "The numbers on the right are yesterday's figures, and will differ a bit from the plotted rolling mean"
-  ) +
-  annotation_logticks() +
-  theme(
-    axis.text.x=element_text(angle=60, hjust=1),
-    plot.subtitle = element_text(size = 8)
-  ) +
-  geom_text(
-    data = labels, 
-    aes(
-      y = Y,
-      label = Label
-    ),
-    show.legend = FALSE
-  )
-nextSlide(ggObject, "Daily Cases in the USA and Western Europe")
 
-emailText <- paste(
-  emailText,
-  email.list.start,
-  "The relative numbers of cases and deaths in the USA and Western Europe shows xxxx:",
-  add_ggplot(
-    plot_object = ggObject,
-    width = 9,
-    height = 4.95,
-    alt = NULL,
-    align = "left",
-    float = "none"
-  ),
-  email.list.end
-)
-
+# jacklerPlot(
+#   DATA1 = USA,
+#   DATA2 = ASIA,
+#   Loc1 = "USA (318MM)",
+#   Loc2 = "Asian Ensemble (328MM)",
+#   title = "Comparison of COVID-19 Cases & Deaths between US & Asian Enseble"
+# )
 
 ########################
 # Fisher Plots ########
@@ -552,7 +485,7 @@ ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 58 & Cases_Long$Date < 
     breaks = c(0,25,50,75, 100)
   ) +
   coord_cartesian(ylim = c(0,100)) +
-  facet_geo(~ State, grid = "us_state_grid4") +
+  facet_geo(~ State, grid = us_state_grid4) +
   labs(
     y = "Percent of Peak",
     title = "Daily Cases as a Percent of Peak Cases") +
@@ -617,7 +550,7 @@ ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 58 & Cases_Long$Date < 
     breaks = c(0,25,50,75, 100)
   ) +
   coord_cartesian(ylim = c(0,100)) +
-  facet_geo(~ State, grid = "us_state_grid4") +
+  facet_geo(~ State, grid = us_state_grid4) +
   labs(
     y = "Percent of Peak",
     title = "Daily Deaths as a Percent of Peak Deaths") +
@@ -630,52 +563,18 @@ ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 58 & Cases_Long$Date < 
   )
 nextSlide(ggObject, "Deaths as a Percent of Peak Deaths")
 
-States$Quadrant <- 1
-States$Quadrant[States$slopeCases < 0 & States$slopeDeaths < 0] <- 2
-States$Quadrant[States$slopeCases > 0 & States$slopeDeaths < 0] <- 3
-States$Quadrant[States$slopeCases < 0 & States$slopeDeaths > 0] <- 4
-
-ggObject <- ggplot(States,aes(x = slopeCases, y = slopeDeaths, label=Abbreviation)) +
-  geom_text(size = 3, aes(color = as.factor(Quadrant)), show.legend=FALSE) +
-  labs(
-    title = paste("Change in cases vs change in deaths over last 14 days as of", today),
-    y = "Change in deaths (%/day)",
-    x = "Change in cases (%/day)"
-  ) +
-  coord_cartesian() +
-  scale_color_manual(values = c("red","forestgreen","blue","magenta")) +
-  annotate(
-    "segment",
-    x = 0,
-    xend = 0,
-    y = min(States$slopeDeaths),
-    yend = max(States$slopeDeaths),
-    color = "black"
-  ) +
-  annotate(
-    "segment",
-    y = 0,
-    yend = 0,
-    x = min(States$slopeCases),
-    xend = max(States$slopeCases),
-    color = "black"
-  )
-
-nextSlide(ggObject, "Change in cases vs change in deaths")
-
-emailText <- paste(
-  emailText,
-  email.list.start,
-  "The four quadrant map for changes in cases vs changes in deaths:",
-  add_ggplot(
-    plot_object = ggObject,
-    width = 9,
-    height = 4.5,
-    alt = NULL,
-    align = "left",
-    float = "none"
-  ),
-  email.list.end
+fourQPlot(
+  DATA = States,
+  colX = "slopeCases",
+  colY = "slopeDeaths",
+  title = "Change in cases vs. change in deaths over last 14 days",
+  labelX = "Change in cases (%/day)",
+  labelY = "Change in deaths (%/day)",
+  maxX = 6,
+  maxY = 6,
+  colors = c("red","forestgreen","blue","magenta"),
+  caption = "Size is proportional total cases per capita",
+  scale = States$totalCases / States$Population
 )
 
 
@@ -754,7 +653,7 @@ ggObject <- ggplot(Testing_USA_zeroOne[Testing_USA_zeroOne$Date >= "2020-03-01",
     labels = c("min","max")
   ) +
   coord_cartesian(ylim = c(0,1)) +
-  facet_geo(~ Abbreviation, grid = "us_state_grid4") +
+  facet_geo(~ Abbreviation, grid = us_state_grid4) +
   labs(
     y = "Daily testing from min to max",
     title = "Daily testing trends from min to max",
@@ -808,7 +707,7 @@ ggObject <- ggplot(Positive_USA_zeroOne[Positive_USA_zeroOne$Date >= "2020-03-01
     labels = c("min","max")
   ) +
   coord_cartesian(ylim = c(0,1)) +
-  facet_geo(~ Abbreviation, grid = "us_state_grid4") +
+  facet_geo(~ Abbreviation, grid = us_state_grid4) +
   labs(
     y = "Fraction positive from min to max",
     title = "Positive fraction trends from min to max") +
@@ -833,52 +732,18 @@ stateFisherPlot(
 
 # Four quadrant graph for testing and positivity
 
-States$Quadrant <- 1
-States$Quadrant[States$slopeTests < 0 & States$slopePositiveTests < 0] <- 2
-States$Quadrant[States$slopeTests > 0 & States$slopePositiveTests < 0] <- 3
-States$Quadrant[States$slopeTests < 0 & States$slopePositiveTests > 0] <- 4
-
-ggObject <- ggplot(States,aes(x = slopeTests, y = slopePositiveTests, label=Abbreviation, size = dailyDeaths)) +
-  geom_text(aes(color = as.factor(Quadrant)), show.legend=FALSE) +
-  labs(
-    title = paste("Change in tests vs change in positive tests last 14 days as of", today),
-    y = "Change in positive tests (%/day)",
-    x = "Change in tests (%/day)",
-    caption = "Size of the state font reflects the number of deaths over the past 7 days."
-  ) +
-  coord_cartesian() +
-  scale_color_manual(values = c("magenta","blue","forestgreen","red")) +
-  annotate(
-    "segment",
-    x = 0,
-    xend = 0,
-    y = min(States$slopePositiveTests),
-    yend = max(States$slopePositiveTests),
-    color = "black"
-  ) +
-  annotate(
-    "segment",
-    y = 0,
-    yend = 0,
-    x = min(States$slopeTests, -1),
-    xend = max(States$slopeTests),
-    color = "black"
-  )
-nextSlide(ggObject, "Change in tests vs change in positive tests")
-
-emailText <- paste(
-  emailText,
-  email.list.start,
-  "The four quadrant graph for change in testing vs change in positivity shows  xxxsx:",
-  add_ggplot(
-    plot_object = ggObject,
-    width = 9,
-    height = 4.5,
-    alt = NULL,
-    align = "left",
-    float = "none"
-  ),
-  email.list.end
+fourQPlot(
+  DATA = States,
+  colX = "slopeTests",
+  colY = "slopePositiveTests",
+  title = "Change in tests vs. change in positive tests over last 14 days",
+  labelX = "Change in tests (%/day)",
+  labelY = "Change in positive tests (%/day)",
+  maxX = 5,
+  maxY = 1.5,
+  colors = c("magenta","blue","forestgreen","red"),
+  caption = "Size is proportional daily deaths per capita over the past 7 days",
+  scale = States$dailyDeaths / States$Population
 )
 
 # Hospitalizatons
@@ -902,7 +767,7 @@ ggObject <- ggplot(Hospitalization_USA_zeroOne[Hospitalization_USA_zeroOne$Date 
     labels = c("min","max")
   ) +
   coord_cartesian(ylim = c(0,1)) +
-  facet_geo(~ Abbreviation, grid = "us_state_grid4") +
+  facet_geo(~ Abbreviation, grid = us_state_grid4) +
   labs(
     y = "Hospitalizations from min to max",
     title = "Hospitalizations trends from min to max") +

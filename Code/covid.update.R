@@ -79,6 +79,7 @@ plotGrowthFlag <- FALSE
   source(paste0(dirCode,"calcStats.R"))
   source(paste0(dirCode,"plotPred.R"))
   source(paste0(dirCode,"FisherPlots.R"))
+  source(paste0(dirCode, "fourQPlot.R"))
   
   source(paste0(dirCode,"persistent.download.R")) # Won't return until there are data for today
   source(paste0(dirCode,"ImportCovidData.R"))     # Reads files created from persistent.Download
