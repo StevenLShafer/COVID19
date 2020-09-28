@@ -86,6 +86,11 @@ calcStats <- function(
     }
 
     use <- useCounty & useState
+    # # Fix problem with unassigned cases in Massechusetts
+    # if (!is.null(State) && State=="MA")
+    # {
+    #   use <- use & Cases_USA$County.Name != "Unassigned"
+    # }
     CASES <- data.frame(
       Date = allDates,
       Actual = c(colSums(Cases_USA[use, 5:ncol(Cases_USA)],na.rm=TRUE), rep(NA, projection)),

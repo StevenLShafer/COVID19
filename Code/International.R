@@ -1,5 +1,6 @@
 # International
 newSection("International")
+# Western Europe
 plotPred(Country = "Italy", Title = "Italy")
 plotPred(Country = "Spain", Title = "Spain")
 plotPred(Country = "Portugal", Title = "Portugal")
@@ -7,23 +8,38 @@ plotPred(Country = "France", Title = "France")
 plotPred(Country = "Germany", Title = "Germany")
 plotPred(Country = "Switzerland", Title = "Switzerland")
 plotPred(Country = "Austria", Title = "Austria")
-plotPred(Country = "Sweden", Title = "Sweden")
 plotPred(Country = "Netherlands", Title = "Netherlands")
 plotPred(Country = "United Kingdom", Title = "United Kingdom")
+plotPred(Country = "Greece", Title = "Greece")
+plotPred(Country = "Luxembourg", Title = "Luxembourg")
+plotPred(Country = "Belgium", Title = "Belgium")
+
+
+plotPred(Country = "Sweden", Title = "Sweden")
+plotPred(Country = "Norway", Title = "Norway")
+plotPred(Country = "Denmark", Title = "Denmark")
+plotPred(Country = "Finland", Title = "Finland")
+
 plotPred(Country = "Ireland", Title = "Ireland")
 plotPred(Country = "Iceland", Title = "Iceland")
-# plotPred(Country = "Paraguay", Title = "Paraguay")
 # plotPred(Country = "Rwanda", Title = "Rwanda"
-plotPred(Country = "Canada", Title = "Canada")
+
 plotPred(Country = "Australia", Title = "Australia")
 plotPred(Country = "New Zealand", Title = "New Zealand")
+
+# Asia
 plotPred(Country = "China", Title = "China")
 plotPred(Country = "Taiwan")
-
+plotPred(Country = "Vietnam")
+plotPred(Country = "Thailand")
 plotPred(Country = "South Korea", Title = "South Korea")
 plotPred(Country = "Singapore", Title = "Singapore")
 plotPred(Country = "Japan", Title = "Japan")
+
+# Africa
 plotPred(Country = "South Africa", Title = "South Africa")
+
+# Middle East
 plotPred(Country = "Israel", Title = "Israel")
 plotPred(Country = "Turkey", Title = "Turkey")
 plotPred(Country = "Lebanon")
@@ -92,8 +108,11 @@ plotPred(Country =  "Guatemala")
 plotPred(Country = "Honduras")
 plotPred(Country =  "Nicaragua")
 plotPred(Country = "Panama")
-  
 plotPred(Country = "Mexico", Title = "Mexico")
+
+plotPred(Country= "Canada")
+
+# Asia
 plotPred(Country = "Ukraine")
 plotPred(Country = "Russia", Title = "Russia")
 plotPred(Country = "India", Title = "India")

@@ -32,7 +32,6 @@ library(mailR)
 library(ggrepel)
 require(jsonlite)
 
-
 remove(list=ls())
 Directory <- "g:/projects/COVID/"
 powerpnt <- '"C:/Program Files/Microsoft Office/root/Office16/powerpnt.exe"'
@@ -82,6 +81,7 @@ plotGrowthFlag <- FALSE
   source(paste0(dirCode,"plotPred.R"))
   source(paste0(dirCode,"FisherPlots.R"))
   source(paste0(dirCode, "fourQPlot.R"))
+  source(paste0(dirCode, "jacklerPlot.R"))
   
   source(paste0(dirCode,"persistent.download.R")) # Won't return until there are data for today
   source(paste0(dirCode,"ImportCovidData.R"))     # Reads files created from persistent.Download
@@ -122,7 +122,6 @@ plotGrowthFlag <- FALSE
   file.copy(
     from = FILES,
     to = NEW,
-    
     )
 
   # shell ("git add .")
@@ -139,5 +138,3 @@ plotGrowthFlag <- FALSE
     body = "The report is complete.",
     apikey = "o.Jb1UN5cEOOZnaZ7Tp3rsxf4vShe82xXy"
   )
-
-#}

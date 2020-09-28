@@ -12,8 +12,8 @@ plotPred <- function(
   debug <- FALSE
   if (!exists("modelStart"))
   {
-    County <- "Androscoggin County"
-    State <- "ME"
+    County <- NULL
+    State <- "MA"
     Country <- NULL
     Title <- NULL
     Subtitle <- NULL
@@ -394,7 +394,7 @@ plotPred <- function(
     }
   }
   
-  if  (Country == "Israel")
+  if  (!is.null(Country) && length(Country) == 1 && Country == "Israel")
   {
       ggObject2 <- ggObject2 + 
         annotate(

@@ -55,13 +55,6 @@ emailText <- textSummary(USA, "In the US")
 #   ) +
 #   coord_cartesian(xlim = c(as.Date("2020-03-02"), as.Date("2020-08-17")))
 
-ASIA <- plotPred(
-  Country = c("Japan","South Korea","Vietnam","Thailand"), 
-  Title = "Non-authoritarian Asian ensemble", 
-  Subtitle = "Japan, South Korea, Thailand, and Vietnam (Population = 328 MM)"
-) 
-
-emailText <- textSummary(ASIA, "In the non-authoritarian Asian ensemble (population: 328MM)")
 
 WE <- plotPred(
   Country = c("United Kingdom", "France", "Germany", "Greece",
@@ -105,14 +98,13 @@ jacklerPlot(
   title = "Comparison of COVID-19 Cases & Deaths between US & Europe"
 )
 
+ASIA <- plotPred(
+  Country = c("Japan","South Korea","Vietnam","Thailand"), 
+  Title = "Non-authoritarian Asian ensemble", 
+  Subtitle = "Japan, South Korea, Thailand, and Vietnam (Population = 328 MM)"
+) 
 
-# jacklerPlot(
-#   DATA1 = USA,
-#   DATA2 = ASIA,
-#   Loc1 = "USA (318MM)",
-#   Loc2 = "Asian Ensemble (328MM)",
-#   title = "Comparison of COVID-19 Cases & Deaths between US & Asian Enseble"
-# )
+emailText <- textSummary(ASIA, "In the non-authoritarian Asian ensemble (population: 328MM)")
 
 ########################
 # Fisher Plots ########

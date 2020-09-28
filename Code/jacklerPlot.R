@@ -8,37 +8,44 @@ jacklerPlot <- function (
   title
 )
 {
+  
+  # DATA1 <- USA
+  # DATA2 <- WE
+  # Loc1 <- "USA (318MM)"
+  # Loc2 <- "Western Europe (344MM)"
+  # title <- "Comparison of COVID-19 Cases & Deaths between US & Europe"
+  
   use <- DATA1$CASES$Date  > as.Date("2020-02-29") & DATA1$CASES$Date <= today
-  DATA1_CASES <- DATA1$CASES[USE,c("Date", "Delta_Smoothed_2")]
-  DATA1_DEATHS <- DATA1$DEATHS[USE,c("Date", "Delta_Smoothed_2")]
-  DATA2_CASES <- DATA2$CASES[USE,c("Date", "Delta_Smoothed_2")]
-  DATA2_DEATHS <- DATA2$DEATHS[USE,c("Date", "Delta_Smoothed_2")]
+  DATA1_CASES <- DATA1$CASES[use,c("Date", "Delta", "Delta_Smoothed_2")]
+  DATA1_DEATHS <- DATA1$DEATHS[use,c("Date", "Delta", "Delta_Smoothed_2")]
+  DATA2_CASES <- DATA2$CASES[use,c("Date", "Delta", "Delta_Smoothed_2")]
+  DATA2_DEATHS <- DATA2$DEATHS[use,c("Date", "Delta", "Delta_Smoothed_2")]
   
   DATA1_CASES$Location <- DATA1_DEATHS$Location <- Loc1
   DATA2_CASES$Location <- DATA2_DEATHS$Location <- Loc2
   DATA1_CASES$Type <- DATA2_CASES$Type <- "Cases"
   DATA1_DEATHS$Type <- DATA2_DEATHS$Type <- "Deaths"
-  
   JacklerData <- rbind(DATA1_CASES, DATA2_CASES, DATA1_DEATHS, DATA2_DEATHS)
   
   labels <- data.frame(
     Last = round(
       JacklerData$Delta[JacklerData$Date == yesterday],
       0),
+    yPOS = JacklerData$Delta_Smoothed_2[JacklerData$Date == yesterday],
     Date = today + 1,
     Type = c("Cases","Cases","Deaths","Deaths"),
     Location = c(Loc1, Loc2, Loc1, Loc2)
   )
   
   labels$Label <- prettyNum(labels$Last, big.mark = ",", scientific = FALSE)
-  SignCases <- sign(labels$Last[1]-labels$Last[2])
-  SignDeaths <- sign(labels$Last[3]-labels$Last[4])
+  SignCases <- sign(labels$yPOS[1]-labels$yPOS[2])
+  SignDeaths <- sign(labels$yPOS[3]-labels$yPOS[4])
   distance = 0.5
   labels$Y <- c(
-    labels$Last[1] * exp(SignCases * distance),
-    labels$Last[2] * exp(-SignCases * distance),
-    labels$Last[3] * exp(SignDeaths * distance),
-    labels$Last[4] * exp(-SignDeaths * distance)
+    labels$yPOS[1] * exp(SignCases * distance),
+    labels$yPOS[2] * exp(-SignCases * distance),
+    labels$yPOS[3] * exp(SignDeaths * distance),
+    labels$yPOS[4] * exp(-SignDeaths * distance)
   )
   
   X <- abs(log(DATA1_CASES$Delta_Smoothed_2) - log(DATA2_CASES$Delta_Smoothed_2))
