@@ -1114,7 +1114,7 @@ ggplot(subset, aes(x = percentCases, y = growthCases)) +
 
 
 print(pptx, target = pptxfileName)
-shell.exec(pptxfileName)
+#shell.exec(pptxfileName)
 
 emailText <- paste(
   emailText,
