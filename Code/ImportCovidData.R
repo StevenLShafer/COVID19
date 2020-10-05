@@ -131,23 +131,30 @@ if (FALSE)
 # if (sum(Cases_USA$CountyFips != Population_USA$CountyFIPS) > 0)
 #   cat("Matching failed between allCases and Population\n")
 #
-# Testing and hospitalizations in the US
-Testing_USA.raw$Date <- as.Date(as.character(Testing_USA.raw$date), format = "%Y%m%d")
-Testing_USA.raw$percentPositive <- Testing_USA.raw$positive / (Testing_USA.raw$negative + Testing_USA.raw$positive) * 100
-Testing_USA <- cbind(
-  States[,1:3],
-  matrix(0,nrow=51, ncol=length(currentDates))
-)
-names(Testing_USA) <- c(names(States)[1:3], as.character(currentDates, format = "X%m.%d.%y"))
-Testing_USA_zeroOne <- Testing_USA_Daily <- Positive_USA <- 
-  Positive_USA_zeroOne <- Hospitalization_USA_zeroOne <- 
-  Testing_USA
 
-# Testing_USA$hospitalizedCumulative and Testing_USA$hospitalized are identical
-Cols <- ncol(Testing_USA)
-for (i in 1:nrow(Testing_USA))
+###########################################################################################
+# Testing and hospitalizations in the US                                                  #
+###########################################################################################
+# Notes: 
+#  Positive often (and probably always should) = number of cases
+#  Negative = number of tests - number of cases
+#  Both are CUMULATIVE. Need to carefully look at implications of using cumulative numbers only
+
+Testing_USA.raw$Date <- as.Date(as.character(Testing_USA.raw$date), format = "%Y%m%d")
+
+# Cumulative Cases and Tests by State
+Cumulative_Tests_By_State <- cbind(
+  States[,1:3],
+  matrix(0,nrow=51, ncol=allCurrentDays)
+)
+names(Cumulative_Tests_By_State) <- c(names(States)[1:3], as.character(currentDates, format = "X%m.%d.%y"))
+Cumulative_Cases_By_State <- Cumulative_Tests_By_State
+Cols <- allCurrentDays+3
+
+for (i in 1:51)
 {
-  USE <- Testing_USA.raw$state == Testing_USA$Abbreviation[i]
+  # Tests
+  USE <- Testing_USA.raw$state == States$Abbreviation[i]
   Y <- approx(
     Testing_USA.raw$Date[USE],
     Testing_USA.raw$total[USE],
@@ -155,72 +162,87 @@ for (i in 1:nrow(Testing_USA))
     yleft = 0,
     rule = 2
   )$y
-  L <- length(Y)
-  Testing_USA[i, 4:Cols] <- Y
-  Y <- c(0,Y[2:L]-Y[1:(L-1)])
-  Y <- supsmu(1:L, Y)$y
-  Testing_USA_zeroOne[i, 4:Cols] <- zeroOne(Y)
+  Cumulative_Tests_By_State[i, 4:Cols] <- Y
+  
+  #Cases
+  USE <- Cases_USA$State == States$Abbreviation[i]
+  Y <- approx(
+    1:allCurrentDays,
+    colSums(Cases_USA[USE, 5:ncol(Cases_USA)]),
+    xout <- 1:allCurrentDays,
+    yleft = 0,
+    rule = 2
+  )$y
+  Cumulative_Cases_By_State[i, 4:Cols] <- Y
+}
 
+# All I need is cumulative testing. It appears that positive tests are DEFINED by the 
+# Cumulative Positive Tests by State (the total case numbers by state)
+# This is a change in logic from previous, when I used the COVID-19 numbers. However, 
+# For nearly all states, they are identical. I'm changing the code so that the US code
+# is compatible with the international code, where positive tests = total positive diagnoses
+
+# # Daily Tests
+# Testing_USA_Daily <- cbind(
+#   States[,1:3],
+#   0,
+#   Testing_USA_Cumulative[,5:Cols] - Testing_USA_Cumulative[,4:(Cols-1)])
+# 
+# # Daily Positive Tests
+# Positive_USA_Daily <- cbind(
+#   States[,1:3],
+#   0,
+#   Positive_USA_Cumulative[,5:Cols] - Positive_USA_Cumulative[,4:(Cols-1)])
+# 
+# Fraction_Positive_USA_Daily <- cbind(
+#   States[,1:3],
+#   Positive_USA_Daily[,4:Cols] / Testing_USA_Daily[,4:Cols] * 100
+# )
+
+# Hospitalizations
+# Testing_USA$hospitalizedCumulative and Testing_USA$hospitalized are identical
+# However, all states now have enough current hospitalizations that current is the only 
+# Number of interest. No way to translate current into cumulative
+#sum(Testing_USA.raw$hospitalized != Testing_USA.raw$hospitalizedCumulative, na.rm = TRUE)
+Hospitalization_USA_Current <- Cumulative_Tests_By_State # Just to set structure and names
+for (i in 1:51)
+{
+  USE <- Testing_USA.raw$state == States$Abbreviation[i]
   Y <- approx(
     Testing_USA.raw$Date[USE],
-    Testing_USA.raw$percentPositive[USE],
+    Testing_USA.raw$hospitalizedCurrently[USE],
     xout=currentDates,
     yleft = 0,
     rule = 2
   )$y
-  Positive_USA[i, 4:Cols] <- Y
-  Positive_USA_zeroOne[i, 4:Cols] <- zeroOne(Y)
-
-  if (sum(!is.na(Testing_USA.raw$hospitalizedCurrently[USE])) > 10)
-  {
-    Y <- approx(
-      Testing_USA.raw$Date[USE],
-      Testing_USA.raw$hospitalizedCurrently[USE],
-      xout=currentDates,
-      yleft = 0,
-      rule = 2
-    )$y
-  } else {
-    Y <- approx(
-      Testing_USA.raw$Date[USE],
-      Testing_USA.raw$hospitalizedCumulative[USE],
-      xout=currentDates,
-      yleft = 0,
-      rule = 2
-    )$y
-    L <- length(Y)
-    DELTA <- Y[2:L] - Y[1:(L- 1)]
-    Y[2:L] <- DELTA
-  }
-  Y <- supsmu(1:length(Y),Y)$y
-  Hospitalization_USA_zeroOne[i, 4:Cols] <- zeroOne(Y)
+  Hospitalization_USA_Current[i, 4:Cols] <- zeroOne(Y)
 }
 
-Testing_Long <- Testing_USA.raw # Long form for ggplot
-
-Testing_USA_zeroOne <- pivot_longer(
-  Testing_USA_zeroOne,
-  cols = 4:Cols,
-  names_to = "Date",
-  values_to = "Testing"
-)
-Testing_USA_zeroOne$Date <- rep(currentDates,51)
-
-Positive_USA_zeroOne <- pivot_longer(
-  Positive_USA_zeroOne,
-  cols = 4:Cols,
-  names_to = "Date",
-  values_to = "Positive"
-)
-Positive_USA_zeroOne$Date <- rep(currentDates,51)
-
-Hospitalization_USA_zeroOne <- pivot_longer(
-  Hospitalization_USA_zeroOne,
-  cols = 4:Cols,
-  names_to = "Date",
-  values_to = "Hospitalizations"
-)
-Hospitalization_USA_zeroOne$Date <- rep(currentDates,51)
+# Testing_Long <- Testing_USA.raw # Long form for ggplot
+# 
+# Testing_USA_zeroOne <- pivot_longer(
+#   Testing_USA_zeroOne,
+#   cols = 4:Cols,
+#   names_to = "Date",
+#   values_to = "Testing"
+# )
+# Testing_USA_zeroOne$Date <- rep(currentDates,51)
+# 
+# Positive_USA_zeroOne <- pivot_longer(
+#   Positive_USA_zeroOne,
+#   cols = 4:Cols,
+#   names_to = "Date",
+#   values_to = "Positive"
+# )
+# Positive_USA_zeroOne$Date <- rep(currentDates,51)
+# 
+# Hospitalization_USA_zeroOne <- pivot_longer(
+#   Hospitalization_USA_zeroOne,
+#   cols = 4:Cols,
+#   names_to = "Date",
+#   values_to = "Hospitalizations"
+# )
+# Hospitalization_USA_zeroOne$Date <- rep(currentDates,51)
 
 
 ###########################################################
@@ -342,35 +364,39 @@ for (i in 1:nrow(C))
 Cases_Global <- C   # [,1:(allCurrentDays+1)]
 Deaths_Global <- D # [,1:(allCurrentDays+1)]
 
+# Fix some country names in mapWorld
+# There are a few NAs in adm0_a3_is. Will replace these with the us names
+mapWorld$adm0_a3_is[is.na(mapWorld$adm0_a3_is)] <- mapWorld$adm0_a3_us[is.na(mapWorld$adm0_a3_is)]
+
+# Testing Data
 # Global from "Our World in Data"
-Testing_Global_temp <- Testing_Global.raw
-Testing_Global_temp$date <- as.Date(Testing_Global_temp$date)
-Testing_Global_temp <- Testing_Global_temp[!is.na(Testing_Global_temp$total_tests),]
-Testing_Global_temp <-  Testing_Global_temp[,
-                                            c("iso_code", "location", "date", "total_cases",
-                                              "total_deaths", "total_tests", "total_tests_per_thousand")]
-iso_codes <- sort(unique(Testing_Global_temp$iso_code))
-countries <- mapWorld$geounit[match(iso_codes, mapWorld$adm0_a3_is)]
-Testing_Global <- data.frame(
-  iso_code = iso_codes,
-  country = countries,
-  stringsAsFactors = FALSE
-  )
-Testing_Global$country[Testing_Global$iso_code == "GBR"] <- "United Kingdom"
-Testing_Global$country[Testing_Global$iso_code == "BEL"] <- "Belgium"
-Testing_Global <- cbind(Testing_Global, matrix(0, nrow=length(iso_codes), ncol=allCurrentDays))
-names(Testing_Global) <- c("iso_code", "country", as.character(currentDates, format = "X%m.%d.%y"))
-for (i in 1:nrow(Testing_Global))
+# Fix names in Testing_Global.raw$location
+Testing_Global.raw$location[Testing_Global.raw$location == "Democratic Republic of Congo"] <- "Democratic Republic of the Congo"
+Testing_Global.raw$location[Testing_Global.raw$location == "Congo"] <- "Republic of Congo"
+Testing_Global.raw$location[Testing_Global.raw$location == "Bahamas"] <- "The Bahamas"
+Testing_Global.raw$location[Testing_Global.raw$location == "Cote d'Ivoire"] <- "Ivory Coast" 
+Testing_Global.raw$location[Testing_Global.raw$location == "Guinea-Bissau"] <- "Guinea Bissau"
+Testing_Global.raw$location[Testing_Global.raw$location == "Timor"] <- "East Timor"
+Testing_Global.raw$location[Testing_Global.raw$location == "Palestine"] <- "West Bank and Gaza"
+Testing_Global.raw$location[Testing_Global.raw$location == "United States"] <- "United States of America"
+
+Testing_Global.raw$date <- as.Date(Testing_Global.raw$date)
+Testing_Global.raw <- Testing_Global.raw[!is.na(Testing_Global.raw$total_tests),]
+
+# There are no duplicated location - date combinations (SUPER HELPFUL....)
+# sum(duplicated(paste(Testing_Global.raw$location, "x",Testing_Global.raw$date)))
+
+Cumulative_Tests_By_Country <- Cases_Global
+for (i in 1:nrow(Cumulative_Tests_By_Country))
 {
-  USE <- Testing_Global_temp$iso_code == Testing_Global$iso_code[i]
-  if (sum(USE) == 1)
+  USE <- which(Testing_Global.raw$location == Cumulative_Tests_By_Country$Country[i])
+  if (length(USE) < 10)
   {
-    Column <- Testing_Global_temp$date[USE] - startDate + 2
-    Testing_Global[i, Column:ncol(Testing_Global)] <- Testing_Global_temp$total_tests[USE]
+    Cumulative_Tests_By_Country[i, 2:(1+allCurrentDays)] <- 0
   } else {
-    Testing_Global[i, 3:ncol(Testing_Global)] <- approx(
-      Testing_Global_temp$date[USE],
-      Testing_Global_temp$total_tests[USE],
+  Cumulative_Tests_By_Country[i, 2:(1+allCurrentDays)] <- approx(
+      Testing_Global.raw$date[USE],
+      Testing_Global.raw$total_tests[USE],
       xout=currentDates,
       yleft = 0,
       rule = 2
@@ -378,14 +404,13 @@ for (i in 1:nrow(Testing_Global))
   }
 }
 
-
 # Fix USA Testing
-Testing_Global[
-  Testing_Global$iso_code == "USA",
-  3:ncol(Testing_Global)
+Cumulative_Tests_By_Country[
+  Cumulative_Tests_By_Country$Country == "United States of America",
+  2:(1+allCurrentDays)
 ] <- as.numeric(
   colSums(
-    Testing_USA[, c(4:ncol(Testing_USA))],
+    Cumulative_Tests_By_State[, c(4:ncol(Cumulative_Tests_By_State))],
     na.rm=TRUE
   )
 )
@@ -488,7 +513,9 @@ Ensemble <- pivot_wider(
 
 
 # Read NYT School Data
+suppressWarnings(
 X <- readLines(  "https://www.nytimes.com/interactive/2020/us/covid-college-cases-tracker.html?action=click&module=Top%20Stories&pgtype=Homepage")
+)
 X1 <- X[grep("NYTG_schools",X)]
 X2 <- substr(X1,22,10000000)
 X3 <- gsub("];","]", X2)
@@ -506,12 +533,13 @@ Schools_USA$coord <- NULL
 
 write.csv(Cases_USA,    paste0(dirTodayUpdateData, "Cases_USA.",       todayText, ".csv"), row.names = FALSE)
 write.csv(Deaths_USA,   paste0(dirTodayUpdateData, "Deaths_USA.",      todayText, ".csv"), row.names = FALSE)
-write.csv(Testing_USA,  paste0(dirTodayUpdateData, "Testing_USA.",     todayText, ".csv"), row.names = FALSE)
-write.csv(Hospitalization_USA_zeroOne, paste0(dirTodayUpdateData, "Hospitalization_USA.",     todayText, ".csv"), row.names = FALSE)
+write.csv(Cumulative_Tests_By_State,  paste0(dirTodayUpdateData, "Cumulative_Tests_By_State.",     todayText, ".csv"), row.names = FALSE)
+write.csv(Cumulative_Cases_By_State,  paste0(dirTodayUpdateData, "Cumulative_Cases_By_State.",     todayText, ".csv"), row.names = FALSE)
+write.csv(Hospitalization_USA_Current, paste0(dirTodayUpdateData, "Hospitalization_USA_Current.",     todayText, ".csv"), row.names = FALSE)
 #write.csv(Mobility_USA,    paste0(dirTodayUpdateData, "Mobility.",        todayText, ".csv"), row.names = FALSE)
 write.csv(Cases_Global, paste0(dirTodayUpdateData, "Cases_Global.",    todayText, ".csv"), row.names = FALSE)
 write.csv(Deaths_Global,  paste0(dirTodayUpdateData, "Deaths_Global." ,  todayText, ".csv"), row.names = FALSE)
-write.csv(Testing_Global, paste0(dirTodayUpdateData, "Testing_Global.",  todayText, ".csv"), row.names = FALSE)
+write.csv(Cumulative_Tests_By_Country,  paste0(dirTodayUpdateData, "Cumulative_Tests_By_Country.",     todayText, ".csv"), row.names = FALSE)
 #write.csv(Mobility_Global, paste0(paste0(dirTodayUpdateData,"Mobility_Global.", todayText, ".csv"), row.names = FALSE)
 write.csv(Ensemble,       paste0(dirTodayUpdateData, "Ensemble.",  todayText, ".csv"), row.names = FALSE)
 write.csv(Ensemble,       paste0(dirTodayUpdateData, "Ensemble.",  todayText, ".csv"), row.names = FALSE)
