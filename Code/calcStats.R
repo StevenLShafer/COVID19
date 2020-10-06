@@ -45,7 +45,15 @@ calcStats <- function(
     )
     TESTS <- data.frame(
       Date = currentDates,
-      Actual = c(colSums(Testing_Global[Testing_Global$country %in% Country, c(3:ncol(Testing_Global))],na.rm=TRUE)),
+      Actual = c(
+        colSums(
+          Cumulative_Tests_By_Country[
+            Cumulative_Tests_By_Country$Country %in% Country, 
+            c(2:ncol(Cumulative_Tests_By_Country))
+            ],
+          na.rm=TRUE
+          )
+        ),
       Phase = "Tests",
       Predicted = NA,
       stringsAsFactors = FALSE
@@ -66,7 +74,14 @@ calcStats <- function(
       useCounty <- rep(TRUE, nrow(Cases_USA))
       TESTS <- data.frame(
         Date = currentDates,
-        Actual = c(colSums(Testing_USA[Testing_USA$Abbreviation %in% State, c(4:ncol(Testing_USA))],na.rm=TRUE)),
+        Actual = c(
+          colSums(
+            Cumulative_Tests_By_State[
+              Cumulative_Tests_By_State$Abbreviation %in% State, 
+              c(4:ncol(Cumulative_Tests_By_State))],
+            na.rm=TRUE
+            )
+          ),
         Phase = "Tests",
         Predicted = NA,
         stringsAsFactors = FALSE

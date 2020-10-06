@@ -85,8 +85,10 @@ Deaths_USA$County.Name[!is.na(CROWS)] <- Counties$Name[CROWS[!is.na(CROWS)]]
 # Sort order to match
 Cases_USA <- Cases_USA[order(Cases_USA$State, Cases_USA$County.Name),]
 Deaths_USA <- Deaths_USA[order(Deaths_USA$State, Deaths_USA$County.Name),]
-cat("Cases County Name != Deaths County Name", sum(Cases_USA$County.Name != Deaths_USA$County.Name), "\n")
-
+if (sum(Cases_USA$County.Name != Deaths_USA$County.Name) != 0)
+{
+  cat("Cases County Name != Deaths County Name", sum(Cases_USA$County.Name != Deaths_USA$County.Name), "\n")
+}
 # Code below required for USA Facts. May not be necessary for Hopkins data
 if (FALSE)
 {

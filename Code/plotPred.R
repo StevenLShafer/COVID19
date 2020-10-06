@@ -93,6 +93,8 @@ plotPred <- function(
   
   DATA$Phase <- factor(as.character(DATA$Phase), levels=c("Pre-Model","Modeled", "Deaths", "Tests"), ordered = TRUE)
   
+  DATA$Actual[CASES$Actual < 1] <- 0.1
+
   ggObject1 <-
     ggplot(
       DATA, 
@@ -108,9 +110,9 @@ plotPred <- function(
       size = 1
     ) +
     coord_cartesian(
-      ylim = c(1,500000000), 
-      xlim = c(startDate,endDate + 2), 
-      expand = TRUE, 
+      ylim = c(0.8,500000000), 
+      xlim = c(startDate,endDate + 16), 
+      expand = FALSE, 
       clip = "on"
     ) +
     geom_line(
@@ -234,13 +236,14 @@ plotPred <- function(
   }
   
   if (debug) print(ggObject1)
-  
+
   maxY <- max(
     CASES$Delta_Smoothed_2[CASES$Date < today],
     DEATHS$Delta_Smoothed_2[DEATHS$Date < today] * deathAxis,
     CASES$Delta[CASES$Date < today & CASES$Phase == "Modeled"], 
     DEATHS$Delta[DEATHS$Date < today & CASES$Phase == "Modeled"] * deathAxis
-  ) * 1.05
+  ) * 1.1
+  maxY <- 10^ceiling(log10(maxY))
   
   CASES$DailySmoothed <- CASES$Delta_Smoothed_2
   DEATHS$DailySmoothed <- DEATHS$Delta_Smoothed_2
@@ -261,35 +264,35 @@ plotPred <- function(
         y = DailySmoothed)
     ) +  
     geom_point(
-      data = CASES[CASES$Date < today & CASES$Phase == "Pre-Model",], 
-      color = "blue", 
-      size = 1, 
-      na.rm = TRUE, 
+      data = CASES[CASES$Date < today & CASES$Phase == "Pre-Model",],
+      color = "blue",
+      size = 1,
+      na.rm = TRUE,
       show.legend = FALSE
     ) +
     geom_point(
-      data = CASES[CASES$Date < today & CASES$Phase == "Modeled",],  
-      color = "red", 
-      size = 1, 
-      na.rm = TRUE, 
+      data = CASES[CASES$Date < today & CASES$Phase == "Modeled",],
+      color = "red",
+      size = 1,
+      na.rm = TRUE,
       show.legend = FALSE
     ) +
     # geom_point(
-    #   data = CASES[CASES$Date < today & CASES$Phase == "Pre-Model",], 
-    #   aes(y = Delta), 
-    #   color = "blue", 
-    #   size = 0.2, 
-    #   shape = 3, 
-    #   na.rm = TRUE, 
+    #   data = CASES[CASES$Date < today & CASES$Phase == "Pre-Model",],
+    #   aes(y = Delta),
+    #   color = "blue",
+    #   size = 0.2,
+    #   shape = 3,
+    #   na.rm = TRUE,
     #   show.legend = FALSE
     # ) +
     geom_point(
-      data = CASES[CASES$Date < today & CASES$Phase == "Modeled",],  
-      aes(y = DailyRaw), 
-      color = "red", 
-      size = 0.2, 
-      shape = 3, 
-      na.rm = TRUE, 
+      data = CASES[CASES$Date < today & CASES$Phase == "Modeled",],
+      aes(y = DailyRaw),
+      color = "red",
+      size = 0.2,
+      shape = 3,
+      na.rm = TRUE,
       show.legend = FALSE
     ) +
     geom_point(
@@ -313,7 +316,7 @@ plotPred <- function(
       "segment", 
       x = today, 
       xend = today, 
-      y = 0, 
+      y = 1, 
       yend = maxY, 
       color = "blue"
     ) +
@@ -345,19 +348,24 @@ plotPred <- function(
       minor_breaks = NULL
     ) +
     scale_y_log10(
-      label = comma
-      # ,
-      # sec.axis = sec_axis(
-      #   trans=~./deathAxis, 
-      #   name="Deaths / Day",
-      #   label = comma,
-      #   ) 
+      breaks = c(1, 10, 100, 1000, 10000, 100000, 1000000,10000000, 100000000),
+      labels = c("1", "10","100","1,000","10,000","100,000","1,000,000", "10,000,000","100,000,000")
     ) +
+    # 
+    # scale_y_log10(
+    #   label = comma
+    #   # ,
+    #   # sec.axis = sec_axis(
+    #   #   trans=~./deathAxis, 
+    #   #   name="Deaths / Day",
+    #   #   label = comma,
+    #   #   ) 
+    # ) +
     annotation_logticks() +
     coord_cartesian(
-      expand = TRUE, 
+      expand = FALSE, 
       clip = "on",
-      xlim = c(startDate,endDate + 2),
+      xlim = c(startDate,endDate + 16),
       ylim = c(0.8,maxY)
     ) +
     theme(
@@ -376,7 +384,7 @@ plotPred <- function(
           "segment", 
           x = EVENTS$Date[i], 
           xend = EVENTS$Date[i], 
-          y = 0, 
+          y = 1, 
           yend = maxY, 
           color = "orange"
         )  +
@@ -385,10 +393,10 @@ plotPred <- function(
         label =EVENTS$Name[i],
         angle = 90,
         x = EVENTS$Date[i], 
-        y = maxY, 
+        y = 1.2, 
         color = "orange",
         size = 2,
-        hjust = 1,
+        hjust = 0,
         vjust = -0.5
       )
     }
@@ -401,7 +409,7 @@ plotPred <- function(
           "segment", 
           x = as.Date("2020-09-18"), 
           xend = as.Date("2020-09-18"), 
-          y = 0, 
+          y = 1, 
           yend = maxY, 
           color = "orange"
         )  +
@@ -410,15 +418,13 @@ plotPred <- function(
           label ="Second Lockdown",
           angle = 90,
           x = as.Date("2020-09-18"), 
-          y = maxY, 
+          y = 1.2, 
           color = "orange",
           size = 2,
           hjust = 1,
           vjust = -0.5
         )
   }
-  
-  
   
   if (debug) print(ggObject2)
 
@@ -435,7 +441,7 @@ plotPred <- function(
   }
   ggObject3 <- plot_grid(plotlist = grobs, ncol = 1)
   if(debug) print(ggObject3)
-  
+
   nextSlide(ggObject3, Title)
   
   if (plotGrowthFlag) plotGrowth(results, Title)

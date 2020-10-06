@@ -31,6 +31,7 @@ library(mailR)
 # rayshader is the package to put spikes on maps
 library(ggrepel)
 require(jsonlite)
+library(Rfast)
 
 remove(list=ls())
 Directory <- "g:/projects/COVID/"
@@ -112,7 +113,7 @@ plotGrowthFlag <- FALSE
   
   
   # Make copy of latest files for GitHub
-  FILES <- list.files(dirLatest, include.dirs = TRUE)
+  FILES <- list.files(dirLatest, recursive = TRUE)
   if (length(FILES) > 0) file.remove(paste0(dirLatest, FILES))
   
   FILES <- list.files(dirTodayUpdate, full.names = TRUE, recursive = TRUE)
