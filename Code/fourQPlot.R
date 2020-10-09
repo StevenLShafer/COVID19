@@ -42,11 +42,11 @@ fourQPlot <- function(
       color = as.factor(Quadrant)
       )
     ) +
-    geom_text(check_overlap = TRUE, show.legend=FALSE) +
+    geom_text(show.legend=FALSE) +
     labs(
-      title = paste(title, "as of", today),
-      y = labelY,
-      x = labelX,
+      title = paste("Change in", title, "as of", today),
+      y = paste("Change in", labelY),
+      x = paste("Change in", labelX),
       caption = caption
     ) +
     coord_cartesian(xlim = c(-maxX, maxX), ylim = c(-maxY,maxY)) +
@@ -68,13 +68,13 @@ fourQPlot <- function(
       color = "black"
     )
   
-  nextSlide(ggObject, title)
+  nextSlide(ggObject, paste("Change in", title))
   
   emailText <<- paste(
     emailText,
     email.list.start,
     paste(
-      "The four quadrant map for ",
+      "The four quadrant map for change in",
       title,
       "."),
     add_ggplot(

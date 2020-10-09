@@ -624,16 +624,15 @@ fourQPlot(
   DATA = States,
   colX = "slopeCases",
   colY = "slopeDeaths",
-  title = "change in cases vs. change in deaths over last 14 days",
-  labelX = "Change in cases (%/day)",
-  labelY = "Change in deaths (%/day)",
+  title = "cases vs. change in deaths over last 14 days",
+  labelX = "cases (%/day)",
+  labelY = "deaths (%/day)",
   maxX = 6,
   maxY = 6,
   colors = c("red","forestgreen","blue","magenta"),
   caption = "Size is proportional total cases per capita",
   scale = States$totalCases / States$Population
 )
-
 
 ########################
 
@@ -791,9 +790,9 @@ nextSlide(ggObject, "Percent Positive Trends")
     DATA = States,
     colX = "slopeTests",
     colY = "slopePositiveTests",
-    title = "change in tests vs. change in positive tests over last 14 days",
-    labelX = "Change in tests (%/day)",
-    labelY = "Change in positive tests (%/day)",
+    title = "tests vs. change in positive tests over last 14 days",
+    labelX = "tests (%/day)",
+    labelY = "positive tests (%/day)",
     maxX = 6,
     maxY = 10,
     colors = c("magenta","blue","forestgreen","red"),

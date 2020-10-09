@@ -421,7 +421,7 @@ plotPred <- function(
           y = 1.2, 
           color = "orange",
           size = 2,
-          hjust = 1,
+          hjust = 0,
           vjust = -0.5
         )
   }

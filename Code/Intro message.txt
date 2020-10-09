@@ -1,0 +1,11 @@
+Dear Friends, Family, and Colleagues:<\b>
+
+I am creating a Google Group to simplify distribution of my daily updates. This avoids the Microsoft Outlook limit of 500 recipients, which forces me to send the updates in batches. It also will prevent inadvertent place recipient names in the CC field rather than the BCC field. Starting Monday, my daily updates will come from my G-Suite Account, slshafer.com. The "from field" will say "steves-covid-19-updates@slshafer.com; on behalf of; Steven L Shafer <Steven.Shafer@stanford.edu>". You don't have to do anything. <\b>
+Here is a link to the updates:https://drive.google.com/drive/folders/1EGPI7ZUEjRoZd7e9BFK4fT0IV4hxJHFT?usp=sharing
+
+
+I will also change the links from Microsoft OneDrive to Google Drive. The current links to the PowerPoint files are almost uselessly slow. I believe this will make the analysis far more accessible. 
+
+Be well,
+
+Steve Shafer
