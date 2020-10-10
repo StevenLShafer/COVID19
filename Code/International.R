@@ -21,6 +21,7 @@ plotPred(Country = "Denmark", Title = "Denmark")
 plotPred(Country = "Finland", Title = "Finland")
 
 plotPred(Country = "Ireland", Title = "Ireland")
+plotPred(Country = "Czech Republic")
 plotPred(Country = "Iceland", Title = "Iceland")
 # plotPred(Country = "Rwanda", Title = "Rwanda"
 
