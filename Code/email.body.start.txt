@@ -37,7 +37,7 @@ My daily update for COVID trends is attached. These are not confidential and may
 </p>
 <p class="SLSNormal">
 Today's PowerPoint files and data files can be accessed 
-<a href="https://1drv.ms/u/s!AuOyHP_aTIy7rpJVj-1rZZMarvgrag?e=AVbVJI" target="_blank">here</a>.
+<a href="https://drive.google.com/drive/folders/1EGPI7ZUEjRoZd7e9BFK4fT0IV4hxJHFT?usp=sharing" target="_blank">here</a>.
 Prior PowerPoint files and data files can be accessed 
 <a href="https://1drv.ms/u/s!AuOyHP_aTIy7rowrt2AjGpWm_frnEQ" target="_blank">here</a>.
 The R program code can be found on 
