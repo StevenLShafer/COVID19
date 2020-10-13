@@ -847,7 +847,7 @@ stateFisherPlot(
 if (weekDay == 1) # Monday only
 {
   # Testing vs. Mortality
-  States$Tests <- Testing_USA[1:51, ncol(Testing_USA)]
+  States$Tests <- Cumulative_Tests_By_State[1:51, ncol(Cumulative_Tests_By_State)]
   States$TestingFraction <- States$Tests / States$Population * 100
   
   ggObject <- ggplot(States,aes(x = TestingFraction, y = Mortality * 100, label=Abbreviation)) +
