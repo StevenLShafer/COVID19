@@ -90,40 +90,7 @@ if (sum(Cases_USA$County.Name != Deaths_USA$County.Name) != 0)
   cat("Cases County Name != Deaths County Name", sum(Cases_USA$County.Name != Deaths_USA$County.Name), "\n")
 }
 # Code below required for USA Facts. May not be necessary for Hopkins data
-if (FALSE)
-{
-  Ascending <- function (X)
-  {
-    suppressWarnings(
-    X <- as.numeric(X)
-    )
-    X[is.na(X)] <- 0
-    for (i in 2:length(X))
-    {
-      if (X[i] < X[i-1]) X[i] <- X[i-1]
-    }
-    return(X)
-  }
-  
-  # 1 non-numeric entry....., line 1283 on 6/16/20.... Arrgh
-  
-  Cols <- 5:ncol(Cases_USA)
-  suppressWarnings(
-    for (Col in Cols)
-    {
-      Cases_USA[,Col] <- as.numeric(Cases_USA[,Col])
-      Deaths_USA[,Col] <- as.numeric(Deaths_USA[,Col])
-  
-    }
-  )
-  for (i in 1:nrow(Cases_USA))
-  {
-    Cases_USA[i,Cols] <- Ascending(Cases_USA[i,Cols])
-    Deaths_USA[i,Cols] <- Ascending(Deaths_USA[i,Cols])
-  }
-}
-
-# # Verify matching
+# Verify matching
 # Cases_USA <- Cases_USA[order(Cases_USA$CountyFIPS),]
 # Deaths_USA <- Deaths_USA[order(Deaths_USA$CountyFIPS),]
 # Population_USA <- Population_USA[order(Population_USA$CountyFIPS),]

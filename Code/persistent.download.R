@@ -17,14 +17,16 @@ fileDownload <- function(
   name,
   extension = ".csv",
   persist = TRUE,
-  checkLastColumn = FALSE
+  checkLastColumn = FALSE,
+  forceMonotonicFlag = FALSE
 )
 {
-  # source <-   "https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv"
-  # name <- "Cases_USA"
+  # source <-   "https://covidtracking.com/api/v1/states/daily.csv"
+  # name <- "Testing_USA"
   # extension <- ".csv"
   # persist <- TRUE
   # checkLastColumn <- FALSE
+  # forceMonotonic <- FALSE
 
 
   filename <- paste0(dirTodayUpdateData,name,".", todayText, ".raw", extension)
@@ -35,9 +37,10 @@ fileDownload <- function(
     {
       Head <- curlGetHeaders(source)
       Date <- Head[grep("^Date:", Head)]
-      cat(paste0("Date filed in header of ", name, ": ", Date), "\n")
+      # cat(paste0("Date filed in header of ", name, ": ", Date), "\n")
       Date <- substr(Date,12,22)
       Date <- as.Date(Date,"%d %b %Y")
+      Date <- sort(Date, decreasing = TRUE)[1]
       cat(paste0("Captured Date of ", name, ": ", Date), "\n")
       # Add ETAG Check for new contents
       if (Date >= today)
@@ -67,6 +70,12 @@ fileDownload <- function(
       curl_download(source, filename)
     }
   }
+  if (forceMonotonicFlag)
+  {
+    X <- forceMonotonic(read.csv(filename))
+    write.csv(X, filename, row.names=FALSE)
+    cat("\n")
+  }
 }
 
 # US Data  ******************************************************************************
@@ -74,13 +83,15 @@ fileDownload(
   "https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv",
 #  "https://usafactsstatic.blob.core.windows.net/public/data/covid-19/covid_confirmed_usafacts.csv",
   "Cases_USA",
-  checkLastColumn = TRUE
+  checkLastColumn = TRUE,
+  forceMonotonicFlag = TRUE
 )
 fileDownload(
   "https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv",
 # "https://usafactsstatic.blob.core.windows.net/public/data/covid-19/covid_deaths_usafacts.csv",
   "Deaths_USA",
-  checkLastColumn = TRUE
+  checkLastColumn = TRUE,
+  forceMonotonicFlag = TRUE
 )
 fileDownload(
   "https://covidtracking.com/api/v1/states/daily.csv",
@@ -91,11 +102,13 @@ fileDownload(
 # Global Data  ************************************************************************
 fileDownload(
   "https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv",
-  "Cases_Global"
+  "Cases_Global",
+  forceMonotonicFlag = TRUE
 )
 fileDownload(
   "https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv",
-  "Deaths_Global"
+  "Deaths_Global",
+  forceMonotonicFlag = TRUE
 )
 fileDownload(
   "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv",

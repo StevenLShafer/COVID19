@@ -88,10 +88,12 @@ plotPred <- function(
     sprintf("%+2.1f", slopeCases),
     "% Cases, ",
     sprintf("%+2.1f", slopeDeaths),
-    "% Deaths"
+    "% Deaths (over ",
+    daysLinearFitCases,
+    " days)"
   )
   
-  DATA$Phase <- factor(as.character(DATA$Phase), levels=c("Pre-Model","Modeled", "Deaths", "Tests"), ordered = TRUE)
+  DATA$Legand <- factor(as.character(DATA$Legand), levels=c("Cases", "Deaths", "Tests"), ordered = TRUE)
   
   DATA$Actual[CASES$Actual < 1] <- 0.1
 
@@ -101,8 +103,8 @@ plotPred <- function(
       aes(
         x = Date, 
         y = Actual, 
-        color = Phase, 
-        size = Phase
+        color = Legand, 
+        size = Legand
       )
     ) +
     geom_point(
@@ -145,7 +147,7 @@ plotPred <- function(
       y = "Cumulative"
     ) +
     scale_color_manual(
-      values = c("blue","red", "black", "brown")
+      values = c("blue", "black", "brown")
     ) +
     scale_size_manual (
       values = c(2,    2,       2,       1)
@@ -239,9 +241,9 @@ plotPred <- function(
 
   maxY <- max(
     CASES$Delta_Smoothed_2[CASES$Date < today],
-    DEATHS$Delta_Smoothed_2[DEATHS$Date < today] * deathAxis,
-    CASES$Delta[CASES$Date < today & CASES$Phase == "Modeled"], 
-    DEATHS$Delta[DEATHS$Date < today & CASES$Phase == "Modeled"] * deathAxis
+    DEATHS$Delta_Smoothed_2[DEATHS$Date < today],
+    CASES$Delta[CASES$Date < today & CASES$Date >= today - daysShowRaw], 
+    DEATHS$Delta[DEATHS$Date < today & CASES$Date >= today - daysShowRaw]
   ) * 1.1
   maxY <- 10^ceiling(log10(maxY))
   
@@ -264,48 +266,33 @@ plotPred <- function(
         y = DailySmoothed)
     ) +  
     geom_point(
-      data = CASES[CASES$Date < today & CASES$Phase == "Pre-Model",],
+      data = CASES[CASES$Date < today & CASES$Legand == "Cases",],
       color = "blue",
       size = 1,
       na.rm = TRUE,
       show.legend = FALSE
     ) +
     geom_point(
-      data = CASES[CASES$Date < today & CASES$Phase == "Modeled",],
-      color = "red",
-      size = 1,
-      na.rm = TRUE,
+      data = CASES[CASES$Date < today & CASES$Date >= today - daysShowRaw,],  
+      aes(y = DailyRaw), 
+      color = "blue", 
+      size = 0.2, 
+      shape = 3, 
+      na.rm = TRUE, 
       show.legend = FALSE
     ) +
-    # geom_point(
-    #   data = CASES[CASES$Date < today & CASES$Phase == "Pre-Model",],
-    #   aes(y = Delta),
-    #   color = "blue",
-    #   size = 0.2,
-    #   shape = 3,
-    #   na.rm = TRUE,
-    #   show.legend = FALSE
-    # ) +
-    geom_point(
-      data = CASES[CASES$Date < today & CASES$Phase == "Modeled",],
-      aes(y = DailyRaw),
-      color = "red",
-      size = 0.2,
-      shape = 3,
-      na.rm = TRUE,
-      show.legend = FALSE
-    ) +
+    
     geom_point(
       data = DEATHS[DEATHS$Date < today,], 
-      aes(y = DailySmoothed * deathAxis), 
+      aes(y = DailySmoothed), 
       color = "black", 
       size = 1, 
       na.rm = TRUE, 
       show.legend = FALSE
     ) +
     geom_point(
-      data = DEATHS[DEATHS$Date < today & CASES$Phase == "Modeled",],  
-      aes(y = DailyRaw * deathAxis), 
+      data = DEATHS[DEATHS$Date < today & DEATHS$Date >= today - daysShowRaw,],  
+      aes(y = DailyRaw), 
       color = "black", 
       size = 0.2, 
       shape = 3, 
@@ -333,8 +320,8 @@ plotPred <- function(
       "segment", 
       x = today - daysLinearFitDeaths - 1, 
       xend = today - 1, 
-      y = head(linfitDeaths$fitted.values,1) * deathAxis,
-      yend = tail(linfitDeaths$fitted.values,1) * deathAxis,
+      y = head(linfitDeaths$fitted.values,1),
+      yend = tail(linfitDeaths$fitted.values,1),
       color = "green",
       size = 1.5
     ) +
@@ -351,16 +338,6 @@ plotPred <- function(
       breaks = c(1, 10, 100, 1000, 10000, 100000, 1000000,10000000, 100000000),
       labels = c("1", "10","100","1,000","10,000","100,000","1,000,000", "10,000,000","100,000,000")
     ) +
-    # 
-    # scale_y_log10(
-    #   label = comma
-    #   # ,
-    #   # sec.axis = sec_axis(
-    #   #   trans=~./deathAxis, 
-    #   #   name="Deaths / Day",
-    #   #   label = comma,
-    #   #   ) 
-    # ) +
     annotation_logticks() +
     coord_cartesian(
       expand = FALSE, 

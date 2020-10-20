@@ -61,12 +61,12 @@ allCurrentDays <- as.numeric(today-startDate)
 dirTodayUpdate <- paste0(dirUpdate,todayText,"/")
 dirTodayUpdateData <- paste0(dirTodayUpdate,"DATA/")
 
-daysLinearFitCases  <- 14    # Number of days for the linear regression (increasing/decreasing cases per day)
-daysLinearFitDeaths <- 14    # Number of days for the linear regression (increasing/decreasing cases per day)
+daysLinearFitCases  <- 9    # Number of days for the linear regression (increasing/decreasing cases per day)
+daysLinearFitDeaths <- 9    # Number of days for the linear regression (increasing/decreasing cases per day)
 daysGompertzFit <- 21 # Number of days for the Gompertz model
 asymptomatic <- 10    # Number of asymptomatic patients per symptomatic patient,
                       # limits Gompertz peak to population / asymptomatic * 0.6
-deathAxis <- 1 #20       # Relative size of right axis (deaths / day) to left axis (cases / day)
+daysShowRaw <- 28 # Number of days to show raw data
 
 plotGrowthFlag <- FALSE
 
@@ -83,6 +83,9 @@ plotGrowthFlag <- FALSE
   source(paste0(dirCode,"FisherPlots.R"))
   source(paste0(dirCode, "fourQPlot.R"))
   source(paste0(dirCode, "jacklerPlot.R"))
+  source(paste0(dirCode, "smoothSLS.R"))
+  source(paste0(dirCode, "monotonicSLS.R"))
+  
   
   source(paste0(dirCode,"persistent.download.R")) # Won't return until there are data for today
   source(paste0(dirCode,"ImportCovidData.R"))     # Reads files created from persistent.Download

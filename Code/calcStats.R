@@ -32,14 +32,14 @@ calcStats <- function(
     CASES <- data.frame(
       Date = allDates,
       Actual = c(colSums(Cases_Global[use, c(2:ncol(Cases_Global))],na.rm=TRUE), rep(NA, projection)),
-      Phase = "",
+      Legand = "Cases",
       Predicted = NA,
       stringsAsFactors = FALSE
     )
     DEATHS <- data.frame(
       Date = allDates,
       Actual = c(colSums(Deaths_Global[use, c(2:ncol(Deaths_Global))],na.rm=TRUE), rep(NA, projection)),
-      Phase = "Deaths",
+      Legand = "Deaths",
       Predicted = NA,
       stringsAsFactors = FALSE
     )
@@ -54,7 +54,7 @@ calcStats <- function(
           na.rm=TRUE
           )
         ),
-      Phase = "Tests",
+      Legand = "Tests",
       Predicted = NA,
       stringsAsFactors = FALSE
     )
@@ -82,7 +82,7 @@ calcStats <- function(
             na.rm=TRUE
             )
           ),
-        Phase = "Tests",
+        Legand = "Tests",
         Predicted = NA,
         stringsAsFactors = FALSE
       )
@@ -109,14 +109,14 @@ calcStats <- function(
     CASES <- data.frame(
       Date = allDates,
       Actual = c(colSums(Cases_USA[use, 5:ncol(Cases_USA)],na.rm=TRUE), rep(NA, projection)),
-      Phase = "",
+      Legand = "Cases",
       Predicted = NA,
       stringsAsFactors = FALSE
     )
     DEATHS <- data.frame(
       Date = allDates,
         Actual = c(colSums(Deaths_USA[use, c(5:ncol(Deaths_USA))],na.rm=TRUE), rep(NA, projection)),
-        Phase = "Deaths",
+        Legand = "Deaths",
         Predicted = NA,
         stringsAsFactors = FALSE
       )
@@ -152,8 +152,6 @@ calcStats <- function(
   if (sum(CASES$Actual, na.rm = TRUE) == 0) return(NULL)
 
   # Clean up CASES and DEATHS
-  CASES$Phase[1:(modelStartIndex-1)] <- "Pre-Model"
-  CASES$Phase[modelStartIndex:nRow] <- "Modeled"
   CASES$Actual[CASES$Actual == 0 | is.na(CASES$Actual)] <- NA
   DEATHS$Actual[DEATHS$Actual == 0 | is.na(DEATHS$Actual)] <- NA
   #if(sum(!is.na(DEATHS$Actual) == 0)) DEATHS$Actual <- 0.1
@@ -230,7 +228,8 @@ calcStats <- function(
   # Calculate line of fit
   CASES$Delta_Smoothed_2[3:(nRow-2)] <- rollmean(CASES$Delta_Smoothed, align="center",k=5)
   CASES$Delta_Smoothed_2[(nRow-2):nRow] <- CASES$Delta_Smoothed_2[nRow-3]
-  X <- (todayIndex-daysLinearFitCases - 1):(todayIndex-1)
+  CASES$Delta_Smoothed_2 <- smoothSLS(CASES$Delta, RespectLow = TRUE)
+  X <- (todayIndex-daysLinearFitCases):(todayIndex-1)
   linfitCases  <- lm(CASES$Delta_Smoothed_2[X] ~ X)
   slopeCases <- linfitCases$coefficients[2] / mean(CASES$Delta_Smoothed_2[X]) * 100
 
@@ -244,16 +243,13 @@ calcStats <- function(
   DEATHS$Delta_Smoothed[3:(nRow-2)] <- rollmean(DEATHS$Delta, align="center",k=5)
   DEATHS$Delta_Smoothed[(nRow-2):nRow] <- DEATHS$Delta_Smoothed[nRow-3]
 
-#  CASES$Source <- "Reported"
-#  CASES$Source <- "Predicted"
-
   # Calculate line of fit
   DEATHS$Delta_Smoothed_2[3:(nRow-2)] <- rollmean(DEATHS$Delta_Smoothed, align="center",k=5)
   DEATHS$Delta_Smoothed_2[(nRow-2):nRow] <- DEATHS$Delta_Smoothed_2[nRow-3]
-  X <- (todayIndex-daysLinearFitDeaths - 1):(todayIndex-1)
+  DEATHS$Delta_Smoothed_2 <- smoothSLS(DEATHS$Delta, RespectLow = TRUE)
+  X <- (todayIndex-daysLinearFitDeaths):(todayIndex-1)
   linfitDeaths  <- lm(DEATHS$Delta_Smoothed_2[X] ~ X)
   slopeDeaths <- linfitDeaths$coefficients[2] / mean(DEATHS$Delta_Smoothed_2[X]) * 100
-
 
   return(
     list(

@@ -12,6 +12,8 @@ emailText <- textSummary(WORLD, "Worldwide")
 USA <- plotPred(Country = "United States of America", Title = "USA")
 emailText <- textSummary(USA, "In the US")
 
+plotPred(County = "Santa Clara County")
+
 # X <- USA$CASES[USA$CASES$Date > as.Date("2020-03-02") & USA$CASES$Date < today ,]
 # breaks = as.Date(as.Date("2020-03-02") + 0:24*7)
 # labels = format(breaks, format = "%a, %b-%d")
@@ -492,33 +494,20 @@ States$Masks <- MASKS$Statewide.Requirement[CROWS]
 
 
 # New cases / day
-States$signCase <- "No Change (-1% to +1%)"
-States$signCase[States$slopeCases < -3] <- "Decreasing > -3%"
-States$signCase[States$slopeCases >= -3 & States$slopeCases < -1] <- "Decreasing between -1% and -3%"
-States$signCase[States$slopeCases <= 3 & States$slopeCases > 1] <- "Increasing between +1% and +3%"
-States$signCase[States$slopeCases > 3] <- "Increasing > +3%"
-States$signCase <- factor(
-  States$signCase,
-  levels = c(
-    "Increasing > +3%",
-    "Increasing between +1% and +3%",
-    "No Change (-1% to +1%)",
-    "Decreasing between -1% and -3%",
-    "Decreasing > -3%")
-)
+States$signCase <- assignSign(States$slopeCases)
 stateColors <- c("red", "pink", "white","lightgreen", "green")
 ggObject <- plot_usmap(data = States, values = "signCase", color = "black") +
   scale_fill_manual(values = stateColors, name = "Daily cases are:", drop=FALSE) +
   theme(legend.position = "right") +
   labs(
-    title = paste("Daily cases by state as of", Sys.Date())
+    title = paste("Change in daily cases over", daysLinearFitCases, "days as of", Sys.Date())
   )
-nextSlide(ggObject, "Change in New Cases per Day")
+nextSlide(ggObject, "Change in New Cases over pas")
 
 emailText <- paste(
   emailText,
   email.list.start,
-  "The red/green map for new cases shows:",
+  paste("The red/green map for the rate of change in new cases over the past", daysLinearFitCases, "days shows:"),
   add_ggplot(
     plot_object = ggObject,
     width = 9,
@@ -558,34 +547,21 @@ nextSlide(ggObject, "Cases as a Percent of Peak Cases")
 # States$slopeDeaths[States$slopeDeaths < -6] <- -6
 # States$slopeDeaths[States$slopeDeaths > 6] <- 6
 
-States$signDeath <- "No Change (-1% to +1%)"
-States$signDeath[States$slopeDeaths < -3] <- "Decreasing > -3%"
-States$signDeath[States$slopeDeaths >= -3 & States$slopeDeaths < -1] <- "Decreasing between -1% and -3%"
-States$signDeath[States$slopeDeaths <= 3 & States$slopeDeaths > 1] <- "Increasing between +1% and +3%"
-States$signDeath[States$slopeDeaths > 3] <- "Increasing > +3%"
-States$signDeath <- factor(
-  States$signDeath,
-  levels = c(
-    "Increasing > +3%",
-    "Increasing between +1% and +3%",
-    "No Change (-1% to +1%)",
-    "Decreasing between -1% and -3%",
-    "Decreasing > -3%")
-)
+States$signDeath <- assignSign(States$slopeDeaths)
 
 # New deaths / day
 ggObject <- plot_usmap(data = States, values = "signDeath", color = "black") +
   scale_fill_manual(values = stateColors, name = "Daily deaths are:", drop=FALSE) +
   theme(legend.position = "right") +
   labs(
-    title = paste("Daily deaths by state as of", Sys.Date())
+    title = paste("Change in daily deaths over", daysLinearFitDeaths, "days as of", Sys.Date())
   )
 nextSlide(ggObject, "Change in Deaths per Day")
 
 emailText <- paste(
   emailText,
   email.list.start,
-  "The red/green map for daily deaths shows:",
+  paste("The red/green map for the rate of change in daily deaths over the past", daysLinearFitDeaths, "days shows:"),
   add_ggplot(
     plot_object = ggObject,
     width = 9,
@@ -624,7 +600,7 @@ fourQPlot(
   DATA = States,
   colX = "slopeCases",
   colY = "slopeDeaths",
-  title = "cases vs. change in deaths over last 14 days",
+  title = paste("cases vs. change in deaths over last", daysLinearFitCases, "days"),
   labelX = "cases (%/day)",
   labelY = "deaths (%/day)",
   maxX = 6,
@@ -728,7 +704,7 @@ nextSlide(ggObject, "Daily testing trends")
 States$Y <- States$slopeTests
 stateFisherPlot(
   States,
-  "Change in daily tests over past 14 days",
+  paste("Change in daily tests over past", daysLinearFitCases, "days"),
   "Change in daily tests (%/day)",
   "daily increase in tests",
   6
@@ -753,14 +729,6 @@ stateFisherPlot(
   6
 )
 
-# States$Y <- States$slopePositiveTests
-# stateFisherPlot(
-#   States,
-#   "Change in positive tests over past 14 days",
-#   "Change in positive tests (%/day)",
-#   "daily change in positive tests",
-#   6
-# )
 
 
 ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 93 & Cases_Long$Date < today,], aes(Date, DailyPositiveFraction*100)) +
@@ -885,8 +853,8 @@ if (weekDay == 0) # Sunday Only
 # Counties                                                                     #
 ################################################################################
 
-Counties$deltaCases <- 0
-Counties$deltaDeaths <- 0
+Counties$slopeCases <- 0
+Counties$slopeDeaths <- 0
 Counties$Population <- 0
 Counties$Cases <- 0
 Counties$Deaths <- 0
@@ -900,34 +868,25 @@ for (i in 1:nrow(Counties))
   results <- calcStats(County = Cases_USA$County.Name[x], State = Cases_USA$State[x])
   if (!is.null(results))
   {
-    Counties$deltaCases[i]  <- results$slopeCases
-    Counties$deltaDeaths[i] <- results$slopeDeaths
+    Counties$slopeCases[i]  <- results$slopeCases
+    Counties$slopeDeaths[i] <- results$slopeDeaths
     Counties$Cases[i]   <- results$yesterdayCases
     Counties$Deaths[i]  <- results$yesterdayDeaths
     Counties$Population[i] <- results$Population
     Counties$Mortality[i]  <- results$mortality
     Counties$growthCases[i] <- 
-      ((results$CASES$Actual[results$CASES$Date == today - 1] - results$CASES$Actual[results$CASES$Date == today - 22]) / 21) / results$Population * 100
+      ((results$CASES$Actual[results$CASES$Date == today - 1] - results$CASES$Actual[results$CASES$Date == today - daysLinearFitCases]) / daysLinearFitCases) / results$Population * 100
+    Counties$growthDeaths[i] <- 
+      ((results$DEATHS$Actual[results$DEATHS$Date == today - 1] - results$DEATHS$Actual[results$DEATHS$Date == today - daysLinearFitDeaths]) / daysLinearFitDeaths) / results$Population * 100
   }
 }
 Counties$fips <- Counties$FIPS
-Counties$deltaCases[is.na(Counties$deltaCases)] <- 0
+Counties$slopeCases[is.na(Counties$slopeCases)] <- 0
 Counties$percentCases <- Counties$Cases / Counties$Population * 100
 Counties$percentDeaths <- Counties$Deaths / Counties$Population * 100
-Counties$signCase <- "No Change (-0.5% to +0.5%)"
-Counties$signCase[Counties$deltaCases < -2] <- "Decreasing > -2%"
-Counties$signCase[Counties$deltaCases >= -2 & Counties$deltaCases < -0.5] <- "Decreasing between -0.5% and -2%"
-Counties$signCase[Counties$deltaCases <= 2 & Counties$deltaCases > 0.5] <- "Increasing between +0.5% and +2%"
-Counties$signCase[Counties$deltaCases > 2] <- "Increasing > +2%"
-Counties$signCase <- factor(
-  Counties$signCase,
-  levels = c(
-    "Increasing > +2%",
-    "Increasing between +0.5% and +2%",
-    "No Change (-0.5% to +0.5%)",
-    "Decreasing between -0.5% and -2%",
-    "Decreasing > -2%")
-)
+
+Counties$signCases <- assignSign(Counties$slopeCases)
+Counties$signDeaths <- assignSign(Counties$slopeDeaths)
 
 # Add Partisan Lean
 CROWS <- match(Counties$FIPS, Lean$FIPS)
@@ -935,11 +894,11 @@ Counties$Lean <- Lean$Lean[CROWS] * 100
 ################################################################################
 
 # New cases / day
-ggObject <- plot_usmap(data = Counties, values = "signCase", color = "black") +
-  scale_fill_manual(values = c("red", "pink", "white","lightgreen", "green"), name = "Direction") +
+ggObject <- plot_usmap(data = Counties, values = "signCases", color = "black") +
+  scale_fill_manual(values = c("red", "pink", "white","lightgreen", "green"), name = "Direction (% per day)") +
   theme(legend.position = "right") +
   labs(
-    title = paste("Trends by county as of", Sys.Date()),
+    title = paste("Case trends over", daysLinearFitCases, "days as of", Sys.Date()),
     caption = "NA = Inadequate data"
   )
 nextSlide(ggObject, "Change in New Cases per Day")
@@ -959,13 +918,37 @@ emailText <- paste(
   email.list.end
 )
 
+ggObject <- plot_usmap(data = Counties, values = "signDeaths", color = "black") +
+  scale_fill_manual(values = c("red", "pink", "white","lightgreen", "green"), name = "Direction (% per day)") +
+  theme(legend.position = "right") +
+  labs(
+    title = paste("Death trends over", daysLinearFitDeaths, "days as of", Sys.Date()),
+    caption = "NA = Inadequate data"
+  )
+nextSlide(ggObject, "Change in daily deaths per day")
+
+emailText <- paste(
+  emailText,
+  email.list.start,
+  "The county level graph identifies more precisely where deaths are rising:",
+  add_ggplot(
+    plot_object = ggObject,
+    width = 9,
+    height = 4.95,
+    alt = NULL,
+    align = "left",
+    float = "none"
+  ),
+  email.list.end
+)
+
 if (weekDay == 1) # Monday only
 {
   
   # Percent Change by Partisan Lean
   subset <- Counties[
-    abs(Counties$deltaCases) < 12 &
-      abs(Counties$deltaCases) > 0.01 &
+    abs(Counties$slopeCases) < 12 &
+      abs(Counties$slopeCases) > 0.01 &
       !is.na(Counties$Lean),
   ]
   smooth <- supsmu(subset$Lean, subset$deltaCases)
@@ -991,8 +974,8 @@ if (weekDay == 1) # Monday only
   
   # Percent Change by Population
   subset <- Counties[
-    abs(Counties$deltaCases) < 12 &
-      abs(Counties$deltaCases) > 0.01 &
+    abs(Counties$slopeCases) < 12 &
+      abs(Counties$slopeCases) > 0.01 &
       Counties$Population >= 1000,
   ]
   smooth <- supsmu(subset$Population, subset$deltaCases)
