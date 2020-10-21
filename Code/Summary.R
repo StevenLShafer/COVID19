@@ -12,8 +12,6 @@ emailText <- textSummary(WORLD, "Worldwide")
 USA <- plotPred(Country = "United States of America", Title = "USA")
 emailText <- textSummary(USA, "In the US")
 
-plotPred(County = "Santa Clara County")
-
 # X <- USA$CASES[USA$CASES$Date > as.Date("2020-03-02") & USA$CASES$Date < today ,]
 # breaks = as.Date(as.Date("2020-03-02") + 0:24*7)
 # labels = format(breaks, format = "%a, %b-%d")
@@ -61,11 +59,11 @@ plotPred(County = "Santa Clara County")
 WE <- plotPred(
   Country = c("United Kingdom", "France", "Germany", "Greece",
               "Italy", "Portugal", "Spain","Netherlands",
-              "Flemish Region", "Luxembourg"),
+              "Belgium", "Luxembourg"),
   Title = "Western Europe",
-  Subtitle = "Belgium, France, Germany, Greece, Italy, Portugal, Spain, Netherlands, Luxembourg, and the UK (Population = 344MM)"
+  Subtitle = "Belgium, France, Germany, Greece, Italy, Portugal, Spain, Netherlands, Luxembourg, and the UK (Population = 355MM)"
 ) # Population 343970478
-emailText <- textSummary(WE, "In Western Europe (population: 344MM)")
+emailText <- textSummary(WE, "In Western Europe (population: 355MM)")
 
 # World Map of Cases
 # CROWS <- match(mapWorld$geounit, Population_Global$Country)
@@ -132,6 +130,8 @@ for (c in CROWS)
 {
   Countries$CVDeaths[c] <- sd(unlist(Deaths_Global[c, (N-28):N])) / mean(unlist(Deaths_Global[c, (N-28):N]))
 }
+write.csv(Countries, paste0(dirTodayUpdateData, "Countries.csv"), row.names=FALSE)
+
 Countries <- Countries[Countries$Population > 5000000,]
 
 #Countries <- Countries[Countries$Country %in% c("Sweden","Denmark","Germany","Finland","Norway","USA"),]
@@ -1156,6 +1156,8 @@ ggplot(subset, aes(x = percentCases, y = growthCases)) +
     y = "Daily growth as a percent of the population "
   )
 
+write.csv(States, paste0(dirTodayUpdateData, "States.csv"), row.names=FALSE)
+write.csv(Counties, paste0(dirTodayUpdateData, "Counties.csv"), row.names=FALSE)
 
 print(pptx, target = pptxfileName)
 #shell.exec(pptxfileName)

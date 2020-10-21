@@ -52,7 +52,7 @@ yesterdayText <- format(yesterday, "X%m.%e.%y")
 yesterdayText <- gsub("X0","X",yesterdayText)
 yesterdayText <- gsub(" ","",yesterdayText) 
 startDate <- as.Date("2020-01-22")
-endDate <- as.Date("2020-11-01")
+endDate <- as.Date("2020-12-01")
 projection <- endDate - today + 1
 currentDates <- seq(startDate, today-1, by="days")
 allDates     <- seq(startDate, endDate, by="days")
@@ -108,12 +108,6 @@ plotGrowthFlag <- FALSE
   source(paste0(dirCode,"States.R"))
   source(paste0(dirCode,"Counties.R"))
   source(paste0(dirCode,"International.R"))
-  
-  write.csv(Countries, paste0(dirTodayUpdateData, "Countries.csv"), row.names=FALSE)
-  write.csv(States, paste0(dirTodayUpdateData, "States.csv"), row.names=FALSE)
-  write.csv(Counties, paste0(dirTodayUpdateData, "Counties.csv"), row.names=FALSE)
-  x <- emailText
-  
   
   # Make copy of latest files for GitHub
   FILES <- list.files(dirLatest, recursive = TRUE)
