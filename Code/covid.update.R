@@ -85,8 +85,9 @@ plotGrowthFlag <- FALSE
   source(paste0(dirCode, "jacklerPlot.R"))
   source(paste0(dirCode, "smoothSLS.R"))
   source(paste0(dirCode, "monotonicSLS.R"))
+  source(paste0(dirCode, "assignSign.R"))
   
-  
+
   source(paste0(dirCode,"persistent.download.R")) # Won't return until there are data for today
   source(paste0(dirCode,"ImportCovidData.R"))     # Reads files created from persistent.Download
 
