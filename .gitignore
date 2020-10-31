@@ -1,6 +1,10 @@
 .DS_Store
 /Ignore
 /Distribution
+/Latest
+/Updates
+/Latest
+config.yml
 
 # History files
 .Rhistory
