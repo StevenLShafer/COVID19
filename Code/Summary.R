@@ -6,10 +6,10 @@ emailText <- paste(
   collapse = "\n"
 )
 
-WORLD <- plotPred(Country = "Worldwide", Title = "Worldwide")
+WORLD <- plotPred(Country = "Worldwide", Title = "Worldwide")$results
 emailText <- textSummary(WORLD, "Worldwide")
 
-USA <- plotPred(Country = "United States of America", Title = "USA")
+USA <- plotPred(Country = "United States of America", Title = "USA")$results
 emailText <- textSummary(USA, "In the US")
 
 # X <- USA$CASES[USA$CASES$Date > as.Date("2020-03-02") & USA$CASES$Date < today ,]
@@ -62,7 +62,7 @@ WE <- plotPred(
               "Belgium", "Luxembourg"),
   Title = "Western Europe",
   Subtitle = "Belgium, France, Germany, Greece, Italy, Portugal, Spain, Netherlands, Luxembourg, and the UK (Population = 355MM)"
-) # Population 343970478
+)$results # Population 343970478
 emailText <- textSummary(WE, "In Western Europe (population: 355MM)")
 
 # World Map of Cases
@@ -94,7 +94,7 @@ jacklerPlot(
   DATA1 = USA,
   DATA2 = WE,
   Loc1 = "USA (318MM)",
-  Loc2 = "Western Europe (344MM)",
+  Loc2 = "Western Europe (355MM)",
   title = "Comparison of COVID-19 Cases & Deaths between US & Europe"
 )
 
@@ -102,7 +102,7 @@ ASIA <- plotPred(
   Country = c("Japan","South Korea","Vietnam","Thailand"), 
   Title = "Non-authoritarian Asian ensemble", 
   Subtitle = "Japan, South Korea, Thailand, and Vietnam (Population = 328 MM)"
-) 
+)$results
 
 emailText <- textSummary(ASIA, "In the non-authoritarian Asian ensemble (population: 328MM)")
 
@@ -500,14 +500,14 @@ ggObject <- plot_usmap(data = States, values = "signCase", color = "black") +
   scale_fill_manual(values = stateColors, name = "Daily cases are:", drop=FALSE) +
   theme(legend.position = "right") +
   labs(
-    title = paste("Change in daily cases over", daysLinearFitCases, "days as of", Sys.Date())
+    title = paste("Change in daily cases over", daysLinearFit, "days as of", Sys.Date())
   )
-nextSlide(ggObject, "Change in New Cases over pas")
+nextSlide(ggObject, paste("Change in New Cases over past", daysLinearFit, "days."))
 
 emailText <- paste(
   emailText,
   email.list.start,
-  paste("The red/green map for the rate of change in new cases over the past", daysLinearFitCases, "days shows:"),
+  paste("The red/green map for the rate of change in new cases over the past", daysLinearFit, "days shows:"),
   add_ggplot(
     plot_object = ggObject,
     width = 9,
@@ -554,14 +554,14 @@ ggObject <- plot_usmap(data = States, values = "signDeath", color = "black") +
   scale_fill_manual(values = stateColors, name = "Daily deaths are:", drop=FALSE) +
   theme(legend.position = "right") +
   labs(
-    title = paste("Change in daily deaths over", daysLinearFitDeaths, "days as of", Sys.Date())
+    title = paste("Change in daily deaths over", daysLinearFit, "days as of", Sys.Date())
   )
 nextSlide(ggObject, "Change in Deaths per Day")
 
 emailText <- paste(
   emailText,
   email.list.start,
-  paste("The red/green map for the rate of change in daily deaths over the past", daysLinearFitDeaths, "days shows:"),
+  paste("The red/green map for the rate of change in daily deaths over the past", daysLinearFit, "days shows:"),
   add_ggplot(
     plot_object = ggObject,
     width = 9,
@@ -600,7 +600,7 @@ fourQPlot(
   DATA = States,
   colX = "slopeCases",
   colY = "slopeDeaths",
-  title = paste("cases vs. change in deaths over last", daysLinearFitCases, "days"),
+  title = paste("cases vs. change in deaths over last", daysLinearFit, "days"),
   labelX = "cases (%/day)",
   labelY = "deaths (%/day)",
   maxX = 6,
@@ -704,7 +704,7 @@ nextSlide(ggObject, "Daily testing trends")
 States$Y <- States$slopeTests
 stateFisherPlot(
   States,
-  paste("Change in daily tests over past", daysLinearFitCases, "days"),
+  paste("Change in daily tests over past", daysLinearFit, "days"),
   "Change in daily tests (%/day)",
   "daily increase in tests",
   6
@@ -875,9 +875,9 @@ for (i in 1:nrow(Counties))
     Counties$Population[i] <- results$Population
     Counties$Mortality[i]  <- results$mortality
     Counties$growthCases[i] <- 
-      ((results$CASES$Actual[results$CASES$Date == today - 1] - results$CASES$Actual[results$CASES$Date == today - daysLinearFitCases]) / daysLinearFitCases) / results$Population * 100
+      ((results$CASES$Actual[results$CASES$Date == today - 1] - results$CASES$Actual[results$CASES$Date == today - daysLinearFit]) / daysLinearFit) / results$Population * 100
     Counties$growthDeaths[i] <- 
-      ((results$DEATHS$Actual[results$DEATHS$Date == today - 1] - results$DEATHS$Actual[results$DEATHS$Date == today - daysLinearFitDeaths]) / daysLinearFitDeaths) / results$Population * 100
+      ((results$DEATHS$Actual[results$DEATHS$Date == today - 1] - results$DEATHS$Actual[results$DEATHS$Date == today - daysLinearFit]) / daysLinearFit) / results$Population * 100
   }
 }
 Counties$fips <- Counties$FIPS
@@ -898,7 +898,7 @@ ggObject <- plot_usmap(data = Counties, values = "signCases", color = "black") +
   scale_fill_manual(values = c("red", "pink", "white","lightgreen", "green"), name = "Direction (% per day)") +
   theme(legend.position = "right") +
   labs(
-    title = paste("Case trends over", daysLinearFitCases, "days as of", Sys.Date()),
+    title = paste("Case trends over", daysLinearFit, "days as of", Sys.Date()),
     caption = "NA = Inadequate data"
   )
 nextSlide(ggObject, "Change in New Cases per Day")
@@ -922,7 +922,7 @@ ggObject <- plot_usmap(data = Counties, values = "signDeaths", color = "black") 
   scale_fill_manual(values = c("red", "pink", "white","lightgreen", "green"), name = "Direction (% per day)") +
   theme(legend.position = "right") +
   labs(
-    title = paste("Death trends over", daysLinearFitDeaths, "days as of", Sys.Date()),
+    title = paste("Death trends over", daysLinearFit, "days as of", Sys.Date()),
     caption = "NA = Inadequate data"
   )
 nextSlide(ggObject, "Change in daily deaths per day")

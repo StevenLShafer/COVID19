@@ -61,8 +61,7 @@ allCurrentDays <- as.numeric(today-startDate)
 dirTodayUpdate <- paste0(dirUpdate,todayText,"/")
 dirTodayUpdateData <- paste0(dirTodayUpdate,"DATA/")
 
-daysLinearFitCases  <- 9    # Number of days for the linear regression (increasing/decreasing cases per day)
-daysLinearFitDeaths <- 9    # Number of days for the linear regression (increasing/decreasing cases per day)
+daysLinearFit  <- 9    # Number of days for the linear regression 
 daysGompertzFit <- 21 # Number of days for the Gompertz model
 asymptomatic <- 10    # Number of asymptomatic patients per symptomatic patient,
                       # limits Gompertz peak to population / asymptomatic * 0.6
@@ -127,6 +126,7 @@ plotGrowthFlag <- FALSE
   # shell (paste('git commit -m "Update for', todayText, '"'))
   # shell ("git push")
   
+  shell(paste("movefiles", todayText), wait=FALSE)
   shell(paste("gogit", todayText), wait=FALSE)
 
   pbPost(

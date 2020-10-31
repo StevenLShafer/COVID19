@@ -33,24 +33,29 @@ ol
 Dear Family, Friends, and Colleagues:&nbsp;<br>
 </p>
 <p class="SLSNormal">
-My daily update for COVID trends is attached. These are not confidential and may be freely shared. If you would like to be added to the blind CC recipient list, please let me know. If you want less COVID spam, I&#8217;m happy to remove you from the list. 
-</p>
-<p class="SLSNormal">
-Today's PowerPoint files and data files can be accessed 
+My daily update for COVID trends is attached. The PowerPoint files can be accessed 
 <a href="https://drive.google.com/drive/folders/1EGPI7ZUEjRoZd7e9BFK4fT0IV4hxJHFT?usp=sharing" target="_blank">here</a>.
-Prior PowerPoint files and data files can be accessed 
-<a href="https://1drv.ms/u/s!AuOyHP_aTIy7rowrt2AjGpWm_frnEQ" target="_blank">here</a>.
+</p>
+
+<p class="SLSNormal">
+These are not confidential and may be freely shared. If you would like to be added to the Google Group recipients, please let me know. If you want less COVID spam, I&#8217;m happy to remove you from the Google Group. 
+</p>
+
+<p class="SLSNormal">
 The R program code can be found on 
 <a href="https://github.com/StevenLShafer/COVID19">GitHub</a> 
-and may be freely used without restriction. Questions, suggestions, and recommendations are welcome.<o:p></o:p>
+and may be freely used without restriction. <o:p></o:p>
 </p>
+
 <p class="SLSNormal">
-If this is the first time you have received this, please read the comments on the first slide in the PowerPoint summary. The second slide will help orient you to the figures. 
+There are four PowerPoint files that accompany each update: Summary, US States, US Counties, and International. If this is the first time you have received this, please read the comments on the first two slides in Summary.pptx.  
 </p>
+
 <p class="SLSNormal">
 Ian Mackey is kindly posting updates on Twitter (<a href="https://twitter.com/stevenlshafer">https://twitter.com/stevenlshafer</a>
 , @stevenlshafer).&nbsp;
 </p>
+
 <p class="SLSNormal">
 Comments:
 </p>

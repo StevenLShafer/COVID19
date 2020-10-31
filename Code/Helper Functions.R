@@ -40,24 +40,24 @@ textSummary <- function(X, title)
     )
   if (abs(X$slopeCases) < 0.1)
   {
-    slopeCasesText <- "The new case rate is essentially unchanged over the past 14 days."
+    slopeCasesText <- "The daily case rate is essentially unchanged and"
   } else {
     if (X$slopeCases > 0)
     {
-      slopeCasesText <- paste0("New cases have increased ", round(X$slopeCases,1),"% per day over the past 14 days.")
+      slopeCasesText <- paste0("Daily cases are increasing ", round(X$slopeCases,1),"% and")
     } else {
-      slopeCasesText <- paste0("New cases have decreased ", round(-X$slopeCases,1),"% per day over the past 14 days.")
+      slopeCasesText <- paste0("New cases are decreasing ", round(-X$slopeCases,1),"% and")
     }
   }
   if (abs(X$slopeDeaths) < 0.1)
   {
-    slopeDeathsText <- "The daily death rate is essentially unchanged over the past 14 days."
+    slopeDeathsText <- "the daily death rate is essentially unchanged"
   } else {
     if (X$slopeDeaths > 0)
     {
-      slopeDeathsText <- paste0("Deaths have increased ", round(X$slopeDeaths,1),"% per day over the past 14 days.")
+      slopeDeathsText <- paste0("deaths are increasing ", round(X$slopeDeaths,1),"%")
     } else {
-      slopeDeathsText <- paste0("Deaths have decreased ", round(-X$slopeDeaths,1),"% per day over the past 14 days.")
+      slopeDeathsText <- paste0("deaths are decreasing ", round(-X$slopeDeaths,1),"%")
     }
   }
   return(
@@ -67,6 +67,9 @@ textSummary <- function(X, title)
       text,
       slopeCasesText,
       slopeDeathsText,
+      "over the past",
+      daysLinearFit,
+      "days.",
       email.list.end
     )
   )

@@ -226,10 +226,8 @@ calcStats <- function(
 #  CASES$Source <- "Predicted"
 
   # Calculate line of fit
-  CASES$Delta_Smoothed_2[3:(nRow-2)] <- rollmean(CASES$Delta_Smoothed, align="center",k=5)
-  CASES$Delta_Smoothed_2[(nRow-2):nRow] <- CASES$Delta_Smoothed_2[nRow-3]
   CASES$Delta_Smoothed_2 <- smoothSLS(CASES$Delta, RespectLow = TRUE)
-  X <- (todayIndex-daysLinearFitCases):(todayIndex-1)
+  X <- (todayIndex-daysLinearFit):(todayIndex-1)
   linfitCases  <- lm(CASES$Delta_Smoothed_2[X] ~ X)
   slopeCases <- linfitCases$coefficients[2] / mean(CASES$Delta_Smoothed_2[X]) * 100
 
@@ -244,10 +242,8 @@ calcStats <- function(
   DEATHS$Delta_Smoothed[(nRow-2):nRow] <- DEATHS$Delta_Smoothed[nRow-3]
 
   # Calculate line of fit
-  DEATHS$Delta_Smoothed_2[3:(nRow-2)] <- rollmean(DEATHS$Delta_Smoothed, align="center",k=5)
-  DEATHS$Delta_Smoothed_2[(nRow-2):nRow] <- DEATHS$Delta_Smoothed_2[nRow-3]
   DEATHS$Delta_Smoothed_2 <- smoothSLS(DEATHS$Delta, RespectLow = TRUE)
-  X <- (todayIndex-daysLinearFitDeaths):(todayIndex-1)
+  X <- (todayIndex-daysLinearFit):(todayIndex-1)
   linfitDeaths  <- lm(DEATHS$Delta_Smoothed_2[X] ~ X)
   slopeDeaths <- linfitDeaths$coefficients[2] / mean(DEATHS$Delta_Smoothed_2[X]) * 100
 

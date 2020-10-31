@@ -89,7 +89,7 @@ plotPred <- function(
     "% Cases, ",
     sprintf("%+2.1f", slopeDeaths),
     "% Deaths (over ",
-    daysLinearFitCases,
+    daysLinearFit,
     " days)"
   )
   
@@ -244,7 +244,7 @@ plotPred <- function(
     DEATHS$Delta_Smoothed_2[DEATHS$Date < today],
     CASES$Delta[CASES$Date < today & CASES$Date >= today - daysShowRaw], 
     DEATHS$Delta[DEATHS$Date < today & CASES$Date >= today - daysShowRaw]
-  ) * 1.1
+  ) * 2
   maxY <- 10^ceiling(log10(maxY))
   
   CASES$DailySmoothed <- CASES$Delta_Smoothed_2
@@ -309,7 +309,7 @@ plotPred <- function(
     ) +
     annotate(
       "segment", 
-      x = today - daysLinearFitCases - 1, 
+      x = today - daysLinearFit - 1, 
       xend = today - 1, 
       y = head(linfitCases$fitted.values,1),
       yend = tail(linfitCases$fitted.values,1),
@@ -318,7 +318,7 @@ plotPred <- function(
     ) +
     annotate(
       "segment", 
-      x = today - daysLinearFitDeaths - 1, 
+      x = today - daysLinearFit - 1, 
       xend = today - 1, 
       y = head(linfitDeaths$fitted.values,1),
       yend = tail(linfitDeaths$fitted.values,1),
@@ -423,5 +423,9 @@ plotPred <- function(
   
   if (plotGrowthFlag) plotGrowth(results, Title)
   
-  return(results)
+  return(list(
+    ggObject = ggObject3, 
+    results = results
+    )
+  )
 }

@@ -22,6 +22,8 @@ plotPred(Country = "Finland", Title = "Finland")
 
 plotPred(Country = "Ireland", Title = "Ireland")
 plotPred(Country = "Czech Republic")
+plotPred(Country = "Slovakia")
+
 plotPred(Country = "Iceland", Title = "Iceland")
 # plotPred(Country = "Rwanda", Title = "Rwanda"
 
@@ -42,8 +44,10 @@ plotPred(Country = "South Africa", Title = "South Africa")
 
 # Middle East
 plotPred(Country = "Israel", Title = "Israel")
+plotPred(Country = "Jordan")
 plotPred(Country = "Turkey", Title = "Turkey")
 plotPred(Country = "Lebanon")
+plotPred(Country = "Syria")
 plotPred(Country = "Iran", Title = "Iran")
 plotPred(Country = "Iraq")
 plotPred(Country = "Egypt", Title = "Egypt")
@@ -53,6 +57,7 @@ plotPred(Country = "United Arab Emirates")
 plotPred(Country = "Oman")
 plotPred(Country = "Qatar")
 plotPred(Country = "Bahrain", Title = "Bahrain")
+plotPred(Country = "Tunisia")
 
 # South America
 plotPred(

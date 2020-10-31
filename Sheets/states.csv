@@ -1,52 +1,52 @@
-FIPS,Abbreviation,State,Governor
-1,AL,Alabama,Republican
-2,AK,Alaska,Republican
-4,AZ,Arizona,Republican
-5,AR,Arkansas,Republican
-6,CA,California,Democratic
-8,CO,Colorado,Democratic
-9,CT,Connecticut,Democratic
-10,DE,Delaware,Democratic
-11,DC,District of Columbia,Democratic
-12,FL,Florida,Republican
-13,GA,Georgia,Republican
-15,HI,Hawaii,Democratic
-16,ID,Idaho,Republican
-17,IL,Illinois,Democratic
-18,IN,Indiana,Republican
-19,IA,Iowa,Republican
-20,KS,Kansas,Democratic
-21,KY,Kentucky,Democratic
-22,LA,Louisiana,Democratic
-23,ME,Maine,Democratic
-24,MD,Maryland,Republican
-25,MA,Massachusetts,Republican
-26,MI,Michigan,Democratic
-27,MN,Minnesota,Democratic
-28,MS,Mississippi,Republican
-29,MO,Missouri,Republican
-30,MT,Montana,Democratic
-31,NE,Nebraska,Republican
-32,NV,Nevada,Democratic
-33,NH,New Hampshire,Republican
-34,NJ,New Jersey,Democratic
-35,NM,New Mexico,Democratic
-36,NY,New York,Democratic
-37,NC,North Carolina,Democratic
-38,ND,North Dakota,Republican
-39,OH,Ohio,Republican
-40,OK,Oklahoma,Republican
-41,OR,Oregon,Democratic
-42,PA,Pennsylvania,Democratic
-44,RI,Rhode Island,Democratic
-45,SC,South Carolina,Republican
-46,SD,South Dakota,Republican
-47,TN,Tennessee,Republican
-48,TX,Texas,Republican
-49,UT,Utah,Republican
-50,VT,Vermont,Republican
-51,VA,Virginia,Democratic
-53,WA,Washington,Democratic
-54,WV,West Virginia,Republican
-55,WI,Wisconsin,Democratic
-56,WY,Wyoming,Republican
+FIPS,Abbreviation,State,Governor,538_Prediction
+1,AL,Alabama,Republican,Trump
+2,AK,Alaska,Republican,Trump
+4,AZ,Arizona,Republican,Biden
+5,AR,Arkansas,Republican,Trump
+6,CA,California,Democratic,Biden
+8,CO,Colorado,Democratic,Biden
+9,CT,Connecticut,Democratic,Biden
+10,DE,Delaware,Democratic,Biden
+11,DC,District of Columbia,Democratic,Biden
+12,FL,Florida,Republican,Biden
+13,GA,Georgia,Republican,Biden
+15,HI,Hawaii,Democratic,Biden
+16,ID,Idaho,Republican,Trump
+17,IL,Illinois,Democratic,Biden
+18,IN,Indiana,Republican,Trump
+19,IA,Iowa,Republican,Biden
+20,KS,Kansas,Democratic,Trump
+21,KY,Kentucky,Democratic,Trump
+22,LA,Louisiana,Democratic,Trump
+23,ME,Maine,Democratic,Biden
+24,MD,Maryland,Republican,Biden
+25,MA,Massachusetts,Republican,Biden
+26,MI,Michigan,Democratic,Biden
+27,MN,Minnesota,Democratic,Biden
+28,MS,Mississippi,Republican,Trump
+29,MO,Missouri,Republican,Trump
+30,MT,Montana,Democratic,Trump
+31,NE,Nebraska,Republican,Trump
+32,NV,Nevada,Democratic,Biden
+33,NH,New Hampshire,Republican,Biden
+34,NJ,New Jersey,Democratic,Biden
+35,NM,New Mexico,Democratic,Biden
+36,NY,New York,Democratic,Biden
+37,NC,North Carolina,Democratic,Biden
+38,ND,North Dakota,Republican,Trump
+39,OH,Ohio,Republican,Trump
+40,OK,Oklahoma,Republican,Trump
+41,OR,Oregon,Democratic,Biden
+42,PA,Pennsylvania,Democratic,Biden
+44,RI,Rhode Island,Democratic,Biden
+45,SC,South Carolina,Republican,Trump
+46,SD,South Dakota,Republican,Trump
+47,TN,Tennessee,Republican,Trump
+48,TX,Texas,Republican,Trump
+49,UT,Utah,Republican,Trump
+50,VT,Vermont,Republican,Biden
+51,VA,Virginia,Democratic,Biden
+53,WA,Washington,Democratic,Biden
+54,WV,West Virginia,Republican,Trump
+55,WI,Wisconsin,Democratic,Biden
+56,WY,Wyoming,Republican,Trump

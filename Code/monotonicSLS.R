@@ -16,6 +16,7 @@ monotonicSLS <- function (X)
 {
   for (i in length(X):2)
   {
+    if (is.na(X[i])) X[i] <- X[i-1]
     if (X[i-1] > X[i])
     {
       cat("fixing at i = ", i, "\n")

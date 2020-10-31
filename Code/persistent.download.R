@@ -21,13 +21,12 @@ fileDownload <- function(
   forceMonotonicFlag = FALSE
 )
 {
-  # source <-   "https://covidtracking.com/api/v1/states/daily.csv"
-  # name <- "Testing_USA"
+  # source <- "https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
+  # name <- "Deaths_Global"
   # extension <- ".csv"
   # persist <- TRUE
   # checkLastColumn <- FALSE
-  # forceMonotonic <- FALSE
-
+  # forceMonotonic <- TRUE
 
   filename <- paste0(dirTodayUpdateData,name,".", todayText, ".raw", extension)
   if (file.exists(filename)) cat(name, "already downloaded.\n")
