@@ -1,7 +1,7 @@
 # Daily Modeling and Update of the COVID-19 Pandemic
 
 ## Overview:
-This is my analysis, not Stanford’s. My plots and regressions are intended to understand the trajectory of COVID. It is not confidential and can be freely shared. The R program code is available in this repository. The daily updates can be accessed at https://1drv.ms/u/s!AuOyHP_aTIy7rowrt2AjGpWm_frnEQ?e=KBcNbh. 
+This is my analysis, not Stanford’s. My plots and regressions are intended to understand the trajectory of COVID. It is not confidential and can be freely shared. The R program code is available in this repository. All of the daily updates can be accessed at https://1drv.ms/u/s!AuOyHP_aTIy7rowrt2AjGpWm_frnEQ?e=KBcNbh. The latest update can be accessed at https://drive.google.com/drive/u/1/folders/1EGPI7ZUEjRoZd7e9BFK4fT0IV4hxJHFT.
 
 Please contact me at steven.shafer@Stanford.edu if you would like to be added or removed from the recipient list. Suggestions are most welcome! You are welcome to use the R code on GitHub for any purpose.
 
