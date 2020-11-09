@@ -945,32 +945,32 @@ emailText <- paste(
 if (weekDay == 1) # Monday only
 {
   
-  # Percent Change by Partisan Lean
+  # Percent Change in cases by Partisan Lean
   subset <- Counties[
-    abs(Counties$slopeCases) < 12 &
+    abs(Counties$slopeCases) < 20 &
       abs(Counties$slopeCases) > 0.01 &
       !is.na(Counties$Lean),
   ]
-  smooth <- supsmu(subset$Lean, subset$deltaCases)
+  smooth <- supsmu(subset$Lean, subset$slopeCases)
   smooth <- data.frame(
     x = smooth$x,
     y = smooth$y
   )
-  ggObject <- ggplot(subset,aes(x = Lean, y = deltaCases, color = Lean)) +
+  ggObject <- ggplot(subset,aes(x = Lean, y = slopeCases, color = Lean)) +
     geom_point(size = 0.85) +
     annotate("segment", x = 0, xend = 100, y = 0, yend = 0, color = "black") +
     geom_line(data = smooth, aes(x = x, y = y), color = "darkgreen", linetype = "solid", size = 1.5, alpha = 0.5) +
     scale_color_gradient2(low = "blue",mid = "purple", high="red", midpoint = 50) +
     scale_fill_gradient(low = "blue",high="red") +
     labs(
-      x = "Percent Republican",
+      x = "County Percent Republican",
       y = "Percent change in new cases per day",
       title = "Counties by 2016 presidential election results",
       color = "Republican",
       caption = "Dark green line is a Friedman's supersmoother"
     ) +
     coord_cartesian(expand=FALSE, xlim = c(0,100), ylim = c(-13, 13))
-  nextSlide(ggObject, "Percent Change by Partisan Lean")
+  nextSlide(ggObject, "Percent Change in Cases by Partisan Lean")
   
   # Percent Change by Population
   subset <- Counties[
@@ -978,21 +978,21 @@ if (weekDay == 1) # Monday only
       abs(Counties$slopeCases) > 0.01 &
       Counties$Population >= 1000,
   ]
-  smooth <- supsmu(subset$Population, subset$deltaCases)
+  smooth <- supsmu(subset$Population, subset$slopeCases)
   smooth <- data.frame(
     x = smooth$x,
     y = smooth$y
   )
   
-  ggObject <- ggplot(subset,aes(x = Population, y = deltaCases, color = Lean)) +
+  ggObject <- ggplot(subset,aes(x = Population, y = slopeCases, color = Lean)) +
     geom_point(size = 0.85) +
     annotate("segment", x = 0, xend = 10000000, y = 0, yend = 0, color = "black") +
     geom_line(data = smooth, aes(x = x, y = y), color = "darkgreen", linetype = "solid", size = 1.5, alpha = 0.5) +
     scale_color_gradient2(low = "blue",mid = "purple", high="red", midpoint = 50) +
     labs(
-      x = "Population",
+      x = "County Population",
       y = "Percent change in new cases per day",
-      title = "Counties by Population",
+      title = "Counties by 2016 presidential election results",
       color = "Republican",
       caption = "Dark green line is a Friedman's 'super smoother'"
     ) +
@@ -1001,7 +1001,7 @@ if (weekDay == 1) # Monday only
       breaks = c(1000, 10000, 100000, 1000000,10000000),
       labels = c("1,000","10,000","100,000","1,000,000", "10,000,000")
     )
-  nextSlide(ggObject, "Percent Change by Population")
+  nextSlide(ggObject, "Percent change in cases by population")
   
   # Percent Cases Population *************************************************************
   subset <- Counties[
@@ -1024,14 +1024,14 @@ if (weekDay == 1) # Monday only
       title = "Total Cases as a Percent of County Population",
       caption = "Slanted lines are counties with small integer numbers of cases, green line: Friedman's 'super smoother'"
     ) +
-    coord_cartesian(expand=FALSE, xlim = c(1000, 12000000), ylim = c(0.001, 20)) +
+    coord_cartesian(expand=FALSE, xlim = c(1000, 12000000), ylim = c(0.1, 40)) +
     scale_x_log10(
       breaks = c(1000, 10000, 100000, 1000000,10000000),
       labels = c("1,000","10,000","100,000","1,000,000", "10,000,000")
     ) +
     scale_y_log10(
-      breaks = c(0.001, 0.01, 0.1, 1, 10, 20),
-      labels = c("0.001%", "0.01%", "0.1%", "1%", "10%", "20%")
+      breaks = c(0.1, 1, 10, 40),
+      labels = c("0.1%", "1%", "10%", "40%")
     ) +
     annotation_logticks()
   nextSlide(ggObject, "Cases as a Percent of Population")
@@ -1077,14 +1077,14 @@ if (weekDay == 1) # Monday only
       y = "Case mortality",
       title = "Case Mortality vs. County Population"
     ) +
-    coord_cartesian(expand=FALSE, xlim = c(1000, 12000000), ylim = c(0.1, 100)) +
+    coord_cartesian(expand=FALSE, xlim = c(1000, 12000000), ylim = c(0.01, 100)) +
     scale_x_log10(
       breaks = c(1000, 10000, 100000, 1000000,10000000),
       labels = c("1,000","10,000","100,000","1,000,000", "10,000,000")
     ) +
     scale_y_log10(
-      breaks = c(0.1, 1, 10, 100),
-      labels = c("0.1%", "1%", "10%", "100%")
+      breaks = c(0.01, 0.1, 1, 10, 100),
+      labels = c("0.01%", "0.1%", "1%", "10%", "100%")
     ) +
     annotation_logticks()
   nextSlide(ggObject, "Case Mortality vs. Population")

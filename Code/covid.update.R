@@ -115,7 +115,10 @@ plotGrowthFlag <- FALSE
   
   FILES <- list.files(dirTodayUpdate, full.names = TRUE, recursive = TRUE)
   NEW <- gsub(dirTodayUpdate, dirLatest, FILES)
-  dir.create(paste0(dirLatest, "DATA"))
+  if (!file.exists(paste0(dirLatest, "DATA")))
+  {
+    dir.create(paste0(dirLatest, "DATA"))
+  }
   
   file.copy(
     from = FILES,

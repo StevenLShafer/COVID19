@@ -6,7 +6,7 @@ forceMonotonic <- function(X)
   
   for (i in 1:nrow(X))
   {
-    cat(i, " ")
+    cat(i, "\n")
     X[i, first:last] <- monotonicSLS(X[i, first:last])
   }
   return(X)
@@ -14,16 +14,30 @@ forceMonotonic <- function(X)
 
 monotonicSLS <- function (X)
 {
+  NAs <- which(is.na(X))
+  if (length(NAs) > 0) X[NAs] <- X[NAs-1]
   for (i in length(X):2)
   {
-    if (is.na(X[i])) X[i] <- X[i-1]
     if (X[i-1] > X[i])
     {
-      cat("fixing at i = ", i, "\n")
-      fraction <- X[i] / X [i-1]
-      for (j in 1:(i-1))
-        X[j] <- X[j] * fraction
+      cat("   fixing at i = ", i, "\n")
+      X[1:(i-1)] <- sapply(X[1:(i-1)], function(x) X[i] / X [i-1] * x)
+      # for (j in 1:(i-1))
+      #   X[j] <- X[j] * fraction
     }
   }
   return(X)
 }
+
+
+# Vectorized code
+# Replace NAs with prior entry
+# X <- 1:10
+# X[5] <- NA
+# X
+# X
+# 
+# #Multiply all entries before 5 by Factor
+# fraction <- 0.8
+# sapply(X[1:5], function(x) fraction * x)
+
