@@ -54,23 +54,23 @@ stateFisherPlot <- function (X, title, ylabel, emailTitle, N, OneIn = FALSE)
   X$Rank <- 1:nrow(X)
   pMasks <- p <- signif(wilcox.test(X$Rank[X$Masks == "Yes"], X$Rank[X$Masks == "No"])$p.value, 2)
   pGov <- signif(wilcox.test(X$Rank[X$Governor == "Republican"], X$Rank[X$Governor == "Democratic"])$p.value, 2)
-  p538 <- signif(wilcox.test(X$Rank[X$'538 Prediction' == "Trump"], X$Rank[X$'538 Prediction' == "Biden"])$p.value, 2)
-  ggObject <- ggplot(X, aes(x = Rank, y = Y, color = `538 Prediction`, shape = Masks)) +
+  pLean <- signif(wilcox.test(X$Rank[X$'2020 Election' == "Trump"], X$Rank[X$'2020 Election' == "Biden"])$p.value, 2)
+  ggObject <- ggplot(X, aes(x = Rank, y = Y, color = `2020 Election`, shape = Masks)) +
     geom_point() +
     geom_text(aes(y = Y, label = paste0("  ",State)), angle = 90, size = 2.6, hjust = 0) +
     scale_color_manual(values = c("blue","red")) +
     scale_shape_manual(values = c(0, 15)) +
     labs(
       title = title,
-      subtitle = "Mask mandate is from July 20th. fivethirtyeight.com prediction is from October 27th.",
+      subtitle = "Mask mandate is from July 20th. Political lean is based on election results.",
       y = ylabel,
       x = "Rank",
       caption = paste0
       (
         "p masks as of July 20, 2020: ", 
         signif(pMasks,2), 
-        ", p 538 prediction: ",
-        format(signif(p538,2), scientific = FALSE),
+        ", p 2020 Election: ",
+        format(signif(pLean,2), scientific = FALSE),
         "."
       )
     ) +

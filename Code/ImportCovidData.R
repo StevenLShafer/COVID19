@@ -45,7 +45,7 @@ Ensemble            <- read.csv(paste0(dirTodayUpdateData,"Ensemble."      , tod
 
 Population_USA <- read.csv(paste0(dirSheets,"Population_USA.csv"))
 States <- read.csv(paste0(dirSheets,"States.csv"))
-names(States)[5] <- "538 Prediction"
+names(States)[5] <- "2020 Election"
 Counties <- read.csv(paste0(dirSheets,"Counties.csv"))
 
 # Fix Names

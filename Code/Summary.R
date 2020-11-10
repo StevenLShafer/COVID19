@@ -603,8 +603,8 @@ fourQPlot(
   title = paste("cases vs. change in deaths over last", daysLinearFit, "days"),
   labelX = "cases (%/day)",
   labelY = "deaths (%/day)",
-  maxX = 6,
-  maxY = 6,
+  maxX = 10,
+  maxY = 10,
   colors = c("red","forestgreen","blue","magenta"),
   caption = "Size is proportional total cases per capita",
   scale = States$totalCases / States$Population
