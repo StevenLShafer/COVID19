@@ -1,5 +1,5 @@
 # Fisher Plots
-internationalFisherPlot <- function (X, title, ylabel, emailTitle, N, OneIn = FALSE)
+internationalFisherPlot <- function (X, title, ylabel, emailTitle, N, OneIn = FALSE, addPlot = FALSE)
 { 
   X$Country[X$Country == "United States of America"] <- "USA"
   X <- X[order(X$Y, decreasing = TRUE),]
@@ -45,10 +45,10 @@ internationalFisherPlot <- function (X, title, ylabel, emailTitle, N, OneIn = FA
   #     xlim = c(1, nrow(X))
   #   )
   nextSlide(ggObject, title)
-  if (emailTitle != "") emailText <<- textRanksInternational(X, emailTitle, N)
+  if (emailTitle != "") emailText <<- textRanksInternational(X, emailTitle, N, addPlot, ggObject)
 }
 
-stateFisherPlot <- function (X, title, ylabel, emailTitle, N, OneIn = FALSE)
+stateFisherPlot <- function (X, title, ylabel, emailTitle, N, OneIn = FALSE, addPlot = FALSE)
 {
   X <- X[order(X$Y, decreasing = TRUE),]
   X$Rank <- 1:nrow(X)
@@ -110,5 +110,5 @@ stateFisherPlot <- function (X, title, ylabel, emailTitle, N, OneIn = FALSE)
   #     xlim = c(1, nrow(X))
   #   )
   nextSlide(ggObject, title)
-  if (emailTitle != "") emailText <<- textRanksStates(X, emailTitle, N)
+  if (emailTitle != "") emailText <<- textRanksStates(X, emailTitle, N, addPlot, ggObject)
 }

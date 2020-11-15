@@ -75,7 +75,7 @@ textSummary <- function(X, title)
   )
 }
 
-textRanksInternational <- function(X, title, N)
+textRanksInternational <- function(X, title, N, addPlot, ggObject)
 {
   USA <- which(X$Abbreviation == "USA")
   if (X$Rank[USA] == 1)
@@ -106,17 +106,37 @@ textRanksInternational <- function(X, title, N)
     slideNumber - 1,
     ")."
   )
-  return(
-    paste(
+  if (addPlot)
+  {
+    returnText <-     paste(
+      emailText,
+      email.list.start,
+      text,
+      add_ggplot(
+        plot_object = ggObject,
+        width = 7.2, # was 9
+        height = 5, # was 9
+        alt = NULL,
+        align = "left",
+        float = "none"
+      ),
+      email.list.end
+    )
+  }
+  else
+  {
+    returnText <-     paste(
       emailText,
       email.list.start,
       text,
       email.list.end
     )
-  )
+  }
+  
+  return(returnText)
 }
 
-textRanksStates <- function(X, title, N)
+textRanksStates <- function(X, title, N, addPlot, ggObject)
 {
   if (title == "percent tested")
   {
@@ -147,14 +167,34 @@ textRanksStates <- function(X, title, N)
     slideNumber - 1,
     ")."
   )
-  return(
-    paste(
+  
+  if (addPlot)
+  {
+    returnText <-     paste(
+      emailText,
+      email.list.start,
+      text,
+      add_ggplot(
+        plot_object = ggObject,
+        width = 7.2, # was 9
+        height = 5, # was 9
+        alt = NULL,
+        align = "left",
+        float = "none"
+      ),
+      email.list.end
+    )
+  }
+  else
+  {
+    returnText <-     paste(
       emailText,
       email.list.start,
       text,
       email.list.end
     )
-  )
+  }
+  return(returnText)
 }
 
 nextSlide <- function (ggObject, Title)

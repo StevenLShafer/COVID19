@@ -79,8 +79,8 @@ fourQPlot <- function(
       "."),
     add_ggplot(
       plot_object = ggObject,
-      width = 9,
-      height = 4.5,
+      width = 7.2,
+      height = 4,
       alt = NULL,
       align = "left",
       float = "none"

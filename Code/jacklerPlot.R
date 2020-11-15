@@ -17,14 +17,17 @@ jacklerPlot <- function (
   
   use <- DATA1$CASES$Date  > as.Date("2020-02-29") & DATA1$CASES$Date <= today
   DATA1_CASES <- DATA1$CASES[use,c("Date", "Delta", "Delta_Smoothed_2")]
+  DATA1_CASES$Type <-"Cases"
   DATA1_DEATHS <- DATA1$DEATHS[use,c("Date", "Delta", "Delta_Smoothed_2")]
-  DATA2_CASES <- DATA2$CASES[use,c("Date", "Delta", "Delta_Smoothed_2")]
-  DATA2_DEATHS <- DATA2$DEATHS[use,c("Date", "Delta", "Delta_Smoothed_2")]
-  
+  DATA1_DEATHS$Type <-"Deaths"
   DATA1_CASES$Location <- DATA1_DEATHS$Location <- Loc1
+  
+  DATA2_CASES <- DATA2$CASES[use,c("Date", "Delta", "Delta_Smoothed_2")]
+  DATA2_CASES$Type <-"Cases"
+  DATA2_DEATHS <- DATA2$DEATHS[use,c("Date", "Delta", "Delta_Smoothed_2")]
+  DATA2_DEATHS$Type <-"Deaths"
   DATA2_CASES$Location <- DATA2_DEATHS$Location <- Loc2
-  DATA1_CASES$Type <- DATA2_CASES$Type <- "Cases"
-  DATA1_DEATHS$Type <- DATA2_DEATHS$Type <- "Deaths"
+
   JacklerData <- rbind(DATA1_CASES, DATA2_CASES, DATA1_DEATHS, DATA2_DEATHS)
   
   labels <- data.frame(

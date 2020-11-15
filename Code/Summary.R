@@ -104,7 +104,19 @@ ASIA <- plotPred(
   Subtitle = "Japan, South Korea, Thailand, and Vietnam (Population = 328 MM)"
 )$results
 
+
 emailText <- textSummary(ASIA, "In the non-authoritarian Asian ensemble (population: 328MM)")
+
+jacklerPlot(
+  DATA1 = USA,
+  DATA2 = WE,
+  DATA3 = ASIA,
+  Loc1 = "USA (318MM)",
+  Loc2 = "Western Europe (355MM)",
+  Loc3 = "Asian Ensemble (328MM)",
+  title = "Comparison of COVID-19 Cases & Deaths between US, Europe, and Asia",
+  caption = "Asian ensemble: Japan, South Korea, Vietnam, and Thailand"
+)
 
 ########################
 # Fisher Plots ########
@@ -166,7 +178,8 @@ internationalFisherPlot(
   "Average cases / day",
   "new cases per capita over past 7 days",
   7,
-  OneIn = TRUE
+  OneIn = TRUE,
+  addPlot = TRUE
 )
 
 ### DEATHS
@@ -199,7 +212,8 @@ internationalFisherPlot(
   "Average deaths / day",
   "new deaths per capita over past 7 days",
   7,
-  OneIn = TRUE
+  OneIn = TRUE, 
+  addPlot = TRUE
 )
 
 
@@ -510,8 +524,8 @@ emailText <- paste(
   paste("The red/green map for the rate of change in new cases over the past", daysLinearFit, "days shows:"),
   add_ggplot(
     plot_object = ggObject,
-    width = 9,
-    height = 4.5,
+    width = 7.2, # was 9
+    height = 3.6, # was 9
     alt = NULL,
     align = "left",
     float = "none"
@@ -542,6 +556,21 @@ ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 62 & Cases_Long$Date < 
   )
 nextSlide(ggObject, "Cases as a Percent of Peak Cases")
 
+emailText <- paste(
+  emailText,
+  email.list.start,
+  paste("The geofacetted US map for cases over the past two months shows:"),
+  add_ggplot(
+    plot_object = ggObject,
+    width = 7.2, # was 9
+    height = 4.5, # was 9
+    alt = NULL,
+    align = "left",
+    float = "none"
+  ),
+  email.list.end
+)
+
 # New deaths / day
 
 # States$slopeDeaths[States$slopeDeaths < -6] <- -6
@@ -564,8 +593,8 @@ emailText <- paste(
   paste("The red/green map for the rate of change in daily deaths over the past", daysLinearFit, "days shows:"),
   add_ggplot(
     plot_object = ggObject,
-    width = 9,
-    height = 4.5,
+    width = 7.2,
+    height = 3.6,
     alt = NULL,
     align = "left",
     float = "none"
@@ -595,6 +624,21 @@ ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 62 & Cases_Long$Date < 
     axis.title.y.right = element_text(margin = margin(t = 0, r = 0, b = 0, l = 20))
   )
 nextSlide(ggObject, "Deaths as a Percent of Peak Deaths")
+
+emailText <- paste(
+  emailText,
+  email.list.start,
+  paste("The geofacetted US map for deaths over the past two months shows:"),
+  add_ggplot(
+    plot_object = ggObject,
+    width = 7.2, # was 9
+    height = 4.5, # was 9
+    alt = NULL,
+    align = "left",
+    float = "none"
+  ),
+  email.list.end
+)
 
 fourQPlot(
   DATA = States,
@@ -641,7 +685,8 @@ stateFisherPlot(
   "New Cases / Day",
   "cases per day per capita over the past 7 days",
   6,
-  OneIn = TRUE
+  OneIn = TRUE, 
+  addPlot = TRUE
 )
 
 States$Y <- States$totalDeaths
@@ -670,7 +715,8 @@ stateFisherPlot(
   "Deaths / Day",
   "deaths per day per capita over the past 7 days",
   6,
-  OneIn = TRUE
+  OneIn = TRUE, 
+  addPlot = TRUE
 )
 
 #######################################
@@ -778,10 +824,10 @@ stateFisherPlot(
   6
 )
 
-ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 93 & Cases_Long$Date < today,], aes(Date, Hospitalizations)) +
+ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 62 & Cases_Long$Date < today,], aes(Date, Hospitalizations)) +
   geom_line() +
   scale_x_date(
-    date_breaks = "24 days",
+    breaks = c(today - 0:4 * 14)-1,
     date_labels = "%b %d"
   ) +
   scale_y_continuous(
@@ -801,6 +847,21 @@ ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 93 & Cases_Long$Date < 
     axis.title.y.right = element_text(margin = margin(t = 0, r = 0, b = 0, l = 20))
   )
 nextSlide(ggObject, "Hospitalizations trends")
+
+emailText <- paste(
+  emailText,
+  email.list.start,
+  paste("The geofacetted US map for hospitalizations over the past two months shows:"),
+  add_ggplot(
+    plot_object = ggObject,
+    width = 7.2, # was 9
+    height = 4.5, # was 9
+    alt = NULL,
+    align = "left",
+    float = "none"
+  ),
+  email.list.end
+)
 
 # Hospitalizatons
 States$Y <- States$slopeHospitalizations
@@ -909,8 +970,8 @@ emailText <- paste(
   "The county level graph identifies more precisely where cases are rising:",
   add_ggplot(
     plot_object = ggObject,
-    width = 9,
-    height = 4.95,
+    width = 7.2,
+    height = 4,
     alt = NULL,
     align = "left",
     float = "none"
@@ -933,8 +994,8 @@ emailText <- paste(
   "The county level graph identifies more precisely where deaths are rising:",
   add_ggplot(
     plot_object = ggObject,
-    width = 9,
-    height = 4.95,
+    width = 7.2,
+    height = 4,
     alt = NULL,
     align = "left",
     float = "none"
