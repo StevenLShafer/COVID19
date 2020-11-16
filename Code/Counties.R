@@ -37,7 +37,7 @@ plotPred(County = "San Francisco County", Title = "San Francisco")
 plotPred(County = "San Mateo County", Title = "San Mateo County, California")
 plotPred(County = "Santa Clara County", Title = "Santa Clara County, California")
 plotPred(County = c("Santa Clara County", "San Mateo County"), 
-         Title = "Santa Clara and San Mateo Counties")
+         Title = "Santa Clara and San Mateo Counties", addPlot = TRUE)
 
 plotPred(County = "Alameda County", Title = "Alameda County, California")
 plotPred(County = "San Luis Obispo County", Title = "San Luis Obispo, California")

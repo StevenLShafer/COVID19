@@ -115,7 +115,7 @@ textRanksInternational <- function(X, title, N, addPlot, ggObject)
       add_ggplot(
         plot_object = ggObject,
         width = 7.2, # was 9
-        height = 5, # was 9
+        height = 4.5,
         alt = NULL,
         align = "left",
         float = "none"
@@ -176,8 +176,8 @@ textRanksStates <- function(X, title, N, addPlot, ggObject)
       text,
       add_ggplot(
         plot_object = ggObject,
-        width = 7.2, # was 9
-        height = 5, # was 9
+        width = 8, # was 9
+        height = 4.5, # was 9
         alt = NULL,
         align = "left",
         float = "none"

@@ -52,7 +52,7 @@ yesterdayText <- format(yesterday, "X%m.%e.%y")
 yesterdayText <- gsub("X0","X",yesterdayText)
 yesterdayText <- gsub(" ","",yesterdayText) 
 startDate <- as.Date("2020-01-22")
-endDate <- as.Date("2020-12-01")
+endDate <- as.Date("2021-01-01")
 projection <- endDate - today + 1
 currentDates <- seq(startDate, today-1, by="days")
 allDates     <- seq(startDate, endDate, by="days")
@@ -61,7 +61,7 @@ allCurrentDays <- as.numeric(today-startDate)
 dirTodayUpdate <- paste0(dirUpdate,todayText,"/")
 dirTodayUpdateData <- paste0(dirTodayUpdate,"DATA/")
 
-daysLinearFit  <- 9    # Number of days for the linear regression 
+daysLinearFit  <- 16    # Number of days for the linear regression 
 daysGompertzFit <- 21 # Number of days for the Gompertz model
 asymptomatic <- 10    # Number of asymptomatic patients per symptomatic patient,
                       # limits Gompertz peak to population / asymptomatic * 0.6
@@ -85,6 +85,7 @@ plotGrowthFlag <- FALSE
   source(paste0(dirCode, "smoothSLS.R"))
   source(paste0(dirCode, "monotonicSLS.R"))
   source(paste0(dirCode, "assignSign.R"))
+  source(paste0(dirCode, "sendEmail.R"))
   
 
   source(paste0(dirCode,"persistent.download.R")) # Won't return until there are data for today
@@ -109,7 +110,10 @@ plotGrowthFlag <- FALSE
   source(paste0(dirCode,"Counties.R"))
   source(paste0(dirCode,"International.R"))
   
-  # Make copy of latest files for GitHub
+  # Send final e-mail
+  sendEmail()
+  
+  # Move files
   FILES <- list.files(dirLatest, recursive = TRUE)
   if (length(FILES) > 0) file.remove(paste0(dirLatest, FILES))
   

@@ -29,7 +29,11 @@ fileDownload <- function(
   # forceMonotonic <- TRUE
 
   filename <- paste0(dirTodayUpdateData,name,".", todayText, ".raw", extension)
-  if (file.exists(filename)) cat(name, "already downloaded.\n")
+  if (file.exists(filename)) 
+  {
+    cat(name, "already downloaded.\n")
+    return()
+  }
   while (!file.exists(filename))
   {
     if (persist == TRUE)

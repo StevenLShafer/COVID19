@@ -9,7 +9,7 @@ emailText <- paste(
 WORLD <- plotPred(Country = "Worldwide", Title = "Worldwide")$results
 emailText <- textSummary(WORLD, "Worldwide")
 
-USA <- plotPred(Country = "United States of America", Title = "USA")$results
+USA <- plotPred(Country = "United States of America", Title = "USA", addPlot = TRUE)$results
 emailText <- textSummary(USA, "In the US")
 
 # X <- USA$CASES[USA$CASES$Date > as.Date("2020-03-02") & USA$CASES$Date < today ,]
@@ -61,7 +61,7 @@ WE <- plotPred(
               "Italy", "Portugal", "Spain","Netherlands",
               "Belgium", "Luxembourg"),
   Title = "Western Europe",
-  Subtitle = "Belgium, France, Germany, Greece, Italy, Portugal, Spain, Netherlands, Luxembourg, and the UK (Population = 355MM)"
+  Subtitle = "Belgium, France, Greece, Germany, Italy, Luxembourg, Netherlands, Portugal, Spain,and the UK (Population = 355MM)"
 )$results # Population 343970478
 emailText <- textSummary(WE, "In Western Europe (population: 355MM)")
 
@@ -95,7 +95,8 @@ jacklerPlot(
   DATA2 = WE,
   Loc1 = "USA (318MM)",
   Loc2 = "Western Europe (355MM)",
-  title = "Comparison of COVID-19 Cases & Deaths between US & Europe"
+  title = "COVID-19 Cases & Deaths in the USA & Europe",
+  caption = "Western Europe: Belgium, France, Greece, Germany, Italy, Luxembourg, Netherlands, Portugal, Spain,and the UK (Population = 355MM)"
 )
 
 ASIA <- plotPred(
@@ -104,18 +105,30 @@ ASIA <- plotPred(
   Subtitle = "Japan, South Korea, Thailand, and Vietnam (Population = 328 MM)"
 )$results
 
-
 emailText <- textSummary(ASIA, "In the non-authoritarian Asian ensemble (population: 328MM)")
 
-jacklerPlot(
-  DATA1 = USA,
-  DATA2 = WE,
-  DATA3 = ASIA,
+shaferPlot(
+  DATA1 = USA$CASES,
+  DATA2 = WE$CASES,
+  DATA3 = ASIA$CASES,
   Loc1 = "USA (318MM)",
   Loc2 = "Western Europe (355MM)",
   Loc3 = "Asian Ensemble (328MM)",
-  title = "Comparison of COVID-19 Cases & Deaths between US, Europe, and Asia",
-  caption = "Asian ensemble: Japan, South Korea, Vietnam, and Thailand"
+  title = "COVID-19 Cases in the USA, Western Europe, and the Asian Ensemble",
+  caption = "Asian Ensemble: Japan, South Korea, Thailand, and Vietnam (Population = 328 MM)",
+  ylabel = "Cases"
+)
+
+shaferPlot(
+  DATA1 = USA$DEATHS,
+  DATA2 = WE$DEATHS,
+  DATA3 = ASIA$DEATHS,
+  Loc1 = "USA (318MM)",
+  Loc2 = "Western Europe (355MM)",
+  Loc3 = "Asian Ensemble (328MM)",
+  title = "COVID-19 Deaths among the USA, Western Europe, and the Asian Ensemble",
+  caption = "Asian Ensemble: Japan, South Korea, Thailand, and Vietnam (Population = 328 MM)",
+  ylabel = "Deaths"
 )
 
 ########################
@@ -552,7 +565,8 @@ ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 62 & Cases_Long$Date < 
     axis.text.x=element_text(angle=70, hjust=1, size=7),
     axis.text.y=element_text(size=6),
     axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.title.y.right = element_text(margin = margin(t = 0, r = 0, b = 0, l = 20))
+    axis.title.y.right = element_text(margin = margin(t = 0, r = 0, b = 0, l = 20)),
+    strip.text.x = element_text(margin = margin(0,0,0,0))
   )
 nextSlide(ggObject, "Cases as a Percent of Peak Cases")
 
@@ -621,7 +635,8 @@ ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 62 & Cases_Long$Date < 
     axis.text.x=element_text(angle=70, hjust=1, size=7),
     axis.text.y=element_text(size=6),
     axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.title.y.right = element_text(margin = margin(t = 0, r = 0, b = 0, l = 20))
+    axis.title.y.right = element_text(margin = margin(t = 0, r = 0, b = 0, l = 20)),
+    strip.text.x = element_text(margin = margin(0,0,0,0))
   )
 nextSlide(ggObject, "Deaths as a Percent of Peak Deaths")
 
@@ -724,7 +739,7 @@ stateFisherPlot(
 ggObject <- ggplot(Cases_Long, aes(Date, DailyTests)) +
   geom_line() +
   scale_x_date(
-    date_breaks = "28 days",
+    date_breaks = "2 months",
     date_labels = "%b %d"
   ) +
   scale_y_continuous(
@@ -743,7 +758,8 @@ ggObject <- ggplot(Cases_Long, aes(Date, DailyTests)) +
     axis.text.x=element_text(angle=70, hjust=1, size=7),
     axis.text.y=element_text(size=6),
     axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.title.y.right = element_text(margin = margin(t = 0, r = 0, b = 0, l = 20))
+    axis.title.y.right = element_text(margin = margin(t = 0, r = 0, b = 0, l = 20)),
+    strip.text.x = element_text(margin = margin(0,0,0,0))
   )
 nextSlide(ggObject, "Daily testing trends")
 
@@ -795,7 +811,8 @@ ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 93 & Cases_Long$Date < 
     axis.text.x=element_text(angle=70, hjust=1, size=7),
     axis.text.y=element_text(size=6),
     axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.title.y.right = element_text(margin = margin(t = 0, r = 0, b = 0, l = 20))
+    axis.title.y.right = element_text(margin = margin(t = 0, r = 0, b = 0, l = 20)),
+    strip.text.x = element_text(margin = margin(0,0,0,0))
   )
 nextSlide(ggObject, "Percent Positive Trends")
 
@@ -844,7 +861,8 @@ ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 62 & Cases_Long$Date < 
     axis.text.x=element_text(angle=70, hjust=1, size=7),
     axis.text.y=element_text(size=6),
     axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.title.y.right = element_text(margin = margin(t = 0, r = 0, b = 0, l = 20))
+    axis.title.y.right = element_text(margin = margin(t = 0, r = 0, b = 0, l = 20)),
+    strip.text.x = element_text(margin = margin(0,0,0,0))
   )
 nextSlide(ggObject, "Hospitalizations trends")
 
@@ -1222,30 +1240,5 @@ write.csv(Counties, paste0(dirTodayUpdateData, "Counties.csv"), row.names=FALSE)
 
 print(pptx, target = pptxfileName)
 #shell.exec(pptxfileName)
-
-emailText <- paste(
-  emailText,
-  paste(
-    readLines(paste0(dirCode,"email.body.end.txt")),
-    collapse = "\n"
-  )
-)
-#  todaysText <- paste0(dirTodayUpdate,"EmailText.",timestamp,".html")
-#  writeLines(emailText, todaysText)
-#  shell.exec(todaysText)
-
-send.mail(
-  from = "stanpumpR@gmail.com",
-  to = "steveshafer@gmail.com",
-  subject = paste("Daily COVID Update for", format(today, "%A, %B %d, %Y")),
-  body = emailText,
-  html = TRUE,
-  smtp = list(
-    host.name = "smtp.gmail.com",
-    port = 465,
-    user.name = config::get("email_username"),
-    passwd = config::get("email_password"),
-    ssl = TRUE),
-  authenticate = TRUE
-)
+sendEmail()
 

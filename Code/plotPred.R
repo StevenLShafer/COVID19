@@ -6,7 +6,8 @@ plotPred <- function(
   Title = NULL,
   Subtitle = NULL,
   modelStart = NULL,
-  weight = NULL
+  weight = NULL,
+  addPlot = FALSE
 )
 {
   debug <- FALSE
@@ -422,6 +423,27 @@ plotPred <- function(
   nextSlide(ggObject3, Title)
   
   if (plotGrowthFlag) plotGrowth(results, Title)
+  
+  if (addPlot)
+  {
+    emailText <<- paste(
+      emailText,
+      email.list.start,
+      "Today's time series for", 
+      title,
+      ".",
+      add_ggplot(
+        plot_object = ggObject3,
+        width = 7.2,
+        height = 4,
+        alt = NULL,
+        align = "left",
+        float = "none"
+      ),
+      email.list.end
+    )
+  
+  }
   
   return(list(
     ggObject = ggObject3, 
