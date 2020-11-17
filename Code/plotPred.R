@@ -430,7 +430,7 @@ plotPred <- function(
       emailText,
       email.list.start,
       "Today's time series for", 
-      title,
+      Title,
       ".",
       add_ggplot(
         plot_object = ggObject3,
