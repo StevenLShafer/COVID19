@@ -94,7 +94,7 @@ plotPred <- function(
     " days)"
   )
   
-  DATA$Legand <- factor(as.character(DATA$Legand), levels=c("Cases", "Deaths", "Tests"), ordered = TRUE)
+  DATA$Legend <- factor(as.character(DATA$Legend), levels=c("Cases", "Deaths", "Tests"), ordered = TRUE)
   
   DATA$Actual[CASES$Actual < 1] <- 0.1
 
@@ -104,8 +104,8 @@ plotPred <- function(
       aes(
         x = Date, 
         y = Actual, 
-        color = Legand, 
-        size = Legand
+        color = Legend, 
+        size = Legend
       )
     ) +
     geom_point(
@@ -267,7 +267,7 @@ plotPred <- function(
         y = DailySmoothed)
     ) +  
     geom_point(
-      data = CASES[CASES$Date < today & CASES$Legand == "Cases",],
+      data = CASES[CASES$Date < today & CASES$Legend == "Cases",],
       color = "blue",
       size = 1,
       na.rm = TRUE,

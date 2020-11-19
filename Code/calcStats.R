@@ -32,14 +32,14 @@ calcStats <- function(
     CASES <- data.frame(
       Date = allDates,
       Actual = c(colSums(Cases_Global[use, c(2:ncol(Cases_Global))],na.rm=TRUE), rep(NA, projection)),
-      Legand = "Cases",
+      Legend = "Cases",
       Predicted = NA,
       stringsAsFactors = FALSE
     )
     DEATHS <- data.frame(
       Date = allDates,
       Actual = c(colSums(Deaths_Global[use, c(2:ncol(Deaths_Global))],na.rm=TRUE), rep(NA, projection)),
-      Legand = "Deaths",
+      Legend = "Deaths",
       Predicted = NA,
       stringsAsFactors = FALSE
     )
@@ -54,7 +54,7 @@ calcStats <- function(
           na.rm=TRUE
           )
         ),
-      Legand = "Tests",
+      Legend = "Tests",
       Predicted = NA,
       stringsAsFactors = FALSE
     )
@@ -82,7 +82,7 @@ calcStats <- function(
             na.rm=TRUE
             )
           ),
-        Legand = "Tests",
+        Legend = "Tests",
         Predicted = NA,
         stringsAsFactors = FALSE
       )
@@ -109,14 +109,14 @@ calcStats <- function(
     CASES <- data.frame(
       Date = allDates,
       Actual = c(colSums(Cases_USA[use, 5:ncol(Cases_USA)],na.rm=TRUE), rep(NA, projection)),
-      Legand = "Cases",
+      Legend = "Cases",
       Predicted = NA,
       stringsAsFactors = FALSE
     )
     DEATHS <- data.frame(
       Date = allDates,
         Actual = c(colSums(Deaths_USA[use, c(5:ncol(Deaths_USA))],na.rm=TRUE), rep(NA, projection)),
-        Legand = "Deaths",
+        Legend = "Deaths",
         Predicted = NA,
         stringsAsFactors = FALSE
       )
