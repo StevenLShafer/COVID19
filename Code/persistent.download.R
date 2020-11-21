@@ -1,6 +1,6 @@
 # library(curl)
 # library(RPushbullet)
-
+# # 
 # Directory <- "g:/projects/COVID"
 # setwd(Directory)
 # today <- Sys.Date()
@@ -139,6 +139,14 @@ fileDownload(
   SOURCE1,
   "Ensemble",
   persist = TRUE
+)
+
+# Oxford stringency  *****************************************************************
+# Oxford COVID-19 Government Response Tracker (OxCGRT) 
+# Blavatnik School of Government, University of Oxford
+fileDownload(
+  "https://github.com/OxCGRT/covid-policy-tracker/raw/master/data/OxCGRT_latest.csv",
+  "Stringency_Global"
 )
 
 cat("All files downloaded.\n")
