@@ -535,13 +535,15 @@ emailText <- paste(
   emailText,
   email.list.start,
   paste("The red/green map for the rate of change in new cases over the past", daysLinearFit, "days shows:"),
-  add_ggplot(
-    plot_object = ggObject,
-    width = 7.2, # was 9
-    height = 3.6, # was 9
-    alt = NULL,
-    align = "left",
-    float = "none"
+  sls_trim(
+    add_ggplot(
+      plot_object = ggObject,
+      width = 7.2, # was 9
+      height = 3.6, # was 9
+      alt = NULL,
+      align = "left",
+      float = "none"
+    )
   ),
   email.list.end
 )
@@ -574,13 +576,15 @@ emailText <- paste(
   emailText,
   email.list.start,
   paste("The geofacetted US map for cases over the past two months shows:"),
-  add_ggplot(
-    plot_object = ggObject,
-    width = 7.2, # was 9
-    height = 4.5, # was 9
-    alt = NULL,
-    align = "left",
-    float = "none"
+  sls_trim(
+    add_ggplot(
+      plot_object = ggObject,
+      width = 7.2, # was 9
+      height = 4.5, # was 9
+      alt = NULL,
+      align = "left",
+      float = "none"
+    )
   ),
   email.list.end
 )
@@ -605,13 +609,15 @@ emailText <- paste(
   emailText,
   email.list.start,
   paste("The red/green map for the rate of change in daily deaths over the past", daysLinearFit, "days shows:"),
-  add_ggplot(
-    plot_object = ggObject,
-    width = 7.2,
-    height = 3.6,
-    alt = NULL,
-    align = "left",
-    float = "none"
+  sls_trim(
+    add_ggplot(
+      plot_object = ggObject,
+      width = 7.2,
+      height = 3.6,
+      alt = NULL,
+      align = "left",
+      float = "none"
+    )
   ),
   email.list.end
 )
@@ -644,13 +650,15 @@ emailText <- paste(
   emailText,
   email.list.start,
   paste("The geofacetted US map for deaths over the past two months shows:"),
-  add_ggplot(
-    plot_object = ggObject,
-    width = 7.2, # was 9
-    height = 4.5, # was 9
-    alt = NULL,
-    align = "left",
-    float = "none"
+  sls_trim(
+    add_ggplot(
+      plot_object = ggObject,
+      width = 7.2, # was 9
+      height = 4.5, # was 9
+      alt = NULL,
+      align = "left",
+      float = "none"
+    )
   ),
   email.list.end
 )
@@ -870,13 +878,15 @@ emailText <- paste(
   emailText,
   email.list.start,
   paste("The geofacetted US map for hospitalizations over the past two months shows:"),
-  add_ggplot(
-    plot_object = ggObject,
-    width = 7.2, # was 9
-    height = 4.5, # was 9
-    alt = NULL,
-    align = "left",
-    float = "none"
+  sls_trim(
+    add_ggplot(
+      plot_object = ggObject,
+      width = 7.2, # was 9
+      height = 4.5, # was 9
+      alt = NULL,
+      align = "left",
+      float = "none"
+    )
   ),
   email.list.end
 )
@@ -986,13 +996,15 @@ emailText <- paste(
   emailText,
   email.list.start,
   "The county level graph identifies more precisely where cases are rising:",
-  add_ggplot(
-    plot_object = ggObject,
-    width = 7.2,
-    height = 4,
-    alt = NULL,
-    align = "left",
-    float = "none"
+  sls_trim(
+    add_ggplot(
+      plot_object = ggObject,
+      width = 7.2,
+      height = 4,
+      alt = NULL,
+      align = "left",
+      float = "none"
+    )
   ),
   email.list.end
 )
@@ -1010,13 +1022,15 @@ emailText <- paste(
   emailText,
   email.list.start,
   "The county level graph identifies more precisely where deaths are rising:",
-  add_ggplot(
-    plot_object = ggObject,
-    width = 7.2,
-    height = 4,
-    alt = NULL,
-    align = "left",
-    float = "none"
+  sls_trim(
+    add_ggplot(
+      plot_object = ggObject,
+      width = 7.2,
+      height = 4,
+      alt = NULL,
+      align = "left",
+      float = "none"
+    )
   ),
   email.list.end
 )
@@ -1180,8 +1194,8 @@ if (weekDay == 1) # Monday only
     dailyRate /
     results$CASES$Actual[results$CASES$Date == today - 1] * 100
   emailText <- paste0(
-    email.list.start,
     emailText,
+    email.list.start,
     " The county with the most cases per capita is ",
     subset$Name[maxPercentCases],
     ", which has reported ",

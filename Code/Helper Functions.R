@@ -9,7 +9,20 @@ pptxfileName <- NULL
 subSet <- ""
 datetime <- as.character(today)
 
-email.list.start <- "\n<li class=\"SLSListParagraph\">\n"
+# email.list.start <- "\n<li class=\"sls-list-paragraph\">\n"
+# email.list.end <- "\n</li>\n"
+
+email.list.start <- "\n<li 
+     style=\"
+     margin-top:0;
+     margin-bottom:6.0pt; 
+     margin-left:0;
+     margin-right:0;
+     font-size:13.0pt; 
+     font-family:'Arial',sans-serif; 
+     line-height:18pt;
+     \">
+     \n"
 email.list.end <- "\n</li>\n"
 
 textSummary <- function(X, title)
@@ -112,13 +125,15 @@ textRanksInternational <- function(X, title, N, addPlot, ggObject)
       emailText,
       email.list.start,
       text,
-      add_ggplot(
-        plot_object = ggObject,
-        width = 7.2, # was 9
-        height = 4.5,
-        alt = NULL,
-        align = "left",
-        float = "none"
+      sls_trim(
+        add_ggplot(
+          plot_object = ggObject,
+          width = 7.2, # was 9
+          height = 4.5,
+          alt = NULL,
+          align = "left",
+          float = "none"
+        )
       ),
       email.list.end
     )
@@ -174,13 +189,15 @@ textRanksStates <- function(X, title, N, addPlot, ggObject)
       emailText,
       email.list.start,
       text,
-      add_ggplot(
-        plot_object = ggObject,
-        width = 8, # was 9
-        height = 4.5, # was 9
-        alt = NULL,
-        align = "left",
-        float = "none"
+      sls_trim(
+        add_ggplot(
+          plot_object = ggObject,
+          width = 8, # was 9
+          height = 4.5, # was 9
+          alt = NULL,
+          align = "left",
+          float = "none"
+        )
       ),
       email.list.end
     )
@@ -318,3 +335,20 @@ plim <- function (x, min, max)
   return(
     pmin(pmax(x, min),max)
   )
+
+sls_trim <- function(text)
+{
+#  text <- gsub("<table.*<img", "<p class=\"sls-list-paragraph\" style=\"margin-left:.25in\"><img", text)
+  text <- gsub(
+    "<table.*<img", 
+    "<p style=\"
+          margin-top:0;
+          margin-bottom:6.0pt; 
+          margin-left:0;
+          margin-right:0;
+          line-height:18pt;
+          \"><img", 
+    text)
+  text <- gsub("</td.*>", "</p>", text)
+  return(text)
+}

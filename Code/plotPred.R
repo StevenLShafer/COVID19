@@ -10,6 +10,7 @@ plotPred <- function(
   addPlot = FALSE
 )
 {
+  options(repr.plot.width = 9, repr.plot.height = 5)
   debug <- FALSE
   if (!exists("modelStart"))
   {
@@ -432,13 +433,15 @@ plotPred <- function(
       "Today's time series for", 
       Title,
       ".",
-      add_ggplot(
-        plot_object = ggObject3,
-        width = 7.2,
-        height = 4,
-        alt = NULL,
-        align = "left",
-        float = "none"
+      sls_trim(
+        add_ggplot(
+          plot_object = ggObject3,
+          width = 9,
+          height = 5,
+          alt = NULL,
+          align = "left",
+          float = "none"
+        )
       ),
       email.list.end
     )

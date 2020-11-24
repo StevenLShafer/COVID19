@@ -32,6 +32,7 @@ library(mailR)
 library(ggrepel)
 require(jsonlite)
 library(Rfast)
+library(repr)
 
 remove(list=ls())
 Directory <- "g:/projects/COVID/"
@@ -133,8 +134,8 @@ plotGrowthFlag <- FALSE
   # shell (paste('git commit -m "Update for', todayText, '"'))
   # shell ("git push")
   
-  shell(paste("movefiles", todayText), wait=FALSE)
-  shell(paste("gogit", todayText), wait=FALSE)
+  shell(paste0(dirCode, "/movefiles.bat"), wait=FALSE)
+  shell(paste0(dirCode, "/gogit.bat ", todayText), wait=FALSE)
 
   pbPost(
     #  devices = "Phone",

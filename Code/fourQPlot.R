@@ -77,13 +77,15 @@ fourQPlot <- function(
       "The four quadrant map for change in",
       title,
       "."),
-    add_ggplot(
-      plot_object = ggObject,
-      width = 7.2,
-      height = 4,
-      alt = NULL,
-      align = "left",
-      float = "none"
+    sls_trim(
+      add_ggplot(
+        plot_object = ggObject,
+        width = 7.2,
+        height = 4,
+        alt = NULL,
+        align = "left",
+        float = "none"
+      )
     ),
     email.list.end
   )

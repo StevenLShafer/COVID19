@@ -31,8 +31,11 @@ initials <- c(S = 0.9, E = .01, I = .001, R = 1 - 0.9 - .01 - .001)
 # beta = transmission rate,
 # sigma =  the movement form exposed to infectious,
 # gamma =  the recovery rate
-parameters <- c(mu = 1 / (70 * 365), beta = 500 / 365,
-                sigma = 1 / 14, gamma = 1 / 7)
+parameters <- c(
+  mu = 1 / (70 * 365), 
+  beta = 500 / 365,
+  sigma = 1 / 14, 
+  gamma = 1 / 7)
 # this example is meant to be read in days, for example the recovery rate at 1/7 means an individual is infectious, but recovers in 7 days.
 
 # Solve and plot.

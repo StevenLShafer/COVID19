@@ -117,13 +117,15 @@ jacklerPlot <- function (
     Loc1,
     "versus",
     Loc2,
-    add_ggplot(
-      plot_object = ggObject,
-      width = 9.4,
-      height = 5,
-      alt = NULL,
-      align = "left",
-      float = "none"
+    sls_trim(
+      add_ggplot(
+        plot_object = ggObject,
+        width = 9.5,
+        height = 5,
+        alt = NULL,
+        align = "left",
+        float = "none"
+      )
     ),
     email.list.end
   )
@@ -233,13 +235,15 @@ shaferPlot <- function (
     ", and ",
     Loc3,
     ". ",
-    add_ggplot(
-      plot_object = ggObject,
-      width = 9.4,
-      height = 5,
-      alt = NULL,
-      align = "left",
-      float = "none"
+    sls_trim(
+      add_ggplot(
+        plot_object = ggObject,
+        width = 9.5,
+        height = 5,
+        alt = NULL,
+        align = "left",
+        float = "none"
+      )
     ),
     " ",
     email.list.end

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 
-p.SLSNormal, li.SLSListParagraph 
+p.SLSNormal, li.sls-list-paragraph 
 {
   margin:0in;
   margin-bottom:6.0pt;
@@ -33,7 +33,7 @@ ol
 Dear Family, Friends, and Colleagues:&nbsp;<br>
 </p>
 <p class="SLSNormal">
-My daily update for COVID trends is attached. The PowerPoint files can be accessed 
+My daily update for COVID trends is attached. Today's PowerPoint files can be accessed 
 <a href="https://drive.google.com/drive/folders/1EGPI7ZUEjRoZd7e9BFK4fT0IV4hxJHFT?usp=sharing" target="_blank">here</a>.
 </p>
 
@@ -48,12 +48,9 @@ and may be freely used without restriction. <o:p></o:p>
 </p>
 
 <p class="SLSNormal">
+<a href="https://drive.google.com/drive/folders/1EGPI7ZUEjRoZd7e9BFK4fT0IV4hxJHFT?usp=sharing" target="_blank">
 There are four PowerPoint files that accompany each update: Summary, US States, US Counties, and International. If this is the first time you have received this, please read the comments on the first two slides in Summary.pptx.  
-</p>
-
-<p class="SLSNormal">
-Ian Mackey is kindly posting updates on Twitter (<a href="https://twitter.com/stevenlshafer">https://twitter.com/stevenlshafer</a>
-, @stevenlshafer).&nbsp;
+</a>
 </p>
 
 <p class="SLSNormal">
