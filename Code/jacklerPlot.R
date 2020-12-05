@@ -112,11 +112,11 @@ jacklerPlot <- function (
   
   emailText <<- paste(
     emailText,
-    email.list.start,
-    "Daily cases and deaths in",
-    Loc1,
-    "versus",
-    Loc2,
+    # email.list.start,
+    # "Daily cases and deaths in",
+    # Loc1,
+    # "versus",
+    # Loc2,
     sls_trim(
       add_ggplot(
         plot_object = ggObject,
@@ -126,8 +126,9 @@ jacklerPlot <- function (
         align = "left",
         float = "none"
       )
-    ),
-    email.list.end
+    )
+    # ,
+    # email.list.end
   )
 }
 
@@ -224,17 +225,17 @@ shaferPlot <- function (
   
   emailText <<- paste0(
     emailText,
-    " ",
-    email.list.start,
-    " Daily ",
-    tolower(ylabel),
-    " in ",
-    Loc1,
-    ", ",
-    Loc2,
-    ", and ",
-    Loc3,
-    ". ",
+    # " ",
+    # email.list.start,
+    # " Daily ",
+    # tolower(ylabel),
+    # " in ",
+    # Loc1,
+    # ", ",
+    # Loc2,
+    # ", and ",
+    # Loc3,
+    # ". ",
     sls_trim(
       add_ggplot(
         plot_object = ggObject,
@@ -244,8 +245,9 @@ shaferPlot <- function (
         align = "left",
         float = "none"
       )
-    ),
-    " ",
-    email.list.end
+    )
+    # ,
+    # " ",
+    # email.list.end
   )
 }

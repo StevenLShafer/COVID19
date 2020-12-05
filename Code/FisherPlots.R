@@ -15,7 +15,7 @@ internationalFisherPlot <- function (X, title, ylabel, emailTitle, N, OneIn = FA
       color = "red", 
       angle = 90, size = 2.6, hjust = 0) +
     labs(
-      title = title,
+      title = paste(title, "as of", today),
       y = ylabel,
       x = "Rank",
       caption = "Excludes countries with population < 5,000,000"
@@ -61,7 +61,7 @@ stateFisherPlot <- function (X, title, ylabel, emailTitle, N, OneIn = FALSE, add
     scale_color_manual(values = c("blue","red")) +
     scale_shape_manual(values = c(0, 15)) +
     labs(
-      title = title,
+      title = paste(title, "as of", today),
       subtitle = "Mask mandate is from July 20th. Political lean is based on election results.",
       y = ylabel,
       x = "Rank",

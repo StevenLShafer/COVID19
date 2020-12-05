@@ -575,7 +575,7 @@ nextSlide(ggObject, "Cases as a Percent of Peak Cases")
 emailText <- paste(
   emailText,
   email.list.start,
-  paste("The geofacetted US map for cases over the past two months shows:"),
+  paste("Daily cases over the past two months."),
   sls_trim(
     add_ggplot(
       plot_object = ggObject,
@@ -649,7 +649,7 @@ nextSlide(ggObject, "Deaths as a Percent of Peak Deaths")
 emailText <- paste(
   emailText,
   email.list.start,
-  paste("The geofacetted US map for deaths over the past two months shows:"),
+  paste("Daily deaths over the past two months."),
   sls_trim(
     add_ggplot(
       plot_object = ggObject,
@@ -799,12 +799,17 @@ stateFisherPlot(
   6
 )
 
-
-
-ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 93 & Cases_Long$Date < today,], aes(Date, DailyPositiveFraction*100)) +
-  geom_line() +
+X <- data.frame(
+  States = c(States$Abbreviation,States$Abbreviation), 
+  Date = c(rep(today-1, 51),rep(today-62, 51)),
+  Y = 10
+)
+Cases_Long$Y <- Cases_Long$DailyPositiveFraction * 100
+ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 62 & Cases_Long$Date < today,], aes(x = Date, y = Y)) +
+  geom_line() + 
+  geom_line(data = X, aes(y=Y), color = "red", linetype = "dotted") +
   scale_x_date(
-    date_breaks = "14 days",
+    breaks = c(today - 0:4 * 14)-1,
     date_labels = "%b %d"
   ) +
   scale_y_log10() +
@@ -812,7 +817,8 @@ ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 93 & Cases_Long$Date < 
   facet_geo(~ State, grid = us_state_grid4) +
   labs(
     y = "Percent Positive (log scale)",
-    title = "Percent Positive Trends"
+    title = "Percent Positive Trends",
+    caption = "High risk if positivity > 10% (Dotted red line)"
   ) +
   theme(
     axis.title.x = element_blank(),
@@ -824,21 +830,38 @@ ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 93 & Cases_Long$Date < 
   )
 nextSlide(ggObject, "Percent Positive Trends")
 
-# Four quadrant graph for testing and positivity
-  fourQPlot(
-    DATA = States,
-    colX = "slopeTests",
-    colY = "slopePositiveTests",
-    title = "tests vs. change in positive tests over last 14 days",
-    labelX = "tests (%/day)",
-    labelY = "positive tests (%/day)",
-    maxX = 6,
-    maxY = 10,
-    colors = c("magenta","blue","forestgreen","red"),
-    caption = "Size is proportional daily deaths per capita over the past 7 days",
-    scale = States$dailyDeaths / States$Population
-  )
+emailText <- paste(
+  emailText,
+  email.list.start,
+  paste("Positive test trends over the past two months."),
+  sls_trim(
+    add_ggplot(
+      plot_object = ggObject,
+      width = 7.2, # was 9
+      height = 4.5, # was 9
+      alt = NULL,
+      align = "left",
+      float = "none"
+    )
+  ),
+  email.list.end
+)
 
+# # Four quadrant graph for testing and positivity
+#   fourQPlot(
+#     DATA = States,
+#     colX = "slopeTests",
+#     colY = "slopePositiveTests",
+#     title = "tests vs. change in positive tests over last 14 days",
+#     labelX = "tests (%/day)",
+#     labelY = "positive tests (%/day)",
+#     maxX = 6,
+#     maxY = 10,
+#     colors = c("magenta","blue","forestgreen","red"),
+#     caption = "Size is proportional daily deaths per capita over the past 7 days",
+#     scale = States$dailyDeaths / States$Population
+#   )
+# 
 # Hospitalizatons
 States$Y <- States$Hospitalizations * 100
 stateFisherPlot(
@@ -863,7 +886,7 @@ ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 62 & Cases_Long$Date < 
   facet_geo(~ State, grid = us_state_grid4) +
   labs(
     y = "Hospitalizations from min to max",
-    title = "Hospitalizations trends from min to max") +
+    title = "Hospitalization trends from min to max") +
   theme(
     axis.title.x = element_blank(),
     axis.text.x=element_text(angle=70, hjust=1, size=7),
@@ -872,12 +895,12 @@ ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 62 & Cases_Long$Date < 
     axis.title.y.right = element_text(margin = margin(t = 0, r = 0, b = 0, l = 20)),
     strip.text.x = element_text(margin = margin(0,0,0,0))
   )
-nextSlide(ggObject, "Hospitalizations trends")
+nextSlide(ggObject, "Hospitalization trends")
 
 emailText <- paste(
   emailText,
   email.list.start,
-  paste("The geofacetted US map for hospitalizations over the past two months shows:"),
+  paste("Hospitalization trends over the past two months."),
   sls_trim(
     add_ggplot(
       plot_object = ggObject,

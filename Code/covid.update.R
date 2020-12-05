@@ -33,6 +33,7 @@ library(ggrepel)
 require(jsonlite)
 library(Rfast)
 library(repr)
+library(config)
 
 remove(list=ls())
 Directory <- "g:/projects/COVID/"
@@ -87,6 +88,7 @@ plotGrowthFlag <- FALSE
   source(paste0(dirCode, "monotonicSLS.R"))
   source(paste0(dirCode, "assignSign.R"))
   source(paste0(dirCode, "sendEmail.R"))
+  source(paste0(dirCode, "plotMortality.R"))
   
 
   source(paste0(dirCode,"persistent.download.R")) # Won't return until there are data for today
@@ -110,6 +112,8 @@ plotGrowthFlag <- FALSE
   source(paste0(dirCode,"States.R"))
   source(paste0(dirCode,"Counties.R"))
   source(paste0(dirCode,"International.R"))
+  source(paste0(dirCode,"Canada.R"))
+  source(paste0(dirCode,"Australia.R"))
   
   # Send final e-mail
   sendEmail()
@@ -134,8 +138,8 @@ plotGrowthFlag <- FALSE
   # shell (paste('git commit -m "Update for', todayText, '"'))
   # shell ("git push")
   
-  shell(paste0(dirCode, "/movefiles.bat"), wait=FALSE)
-  shell(paste0(dirCode, "/gogit.bat ", todayText), wait=FALSE)
+  shell(paste0(dirCode, "movefiles.bat"), wait=FALSE, intern=TRUE)
+  shell(paste0(dirCode, "gogit.bat ", todayText), wait=FALSE, intern=TRUE)
 
   pbPost(
     #  devices = "Phone",

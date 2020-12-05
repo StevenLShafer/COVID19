@@ -33,23 +33,19 @@ ol
 Dear Family, Friends, and Colleagues:&nbsp;<br>
 </p>
 <p class="SLSNormal">
-My daily update for COVID trends is attached. Today's PowerPoint files can be accessed 
-<a href="https://drive.google.com/drive/folders/1EGPI7ZUEjRoZd7e9BFK4fT0IV4hxJHFT?usp=sharing" target="_blank">here</a>.
-</p>
-
-<p class="SLSNormal">
-These are not confidential and may be freely shared. If you would like to be added to the Google Group recipients, please let me know. If you want less COVID spam, I&#8217;m happy to remove you from the Google Group. 
+My daily update for COVID trends is attached. These are not confidential and may be freely shared. If you would like to be added to the Google Group recipients, please let me know. If you want less COVID spam, I&#8217;m happy to remove you from the Google Group. 
 </p>
 
 <p class="SLSNormal">
 The R program code can be found on 
 <a href="https://github.com/StevenLShafer/COVID19">GitHub</a> 
-and may be freely used without restriction. <o:p></o:p>
+and may be freely used without restriction. My archive of referenced documents is accessible on <a href="https://drive.google.com/drive/folders/1t8QqR_pDXeyR_e07KBIgSQ90uZJ4603Z?usp=sharing">Google Cloud.</a> 
+<o:p></o:p>
 </p>
 
 <p class="SLSNormal">
 <a href="https://drive.google.com/drive/folders/1EGPI7ZUEjRoZd7e9BFK4fT0IV4hxJHFT?usp=sharing" target="_blank">
-There are four PowerPoint files that accompany each update: Summary, US States, US Counties, and International. If this is the first time you have received this, please read the comments on the first two slides in Summary.pptx.  
+There are six PowerPoint files that accompany each update: Summary, US States, US Counties, Canadian Provinces, Australian States, and International. If this is the first time you have received this, please read the comments on the first two slides in Summary.pptx.  
 </a>
 </p>
 

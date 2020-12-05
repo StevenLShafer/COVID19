@@ -214,6 +214,33 @@ for (i in 1:51)
 # )
 # Hospitalization_USA_zeroOne$Date <- rep(currentDates,51)
 
+###########################################################
+### Canada Data                                         ###
+###########################################################
+
+Cases_Canada <- Cases_Global.raw[Cases_Global.raw$Country.Region == "Canada",]
+Deaths_Canada <- Deaths_Global.raw[Cases_Global.raw$Country.Region == "Canada",]
+Cases_Canada$Country.Region <- Deaths_Canada$Country.Region <- Cases_Canada$Lat <- Deaths_Canada$Lat <- Cases_Canada$Long <- Deaths_Canada$Long <- NULL
+names(Cases_Canada)[1] <- "Province"
+names(Deaths_Canada)[1] <- "Province"
+
+Cases_Canada <- Cases_Canada[!grepl("Princess", Cases_Canada$Province),]
+Deaths_Canada <- Deaths_Canada[!grepl("Princess", Deaths_Canada$Province),]
+Provinces_Canada <- read.xlsx(paste0(dirSheets,"Provinces_Canada.xlsx"))
+
+X <- ftable(Cases_Global.raw$Country.Region)
+
+
+###########################################################
+### Australia Data                                         ###
+###########################################################
+
+Cases_Australia <- Cases_Global.raw[Cases_Global.raw$Country.Region == "Australia",]
+Deaths_Australia <- Deaths_Global.raw[Cases_Global.raw$Country.Region == "Australia",]
+Cases_Australia$Country.Region <- Deaths_Australia$Country.Region <- Cases_Australia$Lat <- Deaths_Australia$Lat <- Cases_Australia$Long <- Deaths_Australia$Long <- NULL
+names(Cases_Australia)[1] <- "State"
+names(Deaths_Australia)[1] <- "State"
+States_Australia <- read.xlsx(paste0(dirSheets,"States_Australia.xlsx"))
 
 ###########################################################
 ### Global Data                                         ###

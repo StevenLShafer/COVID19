@@ -12,8 +12,8 @@ calcStats <- function(
   if (!exists("modelStart"))
   {
     County <- NULL
-    State <- NULL
-    Country <- "Worldwide"
+    State <- "Yukon"
+    Country <- "Canada"
     Title <- NULL
     modelStart <- NULL
     debug <- TRUE
@@ -22,50 +22,95 @@ calcStats <- function(
   if (is.null(modelStart)) modelStart <- today - daysGompertzFit
   if (!is.null(Country))
   {
-    # Global data
-    if (length(Country) == 1 && Country == "Worldwide")
+    if (!is.null(State))
     {
-      use <- rep(TRUE, nrow(Cases_Global))
-    } else {
-      use <- Cases_Global$Country %in% Country
+      if (Country == "Canada")
+      {
+        use <- Cases_Canada$Province %in% State
+        CASES <- data.frame(
+          Date = allDates,
+          Actual = c(colSums(Cases_Canada[use, c(2:ncol(Cases_Canada))],na.rm=TRUE), rep(NA, projection)),
+          Legend = "Cases",
+          Predicted = NA,
+          stringsAsFactors = FALSE
+        )
+        DEATHS <- data.frame(
+          Date = allDates,
+          Actual = c(colSums(Deaths_Canada[use, c(2:ncol(Deaths_Canada))],na.rm=TRUE), rep(NA, projection)),
+          Legend = "Deaths",
+          Predicted = NA,
+          stringsAsFactors = FALSE
+        )
+        TESTS <-NULL
+        Population <- sum(Provinces_Canada$Population[Provinces_Canada$Province %in% State])
+      }
+      if (Country == "Australia")
+      {
+        use <- Cases_Australia$State %in% State
+        CASES <- data.frame(
+          Date = allDates,
+          Actual = c(colSums(Cases_Australia[use, c(2:ncol(Cases_Australia))],na.rm=TRUE), rep(NA, projection)),
+          Legend = "Cases",
+          Predicted = NA,
+          stringsAsFactors = FALSE
+        )
+        DEATHS <- data.frame(
+          Date = allDates,
+          Actual = c(colSums(Deaths_Australia[use, c(2:ncol(Deaths_Australia))],na.rm=TRUE), rep(NA, projection)),
+          Legend = "Deaths",
+          Predicted = NA,
+          stringsAsFactors = FALSE
+        )
+        TESTS <-NULL
+        Population <- sum(States_Australia$Population[States_Australia$State %in% State])
+      }
+      if (Country != "Canada" & Country != "Australia")
+      {
+        cat("Individual states are not available for ", Country)
+        State <- NULL
+      }
     }
-    CASES <- data.frame(
-      Date = allDates,
-      Actual = c(colSums(Cases_Global[use, c(2:ncol(Cases_Global))],na.rm=TRUE), rep(NA, projection)),
-      Legend = "Cases",
-      Predicted = NA,
-      stringsAsFactors = FALSE
-    )
-    DEATHS <- data.frame(
-      Date = allDates,
-      Actual = c(colSums(Deaths_Global[use, c(2:ncol(Deaths_Global))],na.rm=TRUE), rep(NA, projection)),
-      Legend = "Deaths",
-      Predicted = NA,
-      stringsAsFactors = FALSE
-    )
-    TESTS <- data.frame(
-      Date = currentDates,
-      Actual = c(
-        colSums(
-          Cumulative_Tests_By_Country[
-            Cumulative_Tests_By_Country$Country %in% Country, 
-            c(2:ncol(Cumulative_Tests_By_Country))
-            ],
-          na.rm=TRUE
-          )
-        ),
-      Legend = "Tests",
-      Predicted = NA,
-      stringsAsFactors = FALSE
-    )
-    
-    if (length(Country) == 1 && Country == "Worldwide")
+    if (is.null(State))
     {
-      Population <- sum(Population_Global$Population, na.rm=TRUE)
-    } else {
-      Population <- sum(Population_Global$Population[Population_Global$Country %in% Country], na.rm=TRUE)
+      # Global data
+      if (length(Country) == 1 && Country == "Worldwide")
+      {
+        use <- rep(TRUE, nrow(Cases_Global))
+        Population <- sum(Population_Global$Population, na.rm=TRUE)
+      } else {
+        use <- Cases_Global$Country %in% Country
+        Population <- sum(Population_Global$Population[Population_Global$Country %in% Country], na.rm=TRUE)
+      }
+      CASES <- data.frame(
+        Date = allDates,
+        Actual = c(colSums(Cases_Global[use, c(2:ncol(Cases_Global))],na.rm=TRUE), rep(NA, projection)),
+        Legend = "Cases",
+        Predicted = NA,
+        stringsAsFactors = FALSE
+      )
+      DEATHS <- data.frame(
+        Date = allDates,
+        Actual = c(colSums(Deaths_Global[use, c(2:ncol(Deaths_Global))],na.rm=TRUE), rep(NA, projection)),
+        Legend = "Deaths",
+        Predicted = NA,
+        stringsAsFactors = FALSE
+      )
+      TESTS <- data.frame(
+        Date = currentDates,
+        Actual = c(
+          colSums(
+            Cumulative_Tests_By_Country[
+              Cumulative_Tests_By_Country$Country %in% Country, 
+              c(2:ncol(Cumulative_Tests_By_Country))
+              ],
+            na.rm=TRUE
+            )
+          ),
+        Legend = "Tests",
+        Predicted = NA,
+        stringsAsFactors = FALSE
+      )
     }
-    maxCases <-  Population / (1 + asymptomatic)
   } else {
     # USA Data
     if(is.null(County))
@@ -126,8 +171,9 @@ calcStats <- function(
 
       FIPS <- Cases_USA$CountyFIPS[use]
       Population <- sum(Population_USA$Population[Population_USA$CountyFIPS %in% FIPS], na.rm=TRUE)
-      maxCases <- Population / (1 + asymptomatic)
   }
+
+  maxCases <-  Population / (1 + asymptomatic)
 
   # Cumulative case numbers, deaths, and tests cannot drop
   nRow <- nrow(CASES)
