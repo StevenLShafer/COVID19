@@ -6,7 +6,7 @@ plotMortality <- function(
   Title = NULL
  )
 {
-  # modelStart <- today - daysGompertzFit  
+  modelStart <- today - daysGompertzFit  
   # Country <- "United States of America"
   # State <- NULL
   # County <- NULL
@@ -35,10 +35,11 @@ window <- 13
 offset <- (window - 1)/2
 level <- paste(window, "day rolling median")
 Z <- rollmedian (Daily_mortality, window)
+C <- Cumulative_Deaths / Cumulative_Cases * 100
 
 D <- data.frame(
   Date = c(Dates, Dates[(offset + 1):(L-offset)], currentDates[FIRST:LAST]),
-  Mortality = c(Daily_mortality, Z, Cumulative_Deaths / Cumulative_Cases * 100),
+  Mortality = c(Daily_mortality, Z, C),
   Type = level
 )
 D$Type[1:length(Dates)] <- "Daily Raw"
@@ -46,10 +47,17 @@ D$Type[(nrow(D) - (LAST-FIRST )):nrow(D)] <- "Cumulative"
 
 D$Type <- factor(D$Type, levels = c("Daily Raw", level, "Cumulative" ), ordered = TRUE)
 
+D <- D[!is.na(D$Mortality),]
+yMax <- max(C, Z, na.rm = TRUE) * 1.5
+
 ggObject <- ggplot(
   D,
-  aes(x = Date, y = Mortality, color = Type)
-) +
+  aes(
+    x = Date, 
+    y = Mortality, 
+    color = Type
+    )
+  ) +
   geom_line(
     data = D[D$Type == "Cumulative", ],
     size = 1.5
@@ -64,10 +72,8 @@ ggObject <- ggplot(
     shape = 3
   ) +
   coord_cartesian(
-    ylim = c(0.00, 14)
   ) +
-  scale_y_continuous(
-    breaks = c(0,2,4,6,8,10,12,14)
+  scale_y_continuous(limits = c(0, yMax)
   ) +
   scale_x_date(
     date_breaks = "14 days",
