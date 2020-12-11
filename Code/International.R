@@ -41,6 +41,7 @@ plotPred(Country = "Thailand")
 plotPred(Country = "South Korea", Title = "South Korea")
 plotPred(Country = "Singapore", Title = "Singapore")
 plotPred(Country = "Japan", Title = "Japan")
+plotPred(Country = "Philippines")
 
 # Africa
 plotPred(Country = "South Africa")
@@ -126,6 +127,9 @@ plotPred(Country= "Canada")
 # Asia
 plotPred(Country = "Ukraine")
 plotPred(Country = "Russia", Title = "Russia")
+plotPred(Country = "Azerbaijan")
+plotPred(Country = "Kazakhstan")
+
 plotPred(Country = "India", Title = "India")
 plotPred(Country = "Pakistan", Title = "Pakistan")
 print(pptx, target = pptxfileName)

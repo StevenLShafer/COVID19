@@ -45,7 +45,7 @@ and may be freely used without restriction. My archive of referenced documents i
 
 <p class="SLSNormal">
 <a href="https://drive.google.com/drive/folders/1EGPI7ZUEjRoZd7e9BFK4fT0IV4hxJHFT?usp=sharing" target="_blank">
-There are six PowerPoint files that accompany each update: Summary, US States, US Counties, Canadian Provinces, Australian States, and International. If this is the first time you have received this, please read the comments on the first two slides in Summary.pptx.  
+This is a link to the six PowerPoint files that accompany each update: Summary, US States, US Counties, Canadian Provinces, Australian States, and International. If this is the first time you have received this, please read the comments on the first two slides in Summary.pptx.  
 </a>
 </p>
 

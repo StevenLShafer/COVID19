@@ -78,19 +78,24 @@ plotPred <- function(
     prettyNum(yesterdayCases, big.mark = ",", scientific = FALSE),
     " (",
     prettyNum(round(yesterdayCases / Population * 100,1), big.mark = ",", scientific = FALSE),
-    "%)  --  Deaths: ",
+    "%, 1 in ",
+    prettyNum(round(Population / yesterdayCases, 0), big.mark = ",", scientific = FALSE),
+    ")  --  Deaths: ",
     prettyNum(yesterdayDeaths, big.mark = ",", scientific = FALSE),
     " (",
     prettyNum(round(yesterdayDeaths / Population * 100,2), big.mark = ",", scientific = FALSE),
-    "%)  --  Case Mortality: ",
+    "%, 1 in ",
+    prettyNum(round(Population / yesterdayDeaths,0), big.mark = ",", scientific = FALSE),
+    ")  --  Case Mortality: ",
     sprintf("%2.1f", mortality * 100),
-    "%  --  Daily Change: ",
-    sprintf("%+2.1f", slopeCases),
-    "% Cases, ",
-    sprintf("%+2.1f", slopeDeaths),
-    "% Deaths (over ",
+    "%\n",
+    "Daily change (averaged over ",
     daysLinearFit,
-    " days)"
+    " days) -- Cases: ",
+    sprintf("%+2.1f", slopeCases),
+    "% per day, Deaths: ",
+    sprintf("%+2.1f", slopeDeaths),
+    "% per day"
   )
   
   DATA$Legend <- factor(
@@ -117,7 +122,7 @@ plotPred <- function(
       size = 1
     ) +
     coord_cartesian(
-      ylim = c(0.8,1000000000), 
+      ylim = c(0.8,Population * 10), 
       xlim = c(startDate,endDate + 16), 
       expand = FALSE, 
       clip = "on"
@@ -143,7 +148,7 @@ plotPred <- function(
       x = today, 
       xend = today, 
       y = 1, 
-      yend = 500000000, 
+      yend = 50000000000, 
       color = "blue"
     ) +
     labs(
@@ -163,18 +168,42 @@ plotPred <- function(
       minor_breaks = NULL
     ) +
     scale_y_log10(
-      breaks = c(1, 10, 100, 1000, 10000, 100000, 1000000,10000000, 100000000,1000000000),
-      labels = c("1", "10","100","1,000","10,000","100,000","1,000,000", "10,000,000","100,000,000","1,000,000,000"),
+      breaks = c(10^(0:10)),
+      labels = comma_format(
+        big.mark = ',',
+        accuracy = 1),
       sec.axis = dup_axis(
         trans = ~Population / .,
-        name = "One in")
-      
+        breaks = 10^(0:10),
+        labels = paste(
+          "1 in", 
+          prettyNum(10^(0:10), big.mark = ",", scientific=FALSE))
+        )
     ) +
     theme(
       axis.text.x=element_text(angle=60, hjust=1),
-      plot.subtitle = element_text(size = 8)
+      plot.subtitle = element_text(size = 8),
+      axis.title.y.right = element_blank()
     )+
     annotation_logticks() +
+    annotate(
+      "segment", 
+      x = startDate, 
+      xend = today, 
+      y = Population, 
+      yend = Population, 
+      color = "black"
+    ) +
+    annotate(
+      geom = "text",
+      x = startDate + 15,
+      y = Population * 1.4,
+      hjust = 0,
+      vjust = 0,
+      label = paste("Population:", prettyNum(Population, big.mark = ",", scientific = FALSE)),
+      size = 3,
+      color = "black"
+    ) +
     annotate(
       geom = "point",
       x = endDate,
@@ -190,7 +219,7 @@ plotPred <- function(
       hjust = 0.5,
       vjust = 0,
       label = prettyNum(round(predictedCases, 0), big.mark = ",", scientific = FALSE),
-      size = 3,
+      size = 2.7,
       color = "red"
     ) +
     annotate(
@@ -208,41 +237,41 @@ plotPred <- function(
       hjust = 0.5,
       vjust = 0,
       label = prettyNum(round(predictedDeaths, 0), big.mark = ",", scientific = FALSE),
-      size = 3,
+      size = 2.7,
       color="black"
     ) +
     annotate(
       geom = "point",
-      x = startDate+10,
-      y = 100000,
-      size = 3,
+      x = startDate+15,
+      y = Population / 16,
+      size = 1.5,
       color="blue"
     ) +
     annotate(
       geom = "point",
-      x = startDate+10,
-      y = 10000,
-      size = 3,
+      x = startDate+15,
+      y = Population / 64,
+      size = 1.5,
       color="black"
     ) +
     annotate(
       geom = "text",
-      x = startDate + 15,
-      y = 100000,
+      x = startDate + 20,
+      y = Population / 16,
       hjust = 0,
       vjust = 0.5,
       label = "Cases",
-      size = 4,
+      size = 2,
       color="blue"
     ) +
     annotate(
       geom = "text",
-      x = startDate + 15,
-      y = 10000,
+      x = startDate + 20,
+      y = Population / 64,
       hjust = 0,
       vjust = 0.5,
       label = "Deaths",
-      size = 4,
+      size = 2,
       color="black"
     ) +
     
@@ -280,30 +309,29 @@ plotPred <- function(
         inherit.aes = FALSE
       )
   }
-  if (Population < 500000000)
+  if (sum(DATA$Legend == "Tests") > 0)
   {
-    ggObject1 <- ggObject1 +
+    ggObject1 <- ggObject1 + 
       annotate(
-      "segment", 
-      x = startDate, 
-      xend = today, 
-      y = Population, 
-      yend = Population, 
-      color = "black"
-    ) +
+        geom = "point",
+        x = startDate+15,
+        y = Population / 4,
+        size = 1.5,
+        color="brown"
+      ) +
       annotate(
         geom = "text",
-        x = startDate + 5,
-        y = Population * 1.4,
+        x = startDate + 20,
+        y = Population / 4,
         hjust = 0,
-        vjust = 0,
-        label = paste("Population:", prettyNum(Population, big.mark = ",", scientific = FALSE)),
-        size = 3,
-        color = "black"
+        vjust = 0.5,
+        label = "Tests",
+        size = 2,
+        color="brown"
       )
-  }    
-  
-  if (debug) print(ggObject1)
+    }
+    
+    if (debug) print(ggObject1)
 
   maxY <- max(
     CASES$Delta_Smoothed_2[CASES$Date < today],
@@ -401,11 +429,17 @@ plotPred <- function(
       minor_breaks = NULL
     ) +
     scale_y_log10(
-      breaks = c(1, 10, 100, 1000, 10000, 100000, 1000000,10000000, 100000000),
-      labels = c("1", "10","100","1,000","10,000","100,000","1,000,000", "10,000,000","100,000,000"),
+      breaks = c(10^(0:10)),
+      labels = comma_format(
+        big.mark = ',',
+        accuracy = 1),
       sec.axis = dup_axis(
         trans = ~Population / .,
-        name = "One in")
+        breaks = 10^(0:10),
+        labels = paste(
+          "1 in", 
+          prettyNum(10^(0:10), big.mark = ",", scientific=FALSE))
+      )
     ) +
     annotation_logticks() +
     coord_cartesian(
@@ -416,7 +450,7 @@ plotPred <- function(
     ) +
     annotate(
       geom = "text",
-      x = today + 1,
+      x = today + 2,
       y = CASES$Delta[DEATHS$Date == yesterday],
       hjust = 0,
       vjust = 0.5,
@@ -426,7 +460,7 @@ plotPred <- function(
     ) +
     annotate(
       geom = "text",
-      x = today + 1,
+      x = today + 2,
       y = DEATHS$Delta[DEATHS$Date == yesterday],
       hjust = 0,
       vjust = 0.5,
@@ -438,7 +472,7 @@ plotPred <- function(
       axis.title.x = element_blank(),
       axis.text.x=element_text(angle=60, hjust=1),
       axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
-      axis.title.y.right = element_text(margin = margin(t = 0, r = 0, b = 0, l = 20))
+      axis.title.y.right = element_blank()
     )
   
   if  (is.null(Country) || Country == "United States of America")

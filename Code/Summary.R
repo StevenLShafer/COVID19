@@ -96,7 +96,7 @@ jacklerPlot(
   Loc1 = "USA (318MM)",
   Loc2 = "Western Europe (355MM)",
   title = "COVID-19 Cases & Deaths in the USA & Europe",
-  caption = "Western Europe: Belgium, France, Greece, Germany, Italy, Luxembourg, Netherlands, Portugal, Spain,and the UK (Population = 355MM)"
+  caption = "Western Europe: Belgium, France, Greece, Germany, Italy, Luxembourg,\nNetherlands, Portugal, Spain,and the UK (Population = 355MM)"
 )
 
 ASIA <- plotPred(
