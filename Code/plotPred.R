@@ -162,24 +162,6 @@ plotPred <- function(
       date_labels = "%b %d",
       minor_breaks = NULL
     ) +
-    annotate(
-      "segment", 
-      x = startDate, 
-      xend = today, 
-      y = Population, 
-      yend = Population, 
-      color = "black"
-    ) +
-    annotate(
-      geom = "text",
-      x = startDate,
-      y = Population * 1.4,
-      hjust = -0.2,
-      vjust = 0,
-      label = paste("Population:", prettyNum(Population, big.mark = ",", scientific = FALSE)),
-      size = 3,
-      color = "black"
-    ) +
     scale_y_log10(
       breaks = c(1, 10, 100, 1000, 10000, 100000, 1000000,10000000, 100000000,1000000000),
       labels = c("1", "10","100","1,000","10,000","100,000","1,000,000", "10,000,000","100,000,000","1,000,000,000"),
@@ -229,16 +211,48 @@ plotPred <- function(
       size = 3,
       color="black"
     ) +
+    annotate(
+      geom = "point",
+      x = startDate+10,
+      y = 100000,
+      size = 3,
+      color="blue"
+    ) +
+    annotate(
+      geom = "point",
+      x = startDate+10,
+      y = 10000,
+      size = 3,
+      color="black"
+    ) +
+    annotate(
+      geom = "text",
+      x = startDate + 15,
+      y = 100000,
+      hjust = 0,
+      vjust = 0.5,
+      label = "Cases",
+      size = 4,
+      color="blue"
+    ) +
+    annotate(
+      geom = "text",
+      x = startDate + 15,
+      y = 10000,
+      hjust = 0,
+      vjust = 0.5,
+      label = "Deaths",
+      size = 4,
+      color="black"
+    ) +
+    
     theme(
       panel.grid.minor = element_blank(),
       legend.key = element_rect(fill = NA),
       axis.title.x = element_blank(),
       axis.text.x = element_blank(),
       axis.ticks.x = element_blank(),
-      legend.position = c(0.05, 0.4),
-      legend.background = element_blank(),
-      legend.box.background = element_rect(color = "black", fill="white")
-      
+      legend.position = "none"
     )
   
   # Add ensemble model if US or State data are being displayed
@@ -266,6 +280,28 @@ plotPred <- function(
         inherit.aes = FALSE
       )
   }
+  if (Population < 500000000)
+  {
+    ggObject1 <- ggObject1 +
+      annotate(
+      "segment", 
+      x = startDate, 
+      xend = today, 
+      y = Population, 
+      yend = Population, 
+      color = "black"
+    ) +
+      annotate(
+        geom = "text",
+        x = startDate + 5,
+        y = Population * 1.4,
+        hjust = 0,
+        vjust = 0,
+        label = paste("Population:", prettyNum(Population, big.mark = ",", scientific = FALSE)),
+        size = 3,
+        color = "black"
+      )
+  }    
   
   if (debug) print(ggObject1)
 
