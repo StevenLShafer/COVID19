@@ -86,7 +86,7 @@ plotPred <- function(
     prettyNum(round(yesterdayDeaths / Population * 100,2), big.mark = ",", scientific = FALSE),
     "%, 1 in ",
     prettyNum(round(Population / yesterdayDeaths,0), big.mark = ",", scientific = FALSE),
-    ")  --  Case Mortality: ",
+    ")  --  Case Mortality (last 60 days): ",
     sprintf("%2.1f", mortality * 100),
     "%\n",
     "Daily change (averaged over ",

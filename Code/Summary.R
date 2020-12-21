@@ -10,7 +10,19 @@ WORLD <- plotPred(Country = "Worldwide", Title = "Worldwide")$results
 emailText <- textSummary(WORLD, "Worldwide")
 
 USA <- plotPred(Country = "United States of America", Title = "USA", addPlot = TRUE)$results
-emailText <- textSummary(USA, "In the US")
+emailText <- textSummary(
+  USA, 
+  "In the US", 
+  paste(
+    " Currently", 
+    prettyNum(
+      sum(COVIDActNow_States_History.raw$actuals.hospitalBeds.currentUsageCovid[COVIDActNow_States_History.raw$Date == yesterday]),
+      big.mark = ",", 
+      scientific = FALSE),
+    "individuals are hospitalized in the US with COVID-19."
+  )
+)
+emailText <- paste(emailText, "Total ")
 
 # X <- USA$CASES[USA$CASES$Date > as.Date("2020-03-02") & USA$CASES$Date < today ,]
 # breaks = as.Date(as.Date("2020-03-02") + 0:24*7)
@@ -180,7 +192,8 @@ internationalFisherPlot(
   "Total cases to date",
   "total cases per capita",
   6,
-  OneIn = TRUE
+  OneIn = TRUE,
+  addPlot = TRUE
 )
 
 # Average cases over past 7 days
@@ -214,7 +227,8 @@ internationalFisherPlot(
   "Total deaths to date",
   "total deaths per capita",
   6,
-  OneIn = TRUE
+  OneIn = TRUE,
+  addPlot = TRUE
 )
 
 # Average Deaths per million over past 7 days
@@ -503,6 +517,12 @@ for (i in 1:nrow(States))
     N <- nrow(C)
     States$CVCases[i] <- sd(C$Cases[(N-28):N]) / mean(C$Cases[(N-28):N])
     States$CVDeaths[i] <- sd(C$Deaths[(N-28):N]) / mean(C$Deaths[(N-28):N])
+    
+    # Add Hospital and ICU Capacity
+    maxDate <- max(AllCapacity$Date[AllCapacity$State == States$Abbreviation[i]])
+    j <- which(AllCapacity$State == States$Abbreviation[i] & AllCapacity$Date == maxDate)
+    States$inpatient_percent[i] <- AllCapacity$inpatient_percent[j]
+    States$ICU_percent[i] <- AllCapacity$ICU_percent[j]
   }
 }
 States$state <- States$State   # Required for plot_usmap().... whatever
@@ -519,6 +539,10 @@ MASKS <- read.xlsx(paste0(dirSheets,"masks.xlsx")) # As of July 20
 CROWS <- match(States$State, MASKS$State)
 States$Masks <- MASKS$Statewide.Requirement[CROWS]
 
+# Add R(t)
+maxDate <- max(RT_by_State$Date)
+X <- RT_by_State[RT_by_State$Date == maxDate,]
+States$RT <- X$mean[match(States$Abbreviation, X$State)]
 
 # New cases / day
 States$signCase <- assignSign(States$slopeCases)
@@ -587,6 +611,17 @@ emailText <- paste(
     )
   ),
   email.list.end
+)
+
+States$Y <- States$dailyCases  / States$Population * 1000000
+stateFisherPlot(
+  States,
+  "Average US COVID-19 cases over the past 7 days",
+  "New Cases / Day",
+  "cases per day per capita over the past 7 days",
+  6,
+  OneIn = TRUE, 
+  addPlot = TRUE
 )
 
 # New deaths / day
@@ -663,6 +698,17 @@ emailText <- paste(
   email.list.end
 )
 
+States$Y <- States$dailyDeaths  / States$Population * 1000000
+stateFisherPlot(
+  States,
+  "Average US COVID-19 deaths over the past 7 days",
+  "Deaths / Day",
+  "deaths per day per capita over the past 7 days",
+  6,
+  OneIn = TRUE, 
+  addPlot = TRUE
+)
+
 fourQPlot(
   DATA = States,
   colX = "slopeCases",
@@ -677,8 +723,186 @@ fourQPlot(
   scale = States$totalCases / States$Population
 )
 
-########################
+X <- data.frame(
+  States = c(States$Abbreviation,States$Abbreviation), 
+  Date = c(rep(today-1, 51),rep(today-62, 51)),
+  Y = 1
+)
 
+ggObject <- ggplot(RT_by_State[RT_by_State$Date >= today - 62,], aes(Date, mean)) +
+  geom_line() +
+  geom_line(data = X, aes(y=Y), color = "red", linetype = "dotted") +
+  scale_x_date(
+    breaks = c(today - 0:4 * 14)-1,
+    date_labels = "%b %d"
+  ) +
+  scale_y_continuous(
+    breaks = c(0.5, 0.75, 1, 1.25, 1.5)
+  ) +
+  coord_cartesian(ylim = c(0.5,1.5)) +
+  facet_geo(~ State, grid = us_state_grid4) +
+  labs(
+    y = "R(t)",
+    title = paste("Reproduction Rate by State as of", today),
+    caption="R(t) results are from rt.live (https://rt.live)"
+) +
+  theme(
+    axis.title.x = element_blank(),
+    axis.text.x=element_text(angle=70, hjust=1, size=7),
+    axis.text.y=element_text(size=6),
+    axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
+    axis.title.y.right = element_text(margin = margin(t = 0, r = 0, b = 0, l = 20)),
+    strip.text.x = element_text(margin = margin(0,0,0,0))
+  )
+nextSlide(ggObject, "Reproduction Rate by State")
+
+emailText <- paste(
+  emailText,
+  email.list.start,
+  paste("Reproduction rate over the past two months."),
+  sls_trim(
+    add_ggplot(
+      plot_object = ggObject,
+      width = 7.2, # was 9
+      height = 4.5, # was 9
+      alt = NULL,
+      align = "left",
+      float = "none"
+    )
+  ),
+  email.list.end
+)
+
+States$Y <- States$RT
+stateFisherPlot(
+  States,
+  "Current Reproduction Rate from https://rt.live",
+  "Reproduction Rate",
+  "reproduction rate (I'm not sure this is helpful)",
+  6,
+  OneIn = FALSE, 
+  addPlot = TRUE,
+  minimum = 0.75,
+  comparator = "highest"
+)
+
+#######################################################
+# Add inpatient and ICU bed occupancy from healthdata.gov
+AllCapacity$inpatient_percent <- pmin(AllCapacity$inpatient_percent, 100)
+AllCapacity$Y <- 100-AllCapacity$inpatient_percent
+ggObject <- ggplot(AllCapacity[AllCapacity$Date >= today - 62 & AllCapacity$Date < today,], aes(Date, Y)) +
+  geom_line() +
+  scale_x_date(
+    breaks = c(today - 0:4 * 14)-1,
+    date_labels = "%b %d"
+  ) +
+  scale_y_continuous(
+    breaks = c(0,25,50),
+    labels = c(0, 25, 50)
+  ) +
+  coord_cartesian(ylim = c(0,50)) +
+  facet_geo(~ State, grid = us_state_grid4) +
+  labs(
+    y = "Inpatient Bed Availability (%)",
+    title = "Inpatient bed availability over the past 60 days") +
+  theme(
+    axis.title.x = element_blank(),
+    axis.text.x=element_text(angle=70, hjust=1, size=7),
+    axis.text.y=element_text(size=6),
+    axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
+    axis.title.y.right = element_text(margin = margin(t = 0, r = 0, b = 0, l = 20)),
+    strip.text.x = element_text(margin = margin(0,0,0,0))
+  )
+nextSlide(ggObject, "Inpatient bed availability")
+
+emailText <- paste(
+  emailText,
+  email.list.start,
+  paste("Inpatient bed availability over the past 60 days."),
+  sls_trim(
+    add_ggplot(
+      plot_object = ggObject,
+      width = 7.2, # was 9
+      height = 4.5, # was 9
+      alt = NULL,
+      align = "left",
+      float = "none"
+    )
+  ),
+  email.list.end
+)
+
+States$Y <- 100 - pmin(States$inpatient_percent, 100)
+stateFisherPlot(
+  States,
+  "Inpatient bed availability",
+  "Percent available",
+  "percent available inpatient beds",
+  6,
+  addPlot = TRUE,
+  decreasing = FALSE, 
+  comparator = "least"
+)
+
+# ICU Bed availability
+AllCapacity$ICU_percent <- pmin(AllCapacity$ICU_percent, 100)
+AllCapacity$Y <- 100-AllCapacity$ICU_percent
+ggObject <- ggplot(AllCapacity[AllCapacity$Date >= today - 62 & AllCapacity$Date < today,], aes(Date, Y)) +
+  geom_line() +
+  scale_x_date(
+    breaks = c(today - 0:4 * 14)-1,
+    date_labels = "%b %d"
+  ) +
+  scale_y_continuous(
+    breaks = c(0,25,50),
+    labels = c(0, 25, 50)
+  ) +
+  coord_cartesian(ylim = c(0,50)) +
+  facet_geo(~ State, grid = us_state_grid4) +
+  labs(
+    y = "ICU Bed Availability (%)",
+    title = "ICU bed availability over the past 60 days") +
+  theme(
+    axis.title.x = element_blank(),
+    axis.text.x=element_text(angle=70, hjust=1, size=7),
+    axis.text.y=element_text(size=6),
+    axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
+    axis.title.y.right = element_text(margin = margin(t = 0, r = 0, b = 0, l = 20)),
+    strip.text.x = element_text(margin = margin(0,0,0,0))
+  )
+nextSlide(ggObject, "ICU bed availability")
+
+emailText <- paste(
+  emailText,
+  email.list.start,
+  paste("ICU bed availability over the past 60 days."),
+  sls_trim(
+    add_ggplot(
+      plot_object = ggObject,
+      width = 7.2, # was 9
+      height = 4.5, # was 9
+      alt = NULL,
+      align = "left",
+      float = "none"
+    )
+  ),
+  email.list.end
+)
+
+States$Y <- 100 - pmin(States$ICU_percent, 100)
+stateFisherPlot(
+  States,
+  "Inpatient bed availability",
+  "percent available",
+  "percent available ICU beds",
+  6,
+  addPlot = TRUE,
+  decreasing=FALSE,
+  comparator = "least"
+)
+
+
+########################
 # Fisher Plots for States 
 # Total Cases per population
 States$Y <- States$totalCases
@@ -701,16 +925,6 @@ stateFisherPlot(
   OneIn = TRUE
 )
 
-States$Y <- States$dailyCases  / States$Population * 1000000
-stateFisherPlot(
-  States,
-  "Average US COVID-19 cases over the past 7 days",
-  "New Cases / Day",
-  "cases per day per capita over the past 7 days",
-  6,
-  OneIn = TRUE, 
-  addPlot = TRUE
-)
 
 States$Y <- States$totalDeaths
 stateFisherPlot(
@@ -731,16 +945,7 @@ stateFisherPlot(
   OneIn = TRUE
 )
 
-States$Y <- States$dailyDeaths  / States$Population * 1000000
-stateFisherPlot(
-  States,
-  "Average US COVID-19 deaths over the past 7 days",
-  "Deaths / Day",
-  "deaths per day per capita over the past 7 days",
-  6,
-  OneIn = TRUE, 
-  addPlot = TRUE
-)
+
 
 #######################################
 # Testing Trends 
@@ -777,7 +982,8 @@ stateFisherPlot(
   paste("Change in daily tests over past", daysLinearFit, "days"),
   "Change in daily tests (%/day)",
   "daily increase in tests",
-  6
+  6,
+  comparator = "largest"
 )
 
 States$Y <- States$TestingFraction
@@ -786,7 +992,8 @@ stateFisherPlot(
   "Percent Tested",
   "Percent Tested",
   "percent tested",
-  6
+  6,
+  comparator = "highest"
 )
 
 # Positive Tests
@@ -796,7 +1003,8 @@ stateFisherPlot(
   "Percent of Positive COVID Tests",
   "Percent of Positive Tests",
   "percent positive tests",
-  6
+  6,
+  comparator = "highest"
 )
 
 X <- data.frame(
@@ -830,22 +1038,22 @@ ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 62 & Cases_Long$Date < 
   )
 nextSlide(ggObject, "Percent Positive Trends")
 
-emailText <- paste(
-  emailText,
-  email.list.start,
-  paste("Positive test trends over the past two months."),
-  sls_trim(
-    add_ggplot(
-      plot_object = ggObject,
-      width = 7.2, # was 9
-      height = 4.5, # was 9
-      alt = NULL,
-      align = "left",
-      float = "none"
-    )
-  ),
-  email.list.end
-)
+# emailText <- paste(
+#   emailText,
+#   email.list.start,
+#   paste("Positive test trends over the past two months."),
+#   sls_trim(
+#     add_ggplot(
+#       plot_object = ggObject,
+#       width = 7.2, # was 9
+#       height = 4.5, # was 9
+#       alt = NULL,
+#       align = "left",
+#       float = "none"
+#     )
+#   ),
+#   email.list.end
+# )
 
 # # Four quadrant graph for testing and positivity
 #   fourQPlot(
@@ -863,15 +1071,16 @@ emailText <- paste(
 #   )
 # 
 # Hospitalizatons
-States$Y <- States$Hospitalizations * 100
-stateFisherPlot(
-  States,
-  "Current hospitalizations as a percent of peak since February",
-  "Hospitalizations (% of peak)",
-  "current hospitalizations as a percent of peak rate",
-  6
-)
-
+# States$Y <- States$Hospitalizations * 100
+# stateFisherPlot(
+#   States,
+#   "Current COVID-19 hospitalizations as a percent of peak since February",
+#   "COVID-19 Hospitalizations (% of peak)",
+#   "current COVID-19 hospitalizations as a percent of peak rate",
+#   6,
+#   comparator = "greatest"
+# )
+# 
 ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 62 & Cases_Long$Date < today,], aes(Date, Hospitalizations)) +
   geom_line() +
   scale_x_date(
@@ -885,8 +1094,8 @@ ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 62 & Cases_Long$Date < 
   coord_cartesian(ylim = c(0,1)) +
   facet_geo(~ State, grid = us_state_grid4) +
   labs(
-    y = "Hospitalizations from min to max",
-    title = "Hospitalization trends from min to max") +
+    y = "COVID-19 hospitalizations from min to max",
+    title = "COVID-19 hospitalization trends from min to max") +
   theme(
     axis.title.x = element_blank(),
     axis.text.x=element_text(angle=70, hjust=1, size=7),
@@ -895,35 +1104,39 @@ ggObject <- ggplot(Cases_Long[Cases_Long$Date >= today - 62 & Cases_Long$Date < 
     axis.title.y.right = element_text(margin = margin(t = 0, r = 0, b = 0, l = 20)),
     strip.text.x = element_text(margin = margin(0,0,0,0))
   )
-nextSlide(ggObject, "Hospitalization trends")
+nextSlide(ggObject, "COVID-19 hospitalization trends")
 
-emailText <- paste(
-  emailText,
-  email.list.start,
-  paste("Hospitalization trends over the past two months."),
-  sls_trim(
-    add_ggplot(
-      plot_object = ggObject,
-      width = 7.2, # was 9
-      height = 4.5, # was 9
-      alt = NULL,
-      align = "left",
-      float = "none"
-    )
-  ),
-  email.list.end
-)
+# emailText <- paste(
+#   emailText,
+#   email.list.start,
+#   paste("Covid-19 hospitalization trends over the past two months."),
+#   sls_trim(
+#     add_ggplot(
+#       plot_object = ggObject,
+#       width = 7.2, # was 9
+#       height = 4.5, # was 9
+#       alt = NULL,
+#       align = "left",
+#       float = "none"
+#     )
+#   ),
+#   email.list.end
+# )
 
-# Hospitalizatons
+# Change in Hospitalizatons
 States$Y <- States$slopeHospitalizations
 stateFisherPlot(
   States,
-  "Change in hospitalizations over past 14 days",
+  "Change in COVID-19 hospitalizations over past 14 days",
   "Change in hospitalizations (%/day)",
-  "daily change in hospitalizations",
-  6
+  "daily change in COVID-19 hospitalizations",
+  6,
+  comparator = "largest"
 )
 
+
+############################################################################################
+############################################################################################
 if (weekDay == 1) # Monday only
 {
   # Testing vs. Mortality
@@ -1003,6 +1216,29 @@ Counties$signDeaths <- assignSign(Counties$slopeDeaths)
 # Add Partisan Lean
 CROWS <- match(Counties$FIPS, Lean$FIPS)
 Counties$Lean <- Lean$Lean[CROWS] * 100
+
+# Add ICU Availability
+sum(COVIDActNow_States_History.raw$actuals.hospitalBeds.currentUsageCovid[COVIDActNow_States_History.raw$Date == yesterday])
+
+COVIDActNow_Counties_Current.raw$hospital_Availability <-
+   100 - (
+     COVIDActNow_Counties_Current.raw$actuals.hospitalBeds.currentUsageTotal/
+     COVIDActNow_Counties_Current.raw$actuals.hospitalBeds.capacity)
+# CROWS <- match(Counties$FIPS, COVIDActNow_Counties_Current.raw$fips)
+# Counties$hospital_Availability <- COVIDActNow_Counties_Current.raw$ICU_Availability[CROWS]
+# Counties$hospital_Color <- assignHeadroom(Counties$hospital_Availability)
+# ggObject <- plot_usmap(data = Counties, values = "hospital_Color", color = "black") +
+#   scale_fill_manual(values = c("red", "pink", "white","lightgreen", "green"), name = "ICU Availability)") +
+#   theme(legend.position = "right") +
+#   labs(
+#     title = paste("ICU Availability", daysLinearFit, "days as of", Sys.Date()),
+#     caption = "NA = Inadequate data"
+#   )
+# nextSlide(ggObject, "Change in New Cases per Day")
+
+sum(COVIDActNow_States$inpatient_beds_used, na.rm=TRUE)
+    Counties_Current.raw$actuals.hospitalBeds.currentUsageTotal, na.rm = TRUE)
+
 ################################################################################
 
 # New cases / day
@@ -1057,6 +1293,18 @@ emailText <- paste(
   ),
   email.list.end
 )
+
+Counties$ICU_Color <- 1
+
+ggObject <- plot_usmap(data = Counties, values = "signDeaths", color = "black") +
+  scale_fill_manual(values = c("red", "pink", "white","lightgreen", "green"), name = "Direction (% per day)") +
+  theme(legend.position = "right") +
+  labs(
+    title = paste("Death trends over", daysLinearFit, "days as of", Sys.Date()),
+    caption = "NA = Inadequate data"
+  )
+nextSlide(ggObject, "Change in daily deaths per day")
+
 
 if (weekDay == 1) # Monday only
 {

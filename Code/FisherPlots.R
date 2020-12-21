@@ -1,5 +1,5 @@
 # Fisher Plots
-internationalFisherPlot <- function (X, title, ylabel, emailTitle, N, OneIn = FALSE, addPlot = FALSE)
+internationalFisherPlot <- function (X, title, ylabel, emailTitle, N, OneIn = FALSE, addPlot = FALSE, comparator = "most")
 { 
   X$Country[X$Country == "United States of America"] <- "USA"
   X <- X[order(X$Y, decreasing = TRUE),]
@@ -45,17 +45,35 @@ internationalFisherPlot <- function (X, title, ylabel, emailTitle, N, OneIn = FA
   #     xlim = c(1, nrow(X))
   #   )
   nextSlide(ggObject, title)
-  if (emailTitle != "") emailText <<- textRanksInternational(X, emailTitle, N, addPlot, ggObject)
+  if (emailTitle != "") emailText <<- textRanksInternational(X, emailTitle, N, addPlot, ggObject, comparator)
 }
 
-stateFisherPlot <- function (X, title, ylabel, emailTitle, N, OneIn = FALSE, addPlot = FALSE)
+stateFisherPlot <- function (
+  X, 
+  title, 
+  ylabel, 
+  emailTitle, 
+  N, OneIn = FALSE, 
+  addPlot = FALSE,
+  minimum = 0,
+  decreasing = TRUE,
+  comparator = "most"
+  )
 {
-  X <- X[order(X$Y, decreasing = TRUE),]
+  X <- X[order(X$Y, decreasing = decreasing),]
   X$Rank <- 1:nrow(X)
   pMasks <- p <- signif(wilcox.test(X$Rank[X$Masks == "Yes"], X$Rank[X$Masks == "No"])$p.value, 2)
   pGov <- signif(wilcox.test(X$Rank[X$Governor == "Republican"], X$Rank[X$Governor == "Democratic"])$p.value, 2)
   pLean <- signif(wilcox.test(X$Rank[X$'2020 Election' == "Trump"], X$Rank[X$'2020 Election' == "Biden"])$p.value, 2)
-  ggObject <- ggplot(X, aes(x = Rank, y = Y, color = `2020 Election`, shape = Masks)) +
+  ggObject <- ggplot(
+    X, 
+    aes(
+      x = Rank, 
+      y = Y, 
+      color = `2020 Election`, 
+      shape = Masks
+      )
+    ) +
     geom_point() +
     geom_text(aes(y = Y, label = paste0("  ",State)), angle = 90, size = 2.6, hjust = 0) +
     scale_color_manual(values = c("blue","red")) +
@@ -90,7 +108,7 @@ stateFisherPlot <- function (X, title, ylabel, emailTitle, N, OneIn = FALSE, add
     ) 
   } else {
     ggObject <- ggObject + scale_y_continuous(
-      limits = c(min(0, X$Y)*1.1, max(X$Y) * 1.1),
+      limits = c(min(minimum, X$Y)*0.9, max(X$Y) * 1.1),
       labels = scales::number_format(big.mark = ",", decimal.mark = '.')
     )
     if (min(X$Y) < 0)
@@ -110,5 +128,5 @@ stateFisherPlot <- function (X, title, ylabel, emailTitle, N, OneIn = FALSE, add
   #     xlim = c(1, nrow(X))
   #   )
   nextSlide(ggObject, title)
-  if (emailTitle != "") emailText <<- textRanksStates(X, emailTitle, N, addPlot, ggObject)
+  if (emailTitle != "") emailText <<- textRanksStates(X, emailTitle, N, addPlot, ggObject, comparator)
 }

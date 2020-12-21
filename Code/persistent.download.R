@@ -149,6 +149,50 @@ fileDownload(
   "Stringency_Global"
 )
 
+# Estimates of RT
+fileDownload(
+  "https://d14wlfuexuxgcm.cloudfront.net/covid/rt.csv",
+  "RT_by_State"
+)
+
+#  Hospitalization utiliztaion from healthdata.gov
+X <- fromJSON("https://www.healthdata.gov/data.json?accessType=DOWNLOAD", simplifyVector = FALSE)$dataset
+findURL <- function(X, string)
+{
+  for (i in 1:length(X))
+  {
+    distributions <- X[[i]]$distribution
+    if (!is.null(distributions))
+    {
+      for (j in 1:length(distributions))
+      {
+        distribution <- distributions[[j]]
+        if (!is.null(distribution$title) && distribution$title == string)
+        {
+          return(distribution$downloadURL)
+        }
+      }
+    }
+  }
+  cat("Unable to find ", string, "\n")
+}
+
+fileDownload(
+  findURL(X, "COVID-19 Reported Patient Impact and Hospital Capacity by State Timeseries"),
+  "AllCapacity"
+)
+
+# From COVID ACT Now
+fileDownload(
+  "https://api.covidactnow.org/v2/states.timeseries.csv?apiKey=8f3db7ab509041a8967f7e196484582d",
+  "COVIDActNow_States_History"
+)
+
+fileDownload(
+  "https://api.covidactnow.org/v2/counties.csv?apiKey=8f3db7ab509041a8967f7e196484582d",
+  "COVIDActNow_Counties_Current"
+)
+
 cat("All files downloaded.\n")
 pbPost(
 #  devices = "Phone",

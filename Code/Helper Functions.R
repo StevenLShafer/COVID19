@@ -8,6 +8,14 @@ pptx <- NULL # Define it so I can update it below
 pptxfileName <- NULL
 subSet <- ""
 datetime <- as.character(today)
+date_loc <- ph_location(
+  left = 3, 
+  top = 4, 
+  width = 4, 
+  height = 1, 
+  rotation = 0, 
+  bg = "white"
+  )
 
 # email.list.start <- "\n<li class=\"sls-list-paragraph\">\n"
 # email.list.end <- "\n</li>\n"
@@ -25,7 +33,7 @@ email.list.start <- "\n<li
      \n"
 email.list.end <- "\n</li>\n"
 
-textSummary <- function(X, title)
+textSummary <- function(X, title, additionalText = "")
 {
   deaths <- X$DEATHS$Delta[X$DEATHS$Date == yesterday]
   if (deaths == 1)
@@ -83,12 +91,13 @@ textSummary <- function(X, title)
       "over the past",
       daysLinearFit,
       "days.",
+      additionalText,
       email.list.end
     )
   )
 }
 
-textRanksInternational <- function(X, title, N, addPlot, ggObject)
+textRanksInternational <- function(X, title, N, addPlot, ggObject, comparator = "most")
 {
   USA <- which(X$Abbreviation == "USA")
   if (X$Rank[USA] == 1)
@@ -99,7 +108,9 @@ textRanksInternational <- function(X, title, N, addPlot, ggObject)
   }
   text <- paste0(
     X$Country[X$Rank == 1],
-    " has the most ",
+    " has the ",
+    comparator, 
+    " ",
     title,
     ", followed by "
     )
@@ -151,18 +162,13 @@ textRanksInternational <- function(X, title, N, addPlot, ggObject)
   return(returnText)
 }
 
-textRanksStates <- function(X, title, N, addPlot, ggObject)
+textRanksStates <- function(X, title, N, addPlot, ggObject, comparator = "most")
 {
-  if (title == "percent tested")
-  {
-    comparator = " highest "
-  } else {
-    comparator = " most "
-  }
   text <- paste0(
     X$State[X$Rank == 1],
-    " has the",
+    " has the ",
     comparator,
+    " ",
     title,
     ", followed by "
   )
@@ -241,11 +247,8 @@ newSection <- function (Title)
     pptx <<- read_pptx(paste0(dirSheets, "Template.blank.pptx"))
     pptx <<- add_slide(pptx, layout = "Section Header", master = master)
     pptx <<- ph_with(pptx, value = Title, location = ph_location_type("title"))
-    pptx <<- ph_with(
-      pptx, 
-      value = paste(subSet, 1), 
-      location = ph_location_type("sldNum"))
-    slideNumber <<- 2
+    pptx <<- ph_with(pptx, value = as.character(today), location = date_loc)
+    slideNumber <<- 1
   }
   
   if (plotGrowthFlag) 

@@ -1,3 +1,5 @@
+#  Root routine for the daily COVID update
+
 library(ggplot2)
 library(grid)
 library(openxlsx)
@@ -54,7 +56,7 @@ yesterdayText <- format(yesterday, "X%m.%e.%y")
 yesterdayText <- gsub("X0","X",yesterdayText)
 yesterdayText <- gsub(" ","",yesterdayText) 
 startDate <- as.Date("2020-01-22")
-endDate <- as.Date("2021-01-01")
+endDate <- as.Date("2021-02-01")
 projection <- endDate - today + 1
 currentDates <- seq(startDate, today-1, by="days")
 allDates     <- seq(startDate, endDate, by="days")

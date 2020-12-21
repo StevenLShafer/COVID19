@@ -24,7 +24,6 @@
 # yesterday <- today - 1
 # todayText <- as.character(today)
 
-
 ###########################################################
 ### Read raw Data                                       ###
 ###########################################################
@@ -38,6 +37,10 @@ Deaths_Global.raw   <- read.csv(paste0(dirTodayUpdateData,"Deaths_Global." , tod
 Testing_Global.raw  <- read.csv(paste0(dirTodayUpdateData,"Testing_Global.", todayText, ".raw.csv"))
 #Mobility            <- read.csv(paste0(dirTodayUpdateData,"Mobility."      , todayText, ".raw.csv"))
 Ensemble            <- read.csv(paste0(dirTodayUpdateData,"Ensemble."      , todayText, ".raw.csv"))
+RT_by_State         <- read.csv(paste0(dirTodayUpdateData,"RT_by_State."      , todayText, ".raw.csv"))
+AllCapacity.raw     <- read.csv(paste0(dirTodayUpdateData,"AllCapacity."      , todayText, ".raw.csv"))
+COVIDActNow_States_History.raw  <- read.csv(paste0(dirTodayUpdateData,"COVIDActNow_States_History."      , todayText, ".raw.csv"))
+COVIDActNow_Counties_Current.raw  <- read.csv(paste0(dirTodayUpdateData,"COVIDActNow_Counties_Current."      , todayText, ".raw.csv"))
 
 ###########################################################
 ### USA Data                                            ###
@@ -111,6 +114,7 @@ if (sum(Cases_USA$County.Name != Deaths_USA$County.Name) != 0)
 #  Both are CUMULATIVE. Need to carefully look at implications of using cumulative numbers only
 
 Testing_USA.raw$Date <- as.Date(as.character(Testing_USA.raw$date), format = "%Y%m%d")
+Testing_USA.raw <- Testing_USA.raw[Testing_USA.raw$Date >= startDate,]
 
 # Cumulative Cases and Tests by State
 Cumulative_Tests_By_State <- cbind(
@@ -213,6 +217,44 @@ for (i in 1:51)
 #   values_to = "Hospitalizations"
 # )
 # Hospitalization_USA_zeroOne$Date <- rep(currentDates,51)
+
+# RT by state
+RT_by_State <- RT_by_State[,1:7]
+RT_by_State$index <- NULL
+names(RT_by_State)[1:2] <- c("Date", "State")
+RT_by_State$Date <- as.Date(RT_by_State$Date)
+
+names(AllCapacity.raw)[1:2] <- c("State", "Date")
+
+# From Healthdata.gov
+AllCapacity <- AllCapacity.raw[, c(
+  "State", 
+  "Date", 
+  "inpatient_beds", 
+  "inpatient_beds_used", 
+  "total_staffed_adult_icu_beds", 
+  "staffed_adult_icu_bed_occupancy"
+)]
+names(AllCapacity)[5:6] <- c("ICU_beds","ICU_beds_used")
+AllCapacity$Date <- as.Date(AllCapacity$Date)
+AllCapacity <- AllCapacity[AllCapacity$Date >= startDate,]
+AllCapacity <- AllCapacity[order(AllCapacity$State, AllCapacity$Date),]
+AllCapacity$inpatient_percent <- AllCapacity$inpatient_beds_used/AllCapacity$inpatient_beds * 100
+AllCapacity$ICU_percent <- AllCapacity$ICU_beds_used/AllCapacity$ICU_beds * 100
+
+AllCapacity$key <- paste(AllCapacity$State," ",AllCapacity$Date)
+
+# Process CovidActNow data
+COVIDActNow_States_History.raw$Date <- as.Date(COVIDActNow_States_History.raw$date)
+NAMES <- names(COVIDActNow_States_History.raw)
+names(COVIDActNow_States_History.raw)[grep("state", NAMES)] <- "State"
+names(COVIDActNow_States_History.raw)[grep("actuals.hospitalBeds.capacity", NAMES)] <- "inpatient_beds"
+names(COVIDActNow_States_History.raw)[grep("actuals.hospitalBeds.currentUsageTotal", NAMES)] <- "inpatient_beds_used"
+names(COVIDActNow_States_History.raw)[grep("actuals.icuBeds.capacity", NAMES)] <- "ICU_beds"
+names(COVIDActNow_States_History.raw)[grep("actuals.icuBeds.currentUsageTotal", NAMES)] <- "ICU_beds_used"
+
+COVIDActNow_States <- COVIDActNow_States_History.raw[,c("State","Date","inpatient_beds","inpatient_beds_used", "ICU_beds","ICU_beds_used")]
+#### ARRGH.... The data from COVIDActNow is no more current than the data from healthdata.gov (at least as of today)
 
 ###########################################################
 ### Canada Data                                         ###

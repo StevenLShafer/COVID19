@@ -237,7 +237,9 @@ calcStats <- function(
   predictedDeaths <- tail(DEATHS$Predicted, 1)
 
     # Predict future cases
-  mortality <-   DEATHS$Actual[todayIndex - 1] / CASES$Actual[todayIndex - 1]
+  mortality <-   
+    (DEATHS$Actual[todayIndex - 1] - DEATHS$Actual[todayIndex - 61]) / 
+    (CASES$Actual[todayIndex - 1]  - CASES$Actual[todayIndex - 61])
 
   if (sum(DEATHS$Actual, na.rm = TRUE) > 0)
   {
