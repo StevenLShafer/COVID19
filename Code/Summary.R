@@ -7,12 +7,12 @@ emailText <- paste(
 )
 
 WORLD <- plotPred(Country = "Worldwide", Title = "Worldwide")$results
-emailText <- textSummary(WORLD, "Worldwide")
+emailText <- textSummary(WORLD, "Worldwide (population: 7674 MM)")
 
 USA <- plotPred(Country = "United States of America", Title = "USA", addPlot = TRUE)$results
 emailText <- textSummary(
   USA, 
-  "In the US", 
+  "In the US (population: 328 MM)", 
   paste(
     " Currently", 
     prettyNum(
