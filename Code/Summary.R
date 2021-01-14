@@ -7,7 +7,7 @@ emailText <- paste(
 )
 
 WORLD <- plotPred(Country = "Worldwide", Title = "Worldwide")$results
-emailText <- textSummary(WORLD, "Worldwide (population: 7674 MM)")
+emailText <- textSummary(WORLD, "Worldwide (population: 7.674 B = 7674 MM)")
 
 USA <- plotPred(Country = "United States of America", Title = "USA", addPlot = TRUE)$results
 emailText <- textSummary(
